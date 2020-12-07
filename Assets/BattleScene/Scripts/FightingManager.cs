@@ -53,7 +53,7 @@ public class FightingManager
         {
             foreach (var unit in selectedUnits)
             {
-                if (raycastHit.transform.name.Equals("Ground"))
+                if (raycastHit.transform.gameObject.layer==LayerMask.NameToLayer("Ground"))
                 {
                     unit.SetTargetPos(raycastHit.point);
                     GameObject mark=GameObject.CreatePrimitive(PrimitiveType.Sphere);
