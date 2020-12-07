@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum DamageType{
+	Physical,//物理伤害
+	Real//魔法伤害
+}
 public class GameManager
 {
 	//------------------------------------------------------------------------
@@ -15,10 +19,14 @@ public class GameManager
 			return _instance;
 		}
 	}
+	
 
-	// 場景狀態控制
-	private bool isGameOver = false;
-
+	public SceneStateController sceneStateController;
+	
+	public const string PLAYER_READY = "IsPlayerReady";
+	public const string PLAYER_LOADED_LEVEL = "PlayerLoadedLevel";
+	public const string PLAYER_CAMP_ID = "PlayerCampId";
+	
 	private GameManager()
 	{}
 	
@@ -52,5 +60,27 @@ public class GameManager
 	{
 		//这里用来控制回车，菜单栏之类的控制
 	}
+
+	public void SetSceneController(SceneStateController sceneStateController)
+	{
+		this.sceneStateController = sceneStateController;
+	}
+
+	public SceneStateController GetSceneController()
+	{
+		return sceneStateController;
+	}
+
+	public FightingManager GetFightingManager()
+	{
+		//战斗场景中
+		if (GetSceneController().state.GetType() == typeof(BattleSceneState))
+		{
+			return (sceneStateController.state as BattleSceneState)?.fightingManager;
+		}
+
+		return null;
+	}
+	
 
 }

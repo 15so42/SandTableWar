@@ -2,23 +2,19 @@
 using System.Collections;
 
 // 場景狀態
-public class ISceneState
+public class SceneState
 {
 	// 狀態名稱
-	private string m_StateName = "ISceneState";
-	public string StateName
-	{
-		get{ return m_StateName; }
-		set{ m_StateName = value; }
-	}
+
+	protected string StateName { get; set; } = "ISceneState";
 
 	// 控制者
-	protected SceneStateController m_Controller = null;
+	protected readonly SceneStateController sceneController = null;
 		
 	// 建構者
-	public ISceneState(SceneStateController Controller)
+	protected SceneState(SceneStateController controller)
 	{ 
-		m_Controller = Controller; 
+		sceneController = controller; 
 	}
 
 	// 開始
@@ -35,7 +31,7 @@ public class ISceneState
 
 	public override string ToString ()
 	{
-		return string.Format ("[I_SceneState: StateName={0}]", StateName);
+		return $"[I_SceneState: StateName={StateName}]";
 	}
 
 

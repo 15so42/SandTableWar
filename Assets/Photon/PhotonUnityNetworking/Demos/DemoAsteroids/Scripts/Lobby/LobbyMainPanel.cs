@@ -238,6 +238,11 @@ namespace Photon.Pun.Demo.Asteroids
             if (!playerName.Equals(""))
             {
                 PhotonNetwork.LocalPlayer.NickName = playerName;
+                //连接至中国区服务器
+                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "cn";
+                PhotonNetwork.PhotonServerSettings.AppSettings.UseNameServer = true;
+                PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime = "24f39900-ac5c-47ae-a0a8-2793d780b265";
+                PhotonNetwork.PhotonServerSettings.AppSettings.Server = "ns.photonengine.cn";
                 PhotonNetwork.ConnectUsingSettings();
             }
             else
@@ -302,7 +307,7 @@ namespace Photon.Pun.Demo.Asteroids
             roomListEntries.Clear();
         }
 
-        public void LocalPlayerPropertiesUpdated()
+        public void  LocalPlayerPropertiesUpdated()
         {
             StartGameButton.gameObject.SetActive(CheckPlayersReady());
         }

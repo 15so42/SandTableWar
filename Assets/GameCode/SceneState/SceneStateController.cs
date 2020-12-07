@@ -1,38 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 // 場景狀態控制者
 public class SceneStateController
 {
-	private ISceneState m_State;	
-	private bool 	m_bRunBegin = false;
+	public SceneState state;	
+	private bool 	isRunBegin;
 	
-	public SceneStateController()
-	{}
-
 	// 設定狀態
-	public void SetState(ISceneState State, string LoadSceneName)
+	public void SetState(SceneState nextState, string loadSceneName)
 	{
 		//Debug.Log ("SetState:"+State.ToString());
-		m_bRunBegin = false;
+		isRunBegin = false;
 
 		// 載入場景
-		LoadScene( LoadSceneName );
+		LoadScene( loadSceneName );
 
 		// 通知前一個State結束
-		if( m_State != null )
-			m_State.StateEnd();
+		this.state?.StateEnd();
 
 		// 設定
-		m_State=State;	
+		this.state=nextState;	
 	}
 
 	// 載入場景
-	private void LoadScene(string LoadSceneName)
+	private void LoadScene(string loadSceneName)
 	{
-		if( LoadSceneName==null || LoadSceneName.Length == 0 )
+		if( string.IsNullOrEmpty(loadSceneName) )
 			return ;
-		Application.LoadLevel( LoadSceneName );
+		
+		SceneManager.LoadScene( loadSceneName );
 	}
 
 	// 更新
@@ -43,13 +42,12 @@ public class SceneStateController
 			return ;
 
 		// 通知新的State開始
-		if( m_State != null && m_bRunBegin==false)
+		if( state != null && isRunBegin==false)
 		{
-			m_State.StateBegin();
-			m_bRunBegin = true;
+			state.StateBegin();
+			isRunBegin = true;
 		}
 
-		if( m_State != null)
-			m_State.StateUpdate();
+		state?.StateUpdate();
 	}
 }
