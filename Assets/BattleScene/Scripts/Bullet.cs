@@ -96,4 +96,9 @@ public class Bullet : MonoBehaviour,IRecycleAble
     {
         this.weapon = weapon;
     }
+
+    public void SetShooter(BattleUnitBase unitBase)
+    {
+        shooter = unitBase;
+    }
 }

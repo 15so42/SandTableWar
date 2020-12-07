@@ -13,6 +13,7 @@
         
         //近战时直接使用此伤害计算
         protected int baseDamage=30;
+        public BattleUnitBase owner;
 
         //一般由狀態機每幀執行此方法，對應類需要自己計時
         public virtual void WeaponUpdate()
@@ -28,5 +29,10 @@
         public virtual void Attack()
         {
             
+        }
+
+        public void SetOwner(BattleUnitBase unitBase)
+        {
+            this.owner = unitBase;
         }
     }

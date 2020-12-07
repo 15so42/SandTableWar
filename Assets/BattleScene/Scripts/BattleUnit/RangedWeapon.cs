@@ -19,6 +19,7 @@
             //todo 使用对象池
             GameObject iBullet=GameObject.Instantiate(bullet, shootPos.position, shootPos.rotation);
             iBullet.GetComponent<Bullet>().SetWeapon(this);
+            iBullet.GetComponent<Bullet>().SetShooter(owner);
             iBullet.GetComponent<Rigidbody>().AddForce(iBullet.transform.forward*800f);
         }
         

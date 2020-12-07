@@ -27,6 +27,7 @@ public class BattleUnitBase : MonoBehaviour
         NavMeshAgent = GetComponent<NavMeshAgent>();
         photonView = GetComponent<PhotonView>();
         weapon = GetComponent<Weapon>();
+        weapon.SetOwner(this);
     }
 
     // Start is called before the first frame update
