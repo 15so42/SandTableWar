@@ -81,7 +81,9 @@
      <Compile Include="Assets\BattleScene\Scripts\BattleUnit\BattleUnitBaseProp.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleUnit\RangedWeapon.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleUnit\Weapon.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\BattleUnitBaseFactory.cs" />
      <Compile Include="Assets\BattleScene\Scripts\Bullet.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\ConfigHelper.cs" />
      <Compile Include="Assets\BattleScene\Scripts\FightingManager.cs" />
      <Compile Include="Assets\BattleScene\Scripts\IRecycleAble.cs" />
      <Compile Include="Assets\GameCode\BaseClass\IGameSystem.cs" />
@@ -107,6 +109,7 @@
      <Compile Include="Assets\GameCode\SceneState\SceneStateController.cs" />
      <Compile Include="Assets\GameCode\SceneState\StartSceneState.cs" />
      <Compile Include="Assets\GameCode\Tools\ResFactory.cs" />
+     <Compile Include="Assets\GameCode\Tools\Singleton.cs" />
      <Compile Include="Assets\GameCode\Tools\UITool.cs" />
      <Compile Include="Assets\GameCode\Tools\UnityTool.cs" />
      <Compile Include="Assets\LogicMap.cs" />
@@ -125,6 +128,7 @@
      <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
      <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
      <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
+     <Compile Include="Assets\Resources\Config\ScriptableObject\SpawnBattleUnitConfig.cs" />
      <Compile Include="Assets\Scripts\GameSettingsConst.cs" />
      <Compile Include="Assets\Scripts\PhotonEventConst.cs" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />

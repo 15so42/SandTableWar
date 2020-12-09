@@ -11,7 +11,7 @@ public class BattleUnitBase : MonoBehaviour
     protected FightingManager fightingManager;
     protected PhotonView photonView;
 
-    public int campId;//陣營Id,用於區分敵我
+    [HideInInspector]public int campId;//陣營Id,用於區分敵我
     //單位都是用武器攻擊敵人，因此抽象出武器類
     [HideInInspector]public Weapon weapon;
     public BattleUnitBaseProp prop;//单位基础属性
@@ -32,8 +32,11 @@ public class BattleUnitBase : MonoBehaviour
         prop=new BattleUnitBaseProp();
         NavMeshAgent = GetComponent<NavMeshAgent>();
         photonView = GetComponent<PhotonView>();
-        weapon = GetComponent<Weapon>();//建筑类也需要有weapon，部分建筑可以攻击，不会攻击的使用不会攻击的weapon类即可
-        weapon.SetOwner(this);
+        weapon = GetComponent<Weapon>();//部分建筑类也需要有weapon，部分建筑可以攻击，不会攻击不需要添加weapon
+        if (weapon != null)
+        {
+            weapon.SetOwner(this);
+        }
     }
 
     // Start is called before the first frame update
@@ -60,7 +63,10 @@ public class BattleUnitBase : MonoBehaviour
     /// </summary>
     protected virtual void Update()
     {
-        stateController?.Update();
+        if (stateController != null)
+        {
+            stateController?.Update();
+        }
         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
     }
 
@@ -156,4 +162,5 @@ public class BattleUnitBase : MonoBehaviour
     {
         PhotonView.Get(this).RPC(nameof(UpdateHpUI),RpcTarget.All,prop.hp);
     }
+    
 }

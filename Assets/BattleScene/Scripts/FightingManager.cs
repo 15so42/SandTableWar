@@ -14,7 +14,7 @@ public class FightingManager
     public List<BattleUnitBase> selectedUnits = new List<BattleUnitBase>(); //选中的单位
 
     private Camera mainCamera;
-    private int campId;
+    public int campId;
 
     public void Init()
     {
@@ -31,8 +31,10 @@ public class FightingManager
     public void SpawnBase()
     {
         //todo 暂时生成小兵
-        GameObject spawnedBase=PhotonNetwork.Instantiate("BattleUnit/Solider1", logicMap.GetBasePosByPlayerId(campId), Quaternion.identity);
-        spawnedBase.GetComponent<BattleUnitBase>().SetCampId(campId);
+        // GameObject spawnedBase=PhotonNetwork.Instantiate("BattleUnit/Solider1", logicMap.GetBasePosByPlayerId(campId), Quaternion.identity);
+        // spawnedBase.GetComponent<BattleUnitBase>().SetCampId(campId);
+        //BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(1),logicMap.GetBasePosByPlayerId(campId),campId);
+        BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(299),logicMap.GetBasePosByPlayerId(campId),campId);
         BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(campId));
     }
     
@@ -128,5 +130,15 @@ public class FightingManager
     {
        // Debug.Log($"单位{attcker.gameObject.name}对单位{victim.gameObject.name}找成了{damageValue}点伤害");
        victim.ReduceHp(damageValue);
+    }
+    
+    /// <summary>
+    /// 是否含有足够的资源生成指定单位
+    /// </summary>
+    /// <returns></returns>
+    public bool HasEnoughResToSpawnSolider()
+    {
+        //todo 完善该方法
+        return true;
     }
 }
