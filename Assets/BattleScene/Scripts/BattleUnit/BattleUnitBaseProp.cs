@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+[System.Serializable]
 public class BattleUnitBaseProp
 {
     public float weaponProficiency = 1f; //武器熟练度倍率，如果要做单位自定义的话有用，先留着吧

@@ -74,6 +74,9 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition\FindEnemyTransition.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition\HasTargetPosTransition.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\BaseHpUi.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\BattleBuilding\BaseBarrack.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\BattleBuilding\BaseBattleBuilding.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleUnit\BattleUnitBase.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleUnit\BattleUnitBaseProp.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleUnit\RangedWeapon.cs" />
@@ -126,6 +129,7 @@
      <Compile Include="Assets\Scripts\PhotonEventConst.cs" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
      <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
+     <None Include="Assets\SimpleFX\Materials\UnlitVertexColour_Alpha.shader" />
      <None Include="Assets\Photon\PhotonLibs\changes-library.txt" />
      <None Include="Assets\Photon\PhotonUnityNetworking\readme.txt" />
      <None Include="Assets\GameCode\DOTween\readme.txt" />
