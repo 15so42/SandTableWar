@@ -39,36 +39,82 @@ public class FightingManager
 
     public void Update()
     {
-        //鼠标控制
+        //0代表鼠标左键，1代表鼠标右键
         if (Input.GetMouseButtonDown(0))
         {
-            MouseClickHandle();
+            MouseClickHandle(0);
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            MouseClickHandle(1);
         }
     }
 
-    public void MouseClickHandle()
+    public void MouseClickHandle(int mouseBtn)
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit raycastHit;
         if (Physics.Raycast(ray, out raycastHit, 999))
         {
-            foreach (var unit in selectedUnits)
+            if (raycastHit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
-                if (raycastHit.transform.gameObject.layer==LayerMask.NameToLayer("Ground"))
+                if (mouseBtn == 1)//点击鼠标右键时
                 {
-                    unit.SetTargetPos(raycastHit.point);
-                    GameObject mark=GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                    mark.transform.position = raycastHit.point;
+                    MoveToSpecificPos(raycastHit.point);
+                }else if (mouseBtn == 0)
+                {
+                    
                 }
+               
             }
         }
     }
+
+    #region 鼠标点击的命令
+
+    /// <summary>
+    /// 所有选中的目标移动到指定位置
+    /// </summary>
+    /// <param name="pos"></param>
+    public void MoveToSpecificPos(Vector3 pos)
+    {
+        foreach (var unit in selectedUnits)
+        {
+            unit.SetTargetPos(pos);
+            //todo 添加特效
+            // GameObject mark = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            // mark.transform.position = raycastHit.point;
+        }
+    }
+
+    public void UnselectAllUnits()
+    {
+        foreach (var unit in selectedUnits)
+        {
+            UnselectUnit(unit);
+        }
+    }
+    
+    
+    
+
+    #endregion
 
     public void SelectUnit(BattleUnitBase unitBase)
     {
         if (!selectedUnits.Contains(unitBase))
         {
             selectedUnits.Add(unitBase);
+            unitBase.OnSelect();
+        }
+    }
+
+    public void UnselectUnit(BattleUnitBase unitBase)
+    {
+        if (selectedUnits.Contains(unitBase))
+        {
+            selectedUnits.Remove(unitBase);
+            unitBase.OnUnSelect();
         }
     }
     

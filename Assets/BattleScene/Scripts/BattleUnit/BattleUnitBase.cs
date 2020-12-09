@@ -8,35 +8,41 @@ public class BattleUnitBase : MonoBehaviour
     
     [HideInInspector]public NavMeshAgent NavMeshAgent { get;private set;}
 
-    private FightingManager fightingManager;
-    private PhotonView photonView;
+    protected FightingManager fightingManager;
+    protected PhotonView photonView;
 
     public int campId;//陣營Id,用於區分敵我
     //單位都是用武器攻擊敵人，因此抽象出武器類
-    public Weapon weapon;
+    [HideInInspector]public Weapon weapon;
     public BattleUnitBaseProp prop;//单位基础属性
     public GameObject selectMark;
     
     //血条UI，通过动态加载到对应画布
     [Header("血条UI")]
-    private BaseHpUi hpUi;
-    private Transform hpInfoParent;
-    private Camera mainCam;
+    protected BaseHpUi hpUi;
+    protected Transform hpInfoParent;
+    protected Camera mainCam;
     public Vector3 hpUiOffset=new Vector3(0,10,0);
     
-    protected void Awake()
+    /// <summary>
+    /// 建筑类使用时
+    /// </summary>
+    protected virtual void Awake()
     {
         prop=new BattleUnitBaseProp();
         NavMeshAgent = GetComponent<NavMeshAgent>();
         photonView = GetComponent<PhotonView>();
-        weapon = GetComponent<Weapon>();
+        weapon = GetComponent<Weapon>();//建筑类也需要有weapon，部分建筑可以攻击，不会攻击的使用不会攻击的weapon类即可
         weapon.SetOwner(this);
     }
 
     // Start is called before the first frame update
-    protected void Start()
+    /// <summary>
+    /// 建筑类继承时先使用base.Start();
+    /// </summary>
+    protected virtual void Start()
     {
-        UnSelect();
+        OnUnSelect();
         stateController=new StateController(this);
         fightingManager = GameManager.Instance.GetFightingManager();
         //生成血条
@@ -49,7 +55,10 @@ public class BattleUnitBase : MonoBehaviour
     }
 
     // Update is called once per frame
-    protected void Update()
+    /// <summary>
+    /// 建筑类继承时使用Base.Update()
+    /// </summary>
+    protected virtual void Update()
     {
         stateController?.Update();
         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
@@ -80,14 +89,13 @@ public class BattleUnitBase : MonoBehaviour
         //throw new NotImplementedException();
     }
 
-    protected void OnMouseUpAsButton()
+    protected virtual void OnMouseUpAsButton()
     {
         if (photonView.IsMine == false)
         {
             return;
         }
-
-        Select();
+        
         fightingManager.SelectUnit(this);
     }
     #endregion
@@ -127,12 +135,12 @@ public class BattleUnitBase : MonoBehaviour
         PhotonNetwork.Destroy(gameObject);
     }
 
-    private void Select()
+    public void OnSelect()
     {
         selectMark.gameObject.SetActive(true);
     }
 
-    private void UnSelect()
+    public void OnUnSelect()
     {
         selectMark.gameObject.SetActive(false);
     }
