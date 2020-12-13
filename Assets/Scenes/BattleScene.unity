@@ -3162,7 +3162,7 @@ MonoBehaviour:
   verThreshould: 0.95
   horSpeed: -12
   verSpeed: -12
-  offset: {x: 19, y: 16, z: 10}
+  offset: {x: 0, y: 16, z: 10}
 --- !u!1001 &553607330
 PrefabInstance:
   m_ObjectHideFlags: 0

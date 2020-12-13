@@ -30,10 +30,6 @@ public class FightingManager
 
     public void SpawnBase()
     {
-        //todo 暂时生成小兵
-        // GameObject spawnedBase=PhotonNetwork.Instantiate("BattleUnit/Solider1", logicMap.GetBasePosByPlayerId(campId), Quaternion.identity);
-        // spawnedBase.GetComponent<BattleUnitBase>().SetCampId(campId);
-        //BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(1),logicMap.GetBasePosByPlayerId(campId),campId);
         BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(299),logicMap.GetBasePosByPlayerId(campId),campId);
         BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(campId));
     }
