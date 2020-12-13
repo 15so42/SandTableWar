@@ -33,19 +33,22 @@ public class StateController
         //状态机设置
         State idleState = new BaseIdleState(this);
         State moveState = new BaseMoveState(this);
+        State moveIgnoreEnemyState =new BaseMoveState(this);
         State fightState = new BaseFightState(this);
 
         //idle时发现有新的目标位置切换到移动状态
         idleState.AddTransition(new Transition()
         {
-            decision = new HasTargetPosDecision(), trueState = moveState,
+            decisions =  new List<Decision>{new HasTargetPosDecision()}, 
+            trueState = moveState,
             falseState = currentState
         });
         
         //idle时发现敌人切换到战斗状态
         idleState.AddTransition(new Transition()
         {
-            decision = new FindEnemyDecision(), trueState = fightState, 
+            decisions =  new List<Decision>{new FindEnemyDecision()},
+            trueState = fightState, 
             falseState = currentState
         });
 
@@ -53,24 +56,43 @@ public class StateController
         moveState.AddAction(new MoveToPosStateAction());
         moveState.AddTransition(new Transition()
         {
-            decision = new ReachTargetPosDecision(),
-            falseState = currentState,
-            trueState = moveState
+            decisions = new List<Decision>{new ReachTargetPosDecision()},
+            falseState = moveState,
+            trueState = idleState
         });
         moveState.AddTransition(new Transition()
         {
-            decision = new FindEnemyDecision(),
-            falseState = currentState,
+            decisions =  new List<Decision>{new FindEnemyDecision()},
+            falseState = moveState,
             trueState = fightState
         });
+        
+        //强制移动到目标点，用于战斗中强行移动(撤退，突围等操作)
+        moveIgnoreEnemyState.AddAction(new MoveToPosStateAction());
+        moveState.AddTransition(new Transition()
+        {
+            decisions =  new List<Decision>{new ReachTargetPosDecision()},
+            falseState = moveIgnoreEnemyState,
+            trueState = idleState
+        });
 
-        //战斗状态检查是否还有敌人，没有敌人后检查是否有目标导航路径，有则切回移动，没有则回到待机状态
+        //战斗状态
+        //是否有敌人T:fight
+        //        有新的目标点T:强制移动
+        //                  F：fight
+        //    F:idle
         fightState.AddAction(new BaseFightAction());
         fightState.AddTransition(new Transition()
         {
-            decision = new FindEnemyDecision(),
+            decisions = new List<Decision>{new FindEnemyDecision()},
             falseState = idleState,
-            trueState = moveState
+            trueState = fightState
+        });
+        fightState.AddTransition(new Transition()
+        {
+            decisions =  new List<Decision>{new ReachTargetPosDecision()},
+            falseState = moveIgnoreEnemyState,
+            trueState = fightState
         });
 
 

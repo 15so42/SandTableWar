@@ -70,9 +70,16 @@ public class State
     {
         foreach (var t in transitions)
         {
-            //这里条件转换只有两个，所以直接用Bool类型来判断。当然也可以有多种条件转换。
-            var decisionSucceeded = t.decision.Decide(controller);
-
+            //decisions判断
+            bool decisionSucceeded = true;
+            foreach (var d in t.decisions)
+            {
+                if (d.Decide(controller) == false)
+                {
+                    decisionSucceeded = false;
+                    break;
+                }
+            }
             controller.TransitionToState(decisionSucceeded ? t.trueState : t.falseState);
         }
     }
