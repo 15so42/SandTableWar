@@ -16,6 +16,9 @@ public class FightingManager
     private Camera mainCamera;
     public int campId;
 
+    private const string SelectMarkPath = "Fx/SelectMark";
+    private GameObject selectMarkInCache;
+
     public void Init()
     {
         mainCamera = Camera.main;
@@ -24,8 +27,7 @@ public class FightingManager
         {
             campId = (int)value;
         };
-       
-
+        selectMarkInCache = Resources.Load<GameObject>(SelectMarkPath);
     }
 
     public void SpawnBase()
@@ -103,6 +105,16 @@ public class FightingManager
         if (!selectedUnits.Contains(unitBase))
         {
             selectedUnits.Add(unitBase);
+            Transform unitBaseTransform = unitBase.transform;
+            //选中特效
+            if (unitBase.isFirstSelected)
+            {
+                
+                GameObject iMark = Object.Instantiate(selectMarkInCache,
+                    unitBaseTransform.position + unitBase.selectMarkOffset, 
+                    Quaternion.Euler(new Vector3(90,0,0)), unitBaseTransform);
+                unitBase.SetSelectMark(iMark);
+            }
             unitBase.OnSelect();
         }
     }
@@ -112,6 +124,8 @@ public class FightingManager
         if (selectedUnits.Contains(unitBase))
         {
             selectedUnits.Remove(unitBase);
+            //关闭选中特效
+            
             unitBase.OnUnSelect();
         }
     }

@@ -15,7 +15,7 @@ public class BattleUnitBase : MonoBehaviour
     //單位都是用武器攻擊敵人，因此抽象出武器類
     [HideInInspector]public Weapon weapon;
     public BattleUnitBaseProp prop;//单位基础属性
-    public GameObject selectMark;
+   
     
     //血条UI，通过动态加载到对应画布
     [Header("血条UI")]
@@ -24,6 +24,14 @@ public class BattleUnitBase : MonoBehaviour
     protected Camera mainCam;
     public Vector3 hpUiOffset=new Vector3(0,10,0);
     
+    //选中特效，选中特效由FightingManager动态生成并设置成单位的子物体，一般单位不控制选中特效，除非需要额外增加选中特效效果，比如旋转
+    private GameObject selectMark;
+    [Header("选中特效大小")]//后期可能还需控制选中特效类型，目前先不管
+    public float selectMarkSize = 1;
+    public Vector3 selectMarkOffset=Vector3.zero;
+
+    [HideInInspector]public bool isFirstSelected;//第一次被选中
+
     /// <summary>
     /// 建筑类使用时
     /// </summary>
@@ -37,6 +45,8 @@ public class BattleUnitBase : MonoBehaviour
         {
             weapon.SetOwner(this);
         }
+
+        isFirstSelected = true;
     }
 
     // Start is called before the first frame update
@@ -45,7 +55,6 @@ public class BattleUnitBase : MonoBehaviour
     /// </summary>
     protected virtual void Start()
     {
-        OnUnSelect();
         stateController=new StateController(this);
         fightingManager = GameManager.Instance.GetFightingManager();
         //生成血条
@@ -77,6 +86,24 @@ public class BattleUnitBase : MonoBehaviour
     public void SetTargetPos(Vector3 pos)
     {
         stateController.SetTargetPos(pos);
+    }
+    
+    public void SetSelectMark(GameObject mark)
+    {
+        selectMark = mark;
+        selectMark.transform.localScale = Vector3.one * selectMarkSize;
+        ShowSelectMark();
+    }
+
+    //第一次选中时需要设置，之后选中标志通过active来控制以减少性能消耗
+    public void ShowSelectMark()
+    {
+        selectMark.SetActive(true);
+    }
+
+    public void HideSelectMark()
+    {
+        selectMark.SetActive(false);
     }
     
     #region 鼠标控制
@@ -143,12 +170,24 @@ public class BattleUnitBase : MonoBehaviour
 
     public void OnSelect()
     {
-        selectMark.gameObject.SetActive(true);
+        if (isFirstSelected)
+        {
+            isFirstSelected = false;
+        }
+
+        if (selectMark.gameObject)
+        {
+            selectMark.gameObject.SetActive(true);
+        }
+        
     }
 
     public void OnUnSelect()
     {
-        selectMark.gameObject.SetActive(false);
+        if (selectMark.gameObject)
+        {
+            selectMark.gameObject.SetActive(false);
+        }
     }
 
     [PunRPC]
