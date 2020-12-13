@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class BattleUnitBase : MonoBehaviour
 {
-    [HideInInspector]public StateController stateController;
+    public StateController stateController;
     
     [HideInInspector]public NavMeshAgent NavMeshAgent { get;private set;}
 
@@ -72,9 +72,12 @@ public class BattleUnitBase : MonoBehaviour
     /// </summary>
     protected virtual void Update()
     {
-        if (stateController != null)
+        if (photonView.IsMine)
         {
-            stateController?.Update();
+            if (stateController != null)
+            {
+                stateController?.Update();
+            }
         }
         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
     }

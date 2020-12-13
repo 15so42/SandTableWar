@@ -9,7 +9,7 @@ public class MoveToPosStateAction : StateAction
     public override void Act(StateController controller)
     {
         controller.navMeshAgent.isStopped = false;
-        if (hasSetDes == false)
+        if (hasSetDes == false)//避免多次执行setDest函数
         {
             controller.navMeshAgent.SetDestination(controller.targetPos);
             hasSetDes = true;

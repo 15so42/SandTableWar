@@ -114,9 +114,9 @@ public class FightingManager
 
     public void UnselectAllUnits()
     {
-        foreach (var unit in selectedUnits)
+        for (int i=0;i<selectedUnits.Count;i++)
         {
-            UnselectUnit(unit);
+            UnselectUnit(selectedUnits[i]);
         }
     }
     

@@ -165,6 +165,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f244212bb3c39c42b791cac07dc1eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateController:
+    currentState:
+      ownerController:
+        currentState:
+          ownerController:
+            currentState:
+              ownerController:
+                currentState:
+                  ownerController:
+                    currentState:
+                      ownerController:
+                        stateTimeElapsed: 0
+                        targetPos: {x: 0, y: 0, z: 0}
+                    states: []
+                    navMeshAgent: {fileID: 0}
+                    wayPointList: []
+                    enemy: {fileID: 0}
+                    stateTimeElapsed: 0
+                    owner: {fileID: 0}
+                    targetPos: {x: 0, y: 0, z: 0}
+                states: []
+                navMeshAgent: {fileID: 0}
+                wayPointList: []
+                enemy: {fileID: 0}
+                stateTimeElapsed: 0
+                owner: {fileID: 0}
+                targetPos: {x: 0, y: 0, z: 0}
+            states: []
+            navMeshAgent: {fileID: 0}
+            wayPointList: []
+            enemy: {fileID: 0}
+            stateTimeElapsed: 0
+            owner: {fileID: 0}
+            targetPos: {x: 0, y: 0, z: 0}
+        states: []
+        navMeshAgent: {fileID: 0}
+        wayPointList: []
+        enemy: {fileID: 0}
+        stateTimeElapsed: 0
+        owner: {fileID: 0}
+        targetPos: {x: 0, y: 0, z: 0}
+    states: []
+    navMeshAgent: {fileID: 0}
+    wayPointList: []
+    enemy: {fileID: 0}
+    stateTimeElapsed: 0
+    owner: {fileID: 0}
+    targetPos: {x: 0, y: 0, z: 0}
   campId: 0
   weapon: {fileID: 2902278658431842304}
   prop:
@@ -214,10 +262,10 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 1
+    InterpolateOption: 2
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 1
-    ExtrapolateOption: 3
+    ExtrapolateOption: 2
     ExtrapolateSpeed: 1
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1

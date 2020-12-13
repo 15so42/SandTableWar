@@ -6,10 +6,11 @@ using UnityEngine.AI;
 /// 来自unity官方可插拔状态机教程，有大量的修改
 /// https://blog.csdn.net/l773575310/article/details/73008669
 ///stateController是狀態機的基類，不同的AI應該繼承並重寫部分代碼
+[System.Serializable]//便于Debug以及运行时查看状态
 public class StateController
 {
     public State currentState; //当前状态
-    public State remainState; //保持当前状态
+    //public State remainState=null; //保持当前状态
 
     public List<State> states = new List<State>();
     public NavMeshAgent navMeshAgent; //导航组件
@@ -41,7 +42,7 @@ public class StateController
         {
             decisions =  new List<Decision>{new HasTargetPosDecision()}, 
             trueState = moveState,
-            falseState = currentState
+            falseState = idleState
         });
         
         //idle时发现敌人切换到战斗状态
@@ -49,7 +50,7 @@ public class StateController
         {
             decisions =  new List<Decision>{new FindEnemyDecision()},
             trueState = fightState, 
-            falseState = currentState
+            falseState = idleState
         });
 
         //移动状态执行移动函数
@@ -69,7 +70,7 @@ public class StateController
         
         //强制移动到目标点，用于战斗中强行移动(撤退，突围等操作)
         moveIgnoreEnemyState.AddAction(new MoveToPosStateAction());
-        moveState.AddTransition(new Transition()
+        moveIgnoreEnemyState.AddTransition(new Transition()
         {
             decisions =  new List<Decision>{new ReachTargetPosDecision()},
             falseState = moveIgnoreEnemyState,
@@ -117,7 +118,7 @@ public class StateController
     //转换到下一个状态
     public void TransitionToState(State nextState)
     {
-        if (nextState != remainState)
+        if (nextState != null)
         {
             currentState = nextState;
             OnExitState();

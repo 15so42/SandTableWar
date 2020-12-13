@@ -2,15 +2,16 @@
 using System.Linq;
 using UnityEngine;
 
+[System.Serializable]
 public class State
 {
     public List<StateAction> actions=new List<StateAction>();                        //动作
     public List<Transition> transitions=new List<Transition>();                //转换条件
-    public StateController stateController;
+    public StateController ownerController;
     
     public State(StateController controller)
     {
-        this.stateController = controller;
+        this.ownerController = controller;
     }
 
     //每一帧更新状态，在StateController的OnUpdate中调用。
@@ -80,7 +81,15 @@ public class State
                     break;
                 }
             }
+
+            if ((t.falseState == controller.currentState && decisionSucceeded == false) ||
+                (t.trueState == controller.currentState && decisionSucceeded))//无效转化
+            {
+                continue;
+            }
             controller.TransitionToState(decisionSucceeded ? t.trueState : t.falseState);
+            //走过一个成功转换后则停止
+            return;
         }
     }
 
