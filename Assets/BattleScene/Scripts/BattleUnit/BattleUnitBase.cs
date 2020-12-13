@@ -122,14 +122,31 @@ public class BattleUnitBase : MonoBehaviour
         //throw new NotImplementedException();
     }
 
-    protected virtual void OnMouseUpAsButton()
+    private  void OnMouseUpAsButton()
     {
         if (photonView.IsMine == false)
         {
             return;
         }
+        MouseClickHandle();
+    }
+
+    protected virtual void MouseClickHandle()
+    {
+        if (fightingManager.isHoldShift)//加选
+        {
+            fightingManager.SelectUnit(this);
+        }
+        else if (fightingManager.isHoldCtrl)//减选
+        {
+            fightingManager.UnselectUnit(this);
+        }
+        else//单独选择此单位
+        {
+            fightingManager.UnselectAllUnits();
+            fightingManager.SelectUnit(this);
+        }
         
-        fightingManager.SelectUnit(this);
     }
     #endregion
 

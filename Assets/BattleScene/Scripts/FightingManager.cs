@@ -16,8 +16,13 @@ public class FightingManager
     private Camera mainCamera;
     public int campId;
 
+    //选中特效
     private const string SelectMarkPath = "Fx/SelectMark";
     private GameObject selectMarkInCache;
+    
+    //按键控制
+    public bool isHoldShift;
+    public bool isHoldCtrl;
 
     public void Init()
     {
@@ -39,6 +44,7 @@ public class FightingManager
 
     public void Update()
     {
+        //todo 考虑按键控制抽象成单独类
         //0代表鼠标左键，1代表鼠标右键
         if (Input.GetMouseButtonDown(0))
         {
@@ -48,6 +54,26 @@ public class FightingManager
         {
             MouseClickHandle(1);
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isHoldShift = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isHoldShift = false;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            isHoldCtrl = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            isHoldCtrl = false;
+        }
+        
+        
     }
 
     public void MouseClickHandle(int mouseBtn)
@@ -63,9 +89,8 @@ public class FightingManager
                     MoveToSpecificPos(raycastHit.point);
                 }else if (mouseBtn == 0)
                 {
-                    
+                    UnselectAllUnits();
                 }
-               
             }
         }
     }
@@ -125,7 +150,7 @@ public class FightingManager
         {
             selectedUnits.Remove(unitBase);
             //关闭选中特效
-            
+            unitBase.HideSelectMark();
             unitBase.OnUnSelect();
         }
     }
