@@ -138,54 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc3ef106ac2713439029c6aa3f47d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateController:
-    currentState:
-      ownerController:
-        currentState:
-          ownerController:
-            currentState:
-              ownerController:
-                currentState:
-                  ownerController:
-                    currentState:
-                      ownerController:
-                        stateTimeElapsed: 0
-                        targetPos: {x: 0, y: 0, z: 0}
-                    states: []
-                    navMeshAgent: {fileID: 0}
-                    wayPointList: []
-                    enemy: {fileID: 0}
-                    stateTimeElapsed: 0
-                    owner: {fileID: 0}
-                    targetPos: {x: 0, y: 0, z: 0}
-                states: []
-                navMeshAgent: {fileID: 0}
-                wayPointList: []
-                enemy: {fileID: 0}
-                stateTimeElapsed: 0
-                owner: {fileID: 0}
-                targetPos: {x: 0, y: 0, z: 0}
-            states: []
-            navMeshAgent: {fileID: 0}
-            wayPointList: []
-            enemy: {fileID: 0}
-            stateTimeElapsed: 0
-            owner: {fileID: 0}
-            targetPos: {x: 0, y: 0, z: 0}
-        states: []
-        navMeshAgent: {fileID: 0}
-        wayPointList: []
-        enemy: {fileID: 0}
-        stateTimeElapsed: 0
-        owner: {fileID: 0}
-        targetPos: {x: 0, y: 0, z: 0}
-    states: []
-    navMeshAgent: {fileID: 0}
-    wayPointList: []
-    enemy: {fileID: 0}
-    stateTimeElapsed: 0
-    owner: {fileID: 0}
-    targetPos: {x: 0, y: 0, z: 0}
   campId: 0
   weapon: {fileID: 0}
   prop:
@@ -193,6 +145,7 @@ MonoBehaviour:
     maxHp: 100
     hp: 100
     defense: 100
+    viewDistance: 10
   hpUiOffset: {x: 0, y: 10, z: 0}
   selectMarkSize: 6
   selectMarkOffset: {x: 0, y: 0.15, z: 0}

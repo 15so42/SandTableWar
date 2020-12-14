@@ -11,7 +11,7 @@ public class BattleUnitBase : MonoBehaviour
     protected FightingManager fightingManager;
     protected PhotonView photonView;
 
-    [HideInInspector]public int campId;//陣營Id,用於區分敵我
+    public int campId;//陣營Id,用於區分敵我
     //單位都是用武器攻擊敵人，因此抽象出武器類
     [HideInInspector]public Weapon weapon;
     public BattleUnitBaseProp prop;//单位基础属性
@@ -59,9 +59,13 @@ public class BattleUnitBase : MonoBehaviour
         //生成血条
         mainCam = Camera.main;
         hpInfoParent = UITool.FindUIGameObject("HpInfo").transform;
-        hpUi = Instantiate(Resources.Load<BaseHpUi>("Prefab/UI/BaseHpUi"), mainCam.WorldToScreenPoint(transform.position),
+        var position = transform.position;
+        hpUi = Instantiate(Resources.Load<BaseHpUi>("Prefab/UI/BaseHpUi"), mainCam.WorldToScreenPoint(position),
             Quaternion.identity,hpInfoParent);
         hpUi.owner = this;
+        //设置初始目标地点
+        stateController.targetPos = position;
+        stateController.lastTargetPos = stateController.targetPos;
 
     }
 
@@ -73,10 +77,7 @@ public class BattleUnitBase : MonoBehaviour
     {
         if (photonView.IsMine)
         {
-            if (stateController != null)
-            {
-                stateController?.Update();
-            }
+            stateController?.Update();
         }
         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
     }

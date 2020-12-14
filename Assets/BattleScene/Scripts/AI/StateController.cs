@@ -18,7 +18,7 @@ public class StateController
     public float stateTimeElapsed; //状态变化时间间隔
     public BattleUnitBase owner;
     public Vector3 targetPos;
-    private Vector3 lastTargetPos;
+    public Vector3 lastTargetPos;
 
     public StateController(BattleUnitBase battleUnitBase)
     {
