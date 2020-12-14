@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BaseIdleState : State
 {
-    public BaseIdleState(StateController controller) : base(controller)
+    public BaseIdleState(StateController controller, string stateName) : base(controller, stateName)
     {
-      
     }
 }

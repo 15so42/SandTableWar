@@ -6,7 +6,6 @@ using UnityEngine.AI;
 /// 来自unity官方可插拔状态机教程，有大量的修改
 /// https://blog.csdn.net/l773575310/article/details/73008669
 ///stateController是狀態機的基類，不同的AI應該繼承並重寫部分代碼
-[System.Serializable]//便于Debug以及运行时查看状态
 public class StateController
 {
     public State currentState; //当前状态
@@ -32,10 +31,10 @@ public class StateController
         navMeshAgent = owner.NavMeshAgent;
         lastTargetPos = targetPos;
         //状态机设置
-        State idleState = new BaseIdleState(this);
-        State moveState = new BaseMoveState(this);
-        State moveIgnoreEnemyState =new BaseMoveState(this);
-        State fightState = new BaseFightState(this);
+        State idleState = new BaseIdleState(this,"闲置");
+        State moveState = new BaseMoveState(this,"移动");
+        State moveIgnoreEnemyState =new BaseMoveState(this,"强行移动");
+        State fightState = new BaseFightState(this,"战斗");
 
         //idle时发现有新的目标位置切换到移动状态
         idleState.AddTransition(new Transition()
@@ -103,6 +102,7 @@ public class StateController
         AddState(idleState);
         AddState(moveState);
         AddState(fightState);
+        AddState(moveIgnoreEnemyState);
 
         //todo 设置初始状态
         currentState = states[0];
@@ -121,6 +121,7 @@ public class StateController
         if (nextState != null)
         {
             currentState = nextState;
+            Debug.Log($"{owner.transform.name}切换状态至{nextState}");
             OnExitState();
         }
     }

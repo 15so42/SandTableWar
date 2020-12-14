@@ -6,7 +6,8 @@ public class BattleUnitBaseProp
     public int maxHp=100;
     public int hp=100;
     public int defense=0;
-
+    [Header("视野范围")]
+    public float viewDistance = 10f;
     /// <summary>
     /// 扣除血量，不要传入负值
     /// </summary>

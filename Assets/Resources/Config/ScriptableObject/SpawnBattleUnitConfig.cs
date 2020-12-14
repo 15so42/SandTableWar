@@ -14,4 +14,8 @@ public class SpawnBattleUnitConfigInfo
    public int id;
    public string resourceName;
    public float spawnTime;
+   public int needPopulation=1;
+   public int needCoin = 1;
+   public int needMineral = 1;
+   public int needFood = 1;
 }

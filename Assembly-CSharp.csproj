@@ -77,6 +77,7 @@
      <Compile Include="Assets\BattleScene\Scripts\BaseHpUi.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleBuilding\BaseBarrack.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleBuilding\BaseBattleBuilding.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\BattleResMgr.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleUnit\BattleUnitBase.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleUnit\BattleUnitBaseProp.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleUnit\RangedWeapon.cs" />

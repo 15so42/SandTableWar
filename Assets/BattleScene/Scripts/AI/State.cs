@@ -2,16 +2,17 @@
 using System.Linq;
 using UnityEngine;
 
-[System.Serializable]
+
 public class State
 {
     public List<StateAction> actions=new List<StateAction>();                        //动作
     public List<Transition> transitions=new List<Transition>();                //转换条件
     public StateController ownerController;
-    
-    public State(StateController controller)
+    public string stateName;
+    public State(StateController controller,string stateName)
     {
         this.ownerController = controller;
+        this.stateName = stateName;
     }
 
     //每一帧更新状态，在StateController的OnUpdate中调用。

@@ -42,7 +42,7 @@ public class BaseBattleBuilding : BattleUnitBase
         if(photonView.IsMine==false)
             return;
         //判断资源足够时才计时
-        if (fightingManager.HasEnoughResToSpawnSolider())
+        if (fightingManager.HasEnoughResToSpawnSolider(spawnId))
         {
             timer += Time.deltaTime;
             if (timer > interval)
@@ -57,7 +57,11 @@ public class BaseBattleBuilding : BattleUnitBase
 
     public void SpawnUnit()
     {
-        BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(curSpawnInfo,spawnPos.position,fightingManager.campId);
+        if (fightingManager.ConsumeResByUnitInfo(curSpawnInfo))
+        {
+            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(curSpawnInfo,spawnPos.position,fightingManager.campId);
+        }
+        
     }
 }
 

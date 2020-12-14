@@ -23,6 +23,11 @@ public class FightingManager
     //按键控制
     public bool isHoldShift;
     public bool isHoldCtrl;
+    
+    
+    //资源,临时，之后抽象出具体类
+    public BattleResMgr battleResMgr;
+    public int coin = 20;
 
     public void Init()
     {
@@ -33,6 +38,7 @@ public class FightingManager
             campId = (int)value;
         };
         selectMarkInCache = Resources.Load<GameObject>(SelectMarkPath);
+        battleResMgr=new BattleResMgr();
     }
 
     public void SpawnBase()
@@ -171,9 +177,29 @@ public class FightingManager
     /// 是否含有足够的资源生成指定单位
     /// </summary>
     /// <returns></returns>
-    public bool HasEnoughResToSpawnSolider()
+    public bool HasEnoughResToSpawnSolider(int spawnId)
     {
         //todo 完善该方法
-        return true;
+        SpawnBattleUnitConfigInfo curSpawnInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(spawnId);
+        int needPopulation = curSpawnInfo.needPopulation;
+        int needCoin = curSpawnInfo.needCoin;
+        int needMineral = curSpawnInfo.needMineral;
+        int needFood = curSpawnInfo.needFood;
+        //先判断是否所有都满足再消耗
+        if (battleResMgr.HasEnoughRes(BattleResType.population, needPopulation) &&
+            battleResMgr.HasEnoughRes(BattleResType.coin, needCoin) &&
+            battleResMgr.HasEnoughRes(BattleResType.mineral, needMineral) &&
+            battleResMgr.HasEnoughRes(BattleResType.food, needFood))
+        {
+            return true;
+        }
+
+        return false;
     }
+
+    public bool ConsumeResByUnitInfo(SpawnBattleUnitConfigInfo spawnInfo)
+    {
+        return battleResMgr.ConsumeResByUnitInfo(spawnInfo);
+    }
+    
 }

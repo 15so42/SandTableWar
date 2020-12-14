@@ -31,7 +31,6 @@ public class BattleUnitBase : MonoBehaviour
     public Vector3 selectMarkOffset=Vector3.zero;
 
     [HideInInspector]public bool isFirstSelected;//第一次被选中
-
     /// <summary>
     /// 建筑类使用时
     /// </summary>
