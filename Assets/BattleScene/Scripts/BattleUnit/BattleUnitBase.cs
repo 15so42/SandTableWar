@@ -152,12 +152,7 @@ public class BattleUnitBase : MonoBehaviour
         
     }
     #endregion
-
-    public void SetCampId(int value)
-    {
-        campId = value;
-    }
-
+    
     public bool IsMine()
     {
         return photonView.IsMine;
@@ -221,5 +216,17 @@ public class BattleUnitBase : MonoBehaviour
     {
         PhotonView.Get(this).RPC(nameof(UpdateHpUI),RpcTarget.All,prop.hp);
     }
+
+    [PunRPC]
+    public void SetCampId(int value)
+    {
+        this.campId = value;
+    }
+
+    public void SetCampInPhoton(int value)
+    {
+        PhotonView.Get(this).RPC(nameof(SetCampId),RpcTarget.All,value);
+    }
     
+
 }
