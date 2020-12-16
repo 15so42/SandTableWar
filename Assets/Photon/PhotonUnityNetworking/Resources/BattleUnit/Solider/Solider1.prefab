@@ -839,6 +839,8 @@ MonoBehaviour:
   shootPos: {fileID: 8264968204976261782}
   bullet: {fileID: 4317199290405529018, guid: 2ee04c431af8d1a44977f69384d3aef0, type: 3}
   bulletDamageRate: 1
+  detectionType: 0
+  scatteringAngel: 15
 --- !u!114 &5669207548518253706
 MonoBehaviour:
   m_ObjectHideFlags: 0

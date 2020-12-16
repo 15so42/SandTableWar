@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour,IRecycleAble
         
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (shooter.IsMine())
         {
@@ -48,7 +48,7 @@ public class Bullet : MonoBehaviour,IRecycleAble
         //撞到障碍物上
         if (otherUnit == null)
         {
-           OnCollisionObstacle(other.gameObject);
+           OnTriggerObstacle(other.gameObject);
         }
         else
         {
@@ -56,18 +56,18 @@ public class Bullet : MonoBehaviour,IRecycleAble
             {
                 return;
             }
-            OnCollisionUnit(otherUnit);
+            OnTriggerUnit(otherUnit);
         }
     }
 
-    protected virtual void OnCollisionObstacle(GameObject go)
+    protected virtual void OnTriggerObstacle(GameObject go)
     {
         //Rpc销毁子弹
         //PhotonView.Get(shooter).RPC("RecycleBullet",RpcTarget.All,this);
         Recycle();
     }
 
-    protected virtual void OnCollisionUnit(BattleUnitBase unitBase)
+    protected virtual void OnTriggerUnit(BattleUnitBase unitBase)
     {
         FightingManager fightingManager = GameManager.Instance.GetFightingManager();
         //计算伤害使用凶器进行计算，如使用子弹计算，但是记录是记录攻击者单位,凶器都需要拥有
