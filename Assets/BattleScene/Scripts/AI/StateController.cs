@@ -30,7 +30,13 @@ public class StateController
     {
         navMeshAgent = owner.NavMeshAgent;
         lastTargetPos = targetPos;
-        //状态机设置
+
+        InitState();
+    }
+
+    protected virtual void InitState()
+    {
+         //状态机设置
         State idleState = new BaseIdleState(this,"闲置");
         State moveState = new BaseMoveState(this,"移动");
         State moveIgnoreEnemyState =new BaseMoveState(this,"强行移动");
@@ -172,11 +178,13 @@ public class StateController
 
     public State GetState(string name)
     {
-        return states.Find(x => nameof(x.GetType) == name);
+        return states.Find(x => x.stateName == name);
     }
 
     public void SetEnemy(BattleUnitBase battleUnitBase)
     {
         enemy = battleUnitBase;
     }
+    
+    
 }

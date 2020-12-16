@@ -10,6 +10,7 @@
         public float bulletDamageRate=1f;
         public override void Attack()
         {
+            base.Attack();
             PhotonView.Get(this).RPC("FireBullet",RpcTarget.All);
         }
 

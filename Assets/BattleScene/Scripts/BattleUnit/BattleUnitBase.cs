@@ -46,6 +46,7 @@ public class BattleUnitBase : MonoBehaviour
         }
 
         isFirstSelected = true;
+        stateController=new StateController(this);
     }
 
     // Start is called before the first frame update
@@ -54,7 +55,7 @@ public class BattleUnitBase : MonoBehaviour
     /// </summary>
     protected virtual void Start()
     {
-        stateController=new StateController(this);
+        
         fightingManager = GameManager.Instance.GetFightingManager();
         //生成血条
         mainCam = Camera.main;

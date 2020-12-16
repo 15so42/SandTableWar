@@ -20,7 +20,7 @@ public class BaseBattleBuilding : BattleUnitBase
 
     public Transform spawnPos;
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected override void Start()
     {
         base.Start();
         stateController = null;//建筑单位行为较简单，不使用状态机，需要转换时在对应类中重写
@@ -28,7 +28,7 @@ public class BaseBattleBuilding : BattleUnitBase
     }
     
     //更换生成的单位
-    public void ChangeSpawnId(int id)
+    private void ChangeSpawnId(int id)
     {
         spawnId = id;
         curSpawnInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(id);
@@ -36,7 +36,7 @@ public class BaseBattleBuilding : BattleUnitBase
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         base.Update();
         if(photonView.IsMine==false)
