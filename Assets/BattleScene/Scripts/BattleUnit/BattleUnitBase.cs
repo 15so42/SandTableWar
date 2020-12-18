@@ -9,7 +9,7 @@ public class BattleUnitBase : MonoBehaviour
     [HideInInspector]public NavMeshAgent NavMeshAgent { get;private set;}
 
     protected FightingManager fightingManager;
-    protected PhotonView photonView;
+    public PhotonView photonView;
 
     public int campId;//陣營Id,用於區分敵我
     //單位都是用武器攻擊敵人，因此抽象出武器類

@@ -60,14 +60,14 @@ public class Bullet : MonoBehaviour,IRecycleAble
         }
     }
 
-    protected virtual void OnTriggerObstacle(GameObject go)
+    public virtual void OnTriggerObstacle(GameObject go)
     {
         //Rpc销毁子弹
         //PhotonView.Get(shooter).RPC("RecycleBullet",RpcTarget.All,this);
         Recycle();
     }
 
-    protected virtual void OnTriggerUnit(BattleUnitBase unitBase)
+    public virtual void OnTriggerUnit(BattleUnitBase unitBase)
     {
         FightingManager fightingManager = GameManager.Instance.GetFightingManager();
         //计算伤害使用凶器进行计算，如使用子弹计算，但是记录是记录攻击者单位,凶器都需要拥有
