@@ -14,7 +14,7 @@ public enum BulletType
     B_45mm,
     B_76mm
 }
-public class Bullet : MonoBehaviour,IRecycleAble
+public class Bullet : RecycleAbleObject
 {
     public BulletType bulletType;
     //射击者,传入射击者，计算伤害时考虑射击者buff，如射击者的增加子弹伤害的buff
@@ -80,15 +80,16 @@ public class Bullet : MonoBehaviour,IRecycleAble
         Recycle();
     }
 
-    public void ReUse()
+    public override void ReUse()
     {
-        //throw new System.NotImplementedException();
+        base.ReUse();
+        //需要的变量在重用前都会被重新设置而被覆盖为新值，所以不用管
+        ////throw new System.NotImplementedException();
     }
 
-    public void Recycle()
+    public override void Recycle()
     {
-        //子弹回收一般由RPC控制，因此执行本地逻辑即可
-        Destroy(this);
+        base.Recycle();
         //throw new System.NotImplementedException();
     }
 
