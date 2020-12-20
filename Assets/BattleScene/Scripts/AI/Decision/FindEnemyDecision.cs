@@ -13,7 +13,7 @@
                 if (Vector3.Distance(controller.enemy.transform.position, controller.owner.transform.position) <=
                     controller.owner.prop.viewDistance)
                 {
-                    Debug.Log($"[{nameof(FindEnemyDecision)}]本来就有敌人且在视野范围内");
+                    //Debug.Log($"[{nameof(FindEnemyDecision)}]本来就有敌人且在视野范围内");
                     return true;
                 }
             }
@@ -27,11 +27,11 @@
                 if (enemy)
                 {
                     controller.SetEnemy(enemy);
-                    Debug.Log($"[{nameof(FindEnemyDecision)}]碰撞找到敌人");
+                    //Debug.Log($"[{nameof(FindEnemyDecision)}]碰撞找到敌人");
                     return true;
                 }
             }
-            Debug.Log($"[{nameof(FindEnemyDecision)}]碰撞没有找到敌人");
+            //Debug.Log($"[{nameof(FindEnemyDecision)}]碰撞没有找到敌人");
             return false;
         }
 

@@ -106,12 +106,18 @@
             {
                 iBullet=GameObject.Instantiate(bullet, shootPos.position, shootPos.rotation);
             }
+
+            iBullet.transform.position = shootPos.position;
+            iBullet.transform.rotation = shootPos.rotation;
             iBullet.GetComponent<Bullet>().SetWeapon(this);
             iBullet.GetComponent<Bullet>().SetShooter(owner);
+            
             //todo 使用对象池
             if (detectionType == RangedAttackDetectionType.Livefire)
             {
-                iBullet.GetComponent<Rigidbody>().AddForce(param*200f);
+                Rigidbody rig= iBullet.GetComponent<Rigidbody>();
+                rig.velocity=Vector3.zero;
+                rig.AddForce(param*200f);
             }
             //param表示射线射击到的位置，通过直接把子弹生成后并设置到对应位置来表示一次带拖尾的射击
             //通过射线检测的方式如果射击到敌人直接调用rpc扣血，不需要实体子弹判断

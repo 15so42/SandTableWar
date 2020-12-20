@@ -100,6 +100,7 @@ public class Bullet : RecycleAbleObject
 
     public override void Recycle()
     {
+        //注意，不是自己服务器的子弹
         base.Recycle();
         //throw new System.NotImplementedException();
     }

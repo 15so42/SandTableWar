@@ -8,12 +8,27 @@ namespace BattleScene.Scripts
     {
         public float recycleTime;
         public bool autoRecycle = false;
+
+        private Timer recycleTimer;
         void OnEnable()
         {
             if (autoRecycle)
             {
-                Timer.Register(recycleTime, Recycle);
+                if (recycleTimer == null)
+                {
+                    recycleTimer=Timer.Register(recycleTime, Recycle);
+                }
+                else
+                {
+                    recycleTimer.Cancel();
+                    recycleTimer=Timer.Register(recycleTime, Recycle);//这玩意和协程类似，重启时必须关掉上一个，不然到后面无限个协程一起执行
+                }
             }
+        }
+
+        private void OnDestroy()
+        {
+            recycleTimer.Cancel();
         }
 
         public virtual void ReUse()

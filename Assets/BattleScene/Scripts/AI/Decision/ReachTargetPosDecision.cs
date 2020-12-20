@@ -10,7 +10,7 @@
             //一定要忽略y轴对距离的计算
             
             bool result = distance < 0.5f;
-            Debug.Log($"[{nameof(ReachTargetPosDecision)}]是否到达目标地点：{result}");
+            //Debug.Log($"[{nameof(ReachTargetPosDecision)}]是否到达目标地点：{result}");
             return result;//todo 更详细的判断
         }
 
