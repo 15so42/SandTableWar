@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using BattleScene.Scripts;
 using Photon.Pun;
 using UnityEngine;
-using UnityTimer;
 
 //子弹类型，子弹伤害计算通过武器类型和子弹类型计算，
 //相同的枪射击不同子弹造成伤害不同，如果子弹有特殊属性也会造成不同伤害，如穿甲弹、高爆弹、火焰弹还会点燃敌人
@@ -65,7 +64,6 @@ public class Bullet : RecycleAbleObject
     {
         //Rpc销毁子弹
         //PhotonView.Get(shooter).RPC("RecycleBullet",RpcTarget.All,this);
-        Timer.Register(1f, Recycle);
         if (hitInfo.collider != null)
         {
             BattleFxManager.SpawnFxAtPos("FX_DirtSplatter_Lash",hitInfo.point,hitInfo.normal);
@@ -83,7 +81,6 @@ public class Bullet : RecycleAbleObject
         
         //Rpc销毁子弹
         //PhotonView.Get(shooter).RPC("RecycleBullet",RpcTarget.All,this);
-        Timer.Register(1f, Recycle);
         if (hitInfo.collider != null)
         {
             BattleFxManager.SpawnFxAtPos("FX_DirtSplatter_Lash",hitInfo.point,hitInfo.normal);
