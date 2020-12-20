@@ -87,7 +87,7 @@
      <Compile Include="Assets\BattleScene\Scripts\Bullet.cs" />
      <Compile Include="Assets\BattleScene\Scripts\ConfigHelper.cs" />
      <Compile Include="Assets\BattleScene\Scripts\FightingManager.cs" />
-     <Compile Include="Assets\BattleScene\Scripts\IRecycleAble.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\RecycleAbleObject.cs" />
      <Compile Include="Assets\BattleUnitAnimCtrl.cs" />
      <Compile Include="Assets\GameCode\BaseClass\IGameSystem.cs" />
      <Compile Include="Assets\GameCode\DOTween\Modules\DOTweenModuleAudio.cs" />

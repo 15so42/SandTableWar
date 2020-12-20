@@ -835,13 +835,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atkValue: 1
-  atkRate: 3
+  atkRate: 1
   owner: {fileID: 0}
   shootPos: {fileID: 8264968204976261782}
   bullet: {fileID: 4317199290405529018, guid: 2ee04c431af8d1a44977f69384d3aef0, type: 3}
   bulletDamageRate: 1
   detectionType: 0
-  scatteringAngel: 5
+  scatteringAngel: 1.5
 --- !u!114 &5669207548518253706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,10 +923,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.35
+  m_Height: 1.9339552
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.9500847, z: 0}
 --- !u!114 &6968405436783861975
 MonoBehaviour:
   m_ObjectHideFlags: 0

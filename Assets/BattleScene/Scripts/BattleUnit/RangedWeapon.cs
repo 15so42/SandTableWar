@@ -1,4 +1,6 @@
 ﻿
+    using BattleScene.Scripts;
+    using DefaultNamespace;
     using Photon.Pun;
     using UnityEngine;
     using UnityTimer;
@@ -27,12 +29,15 @@
             //todo 使用对象池
             if(detectionType == RangedAttackDetectionType.RayWithTrail||detectionType == RangedAttackDetectionType.RayWithWithLightTracer)
             {
-                Vector3 enemyDir = GetEnemy().transform.position- shootPos.transform.position;
+                //todo 射击位置可能需要调整
+                Vector3 enemyDir = (GetEnemy().transform.position+Vector3.up*1.5f)- shootPos.transform.position;
                 //散射算法
                 Vector3 newVec = Quaternion.Euler(Random.Range(-scatteringAngel,scatteringAngel),Random.Range(-scatteringAngel,scatteringAngel),0)*enemyDir;
                 //PhotonView.Get(this).RPC("FireBullet",RpcTarget.All,newVec);
                 
                 RaycastHit hitInfo;
+                
+                
                 if (Physics.Raycast(shootPos.transform.position,newVec, out hitInfo,40))//todo 考虑设置枪械攻击距离
                 {
                     //因为需要使用子弹计算伤害，所以先在本地生成子弹，再在其他终端生成子弹，并通过本地子弹扣除其他终端血量
@@ -42,8 +47,19 @@
                     BattleUnitBase hitUnit = hitInfo.transform.GetComponent<BattleUnitBase>();
                     if (hitUnit)
                     {
-                        iBullet.OnTriggerUnit(hitUnit);
+                        iBullet.OnTriggerUnit(hitUnit,hitInfo);
                     }
+                    else
+                    {
+                        iBullet.OnTriggerObstacle(hitInfo.collider.gameObject,hitInfo);
+                    }
+                }
+                else//没有击中目标时，把最远射程位置传过去
+                {
+                    Vector3 endPos = shootPos.transform.position + newVec * 80f;
+                    Bullet iBullet=FireBullet(endPos);
+                    //因为需要使用子弹计算伤害，所以先在本地生成子弹，再在其他终端生成子弹，并通过本地子弹射线扣除其他终端血量
+                    PhotonView.Get(this).RPC("FireBullet",RpcTarget.Others,endPos);
                 }
             }
             // if(detectionType == RangedAttackDetectionType.RayWithWithLightTracer)
@@ -80,42 +96,39 @@
         [PunRPC]
         public virtual Bullet FireBullet(Vector3 param)
         {
+            GameObject iBullet;
+            RecycleAbleObject allocatedBullet = UnityObjectPoolManager.Allocate(bullet.name);
+            if (allocatedBullet != null)
+            {
+                iBullet = allocatedBullet.gameObject;
+            }
+            else
+            {
+                iBullet=GameObject.Instantiate(bullet, shootPos.position, shootPos.rotation);
+            }
+            iBullet.GetComponent<Bullet>().SetWeapon(this);
+            iBullet.GetComponent<Bullet>().SetShooter(owner);
             //todo 使用对象池
             if (detectionType == RangedAttackDetectionType.Livefire)
             {
-                GameObject iBullet=GameObject.Instantiate(bullet, shootPos.position, shootPos.rotation);
-                iBullet.GetComponent<Bullet>().SetWeapon(this);
-                iBullet.GetComponent<Bullet>().SetShooter(owner);
                 iBullet.GetComponent<Rigidbody>().AddForce(param*200f);
-                return iBullet.GetComponent<Bullet>();
             }
             //param表示射线射击到的位置，通过直接把子弹生成后并设置到对应位置来表示一次带拖尾的射击
             //通过射线检测的方式如果射击到敌人直接调用rpc扣血，不需要实体子弹判断
             else if(detectionType == RangedAttackDetectionType.RayWithTrail)
             {
-                GameObject iBullet=GameObject.Instantiate(bullet, shootPos.position, shootPos.rotation);
-                iBullet.GetComponent<Bullet>().SetWeapon(this);
-                iBullet.GetComponent<Bullet>().SetShooter(owner);
-                //iBullet.GetComponent<Rigidbody>().AddForce(param*800f);
-                //iBullet.transform.position = param;
                 Timer.Register(0.05f, () =>
                     iBullet.transform.position = param);
-                return iBullet.GetComponent<Bullet>();
             }
             //param表示向量
             else if(detectionType == RangedAttackDetectionType.RayWithWithLightTracer)
             {
-                GameObject iBullet=GameObject.Instantiate(bullet, shootPos.position, shootPos.rotation);
-                iBullet.GetComponent<Bullet>().SetWeapon(this);
-                iBullet.GetComponent<Bullet>().SetShooter(owner);
-                //iBullet.GetComponent<Rigidbody>().AddForce(param*800f);
-                //iBullet.transform.position = param;
                 Timer.Register(0.05f, () =>
                     iBullet.transform.position = param);
-                return iBullet.GetComponent<Bullet>();
             }
-
-            return null;
+            return iBullet.GetComponent<Bullet>();
+            
+            
         }
 
         public BattleUnitBase GetEnemy()

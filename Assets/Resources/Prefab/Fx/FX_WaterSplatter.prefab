@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1374893819620503098}
   - component: {fileID: 1374893819638851318}
   - component: {fileID: 1374893819638875892}
+  - component: {fileID: 4540905235554003159}
   m_Layer: 0
   m_Name: FX_WaterSplatter
   m_TagString: Untagged
@@ -4646,3 +4647,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &4540905235554003159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374893819620334012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6ce382d23aede4f92ffcd342b9ffea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recycleTime: 2
+  autoRecycle: 1

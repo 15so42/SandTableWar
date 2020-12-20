@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6067030986801067871}
   - component: {fileID: 6067030986786936795}
   - component: {fileID: 6067030986785686529}
+  - component: {fileID: 8627730589524654137}
   m_Layer: 0
   m_Name: FX_TireSmoke
   m_TagString: Untagged
@@ -4646,3 +4647,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &8627730589524654137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6067030986801542937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6ce382d23aede4f92ffcd342b9ffea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recycleTime: 2
+  autoRecycle: 1

@@ -22,7 +22,9 @@ public class UnityObjectPoolManager
     {
         if (pools.Keys.Contains(poolName) && pools[poolName].Count > 0)
         {
-            return pools[poolName].Pop();
+            RecycleAbleObject recycleAbleObject=pools[poolName].Pop();
+            recycleAbleObject.ReUse();
+            return recycleAbleObject;
         }
 
         return null;//池子中没有东西或者没有对应池子
