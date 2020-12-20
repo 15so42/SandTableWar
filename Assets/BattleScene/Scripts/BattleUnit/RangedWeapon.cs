@@ -97,9 +97,9 @@
                 iBullet.GetComponent<Bullet>().SetWeapon(this);
                 iBullet.GetComponent<Bullet>().SetShooter(owner);
                 //iBullet.GetComponent<Rigidbody>().AddForce(param*800f);
-                iBullet.transform.position = param;
-                // Timer.Register(0.05f, () =>
-                //     iBullet.transform.position = param);
+                //iBullet.transform.position = param;
+                Timer.Register(0.05f, () =>
+                    iBullet.transform.position = param);
                 return iBullet.GetComponent<Bullet>();
             }
             //param表示向量
@@ -109,9 +109,9 @@
                 iBullet.GetComponent<Bullet>().SetWeapon(this);
                 iBullet.GetComponent<Bullet>().SetShooter(owner);
                 //iBullet.GetComponent<Rigidbody>().AddForce(param*800f);
-                iBullet.transform.position = param;
-                // Timer.Register(0.05f, () =>
-                //     iBullet.transform.position = param);
+                //iBullet.transform.position = param;
+                Timer.Register(0.05f, () =>
+                    iBullet.transform.position = param);
                 return iBullet.GetComponent<Bullet>();
             }
 

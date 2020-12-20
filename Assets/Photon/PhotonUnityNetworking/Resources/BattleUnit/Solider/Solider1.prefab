@@ -754,6 +754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f244212bb3c39c42b791cac07dc1eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photonView: {fileID: 0}
   campId: 0
   weapon: {fileID: 2902278658431842304}
   prop:
@@ -834,13 +835,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atkValue: 1
-  atkRate: 1
+  atkRate: 3
   owner: {fileID: 0}
   shootPos: {fileID: 8264968204976261782}
   bullet: {fileID: 4317199290405529018, guid: 2ee04c431af8d1a44977f69384d3aef0, type: 3}
   bulletDamageRate: 1
   detectionType: 0
-  scatteringAngel: 15
+  scatteringAngel: 5
 --- !u!114 &5669207548518253706
 MonoBehaviour:
   m_ObjectHideFlags: 0
