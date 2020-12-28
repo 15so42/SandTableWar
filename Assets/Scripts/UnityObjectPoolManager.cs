@@ -41,11 +41,11 @@ public class UnityObjectPoolManager
             if (pools[poolName].Count < eachPoolSize)//控制池子大小
             {
                 pools[poolName].Push(recycleAbleObject);
-                Debug.LogError($"回收到{poolName}中，回收后数量为{pools[poolName].Count}");
+                //Debug.LogError($"回收到{poolName}中，回收后数量为{pools[poolName].Count}");
             }
             else
             {
-                Debug.LogError("对象池超出容量!!!!!!!!!!!!!");
+                //Debug.LogError("对象池超出容量!!!!!!!!!!!!!");
                 GameObject.Destroy(recycleAbleObject);
             }
         }
