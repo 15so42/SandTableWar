@@ -136,6 +136,7 @@
      <Compile Include="Assets\Scripts\GameSettingsConst.cs" />
      <Compile Include="Assets\Scripts\PhotonEventConst.cs" />
      <Compile Include="Assets\Scripts\UnityObjectPoolManager.cs" />
+     <Compile Include="Assets\TankAnimCtrl.cs" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
      <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
      <None Include="Assets\SimpleFX\Materials\UnlitVertexColour_Alpha.shader" />
