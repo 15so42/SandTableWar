@@ -22,7 +22,6 @@ public class TankAnimCtrl : BattleUnitAnimCtrl
         tower.transform.rotation = Quaternion.RotateTowards(tower.transform.rotation, q, towerRotateSpeed * Time.deltaTime);
         Quaternion q1 = Quaternion.LookRotation(enemyPos-canon.transform.position);
         canon.transform.rotation = Quaternion.RotateTowards(canon.transform.rotation, q, canonRotateSpeed * Time.deltaTime);
-
     }
 
     protected override void OnIdleOrMoveState()
