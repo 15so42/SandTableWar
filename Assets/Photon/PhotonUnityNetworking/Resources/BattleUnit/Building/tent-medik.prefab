@@ -151,8 +151,11 @@ MonoBehaviour:
   selectMarkSize: 6
   selectMarkOffset: {x: 0, y: 0.15, z: 0}
   isFirstSelected: 0
-  spawnId: 2
   spawnPos: {fileID: 9065425138531134907}
+  menuCommands:
+  - spawn_1_1
+  - spawn_2_1
+  - close
 --- !u!114 &-1794971452224315405
 MonoBehaviour:
   m_ObjectHideFlags: 0
