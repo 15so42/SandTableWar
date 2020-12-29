@@ -75,7 +75,6 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition\FindEnemyTransition.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition\HasTargetPosTransition.cs" />
-     <Compile Include="Assets\BattleScene\Scripts\BaseHpUi.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleBuilding\BaseBarrack.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleBuilding\BaseBattleBuilding.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleFxManager.cs" />
@@ -89,7 +88,10 @@
      <Compile Include="Assets\BattleScene\Scripts\ConfigHelper.cs" />
      <Compile Include="Assets\BattleScene\Scripts\FightingManager.cs" />
      <Compile Include="Assets\BattleScene\Scripts\RecycleAbleObject.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\UI\BaseHpUi.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\UI\BuildingMenuItem.cs" />
      <Compile Include="Assets\BattleUnitAnimCtrl.cs" />
+     <Compile Include="Assets\BuildingSpawnMenuItem.cs" />
      <Compile Include="Assets\GameCode\BaseClass\IGameSystem.cs" />
      <Compile Include="Assets\GameCode\DOTween\Modules\DOTweenModuleAudio.cs" />
      <Compile Include="Assets\GameCode\DOTween\Modules\DOTweenModulePhysics.cs" />

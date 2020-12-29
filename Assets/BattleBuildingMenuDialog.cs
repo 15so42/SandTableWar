@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +20,9 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
 {
    //此类为菜单dialog，内含多个按钮
    public Transform btnParent;
-   public const string pathPrefix = "Prefab/UI/Menu/";
+   public const string pathPrefix = "Prefab/UI/BuildingMenuItem/";
+   private List<BuildingMenuItem> buildingMenuItems=new List<BuildingMenuItem>();
+   private List<GameObject> itemsGo=new List<GameObject>();
    public static Dialog ShowDialog(BaseBattleBuilding targetUnitBase, string[] menus)
    {
       var dialog = GetShowingDialog(nameof(BattleBuildingMenuDialog)) as BattleBuildingMenuDialog;
@@ -74,6 +77,14 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
       {
          dialogContext.targetUnitBase.AddUnitToSpawnStack(spawnId);
       });
+      BuildingMenuItem item = iBtn.GetComponent<BuildingMenuItem>();
+      if (item)
+      {
+         (item as BuildingSpawnMenuItem)?.SetParams(spawnId,dialogContext.targetUnitBase);
+         item.Init();
+         buildingMenuItems.Add(item);
+      }
+      
    }
    
    private void InstantiateCloseBtn(int index)
@@ -82,6 +93,12 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
          Resources.Load<GameObject>(pathPrefix +"CloseButton");
       GameObject iBtn = Instantiate(closePfb,GetBtnPosByIndex(index),Quaternion.identity,btnParent);
       iBtn.GetComponent<Button>().onClick.AddListener(Close);
+      BuildingMenuItem item = iBtn.GetComponent<BuildingMenuItem>();
+      if (item)
+      {
+         buildingMenuItems.Add(item);
+      }
+      
    }
 
    private Vector3 GetBtnPosByIndex(int index)
@@ -92,5 +109,13 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
       Vector3 pos = center + new Vector3(dialogContext.r * Mathf.Sin(index * degree),
          dialogContext.r * Mathf.Cos(index * degree), 0);
       return pos;
+   }
+
+   public void Update()
+   {
+      foreach (var buildingMenuItem in buildingMenuItems)
+      {
+         buildingMenuItem.Update();
+      }
    }
 }

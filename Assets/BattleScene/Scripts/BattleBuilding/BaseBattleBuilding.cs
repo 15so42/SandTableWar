@@ -17,7 +17,8 @@ public class BaseBattleBuilding : BattleUnitBase
     public Stack<int> toSpawn=new Stack<int>();
     [Header("建筑菜单，使用字符串表示对应菜单")]
     public string[] menuCommands;
-    
+
+    private BattleBuildingMenuDialog buildingMenuDialog;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -55,7 +56,13 @@ public class BaseBattleBuilding : BattleUnitBase
         }
       
     }
-    
+
+    public override void OnUnSelect()
+    {
+        base.OnUnSelect();
+        buildingMenuDialog.Close();
+    }
+
     public void SpawnUnit()
     {
         SpawnBattleUnitConfigInfo curSpawnInfo=ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(toSpawn.Peek());
@@ -90,8 +97,17 @@ public class BaseBattleBuilding : BattleUnitBase
 
     protected override void MouseClickHandle()
     {
+        if (UITool.IsPointerOverUIObject(Input.mousePosition))
+        {
+            return;//防止UI穿透
+        }
         base.MouseClickHandle();
-        BattleBuildingMenuDialog.ShowDialog(this,menuCommands);
+        buildingMenuDialog = BattleBuildingMenuDialog.ShowDialog(this,menuCommands) as BattleBuildingMenuDialog;
+    }
+
+    public float GetSpawnRatio()
+    {
+        return timer / interval;
     }
 }
 

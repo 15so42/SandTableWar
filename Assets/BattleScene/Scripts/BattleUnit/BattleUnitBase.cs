@@ -137,6 +137,10 @@ public class BattleUnitBase : MonoBehaviour
 
     protected virtual void MouseClickHandle()
     {
+        if (UITool.IsPointerOverUIObject(Input.mousePosition))
+        {
+            return;//防止UI穿透
+        }
         if (fightingManager.isHoldShift)//加选
         {
             fightingManager.SelectUnit(this);
@@ -184,7 +188,7 @@ public class BattleUnitBase : MonoBehaviour
         PhotonNetwork.Destroy(gameObject);
     }
 
-    public void OnSelect()
+    public virtual void OnSelect()
     {
         if (isFirstSelected)
         {
@@ -198,7 +202,7 @@ public class BattleUnitBase : MonoBehaviour
         
     }
 
-    public void OnUnSelect()
+    public virtual void OnUnSelect()
     {
         if (selectMark.gameObject)
         {

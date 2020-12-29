@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public static class UITool
 {
@@ -76,5 +78,15 @@ public static class UITool
 			return null;
 		}
 		return GetUIComponent<T>( UIRoot,UIName); 
+	}
+	
+	public static bool IsPointerOverUIObject(Vector2 screenPosition)
+	{
+		PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+		eventDataCurrentPosition.position = new Vector2(screenPosition.x, screenPosition.y);
+
+		List<RaycastResult> results = new List<RaycastResult>();
+		EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+		return results.Count > 0;
 	}
 }

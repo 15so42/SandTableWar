@@ -84,6 +84,10 @@ public class FightingManager
 
     public void MouseClickHandle(int mouseBtn)
     {
+        if (UITool.IsPointerOverUIObject(Input.mousePosition))
+        {
+            return;//防止UI穿透
+        }
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit raycastHit;
         if (Physics.Raycast(ray, out raycastHit, 999))
