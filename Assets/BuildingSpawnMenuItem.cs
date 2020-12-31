@@ -24,14 +24,14 @@ public class BuildingSpawnMenuItem : BuildingMenuItem
     {
         curUnitInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(spawnId);
         spawnUnitImage.sprite = Resources.Load<Sprite>(spritePathPrefix+curUnitInfo.resourceName);
-        fill.fillAmount = 1;
+        fill.fillAmount = 0;
         amountText.text = "0";
     }
 
     public override void Update()
     {
         amountText.text = GetAmountByIdInSpawnStack(spawnId)+"";
-        if (spawnId == targetBuilding.toSpawn.Peek())
+        if (targetBuilding.toSpawn.Count>0 && spawnId == targetBuilding.toSpawn.Peek())
         {
             fill.fillAmount = targetBuilding.GetSpawnRatio();
         }

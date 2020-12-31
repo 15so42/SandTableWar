@@ -8,7 +8,7 @@ public class BuildingMenuDialogContext : DialogContext
 {
    public BaseBattleBuilding targetUnitBase;
    public string[] menus;
-   public int r = 120;
+   public int r = 240;
 
    public BuildingMenuDialogContext(BaseBattleBuilding targetUnitBase,string[] menus)
    {
@@ -22,7 +22,7 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
    public Transform btnParent;
    public const string pathPrefix = "Prefab/UI/BuildingMenuItem/";
    private List<BuildingMenuItem> buildingMenuItems=new List<BuildingMenuItem>();
-   private List<GameObject> itemsGo=new List<GameObject>();
+   private Dictionary<GameObject,Vector3> itemsGo=new Dictionary<GameObject, Vector3>();
    public static Dialog ShowDialog(BaseBattleBuilding targetUnitBase, string[] menus)
    {
       var dialog = GetShowingDialog(nameof(BattleBuildingMenuDialog)) as BattleBuildingMenuDialog;
@@ -84,9 +84,13 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
          item.Init();
          buildingMenuItems.Add(item);
       }
-      
+      itemsGo.Add(iBtn,GetOffsetByIndex(index));
    }
    
+   /// <summary>
+   /// 生成关闭按钮
+   /// </summary>
+   /// <param name="index"></param>
    private void InstantiateCloseBtn(int index)
    {
       GameObject closePfb =
@@ -98,24 +102,37 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
       {
          buildingMenuItems.Add(item);
       }
-      
+      itemsGo.Add(iBtn,GetOffsetByIndex(index));
    }
 
    private Vector3 GetBtnPosByIndex(int index)
    {
       Vector3 center = Camera.main.WorldToScreenPoint(dialogContext.targetUnitBase.transform.position);
-      int total = dialogContext.menus.Length;
-      int degree = 360 / total;
-      Vector3 pos = center + new Vector3(dialogContext.r * Mathf.Sin(index * degree),
-         dialogContext.r * Mathf.Cos(index * degree), 0);
+      Vector3 offset = GetOffsetByIndex(index);
+      Vector3 pos = center + offset;
       return pos;
    }
 
+   private Vector3 GetOffsetByIndex(int index)
+   {
+      int total = dialogContext.menus.Length;
+      int degree = 360 / total;
+      Vector3 offset = new Vector3(dialogContext.r * Mathf.Sin(index * degree),
+         dialogContext.r * Mathf.Cos(index * degree), 0);
+      return offset;
+   }
    public void Update()
    {
       foreach (var buildingMenuItem in buildingMenuItems)
       {
          buildingMenuItem.Update();
+      }
+
+      //同步位置
+      Vector3 center=Camera.main.WorldToScreenPoint(dialogContext.targetUnitBase.transform.position);
+      foreach (var kv in itemsGo)
+      {
+         kv.Key.transform.position = center + kv.Value;
       }
    }
 }
