@@ -79,6 +79,8 @@ public class FightingManager
             isHoldCtrl = false;
         }
         
+        battleResMgr.Update();
+        
         
     }
 

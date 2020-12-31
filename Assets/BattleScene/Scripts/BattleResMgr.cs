@@ -77,5 +77,17 @@ public enum BattleResType
             }
             return false;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Update()
+        {
+            //自动增加
+            battleResHolder[BattleResType.population]++;
+            battleResHolder[BattleResType.coin]++;
+            battleResHolder[BattleResType.mineral]++;
+            battleResHolder[BattleResType.food]++;
+        }
             
     }

@@ -83,6 +83,7 @@ public class BaseBattleBuilding : BattleUnitBase
 
     public void AddUnitToSpawnStack(int id)
     {
+        
         if (toSpawn.Count > 0)
         {
             toSpawn.Push(id);

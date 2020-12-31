@@ -4,9 +4,7 @@ using UnityEngine;
 
 public enum EnumEventType
 {
-    OnEnemyKilled,
-    OnPlyaerDied,
+    OnBattleStart,
     OnGamePaused,
-    AddMoney
 }
 

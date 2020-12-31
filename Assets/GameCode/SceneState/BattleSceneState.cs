@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Timers;
-using DefaultNamespace;
+﻿using DefaultNamespace;
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
@@ -31,6 +28,14 @@ public class BattleSceneState : SceneState,IOnEventCallback,IInRoomCallbacks
 		
 	}
 
+	/// <summary>
+	/// 双方均准备完成
+	/// </summary>
+	private void OnBattleStart()
+	{
+		MainBattleDialog.ShowDialog();
+	}
+
 	// 結束
 	public override void StateEnd()
 	{
@@ -50,6 +55,7 @@ public class BattleSceneState : SceneState,IOnEventCallback,IInRoomCallbacks
 		if (photonEvent.Code == (int) PhotonEvent.StartBattle)
 		{
 			//生成基地
+			OnBattleStart();
 			fightingManager.SpawnBase();
 		}
 	}

@@ -120,6 +120,7 @@
      <Compile Include="Assets\GameCode\Tools\UITool.cs" />
      <Compile Include="Assets\GameCode\Tools\UnityTool.cs" />
      <Compile Include="Assets\LogicMap.cs" />
+     <Compile Include="Assets\MainBattleDialog.cs" />
      <Compile Include="Assets\MainMenuManager.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
