@@ -1,4 +1,6 @@
-﻿using Photon.Pun;
+﻿using System;
+using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -31,6 +33,10 @@ public class BattleUnitBase : MonoBehaviour
     public Vector3 selectMarkOffset=Vector3.zero;
 
     [HideInInspector]public bool isFirstSelected;//第一次被选中
+    
+    //静态全局单位列表
+    public static List<BattleUnitBase> selfUnits=new List<BattleUnitBase>();
+    public static List<BattleUnitBase> enemyUnits=new List<BattleUnitBase>();
     /// <summary>
     /// 建筑类使用时
     /// </summary>
@@ -47,6 +53,14 @@ public class BattleUnitBase : MonoBehaviour
 
         isFirstSelected = true;
         stateController=new StateController(this);
+        if (photonView.IsMine)
+        {
+            selfUnits.Add(this);
+        }
+        else
+        {
+            enemyUnits.Add(this);
+        }
     }
 
     // Start is called before the first frame update
@@ -81,6 +95,18 @@ public class BattleUnitBase : MonoBehaviour
             stateController?.Update();
         }
         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
+    }
+
+    private void OnDestroy()
+    {
+        if (photonView.IsMine)
+        {
+            selfUnits.Remove(this);
+        }
+        else
+        {
+            enemyUnits.Remove(this);
+        }
     }
 
     /// <summary>
@@ -232,6 +258,7 @@ public class BattleUnitBase : MonoBehaviour
     {
         PhotonView.Get(this).RPC(nameof(SetCampId),RpcTarget.All,value);
     }
+    
     
 
 }

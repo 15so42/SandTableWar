@@ -60,7 +60,10 @@ public class BaseBattleBuilding : BattleUnitBase
     public override void OnUnSelect()
     {
         base.OnUnSelect();
-        buildingMenuDialog.Close();
+        if (buildingMenuDialog != null)
+        {
+            buildingMenuDialog.Close();
+        }
     }
 
     public void SpawnUnit()

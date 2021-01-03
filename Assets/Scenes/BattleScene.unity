@@ -3163,6 +3163,8 @@ MonoBehaviour:
   horSpeed: -12
   verSpeed: -12
   offset: {x: 0, y: 16, z: 10}
+  rectMat: {fileID: 2100000, guid: 7e0b60daf18511249a209d52beda2988, type: 2}
+  rectColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1001 &553607330
 PrefabInstance:
   m_ObjectHideFlags: 0
