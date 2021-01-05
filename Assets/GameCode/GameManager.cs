@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Photon.Pun;
 
 public enum DamageType{
 	Physical,//物理伤害
@@ -82,5 +83,16 @@ public class GameManager
 		return null;
 	}
 	
+	public void InstantiateByResources(string path,Vector3 pos,Quaternion quaternion)
+	{
+		if (PhotonNetwork.IsConnected)
+		{
+			PhotonNetwork.Instantiate(path,pos,quaternion);
+		}
+		else
+		{
+			Object.Instantiate(Resources.Load<GameObject>(path), pos, quaternion);
+		}
+	}
 
 }

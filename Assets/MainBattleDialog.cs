@@ -19,6 +19,8 @@ public class MainBattleDialog : Dialog<MainBattleDialogContext>
     public Text coinText;
     public Text mineralText;
     public Text foodText;
+
+    [Header("GlobalItemManager")] public GlobalItemManager globalItemManager;
     
     public static Dialog ShowDialog()
     {
@@ -37,11 +39,13 @@ public class MainBattleDialog : Dialog<MainBattleDialogContext>
         gameManager=GameManager.Instance;
         fightingManager = gameManager.GetFightingManager();
         battleResMgr = fightingManager.battleResMgr;
+        globalItemManager.Init();
     }
 
     private void Update()
     {
         UpdateResPanel();
+        globalItemManager.UpdateManager();
     }
 
     private void UpdateResPanel()
@@ -51,4 +55,10 @@ public class MainBattleDialog : Dialog<MainBattleDialogContext>
         mineralText.text = battleResMgr.GetRemainingResByResType(BattleResType.mineral).ToString();
         foodText.text = battleResMgr.GetRemainingResByResType(BattleResType.food).ToString();
     }
+
+    #region 全局道具
+
+    
+
+    #endregion
 }

@@ -33,6 +33,10 @@ public class BattleUnitBase : MonoBehaviour
     public Vector3 selectMarkOffset=Vector3.zero;
 
     [HideInInspector]public bool isFirstSelected;//第一次被选中
+
+    [Header("技能点")] public GlobalItemType globalItemType=GlobalItemType.None;
+    public int amountBySecond=0; 
+    private float lastAddTime=0;
     
     //静态全局单位列表
     public static List<BattleUnitBase> selfUnits=new List<BattleUnitBase>();
@@ -81,7 +85,7 @@ public class BattleUnitBase : MonoBehaviour
         //设置初始目标地点
         stateController.targetPos = position;
         stateController.lastTargetPos = stateController.targetPos;
-
+        lastAddTime = 0;//技能点计时器
     }
 
     // Update is called once per frame
@@ -93,8 +97,14 @@ public class BattleUnitBase : MonoBehaviour
         if (photonView.IsMine)
         {
             stateController?.Update();
+            if (Time.time - lastAddTime >= 1)
+            {
+                fightingManager.globalItemManager.AddPoint(globalItemType,amountBySecond);
+                lastAddTime = Time.time;
+            }
         }
         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
+        
     }
 
     private void OnDestroy()
@@ -115,7 +125,7 @@ public class BattleUnitBase : MonoBehaviour
     /// <param name="pos"></param>
     public void SetTargetPos(Vector3 pos)
     {
-        stateController.SetTargetPos(pos);
+        stateController?.SetTargetPos(pos);
     }
     
     public void SetSelectMark(GameObject mark)

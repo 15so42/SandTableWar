@@ -66,6 +66,8 @@ public class BattleCamera : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            if(UITool.IsPointerOverUIObject(Input.mousePosition))
+                return;
             start = Input.mousePosition;
             isDrawingRectangle = true;
         }

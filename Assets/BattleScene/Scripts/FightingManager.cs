@@ -24,10 +24,12 @@ public class FightingManager
     public bool isHoldShift;
     public bool isHoldCtrl;
     
-    
-    //资源,临时，之后抽象出具体类
+    //资源
     public BattleResMgr battleResMgr;
-    public int coin = 20;
+
+    public GlobalItemManager globalItemManager;
+    public bool isUsingItem;
+    public GameObject usingItemGo;
 
     public void Init()
     {
@@ -46,7 +48,8 @@ public class FightingManager
         BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(299),logicMap.GetBasePosByPlayerId(campId),campId);
         BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(campId));
     }
-    
+
+   
 
     public void Update()
     {
@@ -80,7 +83,24 @@ public class FightingManager
         }
         
         battleResMgr.Update();
-        
+        if (isUsingItem)
+        {
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit raycastHit;
+            if (Physics.Raycast(ray, out raycastHit, 999))
+            {
+                globalItemManager.GetUsingItemRangeMark().transform.position = raycastHit.point;//技能范围，参考英雄联盟
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                isUsingItem = false;
+                GameObject.Destroy(globalItemManager.GetUsingItemRangeMark());
+                globalItemManager.ActAtPos(raycastHit.point);
+                globalItemManager.ClearUsingItem();
+            }
+            
+        }
         
     }
 

@@ -767,6 +767,8 @@ MonoBehaviour:
   selectMarkSize: 2.2
   selectMarkOffset: {x: 0, y: 0.2, z: 0}
   isFirstSelected: 0
+  globalItemType: 1
+  amountBySecond: 2
 --- !u!195 &-8226985421410687555
 NavMeshAgent:
   m_ObjectHideFlags: 0
