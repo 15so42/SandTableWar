@@ -66,7 +66,7 @@ public class Bullet : RecycleAbleObject
         //PhotonView.Get(shooter).RPC("RecycleBullet",RpcTarget.All,this);
         if (hitInfo.collider != null)
         {
-            BattleFxManager.SpawnFxAtPos("FX_DirtSplatter_Lash",hitInfo.point,hitInfo.normal);
+            BattleFxManager.Instance.SpawnFxAtPosInPhoton("FX_DirtSplatter_Lash",hitInfo.point,hitInfo.normal);
         }
         
     }
@@ -83,8 +83,14 @@ public class Bullet : RecycleAbleObject
         //PhotonView.Get(shooter).RPC("RecycleBullet",RpcTarget.All,this);
         if (hitInfo.collider != null)
         {
-            BattleFxManager.SpawnFxAtPos("FX_DirtSplatter_Lash",hitInfo.point,hitInfo.normal);
+            BattleFxManager.Instance.SpawnFxAtPosInPhoton("FX_DirtSplatter_Lash", hitInfo.point, hitInfo.normal);
         }
+    }
+
+    [PunRPC]
+    public void SpawnFxInPhoton()
+    {
+        
     }
     
 

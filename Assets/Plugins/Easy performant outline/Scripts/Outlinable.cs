@@ -204,6 +204,7 @@ namespace EPOOutline
             {
                 return frontParameters;
             }
+            set => frontParameters = value;
         }
 
         private bool IsVisible(Plane[] planes)

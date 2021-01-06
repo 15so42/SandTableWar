@@ -28,7 +28,7 @@ public class StateController
 
     private void Init()
     {
-        navMeshAgent = owner.NavMeshAgent;
+        navMeshAgent = owner.navMeshAgent;
         lastTargetPos = targetPos;
 
         InitState();

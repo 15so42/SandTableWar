@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using EPOOutline;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityTimer;
 
 public class BattleUnitBase : MonoBehaviour
 {
-    public StateController stateController;
-    
-    [HideInInspector]public NavMeshAgent NavMeshAgent { get;private set;}
+    [HideInInspector]public StateController stateController;
+    [HideInInspector] public NavMeshAgent navMeshAgent;
 
     protected FightingManager fightingManager;
     public PhotonView photonView;
@@ -39,6 +40,10 @@ public class BattleUnitBase : MonoBehaviour
     private float lastAddTime=0;
 
     [Header("受击点,别人攻击此目标时瞄准的位置")] public Transform victimPos;
+    [Header("旋转阻尼")] public float rotateDamp = 10;
+
+    private Outlinable outlinable;
+    private Timer victimFxTimer;//受击特效计时器
     //静态全局单位列表
     public static List<BattleUnitBase> selfUnits=new List<BattleUnitBase>();
     public static List<BattleUnitBase> enemyUnits=new List<BattleUnitBase>();
@@ -48,7 +53,9 @@ public class BattleUnitBase : MonoBehaviour
     protected virtual void Awake()
     {
         prop=new BattleUnitBaseProp();
-        NavMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        if(navMeshAgent) 
+            navMeshAgent.angularSpeed = 0;//禁用nav的旋转
         photonView = GetComponent<PhotonView>();
         weapon = GetComponent<Weapon>();//部分建筑类也需要有weapon，部分建筑可以攻击，不会攻击不需要添加weapon
         if (weapon != null)
@@ -88,6 +95,7 @@ public class BattleUnitBase : MonoBehaviour
         stateController.targetPos = position;
         stateController.lastTargetPos = stateController.targetPos;
         lastAddTime = 0;//技能点计时器
+        outlinable = GetComponentInChildren<Outlinable>();
     }
 
     // Update is called once per frame
@@ -104,9 +112,22 @@ public class BattleUnitBase : MonoBehaviour
                 fightingManager.globalItemManager.AddPoint(globalItemType,amountBySecond);
                 lastAddTime = Time.time;
             }
+            RotationControl();
         }
         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
         
+    }
+
+    private Vector3 refDir;
+    private void RotationControl()
+    {
+        if (navMeshAgent == null)
+        {
+            return;
+        }
+        Vector3 horDir = navMeshAgent.desiredVelocity;
+        horDir.y = 0;
+        transform.forward = Vector3.SmoothDamp(transform.forward, horDir, ref refDir, Time.deltaTime * rotateDamp);
     }
 
     private void OnDestroy()
@@ -248,11 +269,28 @@ public class BattleUnitBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 受击特效
+    /// </summary>
+    public void PlayVictimFx()
+    {
+        if (outlinable)
+        {
+            if (victimFxTimer==null || victimFxTimer.isCompleted)
+            {
+                outlinable.FrontParameters.Enabled = true;
+                
+                victimFxTimer = Timer.Register(0.05f,
+                    () => outlinable.FrontParameters.Enabled = false);
+            }
+        }
+    }
     [PunRPC]
     public void UpdateHpUI(int hp)
     {
         prop.hp = hp;
         hpUi.UpdateHpUi();
+        PlayVictimFx();
     }
 
     public void UpdateHpUIInPhoton()
