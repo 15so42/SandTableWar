@@ -12,6 +12,9 @@ public class TankAnimCtrl : BattleUnitAnimCtrl
     [Header("炮管")] public Transform canon;
     public float canonRotateSpeed;
     
+    /// <summary>
+    /// 战斗中
+    /// </summary>
     protected override void OnBattleState()
     {
         //base.OnBattleState();
@@ -24,6 +27,9 @@ public class TankAnimCtrl : BattleUnitAnimCtrl
         canon.transform.rotation = Quaternion.RotateTowards(canon.transform.rotation, q, canonRotateSpeed * Time.deltaTime);
     }
 
+    /// <summary>
+    /// 正常移动中
+    /// </summary>
     protected override void OnIdleOrMoveState()
     {
         //base.OnIdleOrMoveState();

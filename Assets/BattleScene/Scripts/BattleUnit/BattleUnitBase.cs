@@ -47,9 +47,8 @@ public class BattleUnitBase : MonoBehaviour
     //静态全局单位列表
     public static List<BattleUnitBase> selfUnits=new List<BattleUnitBase>();
     public static List<BattleUnitBase> enemyUnits=new List<BattleUnitBase>();
-    /// <summary>
-    /// 建筑类使用时
-    /// </summary>
+    
+    
     protected virtual void Awake()
     {
         prop=new BattleUnitBaseProp();

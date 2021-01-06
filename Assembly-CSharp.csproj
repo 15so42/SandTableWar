@@ -61,6 +61,7 @@
      <Compile Include="Assets\BattleBuildingMenuDialog.cs" />
      <Compile Include="Assets\BattleCamera.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseFightAction.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseTankFightAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\MoveToPosStateAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\FindEnemyDecision.cs" />
@@ -72,6 +73,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseMoveState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\StateAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\StateController.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\TankStateController.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition\FindEnemyTransition.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition\HasTargetPosTransition.cs" />
@@ -143,6 +145,7 @@
      <Compile Include="Assets\Scripts\GameSettingsConst.cs" />
      <Compile Include="Assets\Scripts\PhotonEventConst.cs" />
      <Compile Include="Assets\Scripts\UnityObjectPoolManager.cs" />
+     <Compile Include="Assets\TankAUnit.cs" />
      <Compile Include="Assets\TankAnimCtrl.cs" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
      <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />

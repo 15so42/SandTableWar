@@ -40,13 +40,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5742540879084919097}
   - component: {fileID: -1061582169896112788}
-  - component: {fileID: -7041522720884437445}
   - component: {fileID: -8226985421410687555}
   - component: {fileID: 8975227871527715896}
   - component: {fileID: 2902278658431842304}
   - component: {fileID: 5669207548518253706}
   - component: {fileID: 622427495703398006}
   - component: {fileID: 622427495703398001}
+  - component: {fileID: -2229466761417150100}
   m_Layer: 0
   m_Name: Tank_A
   m_TagString: Untagged
@@ -89,37 +89,10 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 8975227871527715896}
+  - {fileID: -2229466761417150100}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &-7041522720884437445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4592192127302537471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f244212bb3c39c42b791cac07dc1eb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  photonView: {fileID: 0}
-  campId: 0
-  weapon: {fileID: 2902278658431842304}
-  prop:
-    weaponProficiency: 1
-    maxHp: 480
-    hp: 480
-    defense: 40
-    viewDistance: 20
-  hpUiOffset: {x: 0, y: 95, z: 0}
-  selectMarkSize: 2.2
-  selectMarkOffset: {x: 0, y: 0.2, z: 0}
-  isFirstSelected: 0
-  globalItemType: 0
-  amountBySecond: 0
-  victimPos: {fileID: 0}
 --- !u!195 &-8226985421410687555
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -282,6 +255,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0928755, y: 1.8297272, z: 2.5244348}
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!114 &-2229466761417150100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592192127302537471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a44bcd6f8bd54547af5cc54f13007ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navMeshAgent: {fileID: 0}
+  photonView: {fileID: 0}
+  campId: 0
+  weapon: {fileID: 0}
+  prop:
+    weaponProficiency: 1
+    maxHp: 450
+    hp: 450
+    defense: 60
+    viewDistance: 20
+  hpUiOffset: {x: 0, y: 95, z: 0}
+  selectMarkSize: 4
+  selectMarkOffset: {x: 0, y: 0, z: 0}
+  isFirstSelected: 0
+  globalItemType: 0
+  amountBySecond: 0
+  victimPos: {fileID: 0}
+  rotateDamp: 50
+  maxMovesSpeed: 3.5
+  moveDampTime: 200
+  moveThreshold: 0.6
 --- !u!1001 &3464593818866812847
 PrefabInstance:
   m_ObjectHideFlags: 0
