@@ -119,6 +119,7 @@ MonoBehaviour:
   isFirstSelected: 0
   globalItemType: 0
   amountBySecond: 0
+  victimPos: {fileID: 0}
 --- !u!195 &-8226985421410687555
 NavMeshAgent:
   m_ObjectHideFlags: 0

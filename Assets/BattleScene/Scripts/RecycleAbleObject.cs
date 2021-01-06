@@ -41,6 +41,10 @@ namespace BattleScene.Scripts
 
         public virtual void Recycle()
         {
+            if (gameObject.activeSelf == false)
+            {
+                return;//已经回收了
+            }
             UnityObjectPoolManager.Recycle(GetRecycleName(),this);
             if (gameObject.activeSelf)
             {

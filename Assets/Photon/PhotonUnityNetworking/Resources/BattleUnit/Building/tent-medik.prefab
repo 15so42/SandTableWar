@@ -153,6 +153,7 @@ MonoBehaviour:
   isFirstSelected: 0
   globalItemType: 0
   amountBySecond: 0
+  victimPos: {fileID: 0}
   spawnPos: {fileID: 9065425138531134907}
   menuCommands:
   - spawn_1_1

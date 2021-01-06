@@ -1,6 +1,7 @@
 ﻿
     using BattleScene.Scripts;
     using DefaultNamespace;
+    using DG.Tweening;
     using Photon.Pun;
     using UnityEngine;
     using UnityTimer;
@@ -30,7 +31,16 @@
             if(detectionType == RangedAttackDetectionType.RayWithTrail||detectionType == RangedAttackDetectionType.RayWithWithLightTracer)
             {
                 //todo 射击位置可能需要调整
-                Vector3 enemyDir = (GetEnemy().transform.position+Vector3.up*1.5f)- shootPos.transform.position;
+                Vector3 enemyDir;
+                Transform targetPos = GetEnemy().victimPos;
+                if (targetPos != null)
+                {
+                    enemyDir = targetPos.transform.position - shootPos.transform.position;
+                }
+                else
+                {
+                    enemyDir= (GetEnemy().transform.position+Vector3.up*1.5f)- shootPos.transform.position;
+                }
                 //散射算法
                 Vector3 newVec = Quaternion.Euler(Random.Range(-scatteringAngel,scatteringAngel),Random.Range(-scatteringAngel,scatteringAngel),0)*enemyDir;
                 //PhotonView.Get(this).RPC("FireBullet",RpcTarget.All,newVec);
@@ -123,14 +133,21 @@
             //通过射线检测的方式如果射击到敌人直接调用rpc扣血，不需要实体子弹判断
             else if(detectionType == RangedAttackDetectionType.RayWithTrail)
             {
-                Timer.Register(0.05f, () =>
-                    iBullet.transform.position = param);
+                // Timer.Register(0.05f, () =>
+                //     iBullet.transform.position = param);
+                iBullet.transform.DOMove(param, 0.1f).OnComplete(() =>
+                {
+                    iBullet.GetComponent<Bullet>().Recycle();
+                });
+                
+                iBullet.transform.forward = param - shootPos.transform.position;
             }
             //param表示向量
             else if(detectionType == RangedAttackDetectionType.RayWithWithLightTracer)
             {
                 Timer.Register(0.05f, () =>
                     iBullet.transform.position = param);
+                iBullet.transform.forward = param - shootPos.transform.position;
             }
             return iBullet.GetComponent<Bullet>();
             

@@ -24,7 +24,7 @@ public class BattleUnitBase : MonoBehaviour
     protected BaseHpUi hpUi;
     protected Transform hpInfoParent;
     protected Camera mainCam;
-    public Vector3 hpUiOffset=new Vector3(0,10,0);
+    public Vector3 hpUiOffset=new Vector3(0,20,0);
     
     //选中特效，选中特效由FightingManager动态生成并设置成单位的子物体，一般单位不控制选中特效，除非需要额外增加选中特效效果，比如旋转
     private GameObject selectMark;
@@ -37,7 +37,8 @@ public class BattleUnitBase : MonoBehaviour
     [Header("技能点")] public GlobalItemType globalItemType=GlobalItemType.None;
     public int amountBySecond=0; 
     private float lastAddTime=0;
-    
+
+    [Header("受击点,别人攻击此目标时瞄准的位置")] public Transform victimPos;
     //静态全局单位列表
     public static List<BattleUnitBase> selfUnits=new List<BattleUnitBase>();
     public static List<BattleUnitBase> enemyUnits=new List<BattleUnitBase>();
