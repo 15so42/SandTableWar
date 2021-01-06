@@ -113,7 +113,7 @@ MonoBehaviour:
     hp: 480
     defense: 40
     viewDistance: 20
-  hpUiOffset: {x: 0, y: 10, z: 0}
+  hpUiOffset: {x: 0, y: 95, z: 0}
   selectMarkSize: 2.2
   selectMarkOffset: {x: 0, y: 0.2, z: 0}
   isFirstSelected: 0

@@ -8,6 +8,10 @@ public class BaseHpUi:MonoBehaviour
     public Text hpNum;
     public Image hpProgress;
 
+    public void Init()
+    {
+        UpdateHpUi();
+    }
     public void UpdateHpUi()
     {
         float percentage = owner.prop.hp / (float)owner.prop.maxHp;

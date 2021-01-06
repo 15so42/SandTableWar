@@ -82,6 +82,7 @@ public class BattleUnitBase : MonoBehaviour
         hpUi = Instantiate(Resources.Load<BaseHpUi>("Prefab/UI/BaseHpUi"), mainCam.WorldToScreenPoint(position),
             Quaternion.identity,hpInfoParent);
         hpUi.owner = this;
+        hpUi.Init();
         //设置初始目标地点
         stateController.targetPos = position;
         stateController.lastTargetPos = stateController.targetPos;

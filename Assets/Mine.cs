@@ -36,14 +36,18 @@ public class Mine : BattleUnitBase
    [PunRPC]
    public void ExplosionInPhoton()
    {
-      GameObject.Instantiate(explosionFx, transform.position, Quaternion.identity);
-      foreach (var enemyUnit in enemyUnits)
+      GameObject.Instantiate(explosionFx, transform.position, Quaternion.Euler(-90,0,0));
+      //用碰撞体来判断而不是坐标，因为有些物体的半径超过检测半径就不会受伤但是实际上看起来已经碰到了
+      Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+      foreach (var collider in colliders)
       {
-         if (Vector3.Distance(enemyUnit.transform.position, transform.position) < radius)
+         BattleUnitBase battleUnitBase = collider.GetComponentInChildren<BattleUnitBase>();
+         if (battleUnitBase)
          {
-            int damage = fightingManager.CalDamage(250, enemyUnit.prop.defense, DamageType.Physical);
-            fightingManager.Attack(this,enemyUnit,damage);
+            int damage = fightingManager.CalDamage(250, battleUnitBase.prop.defense, DamageType.Physical);
+            fightingManager.Attack(this,battleUnitBase,damage);
          }
+               
       }
    }
 }
