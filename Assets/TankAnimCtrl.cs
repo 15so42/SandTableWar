@@ -18,13 +18,17 @@ public class TankAnimCtrl : BattleUnitAnimCtrl
     protected override void OnBattleState()
     {
         //base.OnBattleState();
-        Vector3 enemyPos = stateController.enemy.transform.position;
+        Vector3 enemyPos = stateController.enemy.GetVictimPos();
         Vector3 towerVec = enemyPos - tower.transform.position;
         towerVec.y = 0;//炮塔只能水平旋转
         Quaternion q = Quaternion.LookRotation(towerVec);
         tower.transform.rotation = Quaternion.RotateTowards(tower.transform.rotation, q, towerRotateSpeed * Time.deltaTime);
-        Quaternion q1 = Quaternion.LookRotation(enemyPos-canon.transform.position);
-        canon.transform.rotation = Quaternion.RotateTowards(canon.transform.rotation, q, canonRotateSpeed * Time.deltaTime);
+
+
+        //Vector3 canonVec = enemyPos - canon.transform.position;
+        //canonVec.x = canon.transform.forward.x;
+        //Quaternion q1 = Quaternion.LookRotation(canonVec);
+        //canon.transform.rotation = Quaternion.RotateTowards(canon.transform.rotation, q1, canonRotateSpeed * Time.deltaTime);
     }
 
     /// <summary>
@@ -38,8 +42,8 @@ public class TankAnimCtrl : BattleUnitAnimCtrl
         towerVec.y = 0;//炮塔只能水平旋转
         Quaternion q = Quaternion.LookRotation(towerVec);
         tower.transform.rotation = Quaternion.RotateTowards(tower.transform.rotation, q, towerRotateSpeed * Time.deltaTime);
-        Quaternion q1 = Quaternion.LookRotation(stateController.targetPos-canon.transform.position);
-        canon.transform.rotation = Quaternion.RotateTowards(canon.transform.rotation, q, canonRotateSpeed * Time.deltaTime);
+        
+        canon.transform.rotation = Quaternion.RotateTowards(canon.transform.rotation, tower.transform.rotation, canonRotateSpeed * Time.deltaTime);
 
     }
 

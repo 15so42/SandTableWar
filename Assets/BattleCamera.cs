@@ -97,7 +97,7 @@ public class BattleCamera : MonoBehaviour
     {//画线这种操作推荐在OnPostRender（）里进行 而不是直接放在Update，所以需要标志来开启
         if (isDrawingRectangle)
         {
-            Debug.Log("................");
+            //Debug.Log("................");
             end = Input.mousePosition;//鼠标当前位置
             GL.PushMatrix();//保存摄像机变换矩阵,把投影视图矩阵和模型视图矩阵压入堆栈保存
 

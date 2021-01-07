@@ -66,12 +66,13 @@ public class StateController
             falseState = moveState,
             trueState = idleState
         });
-        moveState.AddTransition(new Transition()
+        moveState.AddTransition(new Transition()//注意顺序，顺序代表优先级
         {
             decisions =  new List<Decision>{new FindEnemyDecision()},
             falseState = moveState,
             trueState = fightState
         });
+       
         
         //强制移动到目标点，用于战斗中强行移动(撤退，突围等操作)
         moveIgnoreEnemyState.AddAction(new MoveToPosStateAction());

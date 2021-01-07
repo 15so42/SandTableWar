@@ -34,16 +34,17 @@ public class TankStateController : StateController
         moveState.AddAction(new MoveToPosStateAction());
         moveState.AddTransition(new Transition()
         {
-            decisions = new List<Decision>{new ReachTargetPosDecision()},
-            falseState = moveState,
-            trueState = idleState
-        });
-        moveState.AddTransition(new Transition()
-        {
             decisions =  new List<Decision>{new FindEnemyDecision()},
             falseState = moveState,
             trueState = fightState
         });
+        moveState.AddTransition(new Transition()
+        {
+            decisions = new List<Decision>{new ReachTargetPosDecision()},
+            falseState = moveState,
+            trueState = idleState
+        });
+    
         
         //强制移动到目标点，用于战斗中强行移动(撤退，突围等操作)
         moveIgnoreEnemyState.AddAction(new MoveToPosStateAction());

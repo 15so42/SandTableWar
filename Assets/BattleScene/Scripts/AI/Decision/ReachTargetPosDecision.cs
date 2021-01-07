@@ -9,9 +9,9 @@
             float distance = GetDistanceIgnoreY(controller.owner.transform.position, controller.targetPos);
             //一定要忽略y轴对距离的计算
             
-            bool result = distance < 0.5f;
+            bool result = distance <= controller.navMeshAgent.stoppingDistance;
             //Debug.Log($"[{nameof(ReachTargetPosDecision)}]是否到达目标地点：{result}");
-            return result;//todo 更详细的判断
+            return result;
         }
 
         public float GetDistanceIgnoreY(Vector3 pointA,Vector3 pointB)

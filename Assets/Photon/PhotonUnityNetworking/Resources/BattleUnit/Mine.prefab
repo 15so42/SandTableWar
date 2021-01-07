@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4e1c0659907d3458daed26dbe292aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navMeshAgent: {fileID: 0}
   photonView: {fileID: 0}
   campId: 0
   weapon: {fileID: 0}
@@ -164,6 +165,8 @@ MonoBehaviour:
   globalItemType: 0
   amountBySecond: 0
   victimPos: {fileID: 8407403816627047578}
+  victimOffset: 1.5
+  rotateDamp: 10
   explosionFx: {fileID: 191186, guid: d9624761d6377274b972e33d59b2e703, type: 3}
   radius: 3
 --- !u!54 &6869259365233950515

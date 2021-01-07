@@ -40,6 +40,7 @@ public class BattleUnitBase : MonoBehaviour
     private float lastAddTime=0;
 
     [Header("受击点,别人攻击此目标时瞄准的位置")] public Transform victimPos;
+    [Header("受击偏移，如果没有设置victimPos则使用这个")] public float victimOffset=1.5f;
     [Header("旋转阻尼")] public float rotateDamp = 10;
 
     private Outlinable outlinable;
@@ -111,19 +112,19 @@ public class BattleUnitBase : MonoBehaviour
                 fightingManager.globalItemManager.AddPoint(globalItemType,amountBySecond);
                 lastAddTime = Time.time;
             }
-            RotationControl();
+            if (navMeshAgent != null)
+            {
+                RotationControl();
+            }
+            
         }
         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
         
     }
 
     private Vector3 refDir;
-    private void RotationControl()
+    protected virtual void RotationControl()
     {
-        if (navMeshAgent == null)
-        {
-            return;
-        }
         Vector3 horDir = navMeshAgent.desiredVelocity;
         horDir.y = 0;
         transform.forward = Vector3.SmoothDamp(transform.forward, horDir, ref refDir, Time.deltaTime * rotateDamp);
@@ -306,6 +307,18 @@ public class BattleUnitBase : MonoBehaviour
     public void SetCampInPhoton(int value)
     {
         PhotonView.Get(this).RPC(nameof(SetCampId),RpcTarget.All,value);
+    }
+
+    public Vector3 GetVictimPos()
+    {
+        if (victimPos)
+        {
+            return victimPos.transform.position;
+        }
+        else
+        {
+            return transform.position + Vector3.up * victimOffset;
+        }
     }
     
     

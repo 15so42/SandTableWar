@@ -771,6 +771,7 @@ MonoBehaviour:
   globalItemType: 1
   amountBySecond: 2
   victimPos: {fileID: 0}
+  victimOffset: 1.5
   rotateDamp: 50
 --- !u!195 &-8226985421410687555
 NavMeshAgent:
@@ -786,7 +787,7 @@ NavMeshAgent:
   m_Acceleration: 18
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
