@@ -60,6 +60,7 @@
   <ItemGroup>
      <Compile Include="Assets\BattleBuildingMenuDialog.cs" />
      <Compile Include="Assets\BattleCamera.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseEscapeAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseFightAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseTankFightAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\MoveToPosStateAction.cs" />
@@ -68,6 +69,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasTargetPosDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\ReachTargetPosDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseEscapeState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseFightState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseIdleState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseMoveState.cs" />
@@ -77,6 +79,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition\FindEnemyTransition.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition\HasTargetPosTransition.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\WorkerStateController.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleBuilding\BaseBarrack.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleBuilding\BaseBattleBuilding.cs" />
      <Compile Include="Assets\BattleScene\Scripts\BattleFxManager.cs" />
@@ -147,6 +150,8 @@
      <Compile Include="Assets\Scripts\UnityObjectPoolManager.cs" />
      <Compile Include="Assets\TankAUnit.cs" />
      <Compile Include="Assets\TankAnimCtrl.cs" />
+     <Compile Include="Assets\WorkAnimCtrl.cs" />
+     <Compile Include="Assets\WorkerUnit.cs" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
      <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
      <None Include="Assets\SimpleFX\Materials\UnlitVertexColour_Alpha.shader" />
@@ -161,6 +166,9 @@
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.Timeline">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
@@ -169,9 +177,6 @@
  </Reference>
  <Reference Include="Unity.Rider.Editor">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

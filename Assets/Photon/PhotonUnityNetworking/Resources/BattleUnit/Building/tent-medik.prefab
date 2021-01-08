@@ -161,6 +161,9 @@ MonoBehaviour:
   menuCommands:
   - spawn_1_1
   - spawn_2_1
+  - spawn_3_1
+  - spawn_3_1
+  - spawn_3_1
   - close
 --- !u!114 &-1794971452224315405
 MonoBehaviour:
