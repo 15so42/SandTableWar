@@ -15,11 +15,15 @@
     public class RangedWeapon : Weapon
     {
         public Transform shootPos;
+
+        public GameObject flashFx;
         public GameObject bullet;
 
         public float bulletDamageRate=1f;//子弹伤害倍率，主要由枪械武器的撞针力度导致不同
         
         public RangedAttackDetectionType detectionType;
+
+        private Timer flashTimer;
 
         //散射角度，当检测方式为ray时，射击向量在玩家到敌人的方向进行对应度数的随机取值以模拟误差射击效果，如若射中玩家或者障碍物，发射子弹到对应位置并附带拖尾
         [Header("散射角度")]
@@ -107,6 +111,17 @@
         public virtual Bullet FireBullet(Vector3 param)
         {
             GameObject iBullet;
+            //枪口火光
+            flashFx.SetActive(true);
+            if (flashTimer != null && (flashTimer != null || flashTimer.isCancelled==false))
+            {
+                flashTimer.Cancel();
+            }
+            flashTimer=Timer.Register(0.1f, () =>
+            {
+                flashFx.SetActive(false);
+            });
+            
             RecycleAbleObject allocatedBullet = UnityObjectPoolManager.Allocate(bullet.name);
             if (allocatedBullet != null)
             {

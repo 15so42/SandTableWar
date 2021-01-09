@@ -47,6 +47,12 @@ public class FightingManager
     {
         BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(299),logicMap.GetBasePosByPlayerId(campId),campId);
         BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(campId));
+        if (PhotonNetwork.IsMasterClient)
+        {
+            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(298),Vector3.zero,-1);//生成碉堡
+
+        }
+            
     }
 
    
@@ -174,6 +180,16 @@ public class FightingManager
             }
             unitBase.OnSelect();
         }
+    }
+
+    public void InitSelectMarkForUnit(BattleUnitBase unitBase)
+    {
+        Transform unitBaseTransform = unitBase.transform;
+        GameObject iMark = Object.Instantiate(selectMarkInCache,
+            unitBaseTransform.position + unitBase.selectMarkOffset, 
+            Quaternion.Euler(new Vector3(90,0,0)), unitBaseTransform);
+        unitBase.SetSelectMark(iMark);
+        unitBase.HideSelectMark();
     }
 
     public void UnselectUnit(BattleUnitBase unitBase)

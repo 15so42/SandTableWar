@@ -67,11 +67,13 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\FindEnemyDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasTargetPosDecision.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Decision\IsInBuildingDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\ReachTargetPosDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseEscapeState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseFightState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseIdleState.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseInBuildingState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseMoveState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\StateAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\StateController.cs" />
@@ -97,6 +99,7 @@
      <Compile Include="Assets\BattleScene\Scripts\UI\BuildingMenuItem.cs" />
      <Compile Include="Assets\BattleUnitAnimCtrl.cs" />
      <Compile Include="Assets\BuildingSpawnMenuItem.cs" />
+     <Compile Include="Assets\DefenceBuilding.cs" />
      <Compile Include="Assets\GameCode\BaseClass\IGameSystem.cs" />
      <Compile Include="Assets\GameCode\DOTween\Modules\DOTweenModuleAudio.cs" />
      <Compile Include="Assets\GameCode\DOTween\Modules\DOTweenModulePhysics.cs" />

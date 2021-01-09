@@ -434,7 +434,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 8975227871527715896}
   - {fileID: 1318645975}
-  viewIdField: 1
+  viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &2788331513961480119

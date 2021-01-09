@@ -2099,8 +2099,8 @@ MonoBehaviour:
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
-    resourceName: Solider1
+  - id: 298
+    resourceName: bunker-medium
     spawnTime: 10
     needPopulation: 1
     needCoin: 1

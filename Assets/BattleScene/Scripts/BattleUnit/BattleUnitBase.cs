@@ -18,7 +18,6 @@ public class BattleUnitBase : MonoBehaviour
     //單位都是用武器攻擊敵人，因此抽象出武器類
     [HideInInspector]public Weapon weapon;
     public BattleUnitBaseProp prop;//单位基础属性
-   
     
     //血条UI，通过动态加载到对应画布
     [Header("血条UI")]
@@ -43,13 +42,18 @@ public class BattleUnitBase : MonoBehaviour
     [Header("受击偏移，如果没有设置victimPos则使用这个")] public float victimOffset=1.5f;
     [Header("旋转阻尼")] public float rotateDamp = 10;
 
+    public int configId;//配置id，即兵种id，1表示Solider1，2表示Tank_A等等
+
     private Outlinable outlinable;
     private Timer victimFxTimer;//受击特效计时器
     //静态全局单位列表
     public static List<BattleUnitBase> selfUnits=new List<BattleUnitBase>();
     public static List<BattleUnitBase> enemyUnits=new List<BattleUnitBase>();
-    
-    
+    //进入房间
+    [HideInInspector]public bool isGoingBuilding;
+    [HideInInspector]public bool isInBuilding;
+
+    #region 逻辑控制
     protected virtual void Awake()
     {
         prop=new BattleUnitBaseProp();
@@ -65,14 +69,7 @@ public class BattleUnitBase : MonoBehaviour
 
         isFirstSelected = true;
         stateController=new StateController(this);
-        if (photonView.IsMine)
-        {
-            selfUnits.Add(this);
-        }
-        else
-        {
-            enemyUnits.Add(this);
-        }
+       
     }
 
     // Start is called before the first frame update
@@ -96,6 +93,15 @@ public class BattleUnitBase : MonoBehaviour
         stateController.lastTargetPos = stateController.targetPos;
         lastAddTime = 0;//技能点计时器
         outlinable = GetComponentInChildren<Outlinable>();
+        if (photonView.IsMine)
+        {
+            selfUnits.Add(this);
+        }
+        else
+        {
+            enemyUnits.Add(this);
+            fightingManager.InitSelectMarkForUnit(this);
+        }
     }
 
     // Update is called once per frame
@@ -129,7 +135,9 @@ public class BattleUnitBase : MonoBehaviour
         horDir.y = 0;
         transform.forward = Vector3.SmoothDamp(transform.forward, horDir, ref refDir, Time.deltaTime * rotateDamp);
     }
+    #endregion
 
+    #region 销毁处理
     private void OnDestroy()
     {
         if (photonView.IsMine)
@@ -141,7 +149,9 @@ public class BattleUnitBase : MonoBehaviour
             enemyUnits.Remove(this);
         }
     }
+    #endregion
 
+    #region AI命令
     /// <summary>
     /// 設置移動位置,和navmesh的setDestion類似
     /// </summary>
@@ -150,7 +160,9 @@ public class BattleUnitBase : MonoBehaviour
     {
         stateController?.SetTargetPos(pos);
     }
+    #endregion
     
+    #region 表现
     public void SetSelectMark(GameObject mark)
     {
         selectMark = mark;
@@ -161,6 +173,25 @@ public class BattleUnitBase : MonoBehaviour
     //第一次选中时需要设置，之后选中标志通过active来控制以减少性能消耗
     public void ShowSelectMark()
     {
+        selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(ColorString,Color.green);
+        selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(EmissionString,Color.green);
+        selectMark.SetActive(true);
+    }
+
+    public void ShowNeutralSelectMark()
+    {
+        if (selectMark == null)
+        {
+            fightingManager.InitSelectMarkForUnit(this);
+        }
+        selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(ColorString,Color.yellow);
+        selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(EmissionString,Color.yellow);
+        selectMark.SetActive(true);
+    }
+    public void ShowEnemySelectMark()
+    {
+        selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(ColorString,Color.red);
+        selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(EmissionString,Color.red);
         selectMark.SetActive(true);
     }
 
@@ -169,84 +200,6 @@ public class BattleUnitBase : MonoBehaviour
         selectMark.SetActive(false);
     }
     
-    #region 鼠标控制
-    protected void OnMouseDown()
-    {
-        //throw new NotImplementedException();
-    }
-
-    protected void OnMouseDrag()
-    {
-        //throw new NotImplementedException();
-    }
-
-    protected void OnMouseUp()
-    {
-        //throw new NotImplementedException();
-    }
-
-    private  void OnMouseUpAsButton()
-    {
-        if (photonView.IsMine == false)
-        {
-            return;
-        }
-        MouseClickHandle();
-    }
-
-    protected virtual void MouseClickHandle()
-    {
-        if (UITool.IsPointerOverUIObject(Input.mousePosition))
-        {
-            return;//防止UI穿透
-        }
-        if (fightingManager.isHoldShift)//加选
-        {
-            fightingManager.SelectUnit(this);
-        }
-        else if (fightingManager.isHoldCtrl)//减选
-        {
-            fightingManager.UnselectUnit(this);
-        }
-        else//单独选择此单位
-        {
-            fightingManager.UnselectAllUnits();
-            fightingManager.SelectUnit(this);
-        }
-        
-    }
-    #endregion
-    
-    public bool IsMine()
-    {
-        return photonView.IsMine;
-    }
-
-    [PunRPC]
-    public void RecycleBullet(Bullet bullet)
-    {
-        bullet.Recycle();
-    }
-
-    #region 伤害管理
-
-    public void ReduceHp(int value)
-    {
-        int leftHp = prop.ReduceHp(value);
-        if (leftHp < 0)
-        {
-            Die();
-        }
-        UpdateHpUIInPhoton();
-    }
-    
-    #endregion
-
-    private void Die()
-    {
-        PhotonNetwork.Destroy(gameObject);
-    }
-
     public virtual void OnSelect()
     {
         if (isFirstSelected)
@@ -285,6 +238,121 @@ public class BattleUnitBase : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    #region 鼠标控制
+
+    protected void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            OnRightMouseDown();
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            OnRightMouseUp();
+        }
+    }
+
+    protected virtual void OnRightMouseDown()
+    {
+        
+    }
+
+    protected virtual void OnRightMouseUp()
+    {
+        //-1表示中立，不是钟离且不相等表示敌对
+        if (campId == -1)
+        {
+            ShowNeutralSelectMark();
+        }
+        else
+        {
+            if (campId != fightingManager.campId)
+            {
+                ShowEnemySelectMark();
+            }
+        }
+        fightingManager.MoveToSpecificPos(transform.position);
+    }
+    
+
+    private  void OnMouseUpAsButton()
+    {
+        if (photonView.IsMine == false)
+        {
+            return;
+        }
+        MouseClickHandle();
+    }
+
+    protected virtual void MouseClickHandle()
+    {
+        if (UITool.IsPointerOverUIObject(Input.mousePosition))
+        {
+            return;//防止UI穿透
+        }
+        if (fightingManager.isHoldShift)//加选
+        {
+            fightingManager.SelectUnit(this);
+        }
+        else if (fightingManager.isHoldCtrl)//减选
+        {
+            fightingManager.UnselectUnit(this);
+        }
+        else//单独选择此单位
+        {
+            fightingManager.UnselectAllUnits();
+            fightingManager.SelectUnit(this);
+        }
+        
+    }
+    #endregion
+
+    #region 辅助函数
+    public bool IsMine()
+    {
+        return photonView.IsMine;
+    }
+    
+    [PunRPC]
+    public void RecycleBullet(Bullet bullet)
+    {
+        bullet.Recycle();
+    }
+    
+    public void ReduceHp(int value)
+    {
+        int leftHp = prop.ReduceHp(value);
+        if (leftHp < 0)
+        {
+            Die();
+        }
+        UpdateHpUIInPhoton();
+    }
+    
+    private void Die()
+    {
+        PhotonNetwork.Destroy(gameObject);
+    }
+    
+    public Vector3 GetVictimPos()
+    {
+        if (victimPos)
+        {
+            return victimPos.transform.position;
+        }
+        else
+        {
+            return transform.position + Vector3.up * victimOffset;
+        }
+    }
+
+    #endregion
+    
+    #region 同步属性
+    
     [PunRPC]
     public void UpdateHpUI(int hp)
     {
@@ -308,19 +376,32 @@ public class BattleUnitBase : MonoBehaviour
     {
         PhotonView.Get(this).RPC(nameof(SetCampId),RpcTarget.All,value);
     }
+    #endregion
 
-    public Vector3 GetVictimPos()
+    #region 进入房间防守功能
+
+    public void BeforeInDefenceBuilding()
     {
-        if (victimPos)
-        {
-            return victimPos.transform.position;
-        }
-        else
-        {
-            return transform.position + Vector3.up * victimOffset;
-        }
+        navMeshAgent.isStopped = true;
+        //GetComponent<MeshRenderer>().enabled = false;
     }
-    
+
+    private DefenceBuilding targetDefenceBuilding;
+    private static readonly int ColorString = Shader.PropertyToID("_Color");
+    private static readonly int EmissionString = Shader.PropertyToID("_Emission");
+
+    public void GoInDefenceBuilding(DefenceBuilding defenceBuilding)
+    {
+        isGoingBuilding = true;
+        targetDefenceBuilding = defenceBuilding;
+        SetTargetPos(defenceBuilding.GetEntrance());
+    }
+
+    public void OnEnterBuilding()
+    {
+        isInBuilding = true;
+    }
+    #endregion
     
 
 }

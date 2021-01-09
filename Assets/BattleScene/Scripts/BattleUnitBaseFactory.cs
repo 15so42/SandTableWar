@@ -9,8 +9,12 @@ public class BattleUnitBaseFactory : Singleton<BattleUnitBaseFactory>
     public BattleUnitBase SpawnBattleUnitAtPos(SpawnBattleUnitConfigInfo soliderInfo,Vector3 pos,int campId)
     {
         string path = (soliderInfo.id < 151) ? SoliderPath : BuildingPath;
+        Debug.LogError("准备实例化");
         GameObject spawnedBase=PhotonNetwork.Instantiate($"{path}{soliderInfo.resourceName}", pos, Quaternion.identity);
+        Debug.LogError("实例化完成");
         BattleUnitBase spawnedUnit = spawnedBase.GetComponent<BattleUnitBase>();
+        Debug.LogError("获取堡垒");
+        spawnedUnit.configId = soliderInfo.id;
         spawnedUnit.SetCampInPhoton(campId);
         return spawnedUnit;
     }
