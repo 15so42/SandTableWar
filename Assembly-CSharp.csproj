@@ -93,6 +93,7 @@
      <Compile Include="Assets\BattleScene\Scripts\BattleUnitBaseFactory.cs" />
      <Compile Include="Assets\BattleScene\Scripts\Bullet.cs" />
      <Compile Include="Assets\BattleScene\Scripts\ConfigHelper.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\EnemyIdentifier.cs" />
      <Compile Include="Assets\BattleScene\Scripts\FightingManager.cs" />
      <Compile Include="Assets\BattleScene\Scripts\RecycleAbleObject.cs" />
      <Compile Include="Assets\BattleScene\Scripts\UI\BaseHpUi.cs" />

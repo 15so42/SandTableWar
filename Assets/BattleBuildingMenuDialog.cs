@@ -63,6 +63,9 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
             case "close" ://关闭菜单
                InstantiateCloseBtn(i);
                break;
+            case "OutBuilding" : //离开房屋
+               InstantiateOutBuildingBtn(i);
+               break;
          }
       }
    }
@@ -104,6 +107,26 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
       }
       itemsGo.Add(iBtn,GetOffsetByIndex(index));
    }
+
+   private void InstantiateOutBuildingBtn(int index)
+   {
+      GameObject outBuildingPfb =
+         Resources.Load<GameObject>(pathPrefix + "OutBuildingButton");
+      GameObject iBtn = Instantiate(outBuildingPfb,GetBtnPosByIndex(index),Quaternion.identity,btnParent);
+      
+      iBtn.GetComponent<Button>().onClick.AddListener(()=>
+      {
+         (dialogContext.targetUnitBase as DefenceBuilding)?.OutBuilding();
+      });
+      BuildingMenuItem item = iBtn.GetComponent<BuildingMenuItem>();
+      if (item)
+      {
+         item.Init();
+         buildingMenuItems.Add(item);
+      }
+      itemsGo.Add(iBtn,GetOffsetByIndex(index));
+   }
+   
 
    private Vector3 GetBtnPosByIndex(int index)
    {

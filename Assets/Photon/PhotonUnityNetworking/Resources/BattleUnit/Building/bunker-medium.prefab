@@ -275,7 +275,9 @@ MonoBehaviour:
   isGoingBuilding: 0
   isInBuilding: 0
   spawnPos: {fileID: 0}
-  menuCommands: []
+  menuCommands:
+  - OutBuilding
+  - close
   defencePoses:
   - {fileID: 3636838294905752750}
   - {fileID: 3636838296089035695}

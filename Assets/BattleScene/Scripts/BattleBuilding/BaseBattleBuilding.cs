@@ -105,6 +105,11 @@ public class BaseBattleBuilding : BattleUnitBase
         {
             return;//防止UI穿透
         }
+
+        if (EnemyIdentifier.Instance.GetDiplomaticRelation(campId) == DiplomaticRelation.Neutral)
+        {
+            return;
+        }
         base.MouseClickHandle();
         buildingMenuDialog = BattleBuildingMenuDialog.ShowDialog(this,menuCommands) as BattleBuildingMenuDialog;
     }

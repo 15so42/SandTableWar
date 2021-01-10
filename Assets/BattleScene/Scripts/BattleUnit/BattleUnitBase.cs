@@ -190,6 +190,10 @@ public class BattleUnitBase : MonoBehaviour
     }
     public void ShowEnemySelectMark()
     {
+        if (selectMark == null)
+        {
+            fightingManager.InitSelectMarkForUnit(this);
+        }
         selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(ColorString,Color.red);
         selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(EmissionString,Color.red);
         selectMark.SetActive(true);
@@ -262,14 +266,19 @@ public class BattleUnitBase : MonoBehaviour
 
     protected virtual void OnRightMouseUp()
     {
-        //-1表示中立，不是钟离且不相等表示敌对
-        if (campId == -1)
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        if (relation == DiplomaticRelation.Neutral)
         {
             ShowNeutralSelectMark();
         }
         else
         {
-            if (campId != fightingManager.campId)
+            if (relation == DiplomaticRelation.Ally)
+            {
+                ShowNeutralSelectMark();
+            }
+
+            if (relation == DiplomaticRelation.Enemy)
             {
                 ShowEnemySelectMark();
             }
@@ -280,11 +289,15 @@ public class BattleUnitBase : MonoBehaviour
 
     private  void OnMouseUpAsButton()
     {
-        if (photonView.IsMine == false)
+        // if (photonView.IsMine == false)
+        // {
+        //     return;
+        // }
+        if (campId == fightingManager.campId)
         {
-            return;
+            MouseClickHandle();
         }
-        MouseClickHandle();
+        
     }
 
     protected virtual void MouseClickHandle()

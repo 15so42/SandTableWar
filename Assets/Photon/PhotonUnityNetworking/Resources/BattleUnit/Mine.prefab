@@ -167,6 +167,9 @@ MonoBehaviour:
   victimPos: {fileID: 8407403816627047578}
   victimOffset: 1.5
   rotateDamp: 10
+  configId: 0
+  isGoingBuilding: 0
+  isInBuilding: 0
   explosionFx: {fileID: 191186, guid: d9624761d6377274b972e33d59b2e703, type: 3}
   radius: 3
 --- !u!54 &6869259365233950515

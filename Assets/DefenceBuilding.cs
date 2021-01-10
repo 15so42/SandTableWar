@@ -17,29 +17,49 @@ public class DefenceBuilding : BaseBattleBuilding
     protected override void Awake()
     {
         base.Awake();
-        Debug.LogError("堡垒Awake");
+        
     }
 
     protected override void Start()
     {
         base.Start();
-        Debug.LogError("堡垒Start");
     }
 
     private void OnCollisionEnter(Collision other)
     {
         BattleUnitBase battleUnitBase = other.transform.root.GetComponent<BattleUnitBase>();
-        Debug.LogError("碰撞者isGoingBuilding为"+battleUnitBase.isGoingBuilding);
+        if (battleUnitBase == null)
+        {
+            return;
+        }
+        
+        //判断是否与允许进入
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        
+        
         if (battleUnitBase.isGoingBuilding)
         {
-            if(!soliderInBuilding.Contains(battleUnitBase))
+            if (campId != -1 && relation != DiplomaticRelation.Ally)//自己不是中立，表示已经有人，而且要进入的人时敌人就不能进入
+            {
+                battleUnitBase.isGoingBuilding = false;
+                return;
+            }
+            if (!soliderInBuilding.Contains(battleUnitBase))
+            {
+                ClearDiedSolider();
                 LetSoliderIn(battleUnitBase);
+                //首个进入时改变阵营
+                if (soliderInBuilding.Count == 1)
+                {
+                    SetCampInPhoton(battleUnitBase.campId);
+                }
+            }
         }
     }
 
     public void LetSoliderIn(BattleUnitBase battleUnitBase)
     {
-        if (soliderInBuilding.Count > defencePoses.Length)
+        if (soliderInBuilding.Count>= defencePoses.Length)
         {
             return;
         }
@@ -51,9 +71,15 @@ public class DefenceBuilding : BaseBattleBuilding
 
     protected override void OnRightMouseUp()
     {
-
         base.OnRightMouseUp();
+        fightingManager.MoveToSpecificPos(GetEntrance());
         int count = 0;
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        if (relation == DiplomaticRelation.Enemy)
+        {
+            return;
+        }
+        
         foreach (var unit in fightingManager.selectedUnits)
         {
             if (allowedId.Contains(unit.configId))
@@ -67,8 +93,27 @@ public class DefenceBuilding : BaseBattleBuilding
         }
     }
 
+    public void OutBuilding()
+    {
+        
+    }
+
     public Vector3 GetEntrance()
     {
         return entrance.transform.position;
     }
+
+    //清除死亡士兵的占位
+    private void ClearDiedSolider()
+    {
+        for (int i = 0; i < soliderInBuilding.Count; i++)
+        {
+            if (soliderInBuilding[i] == null)
+            {
+                soliderInBuilding.Remove(soliderInBuilding[i]);
+            }
+        }
+    }
+   
+    
 }
