@@ -34,16 +34,21 @@ public class StateController
         InitState();
     }
 
+    State idleState ;
+    State moveState ;
+    State moveIgnoreEnemyState ;
+    State fightState ;
+    State inBuildingIdleState;
+    State inBuildingFightState;
     protected virtual void InitState()
     {
-         //状态机设置
-        State idleState = new BaseIdleState(this,"闲置");
-        State moveState = new BaseMoveState(this,"移动");
-        State moveIgnoreEnemyState =new BaseMoveState(this,"强行移动");
-        State fightState = new BaseFightState(this,"战斗");
-        State inBuildingIdleState=new BaseIdleState(this,"房间内待机");
-        State inBuildingFightState = new BaseInBuildingState(this, "房间内战斗");
-
+        idleState = new BaseIdleState(this,"闲置");
+        moveState = new BaseMoveState(this,"移动");
+        moveIgnoreEnemyState =new BaseMoveState(this,"强行移动");
+        fightState = new BaseFightState(this,"战斗");
+        inBuildingIdleState=new BaseIdleState(this,"房间内待机");
+        inBuildingFightState = new BaseInBuildingState(this, "房间内战斗");
+        
         //idle时发现有新的目标位置切换到移动状态
         idleState.AddTransition(new Transition()
         {
@@ -132,13 +137,13 @@ public class StateController
         inBuildingFightState.AddTransition(new Transition()
         {
             decisions = new List<Decision>{new IsInBuildingDecision()},
-            falseState = idleState,
+            falseState = inBuildingIdleState,
             trueState = inBuildingFightState
         });
         inBuildingFightState.AddTransition(new Transition()
         {
             decisions = new List<Decision>{new FindEnemyDecision()},
-            falseState = idleState,
+            falseState = inBuildingIdleState,
             trueState = inBuildingFightState
         });
        
@@ -170,7 +175,16 @@ public class StateController
         {
             currentState = nextState;
             Debug.Log($"{owner.transform.name}切换状态至{nextState}");
+            OnChangeToState(nextState);
             OnExitState();
+        }
+    }
+
+    public virtual void OnChangeToState(State nextState)
+    {
+        if (nextState == inBuildingIdleState || nextState == inBuildingFightState)
+        {
+            navMeshAgent.isStopped = true;
         }
     }
 
