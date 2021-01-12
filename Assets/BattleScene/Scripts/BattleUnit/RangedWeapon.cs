@@ -23,8 +23,6 @@
         
         public RangedAttackDetectionType detectionType;
 
-        private Timer flashTimer;
-
         //散射角度，当检测方式为ray时，射击向量在玩家到敌人的方向进行对应度数的随机取值以模拟误差射击效果，如若射中玩家或者障碍物，发射子弹到对应位置并附带拖尾
         [Header("散射角度")]
         public float scatteringAngel=5;
@@ -112,15 +110,18 @@
         {
             GameObject iBullet;
             //枪口火光
-            flashFx.SetActive(true);
-            if (flashTimer != null && (flashTimer != null || flashTimer.isCancelled==false))
+            GameObject flashFxGo;
+            RecycleAbleObject allocatedFlashFx = UnityObjectPoolManager.Allocate(flashFx.name);
+            if (allocatedFlashFx != null)
             {
-                flashTimer.Cancel();
+                flashFxGo = allocatedFlashFx.gameObject;
             }
-            flashTimer=Timer.Register(0.1f, () =>
+            else
             {
-                flashFx.SetActive(false);
-            });
+                flashFxGo=GameObject.Instantiate(flashFx);
+            }
+            flashFxGo.transform.position = shootPos.position;
+            flashFxGo.transform.rotation = shootPos.rotation;
             
             RecycleAbleObject allocatedBullet = UnityObjectPoolManager.Allocate(bullet.name);
             if (allocatedBullet != null)

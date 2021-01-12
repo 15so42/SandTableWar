@@ -180,9 +180,9 @@ GameObject:
   - component: {fileID: 2243061903254377216}
   - component: {fileID: 7637729053765373060}
   - component: {fileID: 4342238878826547098}
-  - component: {fileID: 5018013186976345197}
+  - component: {fileID: 551726745289095276}
   m_Layer: 5
-  m_Name: SpawnButton 1
+  m_Name: OutBuildingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5018013186976345197
+--- !u!114 &551726745289095276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -298,11 +298,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5994653075663954693}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 552b9c85574292f478d27ee54dc4df62, type: 3}
+  m_Script: {fileID: 11500000, guid: bb125211cbfaf244388838ae293421f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetBuilding: {fileID: 0}
-  spawnId: 0
-  spawnUnitImage: {fileID: 7637729053765373060}
-  fill: {fileID: 2531029395553846654}
-  amountText: {fileID: 6479318948987815688}

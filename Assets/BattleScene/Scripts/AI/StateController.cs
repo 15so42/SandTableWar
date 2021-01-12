@@ -32,6 +32,7 @@ public class StateController
         lastTargetPos = targetPos;
 
         InitState();
+        currentState.OnStateEnter();
     }
 
     State idleState ;
@@ -44,10 +45,10 @@ public class StateController
     {
         idleState = new BaseIdleState(this,"闲置");
         moveState = new BaseMoveState(this,"移动");
-        moveIgnoreEnemyState =new BaseMoveState(this,"强行移动");
+        moveIgnoreEnemyState =new BaseForciblyMoveState(this,"强行移动");
         fightState = new BaseFightState(this,"战斗");
-        inBuildingIdleState=new BaseIdleState(this,"房间内待机");
-        inBuildingFightState = new BaseInBuildingState(this, "房间内战斗");
+        inBuildingIdleState=new BaseInBuildingIdleState(this,"房间内待机");
+        inBuildingFightState = new BaseInBuildingFightState(this, "房间内战斗");
         
         //idle时发现有新的目标位置切换到移动状态
         idleState.AddTransition(new Transition()
@@ -127,6 +128,12 @@ public class StateController
         //房间内待机
         inBuildingIdleState.AddTransition(new Transition()
         {
+            decisions = new List<Decision>{new IsInBuildingDecision()},
+            falseState = idleState,
+            trueState = inBuildingIdleState
+        });
+        inBuildingIdleState.AddTransition(new Transition()
+        {
             decisions =  new List<Decision>{new FindEnemyDecision()},
             trueState = inBuildingFightState, 
             falseState = inBuildingIdleState
@@ -137,7 +144,7 @@ public class StateController
         inBuildingFightState.AddTransition(new Transition()
         {
             decisions = new List<Decision>{new IsInBuildingDecision()},
-            falseState = inBuildingIdleState,
+            falseState = idleState,
             trueState = inBuildingFightState
         });
         inBuildingFightState.AddTransition(new Transition()
@@ -171,22 +178,17 @@ public class StateController
     //转换到下一个状态
     public void TransitionToState(State nextState)
     {
-        if (nextState != null)
+        if (nextState != null && currentState!=nextState)
         {
+            currentState.OnStateExit();
             currentState = nextState;
+            currentState.OnStateEnter();
             Debug.Log($"{owner.transform.name}切换状态至{nextState}");
-            OnChangeToState(nextState);
+            
             OnExitState();
         }
     }
-
-    public virtual void OnChangeToState(State nextState)
-    {
-        if (nextState == inBuildingIdleState || nextState == inBuildingFightState)
-        {
-            navMeshAgent.isStopped = true;
-        }
-    }
+    
 
     //返回是否过了时间间隔
     public bool CheckIfCountDownElapsed(float duration)

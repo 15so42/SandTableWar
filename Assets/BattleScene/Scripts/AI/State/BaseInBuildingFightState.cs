@@ -1,7 +1,7 @@
 ﻿
-    public class BaseFightState : State
+    public class BaseInBuildingFightState : State
     {
-        public BaseFightState(StateController controller, string stateName) : base(controller, stateName)
+        public BaseInBuildingFightState(StateController controller, string stateName) : base(controller, stateName)
         {
         }
         
@@ -10,4 +10,6 @@
             base.OnStateEnter();
             ownerController.navMeshAgent.isStopped = true;
         }
+        
+        
     }

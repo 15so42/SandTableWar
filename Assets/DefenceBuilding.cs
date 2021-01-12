@@ -95,7 +95,14 @@ public class DefenceBuilding : BaseBattleBuilding
 
     public void OutBuilding()
     {
-        
+        foreach (var solider in soliderInBuilding)
+        {
+            Vector3 exitPos=spawnPos.transform.position;
+            solider.transform.position = exitPos;
+            solider.OutBuilding();
+            solider.stateController.SetTargetPos(exitPos);
+        }
+        SetCampInPhoton(-1);
     }
 
     public Vector3 GetEntrance()

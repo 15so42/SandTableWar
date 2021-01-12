@@ -259,6 +259,18 @@ public class BattleUnitBase : MonoBehaviour
         }
     }
 
+    //鼠标进入时，用于更改鼠标形状及标识单位，提示可执行操作等
+    private void OnMouseEnter()
+    {
+        throw new NotImplementedException();
+    }
+
+    //鼠标离开时
+    private void OnMouseExit()
+    {
+        throw new NotImplementedException();
+    }
+
     protected virtual void OnRightMouseDown()
     {
         
@@ -287,17 +299,10 @@ public class BattleUnitBase : MonoBehaviour
     }
     
 
+    //左键，右键
     private  void OnMouseUpAsButton()
     {
-        // if (photonView.IsMine == false)
-        // {
-        //     return;
-        // }
-        if (campId == fightingManager.campId)
-        {
-            MouseClickHandle();
-        }
-        
+        MouseClickHandle();
     }
 
     protected virtual void MouseClickHandle()
@@ -306,18 +311,23 @@ public class BattleUnitBase : MonoBehaviour
         {
             return;//防止UI穿透
         }
-        if (fightingManager.isHoldShift)//加选
+
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        if (relation == DiplomaticRelation.Self)
         {
-            fightingManager.SelectUnit(this);
-        }
-        else if (fightingManager.isHoldCtrl)//减选
-        {
-            fightingManager.UnselectUnit(this);
-        }
-        else//单独选择此单位
-        {
-            fightingManager.UnselectAllUnits();
-            fightingManager.SelectUnit(this);
+            if (fightingManager.isHoldShift) //加选
+            {
+                fightingManager.SelectUnit(this);
+            }
+            else if (fightingManager.isHoldCtrl) //减选
+            {
+                fightingManager.UnselectUnit(this);
+            }
+            else //单独选择此单位
+            {
+                fightingManager.UnselectAllUnits();
+                fightingManager.SelectUnit(this);
+            }
         }
         
     }
@@ -413,6 +423,11 @@ public class BattleUnitBase : MonoBehaviour
     public void OnEnterBuilding()
     {
         isInBuilding = true;
+    }
+
+    public void OutBuilding()
+    {
+        isInBuilding = false;
     }
     #endregion
     

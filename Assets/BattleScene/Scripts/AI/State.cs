@@ -58,6 +58,15 @@ public class State
         transitions.Clear();
     }
 
+    public virtual void OnStateEnter()
+    {
+    }
+
+    public virtual void OnStateExit()
+    {
+        
+    }
+
     #endregion
     
     //顺序执行动作列表的动作。

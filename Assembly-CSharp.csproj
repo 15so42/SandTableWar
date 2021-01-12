@@ -72,8 +72,10 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\State.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseEscapeState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseFightState.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseForciblyMoveState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseIdleState.cs" />
-     <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseInBuildingState.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseInBuildingFightState.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseInBuildingIdleState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseMoveState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\StateAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\StateController.cs" />
@@ -99,6 +101,8 @@
      <Compile Include="Assets\BattleScene\Scripts\UI\BaseHpUi.cs" />
      <Compile Include="Assets\BattleScene\Scripts\UI\BuildingMenuItem.cs" />
      <Compile Include="Assets\BattleUnitAnimCtrl.cs" />
+     <Compile Include="Assets\BuildingCloseMenuItem.cs" />
+     <Compile Include="Assets\BuildingCommonMenuItem.cs" />
      <Compile Include="Assets\BuildingSpawnMenuItem.cs" />
      <Compile Include="Assets\DefenceBuilding.cs" />
      <Compile Include="Assets\GameCode\BaseClass\IGameSystem.cs" />

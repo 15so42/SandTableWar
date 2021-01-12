@@ -1,7 +1,7 @@
 ﻿
-    public class BaseMoveState:State
+    public class BaseForciblyMoveState : State
     {
-        public BaseMoveState(StateController controller, string stateName) : base(controller, stateName)
+        public BaseForciblyMoveState(StateController controller, string stateName) : base(controller, stateName)
         {
         }
         

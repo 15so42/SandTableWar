@@ -63,7 +63,7 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
             case "close" ://关闭菜单
                InstantiateCloseBtn(i);
                break;
-            case "OutBuilding" : //离开房屋
+            case "outbuilding" : //离开房屋
                InstantiateOutBuildingBtn(i);
                break;
          }

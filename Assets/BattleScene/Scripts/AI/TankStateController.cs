@@ -11,7 +11,7 @@ public class TankStateController : StateController
         //状态机设置
         State idleState = new BaseIdleState(this,"闲置");
         State moveState = new BaseMoveState(this,"移动");
-        State moveIgnoreEnemyState =new BaseMoveState(this,"强行移动");
+        State moveIgnoreEnemyState =new BaseForciblyMoveState(this,"强行移动");
         State fightState = new BaseFightState(this,"战斗");
 
         //idle时发现有新的目标位置切换到移动状态

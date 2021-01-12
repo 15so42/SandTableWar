@@ -8,7 +8,6 @@ public class MoveToPosStateAction : StateAction
     private Vector3 lastSetDesPos;
     public override void Act(StateController controller)
     {
-        controller.navMeshAgent.isStopped = false;
         if (hasSetDes == false)//避免多次执行setDest函数
         {
             controller.navMeshAgent.SetDestination(controller.targetPos);
