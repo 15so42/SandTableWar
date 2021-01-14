@@ -34,6 +34,8 @@ public class BattleUnitBase : MonoBehaviour
 
     [HideInInspector]public bool isFirstSelected;//第一次被选中
 
+    [Header("MouseOverOutline")] public Outlinable mouseOverOutline;
+
     [Header("技能点")] public GlobalItemType globalItemType=GlobalItemType.None;
     public int amountBySecond=0; 
     private float lastAddTime=0;
@@ -101,6 +103,10 @@ public class BattleUnitBase : MonoBehaviour
         {
             enemyUnits.Add(this);
             fightingManager.InitSelectMarkForUnit(this);
+        }
+        if (mouseOverOutline)
+        {
+            mouseOverOutline.OutlineParameters.Enabled = false;
         }
     }
 
@@ -267,12 +273,25 @@ public class BattleUnitBase : MonoBehaviour
         {
             MouseShapeManager.Instance.SetMouseState(MouseState.OnEnemyUnit);
         }
+
+        if (mouseOverOutline)
+        {
+            Color outlineColor=Color.yellow;
+            if (relation == DiplomaticRelation.Self)
+                outlineColor = Color.green;
+            if (relation == DiplomaticRelation.Enemy)
+                outlineColor = Color.red;
+            mouseOverOutline.OutlineParameters.Color = outlineColor;
+            mouseOverOutline.OutlineParameters.Enabled = true;
+        }
     }
 
     //鼠标离开时
     private void OnMouseExit()
     {
         MouseShapeManager.Instance.SetMouseState(MouseState.Default);
+        if(mouseOverOutline)
+            mouseOverOutline.OutlineParameters.Enabled = false;
     }
 
     protected virtual void OnRightMouseDown()

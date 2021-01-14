@@ -267,6 +267,7 @@ MonoBehaviour:
   selectMarkSize: 15
   selectMarkOffset: {x: 0, y: 0, z: 0}
   isFirstSelected: 0
+  mouseOverOutline: {fileID: 0}
   globalItemType: 0
   amountBySecond: 0
   victimPos: {fileID: 0}
