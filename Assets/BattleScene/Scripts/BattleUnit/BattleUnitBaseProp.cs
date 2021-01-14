@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
+
 [System.Serializable]
 public class BattleUnitBaseProp
 {
+    //事件
+    public UnityAction onTakeDamage;
     public float weaponProficiency = 1f; //武器熟练度倍率，如果要做单位自定义的话有用，先留着吧
     public int maxHp=100;
     public int hp=100;
@@ -17,6 +21,7 @@ public class BattleUnitBaseProp
     {
         value = Mathf.Abs(value);
         hp -= value;
+        onTakeDamage?.Invoke();
         if (hp <= 0)
         {
             return 0;
@@ -29,7 +34,7 @@ public class BattleUnitBaseProp
     /// 回复血量，不要传入负值
     /// </summary>
     /// <param name="value"></param>
-    public void CureHp(int value)
+    public int CureHp(int value)
     {
         value = Mathf.Abs(value);
         if (hp + value >= maxHp)
@@ -40,5 +45,7 @@ public class BattleUnitBaseProp
         {
             hp += value;
         }
+
+        return hp;
     }
 }

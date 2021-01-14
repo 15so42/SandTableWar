@@ -55,6 +55,8 @@ public class BattleUnitBase : MonoBehaviour
     [HideInInspector]public bool isGoingBuilding;
     [HideInInspector]public bool isInBuilding;
 
+    //地雷隐形
+    public bool visibleOnPhoton;
     #region 逻辑控制
     protected virtual void Awake()
     {
@@ -80,7 +82,6 @@ public class BattleUnitBase : MonoBehaviour
     /// </summary>
     protected virtual void Start()
     {
-        
         fightingManager = GameManager.Instance.GetFightingManager();
         //生成血条
         mainCam = Camera.main;
@@ -375,6 +376,12 @@ public class BattleUnitBase : MonoBehaviour
         {
             Die();
         }
+        UpdateHpUIInPhoton();
+    }
+    
+    public void CureHp(int value)
+    {
+        int leftHp = prop.CureHp(value);
         UpdateHpUIInPhoton();
     }
     

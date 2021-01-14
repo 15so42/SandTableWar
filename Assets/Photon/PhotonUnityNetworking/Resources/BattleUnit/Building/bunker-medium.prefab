@@ -276,6 +276,7 @@ MonoBehaviour:
   configId: 0
   isGoingBuilding: 0
   isInBuilding: 0
+  visibleOnPhoton: 0
   spawnPos: {fileID: 6780302482535544144}
   menuCommands:
   - OutBuilding

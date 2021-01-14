@@ -161,12 +161,14 @@ MonoBehaviour:
   configId: 0
   isGoingBuilding: 0
   isInBuilding: 0
+  visibleOnPhoton: 0
   spawnPos: {fileID: 9065425138531134907}
   menuCommands:
   - spawn_1_1
   - spawn_2_1
   - spawn_3_1
-  - spawn_3_1
+  - spawn_4_1
+  - close
 --- !u!114 &-1794971452224315405
 MonoBehaviour:
   m_ObjectHideFlags: 0

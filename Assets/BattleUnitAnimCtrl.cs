@@ -23,7 +23,7 @@ public class BattleUnitAnimCtrl : MonoBehaviour
     protected State lastState;
 
     private PhotonView photonView;
-    void Start()
+    protected virtual void Start()
     {
         stateController = GetComponent<BattleUnitBase>().stateController;
         navMeshAgent = stateController.navMeshAgent;
