@@ -140,8 +140,8 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
    {
       int total = dialogContext.menus.Length;
       int degree = 360 / total;
-      Vector3 offset = new Vector3(dialogContext.r * Mathf.Sin(index * degree),
-         dialogContext.r * Mathf.Cos(index * degree), 0);
+      Vector3 offset = new Vector3(dialogContext.r * Mathf.Sin(index * degree*Mathf.Deg2Rad),
+         dialogContext.r * Mathf.Cos(index * degree*Mathf.Deg2Rad), 0);
       return offset;
    }
    public void Update()

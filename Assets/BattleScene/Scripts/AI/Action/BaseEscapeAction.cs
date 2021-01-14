@@ -29,6 +29,7 @@
                     navMeshAgent.SetDestination(hit.position);
                 }
                 //如果无法走，则不动
+                lastTime = Time.time;
             }
         }
     }
