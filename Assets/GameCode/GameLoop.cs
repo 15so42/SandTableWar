@@ -10,7 +10,6 @@ public class GameLoop : MonoBehaviour
 {
 	// 場景狀態
 	private readonly SceneStateController sceneStateController = new SceneStateController();
-
 	// 
 	private void Awake()
 	{

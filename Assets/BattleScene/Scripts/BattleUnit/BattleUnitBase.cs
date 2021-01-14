@@ -262,13 +262,17 @@ public class BattleUnitBase : MonoBehaviour
     //鼠标进入时，用于更改鼠标形状及标识单位，提示可执行操作等
     private void OnMouseEnter()
     {
-        throw new NotImplementedException();
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        if (relation == DiplomaticRelation.Enemy)
+        {
+            MouseShapeManager.Instance.SetMouseState(MouseState.OnEnemyUnit);
+        }
     }
 
     //鼠标离开时
     private void OnMouseExit()
     {
-        throw new NotImplementedException();
+        MouseShapeManager.Instance.SetMouseState(MouseState.Default);
     }
 
     protected virtual void OnRightMouseDown()

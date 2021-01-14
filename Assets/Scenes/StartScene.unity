@@ -230,6 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 663124116}
   - component: {fileID: 663124115}
+  - component: {fileID: 663124117}
   m_Layer: 0
   m_Name: GameLoop
   m_TagString: Untagged
@@ -263,6 +264,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &663124117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663124114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd9ef6f6f847534c91a663e3f6cdc9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseShapeConfig: {fileID: 11400000, guid: a5a16230c3d27f24ba075dc32183bad2, type: 2}
+  curState: 0
 --- !u!1 &1065162629
 GameObject:
   m_ObjectHideFlags: 0
