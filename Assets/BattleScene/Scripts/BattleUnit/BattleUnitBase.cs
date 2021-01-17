@@ -195,8 +195,8 @@ public class BattleUnitBase : MonoBehaviour
     //第一次选中时需要设置，之后选中标志通过active来控制以减少性能消耗
     public void ShowSelectMark()
     {
-        selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(ColorString,Color.green);
-        selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(EmissionString,Color.green);
+        selectMark.GetComponent<MeshRenderer>().material.SetColor(ColorString,Color.green);
+        selectMark.GetComponent<MeshRenderer>().material.SetColor(EmissionString,Color.green);
         selectMark.SetActive(true);
     }
 
@@ -206,8 +206,8 @@ public class BattleUnitBase : MonoBehaviour
         {
             fightingManager.InitSelectMarkForUnit(this);
         }
-        selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(ColorString,Color.yellow);
-        selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(EmissionString,Color.yellow);
+        selectMark.GetComponent<MeshRenderer>().material.SetColor(ColorString,Color.yellow);
+        selectMark.GetComponent<MeshRenderer>().material.SetColor(EmissionString,Color.yellow);
         selectMark.SetActive(true);
     }
     public void ShowEnemySelectMark()
@@ -216,8 +216,8 @@ public class BattleUnitBase : MonoBehaviour
         {
             fightingManager.InitSelectMarkForUnit(this);
         }
-        selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(ColorString,Color.red);
-        selectMark.GetComponent<MeshRenderer>().sharedMaterial.SetColor(EmissionString,Color.red);
+        selectMark.GetComponent<MeshRenderer>().material.SetColor(ColorString,Color.red);
+        selectMark.GetComponent<MeshRenderer>().material.SetColor(EmissionString,Color.red);
         selectMark.SetActive(true);
     }
 
@@ -472,7 +472,7 @@ public class BattleUnitBase : MonoBehaviour
 
     private DefenceBuilding targetDefenceBuilding;
     private static readonly int ColorString = Shader.PropertyToID("_Color");
-    private static readonly int EmissionString = Shader.PropertyToID("_Emission");
+    private static readonly int EmissionString = Shader.PropertyToID("_EmissionColor");
 
     public void GoInDefenceBuilding(DefenceBuilding defenceBuilding)
     {

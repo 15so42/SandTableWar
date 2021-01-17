@@ -10,7 +10,7 @@
         {
             NavMeshAgent navMeshAgent = controller.navMeshAgent;
             Vector3 ownerPos = controller.owner.transform.position;
-            if (Time.time - lastTime > 1)//每1秒变更一次逃跑目标位置
+            if (Time.time - lastTime > 0.5f)//每0.5秒变更一次逃跑目标位置
             {
                 Vector3 escapeVer=controller.owner.transform.forward;
                 for (int i = 0; i < BattleUnitBase.enemyUnits.Count; i++)
