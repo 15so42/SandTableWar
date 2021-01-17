@@ -106,7 +106,8 @@ public class BaseBattleBuilding : BattleUnitBase
             return;//防止UI穿透
         }
 
-        if (EnemyIdentifier.Instance.GetDiplomaticRelation(campId) == DiplomaticRelation.Neutral)
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        if ( relation== DiplomaticRelation.Neutral|| relation==DiplomaticRelation.Enemy || relation == DiplomaticRelation.Ally )
         {
             return;
         }

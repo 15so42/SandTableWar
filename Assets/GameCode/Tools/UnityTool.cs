@@ -101,4 +101,9 @@ public static class UnityTool
 		
 		return pGameObjectTF.gameObject;			
 	}
+	
+	public static float GetDistanceIgnoreY(Vector3 pointA,Vector3 pointB)
+	{
+		return Mathf.Sqrt(Mathf.Pow((pointB.x - pointA.x), 2) + Mathf.Pow((pointB.z - pointA.z), 2));
+	}
 }

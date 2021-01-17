@@ -5,11 +5,4 @@
         {
         }
         
-        public override void OnStateEnter()
-        {
-            base.OnStateEnter();
-            ownerController.navMeshAgent.isStopped = true;
-        }
-        
-        
     }

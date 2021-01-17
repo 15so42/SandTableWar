@@ -19,6 +19,7 @@ public class StateController
     public BattleUnitBase owner;
     public Vector3 targetPos;
     public Vector3 lastTargetPos;
+    public BattleUnitBase chaseTarget;
 
     public StateController(BattleUnitBase battleUnitBase)
     {
@@ -35,17 +36,19 @@ public class StateController
         currentState.OnStateEnter();
     }
 
-    State idleState ;
-    State moveState ;
-    State moveIgnoreEnemyState ;
-    State fightState ;
-    State inBuildingIdleState;
-    State inBuildingFightState;
+    protected State idleState ;
+    protected State moveState ;
+    protected State moveIgnoreEnemyState ;
+    protected State chaseState ;
+    protected State fightState ;
+    protected State inBuildingIdleState;
+    protected State inBuildingFightState;
     protected virtual void InitState()
     {
         idleState = new BaseIdleState(this,"闲置");
         moveState = new BaseMoveState(this,"移动");
         moveIgnoreEnemyState =new BaseForciblyMoveState(this,"强行移动");
+        chaseState = new BaseChaseState(this,"追踪");
         fightState = new BaseFightState(this,"战斗");
         inBuildingIdleState=new BaseInBuildingIdleState(this,"房间内待机");
         inBuildingFightState = new BaseInBuildingFightState(this, "房间内战斗");
@@ -57,7 +60,12 @@ public class StateController
             trueState = moveState,
             falseState = idleState
         });
-        
+        idleState.AddTransition(new Transition()
+        {
+            decisions = new List<Decision>{new HasChaseTargetDecision()},
+            falseState = idleState,
+            trueState = chaseState
+        });
         //idle时发现敌人切换到战斗状态
         idleState.AddTransition(new Transition()
         {
@@ -76,6 +84,12 @@ public class StateController
         });
         moveState.AddTransition(new Transition()
         {
+            decisions = new List<Decision>{new HasChaseTargetDecision()},
+            falseState = moveState,
+            trueState = chaseState
+        });
+        moveState.AddTransition(new Transition()
+        {
             decisions = new List<Decision>{new ReachTargetPosDecision()},
             falseState = moveState,
             trueState = idleState
@@ -85,6 +99,10 @@ public class StateController
             decisions =  new List<Decision>{new FindEnemyDecision()},
             falseState = moveState,
             trueState = fightState
+        });
+        moveState.OnStateEnterEvent.AddListener(() =>
+        {
+            navMeshAgent.isStopped = false;
         });
         
        
@@ -103,6 +121,31 @@ public class StateController
             falseState = moveIgnoreEnemyState,
             trueState = idleState
         });
+        moveIgnoreEnemyState.OnStateEnterEvent.AddListener(() =>
+        {
+            navMeshAgent.isStopped = false;
+            chaseState = null;
+            owner.SetChaseTarget(null);
+        });
+        
+        ///追踪
+        chaseState.AddAction(new BaseChaseAction());
+        chaseState.AddTransition(new Transition()
+        {
+            decisions = new List<Decision>{new HasTargetPosDecision()},
+            falseState = chaseState,
+            trueState = moveIgnoreEnemyState
+        });
+        chaseState.AddTransition(new Transition()
+        {
+            decisions = new List<Decision>{new InAttackRangeDecision()},
+            falseState = chaseState,
+            trueState = idleState
+        });
+        chaseState.OnStateEnterEvent.AddListener(() =>
+        {
+            navMeshAgent.isStopped = false;
+        });
 
         //战斗状态
         //是否有敌人T:fight
@@ -117,12 +160,22 @@ public class StateController
             falseState = fightState,
             trueState = moveIgnoreEnemyState
         });
-        //如果路径点没有发生变化，则判断敌人是否全被消灭,全被消灭后转换为MoveState朝之前的目标点移动
+        fightState.AddTransition(new Transition()
+        {
+            decisions = new List<Decision>{new HasChaseTargetDecision()},
+            falseState = fightState,
+            trueState = chaseState
+        });
+        //如果路径点没有发生变化，且不用追踪敌人，则判断敌人是否全被消灭,全被消灭后转换为MoveState朝之前的目标点移动
         fightState.AddTransition(new Transition()
         {
             decisions = new List<Decision>{new FindEnemyDecision()},
             falseState = moveState,
             trueState = fightState
+        });
+        fightState.OnStateEnterEvent.AddListener(() =>
+        {
+            navMeshAgent.isStopped = true;
         });
         
         //房间内待机
@@ -137,6 +190,10 @@ public class StateController
             decisions =  new List<Decision>{new FindEnemyDecision()},
             trueState = inBuildingFightState, 
             falseState = inBuildingIdleState
+        });
+        inBuildingIdleState.OnStateEnterEvent.AddListener(() =>
+        {
+            navMeshAgent.isStopped = true;
         });
         
         //防守状态
@@ -153,7 +210,10 @@ public class StateController
             falseState = inBuildingIdleState,
             trueState = inBuildingFightState
         });
-       
+        inBuildingFightState.OnStateEnterEvent.AddListener(() =>
+        {
+            navMeshAgent.isStopped = true;
+        });
 
 
         //加入状态机
@@ -161,6 +221,7 @@ public class StateController
         AddState(moveState);
         AddState(fightState);
         AddState(moveIgnoreEnemyState);
+        AddState(chaseState);
         AddState(inBuildingIdleState);
         AddState(inBuildingFightState);
 
@@ -202,7 +263,11 @@ public class StateController
         stateTimeElapsed = 0;
     }
 
-
+    public void SetChaseTarget(BattleUnitBase target)
+    {
+        chaseTarget = target;
+    }
+    
     public void SetTargetPos(Vector3 pos)
     {
         targetPos = pos;

@@ -1459,6 +1459,7 @@ MonoBehaviour:
     hp: 100
     defense: 0
     viewDistance: 40
+    attackDistance: 10
   hpUiOffset: {x: 0, y: 65, z: 0}
   selectMarkSize: 2.2
   selectMarkOffset: {x: 0, y: 0.1, z: 0}
@@ -1472,6 +1473,7 @@ MonoBehaviour:
   configId: 0
   isGoingBuilding: 0
   isInBuilding: 0
+  defenceBuilding: {fileID: 0}
   visibleOnPhoton: 0
   lastDamageTime: 0
 --- !u!114 &1318645975

@@ -686,7 +686,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5742540879084919097}
   - component: {fileID: -1061582169896112788}
-  - component: {fileID: -7041522720884437445}
   - component: {fileID: -8226985421410687555}
   - component: {fileID: 8975227871527715896}
   - component: {fileID: 2902278658431842304}
@@ -695,9 +694,11 @@ GameObject:
   - component: {fileID: 6968405436783861972}
   - component: {fileID: 6968405436783861973}
   - component: {fileID: 6968405436783861975}
+  - component: {fileID: -4119599497473016633}
   - component: {fileID: 1318645975}
+  - component: {fileID: -3517523599280079750}
   m_Layer: 0
-  m_Name: Scout
+  m_Name: Scout 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -743,41 +744,6 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &-7041522720884437445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4592192127302537471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f244212bb3c39c42b791cac07dc1eb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navMeshAgent: {fileID: 0}
-  photonView: {fileID: 0}
-  campId: 0
-  weapon: {fileID: 2902278658431842304}
-  prop:
-    weaponProficiency: 1
-    maxHp: 120
-    hp: 120
-    defense: 10
-    viewDistance: 20
-  hpUiOffset: {x: 0, y: 65, z: 0}
-  selectMarkSize: 2.2
-  selectMarkOffset: {x: 0, y: 0.2, z: 0}
-  isFirstSelected: 0
-  mouseOverOutline: {fileID: 8225749854193019152}
-  globalItemType: 1
-  amountBySecond: 2
-  victimPos: {fileID: 0}
-  victimOffset: 1.5
-  rotateDamp: 50
-  configId: 0
-  isGoingBuilding: 0
-  isInBuilding: 0
 --- !u!195 &-8226985421410687555
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -846,7 +812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atkValue: 1
-  atkRate: 10
+  atkRate: 1
   owner: {fileID: 0}
   shootPos: {fileID: 8264968204976261782}
   flashFx: {fileID: 8695086352503598387, guid: 9e19a6faebba8044597e630fe40e81de, type: 3}
@@ -1472,6 +1438,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeedDampTime: 10
+--- !u!114 &-4119599497473016633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592192127302537471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5916e974c18bff945bbf645669a7fcc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navMeshAgent: {fileID: 0}
+  photonView: {fileID: 0}
+  campId: 0
+  weapon: {fileID: 0}
+  prop:
+    weaponProficiency: 1
+    maxHp: 100
+    hp: 100
+    defense: 0
+    viewDistance: 40
+  hpUiOffset: {x: 0, y: 65, z: 0}
+  selectMarkSize: 2.2
+  selectMarkOffset: {x: 0, y: 0.1, z: 0}
+  isFirstSelected: 0
+  mouseOverOutline: {fileID: 8225749854193019152}
+  globalItemType: 0
+  amountBySecond: 0
+  victimPos: {fileID: 0}
+  victimOffset: 1.5
+  rotateDamp: 50
+  configId: 0
+  isGoingBuilding: 0
+  isInBuilding: 0
+  defenceBuilding: {fileID: 0}
+  visibleOnPhoton: 0
+  lastDamageTime: 0
 --- !u!114 &1318645975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1505,6 +1509,18 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
+--- !u!114 &-3517523599280079750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592192127302537471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f1885ed2b219b43a02a6c8e952b6c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5161056531410845774
 GameObject:
   m_ObjectHideFlags: 0

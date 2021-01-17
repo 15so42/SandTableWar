@@ -150,6 +150,17 @@ public class FightingManager
         }
     }
 
+    /// <summary>
+    /// 追踪目标
+    /// </summary>
+    public void ChaseTargetUnit(BattleUnitBase battleUnitBase)
+    {
+        foreach (var unit in selectedUnits)
+        {
+            unit.SetChaseTarget(battleUnitBase);
+        }
+    }
+
     public void UnselectAllUnits()
     {
         for (int i=0;i<selectedUnits.Count;i++)

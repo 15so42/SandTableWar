@@ -29,9 +29,9 @@ public class Scout : BattleUnitBase
 
    protected override void Update()
    {
+      base.Update();
       if (!photonView.IsMine)
          return;
-      base.Update();
       if (Time.time > lastDamageTime + 7)
       {
          if (recoveryTimer == null)

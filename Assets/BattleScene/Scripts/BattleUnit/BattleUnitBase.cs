@@ -161,6 +161,16 @@ public class BattleUnitBase : MonoBehaviour
     #endregion
 
     #region AI命令
+    
+    /// <summary>
+    /// 设置追踪目标
+    /// </summary>
+    /// <param name="chaseTarget"></param>
+    public void SetChaseTarget(BattleUnitBase chaseTarget)
+    {
+        stateController?.SetChaseTarget(chaseTarget);
+    }
+    
     /// <summary>
     /// 設置移動位置,和navmesh的setDestion類似
     /// </summary>
@@ -241,7 +251,7 @@ public class BattleUnitBase : MonoBehaviour
     public void PlayCureFx()
     {
         var transform1 = transform;
-        BattleFxManager.Instance.SpawnFxAtPosInPhoton("CureFx",transform1.position,transform1.forward);
+        BattleFxManager.Instance.SpawnFxAtPosInPhoton("CureFx",transform1.position,Vector3.forward);
     }
     /// <summary>
     /// 受击特效
@@ -329,7 +339,7 @@ public class BattleUnitBase : MonoBehaviour
                 ShowEnemySelectMark();
             }
         }
-        fightingManager.MoveToSpecificPos(transform.position);
+        fightingManager.ChaseTargetUnit(this);
     }
     
 
@@ -419,9 +429,7 @@ public class BattleUnitBase : MonoBehaviour
     [PunRPC]
     public void UpdateHpUI(int hp)
     {
-        prop.hp = hp;
-        hpUi.UpdateHpUi();
-        if (hp > 0)//治疗
+        if (prop.hp<hp)//治疗
         {
             PlayCureFx();
         }
@@ -429,6 +437,9 @@ public class BattleUnitBase : MonoBehaviour
         {
             PlayVictimFx();
         }
+        prop.hp = hp;
+        hpUi.UpdateHpUi();
+        
     }
 
     public void UpdateHpUIInPhoton()

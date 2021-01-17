@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class State
@@ -8,6 +9,9 @@ public class State
     public List<StateAction> actions=new List<StateAction>();                        //动作
     public List<Transition> transitions=new List<Transition>();                //转换条件
     public StateController ownerController;
+
+    public UnityEvent OnStateEnterEvent=new UnityEvent();
+    public UnityEvent OnStateExitEvent=new UnityEvent();
     public string stateName;
     public State(StateController controller,string stateName)
     {
@@ -60,11 +64,12 @@ public class State
 
     public virtual void OnStateEnter()
     {
+        OnStateEnterEvent?.Invoke();
     }
 
     public virtual void OnStateExit()
     {
-        
+        OnStateExitEvent?.Invoke();
     }
 
     #endregion
