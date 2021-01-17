@@ -146,6 +146,10 @@ public class StateController
         {
             navMeshAgent.isStopped = false;
         });
+        chaseState.OnStateExitEvent.AddListener(() =>
+        {
+            SetChaseTarget(null);
+        });
 
         //战斗状态
         //是否有敌人T:fight
