@@ -7,10 +7,19 @@ public class BaseHpUi:MonoBehaviour
     [HideInInspector]public BattleUnitBase owner;
     public Text hpNum;
     public Image hpProgress;
+    public Image unitIconBg;
+    public Image unitIcon;
 
     public void Init()
     {
         UpdateHpUi();
+        Sprite configType=UnitIconLoader.GetSpriteByUnitId(owner.configId);
+        if (configType == null)
+        {
+            unitIcon.gameObject.SetActive(false);
+        }
+
+        unitIcon.sprite = configType;
     }
     public void UpdateHpUi()
     {

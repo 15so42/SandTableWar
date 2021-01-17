@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class BuildingSpawnMenuItem : BuildingMenuItem
 {
-    public const string spritePathPrefix = "Sprite/";
     [HideInInspector]public BaseBattleBuilding targetBuilding;
     [HideInInspector]public int spawnId;
     private SpawnBattleUnitConfigInfo curUnitInfo;
@@ -23,7 +22,7 @@ public class BuildingSpawnMenuItem : BuildingMenuItem
     public override void Init()
     {
         curUnitInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(spawnId);
-        spawnUnitImage.sprite = Resources.Load<Sprite>(spritePathPrefix+curUnitInfo.resourceName);
+        spawnUnitImage.sprite = UnitIconLoader.GetSpriteByUnitId(curUnitInfo.id);
         fill.fillAmount = 0;
         amountText.text = "0";
     }

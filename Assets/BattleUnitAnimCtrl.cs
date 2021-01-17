@@ -33,17 +33,24 @@ public class BattleUnitAnimCtrl : MonoBehaviour
 
     // Update is called once per frame
     //不同人物写对应的脚本控制对应的变量
-    protected  virtual void Update()
+    protected virtual void Update()
     {
         if (!photonView || photonView.IsMine == false)
         {
             return;
         }
+        StateCheck();
+
+        lastState = stateController.currentState;
+    }
+
+    protected virtual void StateCheck()
+    {
         State curState = stateController.currentState;
         if (curState.stateName == "闲置" || curState.stateName == "移动" ||
             curState.stateName == "强行移动"||curState.stateName.StartsWith("房间"))
         {
-           OnIdleOrMoveState();
+            OnIdleOrMoveState();
         }
 
         // if (lastState != curState && curState.stateName == "战斗")//进入战斗
@@ -54,9 +61,8 @@ public class BattleUnitAnimCtrl : MonoBehaviour
         {
             OnBattleState();
         }
-
-        lastState = curState;
     }
+    
 
     protected virtual void OnIdleOrMoveState()
     {

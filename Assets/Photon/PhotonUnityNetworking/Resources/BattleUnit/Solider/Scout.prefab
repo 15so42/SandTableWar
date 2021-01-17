@@ -1474,6 +1474,7 @@ MonoBehaviour:
   isGoingBuilding: 0
   isInBuilding: 0
   defenceBuilding: {fileID: 0}
+  animCtrl: {fileID: 0}
   visibleOnPhoton: 0
   lastDamageTime: 0
 --- !u!114 &1318645975

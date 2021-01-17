@@ -70,10 +70,12 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\CureCompletedDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\FindEnemyDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasChaseTargetDecision.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasEnoughCurePointDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasTargetPosDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\InAttackRangeDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\IsInBuildingDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\ReachTargetPosDecision.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\MedicalStateController.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseChaseState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseCureState.cs" />
@@ -108,6 +110,7 @@
      <Compile Include="Assets\BattleScene\Scripts\RecycleAbleObject.cs" />
      <Compile Include="Assets\BattleScene\Scripts\UI\BaseHpUi.cs" />
      <Compile Include="Assets\BattleScene\Scripts\UI\BuildingMenuItem.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\UnitIconLoader.cs" />
      <Compile Include="Assets\BattleUnitAnimCtrl.cs" />
      <Compile Include="Assets\BuildingCloseMenuItem.cs" />
      <Compile Include="Assets\BuildingCommonMenuItem.cs" />
@@ -145,7 +148,8 @@
      <Compile Include="Assets\LogicMap.cs" />
      <Compile Include="Assets\MainBattleDialog.cs" />
      <Compile Include="Assets\MainMenuManager.cs" />
-     <Compile Include="Assets\MedicalSoldier.cs" />
+     <Compile Include="Assets\MedicalAnimCtrl.cs" />
+     <Compile Include="Assets\MedicalSolider.cs" />
      <Compile Include="Assets\Mine.cs" />
      <Compile Include="Assets\MouseShapeManager.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />

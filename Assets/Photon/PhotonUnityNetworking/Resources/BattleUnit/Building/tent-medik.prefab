@@ -163,6 +163,7 @@ MonoBehaviour:
   isGoingBuilding: 0
   isInBuilding: 0
   defenceBuilding: {fileID: 0}
+  animCtrl: {fileID: 0}
   visibleOnPhoton: 0
   spawnPos: {fileID: 9065425138531134907}
   menuCommands:
@@ -170,6 +171,7 @@ MonoBehaviour:
   - spawn_2_1
   - spawn_3_1
   - spawn_4_1
+  - spawn_5_1
   - close
 --- !u!114 &-1794971452224315405
 MonoBehaviour:

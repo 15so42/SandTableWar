@@ -57,6 +57,8 @@ public class BattleUnitBase : MonoBehaviour
     [HideInInspector]public bool isInBuilding;
     [HideInInspector] public DefenceBuilding defenceBuilding;
 
+    //动画
+    [HideInInspector]public BattleUnitAnimCtrl animCtrl;
     //地雷隐形
     public bool visibleOnPhoton;
     #region 逻辑控制
@@ -73,6 +75,7 @@ public class BattleUnitBase : MonoBehaviour
             weapon.SetOwner(this);
         }
 
+        animCtrl = GetComponent<BattleUnitAnimCtrl>();
         isFirstSelected = true;
         stateController=new StateController(this);
        

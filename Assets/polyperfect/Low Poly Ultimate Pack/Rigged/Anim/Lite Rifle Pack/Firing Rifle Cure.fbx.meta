@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 599d564fe8d913c478524a2dee14c8c3
+guid: 2c52b70332bc3274c842e8d5d03125e0
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Fire Rifle Standing
+    second: Fire Rifle Cure
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Fire Rifle Standing
+      name: Fire Rifle Cure
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
@@ -58,7 +58,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.41181082
+        functionName: CureAnimEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

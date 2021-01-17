@@ -693,12 +693,11 @@ GameObject:
   - component: {fileID: 8225749854193019152}
   - component: {fileID: 6968405436783861972}
   - component: {fileID: 6968405436783861973}
-  - component: {fileID: 6968405436783861975}
-  - component: {fileID: -4119599497473016633}
-  - component: {fileID: 1318645975}
   - component: {fileID: -3517523599280079750}
+  - component: {fileID: 1699611972151474457}
+  - component: {fileID: 1318645975}
   m_Layer: 0
-  m_Name: Scout 1
+  m_Name: MedicalSolider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1425,7 +1424,7 @@ CapsuleCollider:
   m_Height: 1.9339552
   m_Direction: 1
   m_Center: {x: 0, y: 0.9500847, z: 0}
---- !u!114 &6968405436783861975
+--- !u!114 &-3517523599280079750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1434,20 +1433,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4592192127302537471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d2fbfe9c0364ca4085d18623fca4f8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeedDampTime: 10
---- !u!114 &-4119599497473016633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4592192127302537471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5916e974c18bff945bbf645669a7fcc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 62f1885ed2b219b43a02a6c8e952b6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 0}
@@ -1459,7 +1445,8 @@ MonoBehaviour:
     maxHp: 100
     hp: 100
     defense: 0
-    viewDistance: 40
+    viewDistance: 10
+    attackDistance: 10
   hpUiOffset: {x: 0, y: 65, z: 0}
   selectMarkSize: 2.2
   selectMarkOffset: {x: 0, y: 0.1, z: 0}
@@ -1469,13 +1456,30 @@ MonoBehaviour:
   amountBySecond: 0
   victimPos: {fileID: 0}
   victimOffset: 1.5
-  rotateDamp: 50
+  rotateDamp: 10
   configId: 0
   isGoingBuilding: 0
   isInBuilding: 0
   defenceBuilding: {fileID: 0}
+  animCtrl: {fileID: 0}
   visibleOnPhoton: 0
-  lastDamageTime: 0
+  curePoint: 0
+  lastTime: 0
+--- !u!114 &1699611972151474457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592192127302537471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83de85a938181f340abc1d8ece194bbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeedDampTime: 10
+  aidPacket: {fileID: 1535748476627388, guid: 6d5584c9b336d4bc99a9a859b9a76aa7, type: 3}
+  aidPacketSpawnPos: {fileID: 8264968204976261782}
 --- !u!114 &1318645975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1506,21 +1510,12 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: IsFighting
+  - Type: 9
+    SynchronizeType: 0
+    Name: Cure
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
---- !u!114 &-3517523599280079750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4592192127302537471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62f1885ed2b219b43a02a6c8e952b6c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5161056531410845774
 GameObject:
   m_ObjectHideFlags: 0

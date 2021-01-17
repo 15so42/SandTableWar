@@ -682,6 +682,7 @@ MonoBehaviour:
     hp: 450
     defense: 60
     viewDistance: 20
+    attackDistance: 10
   hpUiOffset: {x: 0, y: 95, z: 0}
   selectMarkSize: 4
   selectMarkOffset: {x: 0, y: 0, z: 0}
@@ -695,6 +696,7 @@ MonoBehaviour:
   configId: 0
   isGoingBuilding: 0
   isInBuilding: 0
+  defenceBuilding: {fileID: 0}
   visibleOnPhoton: 0
   maxMovesSpeed: 3.5
   moveDampTime: 50
