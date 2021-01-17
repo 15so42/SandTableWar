@@ -66,7 +66,7 @@ public class DefenceBuilding : BaseBattleBuilding
         battleUnitBase.BeforeInDefenceBuilding();
         soliderInBuilding.Add(battleUnitBase);
         battleUnitBase.transform.position = defencePoses[soliderInBuilding.Count - 1].transform.position;
-        battleUnitBase.OnEnterBuilding();
+        battleUnitBase.OnEnterBuilding(this);
     }
 
     protected override void OnRightMouseUp()

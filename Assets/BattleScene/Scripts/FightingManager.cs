@@ -212,6 +212,20 @@ public class FightingManager
     public void Attack(BattleUnitBase attcker,BattleUnitBase victim,int damageValue)
     {
        // Debug.Log($"单位{attcker.gameObject.name}对单位{victim.gameObject.name}找成了{damageValue}点伤害");
+       //在建筑物内时通过根据建筑物血量百分比闪避伤害
+       if (victim.isInBuilding)
+       {
+           DefenceBuilding building = victim.defenceBuilding;
+           if (building)
+           {
+               float percentage = building.prop.GetPercentage();
+               if (Random.Range(0, percentage)<=percentage)
+               {
+                   Attack(attcker,building,damageValue);
+                   return;//玩家概率免伤
+               }
+           }
+       }
        victim.ReduceHp(damageValue);
     }
     

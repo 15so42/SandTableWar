@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BattleScene.Scripts;
 using EPOOutline;
 using Photon.Pun;
 using UnityEngine;
@@ -54,6 +55,7 @@ public class BattleUnitBase : MonoBehaviour
     //进入房间
     [HideInInspector]public bool isGoingBuilding;
     [HideInInspector]public bool isInBuilding;
+    [HideInInspector] public DefenceBuilding defenceBuilding;
 
     //地雷隐形
     public bool visibleOnPhoton;
@@ -234,6 +236,14 @@ public class BattleUnitBase : MonoBehaviour
     }
 
     /// <summary>
+    /// 治疗特效
+    /// </summary>
+    public void PlayCureFx()
+    {
+        var transform1 = transform;
+        BattleFxManager.Instance.SpawnFxAtPosInPhoton("CureFx",transform1.position,transform1.forward);
+    }
+    /// <summary>
     /// 受击特效
     /// </summary>
     public void PlayVictimFx()
@@ -411,7 +421,14 @@ public class BattleUnitBase : MonoBehaviour
     {
         prop.hp = hp;
         hpUi.UpdateHpUi();
-        PlayVictimFx();
+        if (hp > 0)//治疗
+        {
+            PlayCureFx();
+        }
+        else
+        {
+            PlayVictimFx();
+        }
     }
 
     public void UpdateHpUIInPhoton()
@@ -450,9 +467,10 @@ public class BattleUnitBase : MonoBehaviour
         SetTargetPos(defenceBuilding.GetEntrance());
     }
 
-    public void OnEnterBuilding()
+    public void OnEnterBuilding(DefenceBuilding building)
     {
         isInBuilding = true;
+        defenceBuilding = building;
     }
 
     public void OutBuilding()

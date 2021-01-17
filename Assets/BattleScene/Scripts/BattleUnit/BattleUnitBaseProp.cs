@@ -48,4 +48,9 @@ public class BattleUnitBaseProp
 
         return hp;
     }
+
+    public float GetPercentage()
+    {
+        return (float) hp / maxHp;
+    }
 }
