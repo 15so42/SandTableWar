@@ -163,9 +163,9 @@ public class FightingManager
 
     public void UnselectAllUnits()
     {
-        for (int i=0;i<selectedUnits.Count;i++)
+        while (selectedUnits.Count > 0)
         {
-            UnselectUnit(selectedUnits[i]);
+            UnselectUnit(selectedUnits[0]);
         }
     }
     

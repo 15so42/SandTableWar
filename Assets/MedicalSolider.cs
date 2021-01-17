@@ -35,6 +35,8 @@ public class MedicalSolider : BattleUnitBase
             return;
         if(medicalStateController.currentState.stateName=="治疗")
         {
+            if(medicalStateController.cureTarget==null)
+                return;
             Vector3 dir = medicalStateController.cureTarget.transform.position - transform.position;
             dir.y = 0;
             transform.forward = Vector3.SmoothDamp(transform.forward, dir, ref refCureDire, Time.deltaTime * rotateDamp);
