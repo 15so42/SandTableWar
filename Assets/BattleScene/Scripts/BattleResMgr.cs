@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using UnityEngine;
 
 public enum BattleResType
 {
@@ -13,6 +14,7 @@ public enum BattleResType
     /// </summary>
     public class BattleResMgr
     {
+        private int lastTime;
         public Dictionary<BattleResType,int> battleResHolder=new Dictionary<BattleResType, int>()
         {
             {BattleResType.population,10},
@@ -83,11 +85,14 @@ public enum BattleResType
         /// </summary>
         public void Update()
         {
-            //自动增加
-            battleResHolder[BattleResType.population]++;
-            battleResHolder[BattleResType.coin]++;
-            battleResHolder[BattleResType.mineral]++;
-            battleResHolder[BattleResType.food]++;
+            if (Time.time >= lastTime + 1)
+            {
+                //自动增加
+                battleResHolder[BattleResType.population]++;
+                battleResHolder[BattleResType.coin]++;
+                battleResHolder[BattleResType.mineral]++;
+                battleResHolder[BattleResType.food]++;
+            }
         }
             
     }
