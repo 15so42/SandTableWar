@@ -92,6 +92,7 @@ public enum BattleResType
                 battleResHolder[BattleResType.coin]++;
                 battleResHolder[BattleResType.mineral]++;
                 battleResHolder[BattleResType.food]++;
+                lastTime = (int)Time.time;
             }
         }
             

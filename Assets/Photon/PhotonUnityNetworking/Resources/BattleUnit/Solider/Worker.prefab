@@ -459,6 +459,7 @@ MonoBehaviour:
     hp: 100
     defense: 0
     viewDistance: 20
+    attackDistance: 10
   hpUiOffset: {x: 0, y: 20, z: 0}
   selectMarkSize: 2.2
   selectMarkOffset: {x: 0, y: 0, z: 0}
@@ -472,6 +473,8 @@ MonoBehaviour:
   configId: 0
   isGoingBuilding: 0
   isInBuilding: 0
+  defenceBuilding: {fileID: 0}
+  animCtrl: {fileID: 0}
   visibleOnPhoton: 0
 --- !u!195 &-8226985421410687555
 NavMeshAgent:
