@@ -83,5 +83,14 @@ public class BattleUnitAnimCtrl : MonoBehaviour
     {
         anim.SetTrigger(attack);
     }
+
+    public virtual void DieAnim()
+    {
+        if (anim != null)
+        {
+            anim.SetTrigger("Die");
+        }
+        
+    }
     
 }

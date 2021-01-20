@@ -33,6 +33,8 @@ public class TankAnimCtrl : BattleUnitAnimCtrl
     protected override void OnBattleState()
     {
         //base.OnBattleState();
+        if(stateController.enemy==null)
+            return;
         Vector3 enemyPos = stateController.enemy.GetVictimPos();
         Vector3 towerVec = enemyPos - tower.transform.position;
         towerVec.y = 0;//炮塔只能水平旋转

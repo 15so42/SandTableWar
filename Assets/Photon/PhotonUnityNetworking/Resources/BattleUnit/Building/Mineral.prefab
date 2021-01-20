@@ -122,9 +122,9 @@ MonoBehaviour:
     defense: 0
     viewDistance: 10
     attackDistance: 10
-  hpUiOffset: {x: 0, y: 20, z: 0}
+  hpUiOffset: {x: 0, y: 150, z: 0}
   selectMarkSize: 2.2
-  selectMarkOffset: {x: 0, y: 0.2, z: 0}
+  selectMarkOffset: {x: 0, y: 1, z: 0}
   isFirstSelected: 0
   mouseOverOutline: {fileID: 5744157720287979410}
   globalItemType: 0

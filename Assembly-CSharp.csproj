@@ -69,6 +69,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\MoveToPosStateAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\CureCompletedDecision.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Decision\EnemyAliveDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\FindEnemyDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasChaseTargetDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasEnoughCurePointDecision.cs" />
@@ -93,6 +94,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\TankStateController.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition\CureCompletedTransition.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Transition\EnemyDiedTransition.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition\FindEnemyTransition.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Transition\HasTargetPosTransition.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\WorkerStateController.cs" />

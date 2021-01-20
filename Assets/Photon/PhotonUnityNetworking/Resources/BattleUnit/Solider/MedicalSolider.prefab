@@ -756,7 +756,7 @@ NavMeshAgent:
   m_Speed: 5.5
   m_Acceleration: 18
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 500
   m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -1456,7 +1456,7 @@ MonoBehaviour:
   amountBySecond: 0
   victimPos: {fileID: 0}
   victimOffset: 1.5
-  rotateDamp: 10
+  rotateDamp: 20
   configId: 0
   isGoingBuilding: 0
   isInBuilding: 0

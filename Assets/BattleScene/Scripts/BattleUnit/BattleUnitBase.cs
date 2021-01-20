@@ -64,7 +64,6 @@ public class BattleUnitBase : MonoBehaviour
     #region 逻辑控制
     protected virtual void Awake()
     {
-        prop=new BattleUnitBaseProp();
         navMeshAgent = GetComponent<NavMeshAgent>();
         if(navMeshAgent) 
             navMeshAgent.angularSpeed = 0;//禁用nav的旋转
@@ -396,10 +395,6 @@ public class BattleUnitBase : MonoBehaviour
     public void ReduceHp(int value)
     {
         int leftHp = prop.ReduceHp(value);
-        if (leftHp < 0)
-        {
-            Die();
-        }
         UpdateHpUIInPhoton();
     }
     
@@ -412,6 +407,7 @@ public class BattleUnitBase : MonoBehaviour
     private void Die()
     {
         PhotonNetwork.Destroy(gameObject);
+        animCtrl.DieAnim();
     }
     
     public Vector3 GetVictimPos()
@@ -442,6 +438,10 @@ public class BattleUnitBase : MonoBehaviour
             PlayVictimFx();
         }
         prop.hp = hp;
+        if (hp <= 0 && photonView.IsMine)
+        {
+            Die();
+        }
         hpUi.UpdateHpUi();
         
     }

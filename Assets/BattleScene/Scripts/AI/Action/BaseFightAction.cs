@@ -8,6 +8,10 @@
         private Vector3 rotateVel = Vector3.zero;
         public override void Act(StateController controller)
         {
+            if (controller.enemy == null)
+            {
+                return;
+            }
             Transform ownerTransform = controller.owner.transform;
             Vector3 dir = controller.enemy.transform.position - ownerTransform.position;
             ownerTransform.forward = Vector3.SmoothDamp(ownerTransform.forward, dir, ref rotateVel, 0.3f);

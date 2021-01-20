@@ -158,10 +158,12 @@ MonoBehaviour:
     hp: 100
     defense: 0
     viewDistance: 10
+    attackDistance: 10
   hpUiOffset: {x: 0, y: 20, z: 0}
   selectMarkSize: 1
   selectMarkOffset: {x: 0, y: 0, z: 0}
   isFirstSelected: 0
+  mouseOverOutline: {fileID: 0}
   globalItemType: 0
   amountBySecond: 0
   victimPos: {fileID: 8407403816627047578}
@@ -170,6 +172,9 @@ MonoBehaviour:
   configId: 0
   isGoingBuilding: 0
   isInBuilding: 0
+  defenceBuilding: {fileID: 0}
+  animCtrl: {fileID: 0}
+  visibleOnPhoton: 0
   explosionFx: {fileID: 191186, guid: d9624761d6377274b972e33d59b2e703, type: 3}
   radius: 3
 --- !u!54 &6869259365233950515

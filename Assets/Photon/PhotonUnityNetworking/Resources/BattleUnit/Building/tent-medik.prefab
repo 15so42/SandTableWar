@@ -144,8 +144,8 @@ MonoBehaviour:
   weapon: {fileID: 0}
   prop:
     weaponProficiency: 1
-    maxHp: 100
-    hp: 100
+    maxHp: 3600
+    hp: 3600
     defense: 100
     viewDistance: 10
     attackDistance: 10

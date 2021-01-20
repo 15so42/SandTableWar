@@ -469,7 +469,7 @@ MonoBehaviour:
   amountBySecond: 0
   victimPos: {fileID: 0}
   victimOffset: 1.5
-  rotateDamp: 10
+  rotateDamp: 20
   configId: 0
   isGoingBuilding: 0
   isInBuilding: 0
@@ -488,7 +488,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.35
   m_Speed: 3.5
-  m_Acceleration: 18
+  m_Acceleration: 500
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0.1
@@ -894,6 +894,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 0
     Name: IsFighting
+  - Type: 4
+    SynchronizeType: 0
+    Name: Mine
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
