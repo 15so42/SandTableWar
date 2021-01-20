@@ -117,6 +117,12 @@ public class StateController
         });
         moveIgnoreEnemyState.AddTransition(new Transition()
         {
+            decisions =  new List<Decision>{new HasChaseTargetDecision()},
+            falseState = moveIgnoreEnemyState,
+            trueState = chaseState
+        });
+        moveIgnoreEnemyState.AddTransition(new Transition()
+        {
             decisions =  new List<Decision>{new ReachTargetPosDecision()},
             falseState = moveIgnoreEnemyState,
             trueState = idleState
