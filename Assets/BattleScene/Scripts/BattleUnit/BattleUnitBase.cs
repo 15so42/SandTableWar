@@ -47,7 +47,7 @@ public class BattleUnitBase : MonoBehaviour
 
     public int configId;//配置id，即兵种id，1表示Solider1，2表示Tank_A等等
 
-    private Outlinable outlinable;
+    private Outlinable victimOutline;
     private Timer victimFxTimer;//受击特效计时器
     //静态全局单位列表
     public static List<BattleUnitBase> selfUnits=new List<BattleUnitBase>();
@@ -100,7 +100,8 @@ public class BattleUnitBase : MonoBehaviour
         stateController.targetPos = position;
         stateController.lastTargetPos = stateController.targetPos;
         lastAddTime = 0;//技能点计时器
-        outlinable = GetComponentInChildren<Outlinable>();
+        victimOutline = GetComponentInChildren<Outlinable>();
+        
         if (photonView.IsMine)
         {
             selfUnits.Add(this);
@@ -261,14 +262,14 @@ public class BattleUnitBase : MonoBehaviour
     /// </summary>
     public void PlayVictimFx()
     {
-        if (outlinable)
+        if (victimOutline)
         {
             if (victimFxTimer==null || victimFxTimer.isCompleted)
             {
-                outlinable.FrontParameters.Enabled = true;
+                victimOutline.FrontParameters.Enabled = true;
                 
                 victimFxTimer = Timer.Register(0.05f,
-                    () => outlinable.FrontParameters.Enabled = false);
+                    () => victimOutline.FrontParameters.Enabled = false);
             }
         }
     }

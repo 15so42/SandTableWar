@@ -48,7 +48,7 @@ public class BattleUnitAnimCtrl : MonoBehaviour
     {
         State curState = stateController.currentState;
         if (curState.stateName == "闲置" || curState.stateName == "移动" ||
-            curState.stateName == "强行移动"||curState.stateName.StartsWith("房间"))
+            curState.stateName == "强行移动"||curState.stateName.StartsWith("房间")|| curState.stateName=="追赶")
         {
             OnIdleOrMoveState();
         }

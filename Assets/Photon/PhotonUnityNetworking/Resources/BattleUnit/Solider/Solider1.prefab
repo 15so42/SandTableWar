@@ -793,7 +793,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.35
   m_Speed: 3.5
-  m_Acceleration: 18
+  m_Acceleration: 500
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0.1
@@ -1475,7 +1475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2fbfe9c0364ca4085d18623fca4f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeedDampTime: 10
+  moveSpeedDampTime: 30
 --- !u!114 &1318645975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1506,6 +1506,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: IsFighting
+  - Type: 9
+    SynchronizeType: 0
+    Name: Cure
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0

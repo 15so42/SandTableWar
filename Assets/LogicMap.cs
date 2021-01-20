@@ -9,6 +9,8 @@ public class LogicMap : MonoBehaviour
 
     [Header("基地位置列表")] public List<Transform> baseSlots;
 
+    [Header("矿物位置列表")] public List<Transform> minerals;
+    [Header("矿物预制体")] public GameObject mineralPfb;
     public Vector3 GetBasePosByPlayerId(int playerId)
     {
         return baseSlots[playerId].position;

@@ -55,15 +55,8 @@ MonoBehaviour:
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
-    resourceName: Solider1
-    spawnTime: 10
-    needPopulation: 1
-    needCoin: 1
-    needMineral: 1
-    needFood: 1
-  - id: 1
-    resourceName: Solider1
+  - id: 7
+    resourceName: Mineral
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
@@ -2099,6 +2092,13 @@ MonoBehaviour:
     needCoin: 1
     needMineral: 1
     needFood: 1
+  - id: 297
+    resourceName: Mineral
+    spawnTime: 0
+    needPopulation: 0
+    needCoin: 0
+    needMineral: 0
+    needFood: 0
   - id: 298
     resourceName: bunker-medium
     spawnTime: 10

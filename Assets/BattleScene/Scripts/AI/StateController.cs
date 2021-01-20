@@ -48,7 +48,7 @@ public class StateController
         idleState = new BaseIdleState(this,"闲置");
         moveState = new BaseMoveState(this,"移动");
         moveIgnoreEnemyState =new BaseForciblyMoveState(this,"强行移动");
-        chaseState = new BaseChaseState(this,"追踪");
+        chaseState = new BaseChaseState(this,"追赶");
         fightState = new BaseFightState(this,"战斗");
         inBuildingIdleState=new BaseInBuildingIdleState(this,"房间内待机");
         inBuildingFightState = new BaseInBuildingFightState(this, "房间内战斗");

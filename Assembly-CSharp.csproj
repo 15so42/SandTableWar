@@ -64,6 +64,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseEscapeAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseFightAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseLookForWoundedAction.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseMineAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseTankFightAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\MoveToPosStateAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision.cs" />
@@ -85,6 +86,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseIdleState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseInBuildingFightState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseInBuildingIdleState.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseMineState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\State\BaseMoveState.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\StateAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\StateController.cs" />
@@ -151,6 +153,7 @@
      <Compile Include="Assets\MedicalAnimCtrl.cs" />
      <Compile Include="Assets\MedicalSolider.cs" />
      <Compile Include="Assets\Mine.cs" />
+     <Compile Include="Assets\MineralUnit.cs" />
      <Compile Include="Assets\MouseShapeManager.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
@@ -174,7 +177,7 @@
      <Compile Include="Assets\Scripts\UnityObjectPoolManager.cs" />
      <Compile Include="Assets\TankAUnit.cs" />
      <Compile Include="Assets\TankAnimCtrl.cs" />
-     <Compile Include="Assets\WorkAnimCtrl.cs" />
+     <Compile Include="Assets\WorkerAnimCtrl.cs" />
      <Compile Include="Assets\WorkerUnit.cs" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
      <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />

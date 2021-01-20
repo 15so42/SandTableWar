@@ -9,6 +9,7 @@ public enum BattleResType
     mineral, //矿物
     food //食物
 }
+
     /// <summary>
     /// 控制游戏局内资源，如人口，金币，矿物，食物等
     /// </summary>
@@ -16,6 +17,16 @@ public enum BattleResType
     {
         private int lastTime;
         public Dictionary<BattleResType,int> battleResHolder=new Dictionary<BattleResType, int>()
+        {
+            {BattleResType.population,10},
+            {BattleResType.coin,10},
+            {BattleResType.mineral,10},
+            {BattleResType.food,10},
+        };
+        /// <summary>
+        /// 增长速率
+        /// </summary>
+        public Dictionary<BattleResType,int> battleResIncreaseRate=new Dictionary<BattleResType, int>()
         {
             {BattleResType.population,10},
             {BattleResType.coin,10},
@@ -81,6 +92,30 @@ public enum BattleResType
         }
 
         /// <summary>
+        /// 单词得到资源
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="num"></param>
+        public void EarnRes(BattleResType type, int num)
+        {
+            battleResHolder[type] += num;
+        }
+
+        /// <summary>
+        ///     增加增长率
+        /// </summary>
+        public void AddIncreaseRate(BattleResType type, int num)
+        {
+            battleResIncreaseRate[type] += num;
+        }
+        
+        public void ReduceIncreaseRate(BattleResType type, int num)
+        {
+            battleResIncreaseRate[type] -= num;
+        }
+        
+        
+        /// <summary>
         /// 
         /// </summary>
         public void Update()
@@ -88,10 +123,10 @@ public enum BattleResType
             if (Time.time >= lastTime + 1)
             {
                 //自动增加
-                battleResHolder[BattleResType.population]++;
-                battleResHolder[BattleResType.coin]++;
-                battleResHolder[BattleResType.mineral]++;
-                battleResHolder[BattleResType.food]++;
+                battleResHolder[BattleResType.population]+=battleResIncreaseRate[BattleResType.population];
+                battleResHolder[BattleResType.coin]+=battleResIncreaseRate[BattleResType.coin];
+                battleResHolder[BattleResType.mineral]+=battleResIncreaseRate[BattleResType.mineral];
+                battleResHolder[BattleResType.food]+=battleResIncreaseRate[BattleResType.food];
                 lastTime = (int)Time.time;
             }
         }
