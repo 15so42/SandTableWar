@@ -280,10 +280,13 @@ MonoBehaviour:
   defenceBuilding: {fileID: 0}
   animCtrl: {fileID: 0}
   visibleOnPhoton: 0
+  spawnTargetPos: {x: 0, y: 0, z: 0}
   spawnPos: {fileID: 6780302482535544144}
   menuCommands:
   - OutBuilding
   - close
+  spawnMarkPfb: {fileID: 0}
+  spawnMark: {fileID: 0}
   defencePoses:
   - {fileID: 3636838294905752750}
   - {fileID: 3636838296089035695}

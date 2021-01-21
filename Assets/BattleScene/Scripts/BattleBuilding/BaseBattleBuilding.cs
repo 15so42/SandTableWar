@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using UnityTimer;
 
 public class BaseBattleBuilding : BattleUnitBase
 {
@@ -13,18 +15,50 @@ public class BaseBattleBuilding : BattleUnitBase
     //private SpawnBattleUnitConfigInfo curSpawnInfo;
 
     public Transform spawnPos;
-
     public Stack<int> toSpawn=new Stack<int>();
     [Header("建筑菜单，使用字符串表示对应菜单")]
     public string[] menuCommands;
 
+    [Header("出生点标志")] public GameObject spawnMarkPfb;
+    public GameObject spawnMark;
     private BattleBuildingMenuDialog buildingMenuDialog;
+
+    private Timer spawnMarkFadeTimer;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         stateController = null;//建筑单位行为较简单，不使用状态机，需要转换时在对应类中重写
         //ChangeSpawnId(spawnId);
+        if (spawnMarkPfb != null)
+        {
+            spawnMark=GameObject.Instantiate(spawnMarkPfb);
+            spawnMark.SetActive(false);
+            spawnMark.transform.position = spawnPos.position;
+        }
+    }
+
+    public GameObject GetSpawnMark()
+    {
+        return spawnMark;
+    }
+
+    public void OnDragMarkEnd()
+    {
+        if (spawnMarkFadeTimer == null|| spawnMarkFadeTimer.isCompleted==false)
+        {
+            spawnMarkFadeTimer=Timer.Register(3,()=>
+            {
+                spawnMark.SetActive(false);
+            });
+        }
+        if (spawnMark.GetComponent<CollisionDetection>().CanPlace()==false)
+        {
+            spawnMark.transform.position=spawnPos.position;
+        }
+
+        fightingManager.isDragFromBuilding = false;
+        fightingManager.dragingBuilding = null;
     }
     
     //更换生成的单位
@@ -71,7 +105,8 @@ public class BaseBattleBuilding : BattleUnitBase
         SpawnBattleUnitConfigInfo curSpawnInfo=ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(toSpawn.Peek());
         if (fightingManager.ConsumeResByUnitInfo(curSpawnInfo));
         {
-            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(curSpawnInfo,spawnPos.position,fightingManager.campId);
+            BattleUnitBase spawnedUnit=BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(curSpawnInfo,spawnPos.position,fightingManager.campId);
+            spawnedUnit.spawnTargetPos = spawnMark.transform.position;
         }
         toSpawn.Pop();
         //下一个单位
@@ -119,6 +154,22 @@ public class BaseBattleBuilding : BattleUnitBase
     {
         return timer / interval;
     }
+
+    private void OnMouseDown()
+    {
+        //没有重生点的建筑不适用拖拽修改建筑目标点
+        if (spawnPos == null || photonView.IsMine==false)
+        {
+            return;
+        }
+        spawnMarkFadeTimer?.Cancel();
+        spawnMark.SetActive(true);
+        fightingManager.isDragFromBuilding = true;
+        fightingManager.dragingBuilding = this;
+    }
+    
+    
+    
 }
 
 

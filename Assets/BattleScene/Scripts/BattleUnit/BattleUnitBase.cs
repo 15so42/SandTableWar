@@ -11,7 +11,6 @@ public class BattleUnitBase : MonoBehaviour
 {
     [HideInInspector]public StateController stateController;
     [HideInInspector] public NavMeshAgent navMeshAgent;
-
     protected FightingManager fightingManager;
     public PhotonView photonView;
 
@@ -61,6 +60,10 @@ public class BattleUnitBase : MonoBehaviour
     [HideInInspector]public BattleUnitAnimCtrl animCtrl;
     //地雷隐形
     public bool visibleOnPhoton;
+    
+    //初始目标点
+    [HideInInspector] public Vector3 spawnTargetPos;
+    
     #region 逻辑控制
     protected virtual void Awake()
     {
@@ -96,8 +99,8 @@ public class BattleUnitBase : MonoBehaviour
         hpUi.owner = this;
         hpUi.Init();
         //设置初始目标地点
-        stateController.targetPos = position;
-        stateController.lastTargetPos = stateController.targetPos;
+        stateController.targetPos = spawnTargetPos;
+        //stateController.lastTargetPos = stateController.targetPos;
         lastAddTime = 0;//技能点计时器
         victimOutline = GetComponentInChildren<Outlinable>();
         
@@ -406,6 +409,7 @@ public class BattleUnitBase : MonoBehaviour
     
     private void Die()
     {
+        Destroy(hpUi);
         PhotonNetwork.Destroy(gameObject);
         animCtrl.DieAnim();
     }

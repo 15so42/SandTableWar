@@ -29,6 +29,9 @@ public class FightingManager
 
     public GlobalItemManager globalItemManager;
     public bool isUsingItem;
+    //建筑物拖拽，用于设置出生点
+    public bool isDragFromBuilding;
+    public BaseBattleBuilding dragingBuilding;
     public GameObject usingItemGo;
 
     public void Init()
@@ -96,21 +99,39 @@ public class FightingManager
         }
         
         battleResMgr.Update();
-        if (isUsingItem)
+        if (isUsingItem || isDragFromBuilding)
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit raycastHit;
-            if (Physics.Raycast(ray, out raycastHit, 999))
+            if (Physics.Raycast(ray, out raycastHit, 999,LayerMask.GetMask("Ground")))
             {
-                globalItemManager.GetUsingItemRangeMark().transform.position = raycastHit.point;//技能范围，参考英雄联盟
+                if (isUsingItem)
+                {
+                    globalItemManager.GetUsingItemRangeMark().transform.position = raycastHit.point;//技能范围，参考英雄联盟
+                }
+
+                if (isDragFromBuilding)
+                {
+                    dragingBuilding.GetSpawnMark().transform.position = raycastHit.point;
+                }
+                
             }
 
             if (Input.GetMouseButtonUp(0))
             {
-                isUsingItem = false;
-                GameObject.Destroy(globalItemManager.GetUsingItemRangeMark());
-                globalItemManager.ActAtPos(raycastHit.point);
-                globalItemManager.ClearUsingItem();
+                if (isUsingItem)
+                {
+                    isUsingItem = false;
+                    GameObject.Destroy(globalItemManager.GetUsingItemRangeMark());
+                    globalItemManager.ActAtPos(raycastHit.point);
+                    globalItemManager.ClearUsingItem();
+                }
+
+                if (isDragFromBuilding)
+                {
+                    dragingBuilding.OnDragMarkEnd();
+                }
+                
             }
             
         }

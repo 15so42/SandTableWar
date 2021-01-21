@@ -119,6 +119,7 @@
      <Compile Include="Assets\BuildingCloseMenuItem.cs" />
      <Compile Include="Assets\BuildingCommonMenuItem.cs" />
      <Compile Include="Assets\BuildingSpawnMenuItem.cs" />
+     <Compile Include="Assets\CollisionDetection.cs" />
      <Compile Include="Assets\DefenceBuilding.cs" />
      <Compile Include="Assets\GameCode\BaseClass\IGameSystem.cs" />
      <Compile Include="Assets\GameCode\DOTween\Modules\DOTweenModuleAudio.cs" />
@@ -171,6 +172,7 @@
      <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
      <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
      <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
+     <Compile Include="Assets\RangeMark.cs" />
      <Compile Include="Assets\Resources\Config\ScriptableObject\MouseShapeConfig.cs" />
      <Compile Include="Assets\Resources\Config\ScriptableObject\SpawnBattleUnitConfig.cs" />
      <Compile Include="Assets\Scout.cs" />
