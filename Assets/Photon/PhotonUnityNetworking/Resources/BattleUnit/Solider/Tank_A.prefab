@@ -699,6 +699,7 @@ MonoBehaviour:
   defenceBuilding: {fileID: 0}
   animCtrl: {fileID: 0}
   visibleOnPhoton: 0
+  spawnTargetPos: {x: 0, y: 0, z: 0}
   maxMovesSpeed: 3.5
   moveDampTime: 50
   moveThreshold: 0.1

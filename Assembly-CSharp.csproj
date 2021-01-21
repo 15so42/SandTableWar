@@ -150,6 +150,7 @@
      <Compile Include="Assets\GameCode\Tools\UnityTool.cs" />
      <Compile Include="Assets\GlobalItem.cs" />
      <Compile Include="Assets\GlobalItemManager.cs" />
+     <Compile Include="Assets\GlobalItemRangeDisplayer.cs" />
      <Compile Include="Assets\LogicMap.cs" />
      <Compile Include="Assets\MainBattleDialog.cs" />
      <Compile Include="Assets\MainMenuManager.cs" />

@@ -1463,6 +1463,7 @@ MonoBehaviour:
   defenceBuilding: {fileID: 0}
   animCtrl: {fileID: 0}
   visibleOnPhoton: 0
+  spawnTargetPos: {x: 0, y: 0, z: 0}
   curePoint: 0
   lastTime: 0
 --- !u!114 &1699611972151474457
