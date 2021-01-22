@@ -58,9 +58,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GameCode\Utils\Editor\ButtonInspector.cs" />
-     <Compile Include="Assets\GameCode\Utils\Editor\DeletePlayerPrefs.cs" />
-     <Compile Include="Assets\GameCode\Utils\Editor\SortLayerInspector.cs" />
+     <Compile Include="Assets\FogOfWar\Scripts\Editor\FogOfWarChunkManagerEditor.cs" />
+     <Compile Include="Assets\FogOfWar\Scripts\Editor\FogOfWarEditor.cs" />
+     <Compile Include="Assets\FogOfWar\Scripts\Editor\Vector2iPropertyDrawer.cs" />
  <Reference Include="UnityEditor.TestRunner">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
@@ -73,9 +73,6 @@
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -87,9 +84,6 @@
  </Reference>
  <Reference Include="Unity.Rider.Editor">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
@@ -280,17 +274,17 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="Photon3Unity3D">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
- </Reference>
- <Reference Include="websocket-sharp">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
- </Reference>
  <Reference Include="DOTween">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/GameCode/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="DOTweenEditor">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/GameCode/DOTween/Editor/DOTweenEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="Photon3Unity3D">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
+ </Reference>
+ <Reference Include="websocket-sharp">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
@@ -651,9 +645,17 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{5327023C-7798-38BC-1353-5098FD9232AD}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{854A2F72-A75D-2EA0-6EAF-F37AD778A0E1}</Project>
       <Name>Assembly-CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
+      <Project>{5479E845-E706-3975-91BA-F0FEA37B9914}</Project>
+      <Name>Assembly-CSharp-Editor-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
       <Project>{89EDFA98-BEC1-438D-5341-BA996927E320}</Project>
@@ -683,6 +685,10 @@
       <Project>{433E5057-DA39-A7CC-C7C5-01C2C8A84FC1}</Project>
       <Name>PhotonUnityNetworking</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity Timer.csproj">
+      <Project>{A6718C0E-9046-90DD-DC2C-922204CCB584}</Project>
+      <Name>Unity Timer</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonChat.csproj">
       <Project>{065D79E8-7943-581C-CEDE-9D4B439AA2F0}</Project>
       <Name>PhotonChat</Name>
@@ -694,10 +700,6 @@
     <ProjectReference Include="PhotonUnityNetworking.Editor.csproj">
       <Project>{F9D8C5BD-0879-1F25-D141-F3F793CA1B20}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity Timer.csproj">
-      <Project>{A6718C0E-9046-90DD-DC2C-922204CCB584}</Project>
-      <Name>Unity Timer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
