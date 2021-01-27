@@ -79,6 +79,7 @@ public class WorkerStateController : StateController
             trueState = mineState
         });
         
+        
         mineState.AddAction(new BaseMineAction());
         mineState.AddTransition(new Transition()
         {

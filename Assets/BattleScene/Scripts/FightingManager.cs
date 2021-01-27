@@ -236,6 +236,10 @@ public class FightingManager
         if (selectedUnits.Contains(unitBase))
         {
             selectedUnits.Remove(unitBase);
+            if (unitBase == null)
+            {
+                return;
+            }
             //关闭选中特效
             unitBase.HideSelectMark();
             unitBase.OnUnSelect();

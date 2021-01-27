@@ -180,6 +180,7 @@ public class BattleUnitBase : MonoBehaviour
         {
             enemyUnits.Remove(this);
         }
+        Destroy(hpUi.gameObject);
     }
     #endregion
 
