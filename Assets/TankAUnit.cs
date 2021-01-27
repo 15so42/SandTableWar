@@ -22,6 +22,7 @@ public class TankAUnit : BattleUnitBase,IPhotonViewCallback,IPunObservable
       base.Awake();
       stateController=new TankStateController(this);
       tankAnimCtrl = GetComponent<TankAnimCtrl>();
+      navMeshAgent.angularSpeed = 120;
    }
 
 
@@ -43,6 +44,7 @@ public class TankAUnit : BattleUnitBase,IPhotonViewCallback,IPunObservable
 
    protected override void RotationControl()
    {
+      return;
       Vector3 horDir = navMeshAgent.desiredVelocity;
       horDir.y = 0;
       if(horDir==Vector3.zero)
