@@ -54,9 +54,15 @@ public class TankAUnit : BattleUnitBase,IPhotonViewCallback,IPunObservable
       transform.rotation = Quaternion.RotateTowards(transform.rotation, q, angelSpeed * Time.deltaTime);
    }
 
+   private Vector3 lastTankEuler;
    //用以平滑同步炮台和炮管旋转,因为TankAnimCtrl非本客户端不会运行，所以需要额外写一段
    protected override void Update()
    {
+      float angle = transform.eulerAngles.y - lastTankEuler.y;
+      Vector3 towerEuler = tankAnimCtrl.tower.transform.eulerAngles;
+      tankAnimCtrl.tower.transform.eulerAngles=new Vector3(towerEuler.x,towerEuler.y-angle,towerEuler.z);
+      lastTankEuler = transform.eulerAngles;
+      
       base.Update();
       //同步炮塔和炮管方向
       tankAnimCtrl.tower.transform.rotation = Quaternion.RotateTowards(tankAnimCtrl.tower.transform.rotation, towerTargetRotation, tankAnimCtrl.towerRotateSpeed * Time.deltaTime);
