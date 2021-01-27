@@ -16,7 +16,7 @@ public class TankStateController : StateController
         //转换条件按添加顺序执行，满足一个转换条件后就转换，因此此处是在战斗中先判断目标路径点是否发生了变化，是则强行移动
         fightState.AddTransition(new Transition()
         {
-            decisions = new List<Decision>{new HasTargetPosDecision()},
+            decisions = new List<Decision>{new HasNewTargetPosDecision()},
             falseState = fightState,
             trueState = moveIgnoreEnemyState
         });

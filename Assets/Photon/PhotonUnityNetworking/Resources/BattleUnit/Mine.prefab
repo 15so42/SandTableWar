@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3700205696364310534}
   - component: {fileID: 6869259365233950515}
   - component: {fileID: 3017506782550899067}
+  - component: {fileID: 3766217171271619234}
   m_Layer: 10
   m_Name: Mine
   m_TagString: Untagged
@@ -207,3 +208,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.33367163, y: 0.2329314, z: 0.3852907}
   m_Center: {x: 0, y: 0.11096959, z: 0.040939763}
+--- !u!114 &3766217171271619234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3692575203386918306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b130f358dcb26548b2ff0923d496dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  brightness: 1
+  shapeType: 0
+  absoluteOffset: 0
+  offset: {x: 0, y: 0}
+  boxSize: {x: 5, y: 5}
+  circleRadius: 5
+  innerRadius: 1
+  angle: 180
+  texture: {fileID: 0}
+  rotateToForward: 0
+  lineOfSightMask:
+    serializedVersion: 2
+    m_Bits: 0
+  lineOfSightPenetration: 0
+  cellBased: 0
+  antiFlicker: 0

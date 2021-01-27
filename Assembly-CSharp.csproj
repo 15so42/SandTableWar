@@ -73,7 +73,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\FindEnemyDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasChaseTargetDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasEnoughCurePointDecision.cs" />
-     <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasTargetPosDecision.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasNewTargetPosDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\InAttackRangeDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\IsInBuildingDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\ReachTargetPosDecision.cs" />

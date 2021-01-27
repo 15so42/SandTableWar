@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HasTargetPosDecision : Decision
+public class HasNewTargetPosDecision : Decision
 {
     public override bool Decide(StateController controller)
     {

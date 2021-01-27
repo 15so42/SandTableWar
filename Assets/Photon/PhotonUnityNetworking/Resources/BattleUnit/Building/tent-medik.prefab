@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 6854352586483621083}
   - component: {fileID: 6891873505614526091}
   - component: {fileID: -5275485960050070890}
+  - component: {fileID: 7079932151677895146}
   - component: {fileID: -1794971452224315405}
   m_Layer: 0
   m_Name: tent-medik
@@ -177,6 +178,35 @@ MonoBehaviour:
   spawnMarkPfb: {fileID: 900307187978911580, guid: b44f100bacae5e8498188a0d84469a4e,
     type: 3}
   spawnMark: {fileID: 0}
+--- !u!114 &7079932151677895146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866053531164441353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b130f358dcb26548b2ff0923d496dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  brightness: 1
+  shapeType: 0
+  absoluteOffset: 0
+  offset: {x: 0, y: 0}
+  boxSize: {x: 5, y: 5}
+  circleRadius: 5
+  innerRadius: 1
+  angle: 180
+  texture: {fileID: 0}
+  rotateToForward: 0
+  lineOfSightMask:
+    serializedVersion: 2
+    m_Bits: 0
+  lineOfSightPenetration: 0
+  cellBased: 0
+  antiFlicker: 0
 --- !u!114 &-1794971452224315405
 MonoBehaviour:
   m_ObjectHideFlags: 0

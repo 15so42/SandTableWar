@@ -695,9 +695,11 @@ GameObject:
   - component: {fileID: 6968405436783861972}
   - component: {fileID: 6968405436783861973}
   - component: {fileID: 6968405436783861975}
+  - component: {fileID: 7946250750698656722}
+  - component: {fileID: -2881263682262888319}
   - component: {fileID: 1318645975}
   m_Layer: 0
-  m_Name: Scout
+  m_Name: Engineer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -765,6 +767,7 @@ MonoBehaviour:
     hp: 120
     defense: 10
     viewDistance: 20
+    attackDistance: 10
   hpUiOffset: {x: 0, y: 65, z: 0}
   selectMarkSize: 2.2
   selectMarkOffset: {x: 0, y: 0.2, z: 0}
@@ -774,10 +777,14 @@ MonoBehaviour:
   amountBySecond: 2
   victimPos: {fileID: 0}
   victimOffset: 1.5
-  rotateDamp: 50
+  rotateDamp: 10
   configId: 0
   isGoingBuilding: 0
   isInBuilding: 0
+  defenceBuilding: {fileID: 0}
+  animCtrl: {fileID: 0}
+  visibleOnPhoton: 0
+  spawnTargetPos: {x: 0, y: 0, z: 0}
 --- !u!195 &-8226985421410687555
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1472,6 +1479,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeedDampTime: 10
+--- !u!114 &7946250750698656722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592192127302537471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b130f358dcb26548b2ff0923d496dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  brightness: 1
+  shapeType: 0
+  absoluteOffset: 0
+  offset: {x: 0, y: 0}
+  boxSize: {x: 5, y: 5}
+  circleRadius: 5
+  innerRadius: 1
+  angle: 180
+  texture: {fileID: 0}
+  rotateToForward: 0
+  lineOfSightMask:
+    serializedVersion: 2
+    m_Bits: 0
+  lineOfSightPenetration: 0
+  cellBased: 0
+  antiFlicker: 0
+--- !u!54 &-2881263682262888319
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592192127302537471}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &1318645975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1502,6 +1554,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: IsFighting
+  - Type: 9
+    SynchronizeType: 0
+    Name: Cure
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0

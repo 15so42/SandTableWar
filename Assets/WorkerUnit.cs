@@ -19,10 +19,12 @@ public class WorkerUnit : BattleUnitBase
        State mineState = (stateController as WorkerStateController).mineState;
        mineState.OnStateEnterEvent.AddListener(() =>
        {
+           Debug.Log("采矿开始");
            fightingManager.battleResMgr.AddIncreaseRate(BattleResType.mineral,mineOutputRate);
        });
        mineState.OnStateExitEvent.AddListener(() =>
        {
+           Debug.Log("采矿结束");
            fightingManager.battleResMgr.ReduceIncreaseRate(BattleResType.mineral,mineOutputRate);
        });
    }

@@ -56,7 +56,7 @@ public class StateController
         //idle时发现有新的目标位置切换到移动状态
         idleState.AddTransition(new Transition()
         {
-            decisions =  new List<Decision>{new HasTargetPosDecision()}, 
+            decisions =  new List<Decision>{new HasNewTargetPosDecision()}, 
             trueState = moveState,
             falseState = idleState
         });
@@ -130,15 +130,19 @@ public class StateController
         moveIgnoreEnemyState.OnStateEnterEvent.AddListener(() =>
         {
             navMeshAgent.isStopped = false;
-            chaseState = null;
+            //chaseState = null;这句话什么意思？
             owner.SetChaseTarget(null);
+        });
+        moveIgnoreEnemyState.OnStateExitEvent.AddListener(() =>
+        {
+            lastTargetPos=targetPos;//强制移动阶段不会更新lastTargetPos,在强制移动结束时应让lastPos和targetPos一致以保证不会在新状态调用HasNewTargetPosDecision时为true
         });
         
         ///追踪
         chaseState.AddAction(new BaseChaseAction());
         chaseState.AddTransition(new Transition()
         {
-            decisions = new List<Decision>{new HasTargetPosDecision()},
+            decisions = new List<Decision>{new HasNewTargetPosDecision()},
             falseState = chaseState,
             trueState = moveIgnoreEnemyState
         });
@@ -172,7 +176,7 @@ public class StateController
         });
         fightState.AddTransition(new Transition()
         {
-            decisions = new List<Decision>{new HasTargetPosDecision()},
+            decisions = new List<Decision>{new HasNewTargetPosDecision()},
             falseState = fightState,
             trueState = moveIgnoreEnemyState
         });
@@ -249,6 +253,7 @@ public class StateController
 
     public void Update()
     {
+        //Debug.Log(targetPos+","+lastTargetPos);
         currentState.UpdateState(this); //更新状态
     }
 

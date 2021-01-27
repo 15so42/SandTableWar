@@ -22,7 +22,6 @@ public class TankAUnit : BattleUnitBase,IPhotonViewCallback,IPunObservable
       base.Awake();
       stateController=new TankStateController(this);
       tankAnimCtrl = GetComponent<TankAnimCtrl>();
-      navMeshAgent.updatePosition = false;
    }
 
 
@@ -63,15 +62,8 @@ public class TankAUnit : BattleUnitBase,IPhotonViewCallback,IPunObservable
       tankAnimCtrl.tower.transform.rotation = Quaternion.RotateTowards(tankAnimCtrl.tower.transform.rotation, towerTargetRotation, tankAnimCtrl.towerRotateSpeed * Time.deltaTime);
       tankAnimCtrl.canon.transform.rotation = Quaternion.RotateTowards( tankAnimCtrl.canon.transform.rotation, canonTargetRotation, tankAnimCtrl.canonRotateSpeed * Time.deltaTime);
       
-      //移动
-      float distance = navMeshAgent.remainingDistance;
-      
-      //speed = Mathf.SmoothDamp(speed, navMeshAgent.desiredVelocity.magnitude>moveThreshold?maxMovesSpeed:0, ref refMoveSpeed, moveDampTime*Time.deltaTime);
-      //speed = Mathf.SmoothDamp(speed,(navMeshAgent.desiredVelocity.magnitude / maxMovesSpeed) * maxMovesSpeed,ref refMoveSpeed,moveDampTime*Time.deltaTime);
-      speed = navMeshAgent.desiredVelocity.magnitude;
-      transform.Translate(Vector3.forward * (speed * Time.deltaTime),Space.Self);
-      navMeshAgent.nextPosition = transform.position;
-
    }
+   
+   
    
 }

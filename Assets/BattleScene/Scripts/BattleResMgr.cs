@@ -28,10 +28,10 @@ public enum BattleResType
         /// </summary>
         public Dictionary<BattleResType,int> battleResIncreaseRate=new Dictionary<BattleResType, int>()
         {
-            {BattleResType.population,10},
-            {BattleResType.coin,10},
-            {BattleResType.mineral,10},
-            {BattleResType.food,10},
+            {BattleResType.population,1},
+            {BattleResType.coin,1},
+            {BattleResType.mineral,1},
+            {BattleResType.food,1},
         };
         /// <summary>
         /// 消耗资源，返回false表示资源不足，否则表示消耗成功

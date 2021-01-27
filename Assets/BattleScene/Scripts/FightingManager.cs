@@ -146,10 +146,10 @@ public class FightingManager
         }
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit raycastHit;
-        if (Physics.Raycast(ray, out raycastHit, 999,LayerMask.GetMask("Ground")))
+        if (Physics.Raycast(ray, out raycastHit, 999))
         {
-            // if (raycastHit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
-            // {
+            if (raycastHit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
                 if (mouseBtn == 1)//点击鼠标右键时
                 {
                     MoveToSpecificPos(raycastHit.point);
@@ -157,7 +157,7 @@ public class FightingManager
                 {
                     UnselectAllUnits();
                 }
-            //}
+            }
         }
     }
 

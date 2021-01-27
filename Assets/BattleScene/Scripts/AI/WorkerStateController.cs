@@ -18,7 +18,7 @@ public class WorkerStateController : StateController
         //idle时发现敌人切换到逃跑状态
         idleState.AddTransition(new Transition()
         {
-            decisions =  new List<Decision>{new HasTargetPosDecision()}, 
+            decisions =  new List<Decision>{new HasNewTargetPosDecision()}, 
             trueState = moveState,
             falseState = idleState
         });
@@ -63,18 +63,12 @@ public class WorkerStateController : StateController
             trueState = escapeState
         });
         
-        moveIgnoreEnemyState.AddTransition(new Transition()
-        {
-            decisions = new List<Decision>{new HasChaseTargetDecision()},
-            falseState = moveIgnoreEnemyState,
-            trueState = chaseState
-        });
         
         
         chaseState.transitions.Clear();
         chaseState.AddTransition(new Transition()
         {
-            decisions = new List<Decision>{new HasTargetPosDecision()},
+            decisions = new List<Decision>{new HasNewTargetPosDecision()},
             falseState = chaseState,
             trueState = moveIgnoreEnemyState
         });
@@ -94,7 +88,7 @@ public class WorkerStateController : StateController
         });
         mineState.AddTransition(new Transition()
         {
-            decisions = new List<Decision>{new HasTargetPosDecision()},
+            decisions = new List<Decision>{new HasNewTargetPosDecision()},
             falseState = mineState,
             trueState = moveIgnoreEnemyState
         });
@@ -103,7 +97,7 @@ public class WorkerStateController : StateController
         //转换条件按添加顺序执行，满足一个转换条件后就转换，因此此处是在战斗中先判断目标路径点是否发生了变化，是则强行移动
         escapeState.AddTransition(new Transition()
         {
-            decisions = new List<Decision>{new HasTargetPosDecision()},
+            decisions = new List<Decision>{new HasNewTargetPosDecision()},
             falseState = escapeState,
             trueState = moveIgnoreEnemyState
         });

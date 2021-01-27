@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BattleScene.Scripts;
 using EPOOutline;
+using FoW;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
@@ -63,13 +64,18 @@ public class BattleUnitBase : MonoBehaviour
     
     //初始目标点
     [HideInInspector] public Vector3 spawnTargetPos;
-    
+
+    private FogOfWarUnit fogOfWarUnit;
     #region 逻辑控制
     protected virtual void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        if(navMeshAgent) 
+        if (navMeshAgent)
+        {
             navMeshAgent.angularSpeed = 0;//禁用nav的旋转
+            navMeshAgent.updatePosition = false;
+        }
+           
         photonView = GetComponent<PhotonView>();
         weapon = GetComponent<Weapon>();//部分建筑类也需要有weapon，部分建筑可以攻击，不会攻击不需要添加weapon
         if (weapon != null)
@@ -80,7 +86,9 @@ public class BattleUnitBase : MonoBehaviour
         animCtrl = GetComponent<BattleUnitAnimCtrl>();
         isFirstSelected = true;
         stateController=new StateController(this);
-       
+        fogOfWarUnit = GetComponent<FogOfWarUnit>();
+        if (fogOfWarUnit != null)
+            fogOfWarUnit.circleRadius = prop.viewDistance/2;
     }
 
     // Start is called before the first frame update
@@ -136,6 +144,7 @@ public class BattleUnitBase : MonoBehaviour
             if (navMeshAgent != null)
             {
                 RotationControl();
+                MovementControl();
             }
             
         }
@@ -149,6 +158,14 @@ public class BattleUnitBase : MonoBehaviour
         Vector3 horDir = navMeshAgent.desiredVelocity;
         horDir.y = 0;
         transform.forward = Vector3.SmoothDamp(transform.forward, horDir, ref refDir, Time.deltaTime * rotateDamp);
+    }
+    
+    protected virtual void MovementControl()
+    {
+        Vector3 horDir = navMeshAgent.desiredVelocity;
+        //transform.forward = Vector3.SmoothDamp(transform.forward, horDir, ref refDir, Time.deltaTime * rotateDamp);
+        transform.Translate(Vector3.forward*horDir.magnitude*Time.deltaTime,Space.Self);
+        navMeshAgent.nextPosition = transform.position;
     }
     #endregion
 
