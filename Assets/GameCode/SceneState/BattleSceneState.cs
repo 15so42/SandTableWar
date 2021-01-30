@@ -34,6 +34,7 @@ public class BattleSceneState : SceneState,IOnEventCallback,IInRoomCallbacks
 	private void OnBattleStart()
 	{
 		MainBattleDialog.ShowDialog();
+		SpawnBuildingDialog.ShowDialog();
 	}
 
 	// 結束

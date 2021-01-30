@@ -118,6 +118,7 @@
      <Compile Include="Assets\BattleUnitAnimCtrl.cs" />
      <Compile Include="Assets\BuildingCloseMenuItem.cs" />
      <Compile Include="Assets\BuildingCommonMenuItem.cs" />
+     <Compile Include="Assets\BuildingSpawnItem.cs" />
      <Compile Include="Assets\BuildingSpawnMenuItem.cs" />
      <Compile Include="Assets\CollisionDetection.cs" />
      <Compile Include="Assets\DefenceBuilding.cs" />
@@ -203,6 +204,7 @@
      <Compile Include="Assets\Scripts\GameSettingsConst.cs" />
      <Compile Include="Assets\Scripts\PhotonEventConst.cs" />
      <Compile Include="Assets\Scripts\UnityObjectPoolManager.cs" />
+     <Compile Include="Assets\SpawnBuildingDialog.cs" />
      <Compile Include="Assets\TankAUnit.cs" />
      <Compile Include="Assets\TankAnimCtrl.cs" />
      <Compile Include="Assets\TankWeapon.cs" />

@@ -31,7 +31,11 @@ public class FightingManager
     public bool isUsingItem;
     //建筑物拖拽，用于设置出生点
     public bool isDragFromBuilding;
-    public BaseBattleBuilding dragingBuilding;
+    public BaseBattleBuilding buildingSpawnMark;
+
+    //通过建筑菜单生成建筑
+    public bool isBuilding;
+    public BaseBattleBuilding dragingBuildingMark;
     public GameObject usingItemGo;
 
     public void Init()
@@ -112,7 +116,12 @@ public class FightingManager
 
                 if (isDragFromBuilding)
                 {
-                    dragingBuilding.GetSpawnMark().transform.position = raycastHit.point;
+                    buildingSpawnMark.GetSpawnMark().transform.position = raycastHit.point;
+                }
+
+                if (isBuilding)
+                {
+                    dragingBuildingMark.transform.position = raycastHit.point;
                 }
                 
             }
@@ -129,7 +138,12 @@ public class FightingManager
 
                 if (isDragFromBuilding)
                 {
-                    dragingBuilding.OnDragMarkEnd();
+                    buildingSpawnMark.OnDragMarkEnd();
+                }
+
+                if (isBuilding)
+                {
+                    dragingBuildingMark.OnDragMarkEnd();
                 }
                 
             }

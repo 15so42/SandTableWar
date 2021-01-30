@@ -24,6 +24,9 @@ public class BaseBattleBuilding : BattleUnitBase
     private BattleBuildingMenuDialog buildingMenuDialog;
 
     private Timer spawnMarkFadeTimer;
+
+    [Header("建造时碰撞检测")] //
+    public bool beforeBuilding;//从建造菜单拖出来时生成模型的是否可建造轮廓来标识位置是否可建造，在拖拽完成后正式生成建筑
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -58,9 +61,13 @@ public class BaseBattleBuilding : BattleUnitBase
         }
 
         fightingManager.isDragFromBuilding = false;
-        fightingManager.dragingBuilding = null;
+        fightingManager.buildingSpawnMark = null;
     }
-    
+
+    public void OnBuildingMarkEnd()
+    {
+        
+    }
     //更换生成的单位
     private void ChangeSpawnId(int id)
     {
@@ -165,7 +172,7 @@ public class BaseBattleBuilding : BattleUnitBase
         spawnMarkFadeTimer?.Cancel();
         spawnMark.SetActive(true);
         fightingManager.isDragFromBuilding = true;
-        fightingManager.dragingBuilding = this;
+        fightingManager.buildingSpawnMark = this;
     }
     
     
