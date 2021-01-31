@@ -287,6 +287,7 @@ MonoBehaviour:
   - close
   spawnMarkPfb: {fileID: 0}
   spawnMark: {fileID: 0}
+  buildingPreviewMesh: {fileID: 0}
   defencePoses:
   - {fileID: 3636838294905752750}
   - {fileID: 3636838296089035695}

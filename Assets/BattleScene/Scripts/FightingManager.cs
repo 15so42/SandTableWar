@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
+using DefaultNamespace;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using UnityEditor;
@@ -34,8 +35,8 @@ public class FightingManager
     public BaseBattleBuilding buildingSpawnMark;
 
     //通过建筑菜单生成建筑
-    public bool isBuilding;
-    public BaseBattleBuilding dragingBuildingMark;
+    public bool isBuildingPreview;
+    public PreviewBuilding previewBuilding;//建造预览中的建筑
     public GameObject usingItemGo;
 
     public void Init()
@@ -65,8 +66,7 @@ public class FightingManager
                 BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(297),tmpMineral.position,-1);//生成矿物
             }
         }
-
-      
+        
     }
 
    
@@ -103,7 +103,7 @@ public class FightingManager
         }
         
         battleResMgr.Update();
-        if (isUsingItem || isDragFromBuilding)
+        if (isUsingItem || isDragFromBuilding || isBuildingPreview)
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit raycastHit;
@@ -118,10 +118,13 @@ public class FightingManager
                 {
                     buildingSpawnMark.GetSpawnMark().transform.position = raycastHit.point;
                 }
-
-                if (isBuilding)
+                
+                if (isBuildingPreview)
                 {
-                    dragingBuildingMark.transform.position = raycastHit.point;
+                    previewBuilding.transform.position=raycastHit.point;
+                    
+                    //Graphics.DrawMeshNow(previewBuilding.buildingPreviewMesh,raycastHit.point,Quaternion.identity);
+                    //previewBuilding.transform.position = raycastHit.point;
                 }
                 
             }
@@ -141,9 +144,10 @@ public class FightingManager
                     buildingSpawnMark.OnDragMarkEnd();
                 }
 
-                if (isBuilding)
+                if (isBuildingPreview)
                 {
-                    dragingBuildingMark.OnDragMarkEnd();
+                    previewBuilding.OnBuildingPreviewEnd(raycastHit.point);
+                    isBuildingPreview = false;
                 }
                 
             }

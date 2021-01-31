@@ -23,5 +23,13 @@ public class BattleUnitBaseFactory : Singleton<BattleUnitBaseFactory>
     {
         
     }
+
+    public BattleUnitBase GetBattleUnitLocally(SpawnBattleUnitConfigInfo soliderInfo)
+    {
+        string path = (soliderInfo.id < 151) ? SoliderPath : BuildingPath;
+        
+        return Resources.Load<BattleUnitBase>($"{path}{soliderInfo.resourceName}");
+    }
+    
     
 }

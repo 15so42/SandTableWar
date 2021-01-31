@@ -178,6 +178,7 @@ MonoBehaviour:
   spawnMarkPfb: {fileID: 900307187978911580, guid: b44f100bacae5e8498188a0d84469a4e,
     type: 3}
   spawnMark: {fileID: 0}
+  buildingPreviewMesh: {fileID: 0}
 --- !u!114 &7079932151677895146
 MonoBehaviour:
   m_ObjectHideFlags: 0
