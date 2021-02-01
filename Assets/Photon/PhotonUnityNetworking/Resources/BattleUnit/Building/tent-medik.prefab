@@ -181,7 +181,7 @@ MonoBehaviour:
   isBuilding: 1
   animModel: {fileID: 6866053531164441353}
   height: 2.75
-  buildTime: 5
+  buildTime: 6
 --- !u!114 &7079932151677895146
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -40,12 +40,12 @@ public class BaseBattleBuilding : BattleUnitBase
             sequence.Join(animModel.transform.DOShakeScale(.5f, .5f, buildTime/2));
             for (int i = 0; i < buildTime; i++)
             {
-                if (buildTime % 2 == 0 && i%2==0 || buildTime%2==1 && i%2==1 || i==0) 
-                {
-                    sequence.Append(animModel.transform.DOJump(animModel.transform.position + Vector3.up * i * (height/buildTime), 0.5f, 1, 1f));
-                    sequence.AppendInterval(1);
+                // if (buildTime % 2 == 0 && i%2==0 || buildTime%2==1 && i%2==1 || i==0) 
+                // {
+                    sequence.Append(animModel.transform.DOJump(animModel.transform.position + Vector3.up * i * (height/buildTime), 0.5f, 1, 0.2f));
+                    sequence.AppendInterval(0.8f);
 
-                }
+                //}
             }
             sequence.OnComplete(() =>
             {
