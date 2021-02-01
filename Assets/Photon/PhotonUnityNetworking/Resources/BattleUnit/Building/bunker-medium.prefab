@@ -287,7 +287,10 @@ MonoBehaviour:
   - close
   spawnMarkPfb: {fileID: 0}
   spawnMark: {fileID: 0}
-  buildingPreviewMesh: {fileID: 0}
+  isBuilding: 1
+  animModel: {fileID: 0}
+  height: 0
+  buildTime: 5
   defencePoses:
   - {fileID: 3636838294905752750}
   - {fileID: 3636838296089035695}

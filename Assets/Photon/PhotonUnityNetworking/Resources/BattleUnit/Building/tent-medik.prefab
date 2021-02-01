@@ -59,7 +59,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6866053531164441353}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -100, y: 0, z: 70}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -178,7 +178,10 @@ MonoBehaviour:
   spawnMarkPfb: {fileID: 900307187978911580, guid: b44f100bacae5e8498188a0d84469a4e,
     type: 3}
   spawnMark: {fileID: 0}
-  buildingPreviewMesh: {fileID: 0}
+  isBuilding: 1
+  animModel: {fileID: 6866053531164441353}
+  height: 2.75
+  buildTime: 5
 --- !u!114 &7079932151677895146
 MonoBehaviour:
   m_ObjectHideFlags: 0

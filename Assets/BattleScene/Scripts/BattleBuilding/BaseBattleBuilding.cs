@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Photon.Pun;
 using UnityEngine;
 using UnityTimer;
@@ -25,12 +26,53 @@ public class BaseBattleBuilding : BattleUnitBase
 
     private Timer spawnMarkFadeTimer;
 
-    [Header("建造预览mesh")] 
-    public Mesh buildingPreviewMesh;
+    [Header("建造tween动画")] public bool isBuilding=true;
+    [Header("建造动画模型")]public GameObject animModel;
+    public float height=5f;
+    public int buildTime=5;
+    protected override void Awake()
+    {
+        if (isBuilding)
+        {
+            animModel.transform.position -= Vector3.up * height;
+
+            var sequence = DOTween.Sequence();
+            sequence.Join(animModel.transform.DOShakeScale(.5f, .5f, buildTime/2));
+            for (int i = 0; i < buildTime; i++)
+            {
+                if (buildTime % 2 == 0 && i%2==0 || buildTime%2==1 && i%2==1 || i==0) 
+                {
+                    sequence.Append(animModel.transform.DOJump(animModel.transform.position + Vector3.up * i * (height/buildTime), 0.5f, 1, 1f));
+                    sequence.AppendInterval(1);
+
+                }
+            }
+            sequence.OnComplete(() =>
+            {
+                isBuilding = false;
+                PlayBuildCompleteFx();
+                Awake();
+                Start();
+            });
+            return;
+        }
+        base.Awake();
+    }
+
+    void PlayBuildCompleteFx()
+    {
+        
+        GetComponent<MeshRenderer>().material.DOColor(new Color(1, 1, 1, 1), "_EmissionColor", 0.3f)
+            .SetLoops(2, LoopType.Yoyo);
+    }
 
     // Start is called before the first frame update
     protected override void Start()
     {
+        if (isBuilding)
+        {
+            return;
+        }
         base.Start();
         stateController = null;//建筑单位行为较简单，不使用状态机，需要转换时在对应类中重写
         //ChangeSpawnId(spawnId);
@@ -76,6 +118,10 @@ public class BaseBattleBuilding : BattleUnitBase
     // Update is called once per frame
     protected override void Update()
     {
+        if (isBuilding)
+        {
+            return;
+        }
         base.Update();
         if(photonView.IsMine==false)
             return;
@@ -139,7 +185,11 @@ public class BaseBattleBuilding : BattleUnitBase
     }
 
     protected override void MouseClickHandle()
-    {
+    {  
+        if (isBuilding)
+        {
+            return;
+        }
         if (UITool.IsPointerOverUIObject(Input.mousePosition))
         {
             return;//防止UI穿透
@@ -161,6 +211,10 @@ public class BaseBattleBuilding : BattleUnitBase
 
     private void OnMouseDown()
     {
+        if (isBuilding)
+        {
+            return;
+        }
         //没有重生点的建筑不适用拖拽修改建筑目标点
         if (spawnPos == null || photonView.IsMine==false)
         {
