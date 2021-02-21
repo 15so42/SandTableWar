@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1adc5e605af7a498438ad6fd11c636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  behaviorDesigner: {fileID: 0}
   navMeshAgent: {fileID: 0}
   photonView: {fileID: 0}
   campId: 0

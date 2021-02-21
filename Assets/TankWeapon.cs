@@ -16,7 +16,7 @@ public class TankWeapon : RangedWeapon
         atkTimer += Time.deltaTime;
         if (atkTimer > lastAtkTime + (float) 1 / atkRate)
         {
-            BattleUnitBase enemy = owner.stateController.enemy;
+            BattleUnitBase enemy = GetEnemy();
             Vector3 enemyDir = enemy.transform.position-tower.transform.position;
             enemyDir.y = 0;
             Vector3 towerDir = tower.transform.forward;

@@ -20,7 +20,6 @@ public class TankAUnit : BattleUnitBase,IPhotonViewCallback,IPunObservable
    protected override void Awake()
    {
       base.Awake();
-      stateController=new TankStateController(this);
       tankAnimCtrl = GetComponent<TankAnimCtrl>();
       navMeshAgent.angularSpeed = 120;
    }

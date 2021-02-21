@@ -13,7 +13,6 @@ public class Mine : BattleUnitBase
    protected override void Start()
    {
       base.Start();
-      stateController = null;
    }
 
    private void OnTriggerEnter(Collider other)

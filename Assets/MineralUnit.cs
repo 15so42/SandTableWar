@@ -14,7 +14,6 @@ public class MineralUnit : BattleUnitBase
    protected override void Start()
    {
       base.Start();
-      stateController = null;
    }
 
    protected override void OnRightMouseUp()

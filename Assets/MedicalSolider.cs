@@ -11,7 +11,6 @@ public class MedicalSolider : BattleUnitBase
     {
         base.Awake();
         lastTime = (int)Time.time;
-        stateController=new MedicalStateController(this);
     }
 
     protected override void Update()
@@ -28,18 +27,20 @@ public class MedicalSolider : BattleUnitBase
     private Vector3 refCureDire;
     protected override void RotationControl()
     {
-        base.RotationControl();
         
-        MedicalStateController medicalStateController = stateController as MedicalStateController;
-        if(medicalStateController==null)
-            return;
-        if(medicalStateController.currentState.stateName=="治疗")
-        {
-            if(medicalStateController.cureTarget==null)
-                return;
-            Vector3 dir = medicalStateController.cureTarget.transform.position - transform.position;
-            dir.y = 0;
-            transform.forward = Vector3.SmoothDamp(transform.forward, dir, ref refCureDire, Time.deltaTime * rotateDamp);
-        }
+        base.RotationControl();
+        //转向可能改为Action
+        
+        // MedicalStateController medicalStateController = stateController as MedicalStateController;
+        // if(medicalStateController==null)
+        //     return;
+        // if(medicalStateController.currentState.stateName=="治疗")
+        // {
+        //     if(medicalStateController.cureTarget==null)
+        //         return;
+        //     Vector3 dir = medicalStateController.cureTarget.transform.position - transform.position;
+        //     dir.y = 0;
+        //     transform.forward = Vector3.SmoothDamp(transform.forward, dir, ref refCureDire, Time.deltaTime * rotateDamp);
+        // }
     }
 }

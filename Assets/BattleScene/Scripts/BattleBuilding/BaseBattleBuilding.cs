@@ -74,7 +74,6 @@ public class BaseBattleBuilding : BattleUnitBase
             return;
         }
         base.Start();
-        stateController = null;//建筑单位行为较简单，不使用状态机，需要转换时在对应类中重写
         //ChangeSpawnId(spawnId);
         if (spawnMarkPfb != null)
         {

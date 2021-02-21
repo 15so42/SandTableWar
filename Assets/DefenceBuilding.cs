@@ -17,7 +17,6 @@ public class DefenceBuilding : BaseBattleBuilding
     protected override void Awake()
     {
         base.Awake();
-        
     }
 
     protected override void Start()
@@ -100,7 +99,7 @@ public class DefenceBuilding : BaseBattleBuilding
             Vector3 exitPos=spawnPos.transform.position;
             solider.transform.position = exitPos;
             solider.OutBuilding();
-            solider.stateController.SetTargetPos(exitPos);
+            solider.SetTargetPos(exitPos);
         }
         SetCampInPhoton(-1);
     }

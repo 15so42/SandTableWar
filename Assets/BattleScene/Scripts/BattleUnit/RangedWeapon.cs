@@ -172,7 +172,7 @@
 
         public BattleUnitBase GetEnemy()
         {
-            return owner.stateController.enemy;
+            return owner.behaviorDesigner.GetVariable("EnemyBattleUnit").GetValue() as BattleUnitBase;
         }
         
     }

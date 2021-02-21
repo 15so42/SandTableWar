@@ -25,7 +25,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_2019_4_11;UNITY_2019_4;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_2019_4_11;UNITY_2019_4;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -60,6 +60,7 @@
   <ItemGroup>
      <Compile Include="Assets\BattleBuildingMenuDialog.cs" />
      <Compile Include="Assets\BattleCamera.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseChaseAction - Copy.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseChaseAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseEscapeAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseFightAction.cs" />
@@ -68,11 +69,13 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseTankFightAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\MoveToPosStateAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Decision\CanSeeEnemy.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\CureCompletedDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\EnemyAliveDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\FindEnemyDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasChaseTargetDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasEnoughCurePointDecision.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasNewTargetPos.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasNewTargetPosDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\InAttackRangeDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\IsInBuildingDecision.cs" />
@@ -116,6 +119,69 @@
      <Compile Include="Assets\BattleScene\Scripts\UI\BuildingMenuItem.cs" />
      <Compile Include="Assets\BattleScene\Scripts\UnitIconLoader.cs" />
      <Compile Include="Assets\BattleUnitAnimCtrl.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\BehaviorSelection.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\Arc.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\Circle.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\Column.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\Diamond.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\Echelon.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\FormationAgent.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\FormationGroup.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\Grid.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\Line.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\NavMeshFormationGroup.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\Row.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\Skirmisher.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\Square.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\Swarm.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\Triangle.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\V.cs" />
+     <Compile Include="Assets\Behavior Designer Formations\Scripts\Tasks\Wedge.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\BehaviorSelection.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\GroupMovement.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Movement.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\MovementUtility.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\CanHearObject.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\CanSeeObject.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\Cover.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\Evade.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\Flee.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\Flock.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\Follow.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\LeaderFollow.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\MoveTowards.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\NavMeshGroupMovement.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\NavMeshMovement.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\Patrol.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\Pursue.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\Queue.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\RotateTowards.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\Search.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\Seek.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\Wander.cs" />
+     <Compile Include="Assets\Behavior Designer Movement\Scripts\Tasks\WithinDistance.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Demo\BehaviorSelection.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Demo\Bullet.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Demo\Health.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Demo\Shootable.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Interfaces\IAttackAgent.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Interfaces\IDamageable.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\TacticalAgent.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\TacticalGroup.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\Ambush.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\Attack.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\Charge.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\Defend.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\Flank.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\Hold.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\Leapfrog.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\MarchingFire.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\NavMeshTacticalGroup.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\ReinforcementsResponse.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\RequestReinforcements.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\Retreat.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\ShootAndScoot.cs" />
+     <Compile Include="Assets\Behavior Designer Tactical\Scripts\Tasks\Surround.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\BehaviorTree.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\ExternalBehaviorTree.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\Object Drawers\FloatSliderAttribute.cs" />
@@ -622,6 +688,7 @@
      <Compile Include="Assets\Behavior Designer\Runtime\Tasks\Unity\Vector3\SetValue.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\Tasks\Unity\Vector3\SetXYZ.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedAnimationCurve.cs" />
+     <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedBattleUnit.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedBehaviour.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedBool.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedCollider.cs" />
@@ -772,6 +839,12 @@
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Postprocessing.Editor">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Postprocessing.Runtime">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

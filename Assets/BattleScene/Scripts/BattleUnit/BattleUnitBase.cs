@@ -7,10 +7,13 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityTimer;
+using BehaviorDesigner.Runtime;
+using BehaviorDesigner;
 
 public class BattleUnitBase : MonoBehaviour
 {
-    [HideInInspector]public StateController stateController;
+    //[HideInInspector]public StateController stateController;
+    public BehaviorTree behaviorDesigner;
     [HideInInspector] public NavMeshAgent navMeshAgent;
     protected FightingManager fightingManager;
     public PhotonView photonView;
@@ -85,7 +88,11 @@ public class BattleUnitBase : MonoBehaviour
 
         animCtrl = GetComponent<BattleUnitAnimCtrl>();
         isFirstSelected = true;
-        stateController=new StateController(this);
+
+        behaviorDesigner = GetComponent<BehaviorTree>();
+        //stateController=new StateController(this);
+        
+        
         fogOfWarUnit = GetComponent<FogOfWarUnit>();
         if (fogOfWarUnit != null)
             fogOfWarUnit.circleRadius = prop.viewDistance/2;
@@ -107,8 +114,15 @@ public class BattleUnitBase : MonoBehaviour
         hpUi.owner = this;
         hpUi.Init();
         //设置初始目标地点
-        stateController.targetPos = spawnTargetPos;
+        //stateController.targetPos = spawnTargetPos;
         //stateController.lastTargetPos = stateController.targetPos;
+        if (behaviorDesigner)
+        {
+            behaviorDesigner.SetVariableValue( "DestinationPos",transform.position);
+            behaviorDesigner.EnableBehavior();
+        }
+       
+        
         lastAddTime = 0;//技能点计时器
         victimOutline = GetComponentInChildren<Outlinable>();
         
@@ -135,7 +149,8 @@ public class BattleUnitBase : MonoBehaviour
     {
         if (photonView.IsMine)
         {
-            stateController?.Update();
+            //stateController?.Update();
+            
             if (Time.time - lastAddTime >= 1)
             {
                 fightingManager.globalItemManager.AddPoint(globalItemType,amountBySecond);
@@ -197,7 +212,7 @@ public class BattleUnitBase : MonoBehaviour
     /// <param name="chaseTarget"></param>
     public void SetChaseTarget(BattleUnitBase chaseTarget)
     {
-        stateController?.SetChaseTarget(chaseTarget);
+        //stateController?.SetChaseTarget(chaseTarget);
     }
     
     /// <summary>
@@ -206,7 +221,8 @@ public class BattleUnitBase : MonoBehaviour
     /// <param name="pos"></param>
     public void SetTargetPos(Vector3 pos)
     {
-        stateController?.SetTargetPos(pos);
+        //stateController?.SetTargetPos(pos);
+        behaviorDesigner.SetVariableValue( "DestinationPos",pos);
     }
     #endregion
     

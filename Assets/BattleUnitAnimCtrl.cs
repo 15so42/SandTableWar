@@ -25,7 +25,8 @@ public class BattleUnitAnimCtrl : MonoBehaviour
     private PhotonView photonView;
     protected virtual void Start()
     {
-        stateController = GetComponent<BattleUnitBase>().stateController;
+       return;
+        //stateController = GetComponent<BattleUnitBase>().stateController;
         navMeshAgent = stateController.navMeshAgent;
         anim = GetComponent<Animator>();
         photonView = PhotonView.Get(this);
@@ -35,6 +36,7 @@ public class BattleUnitAnimCtrl : MonoBehaviour
     //不同人物写对应的脚本控制对应的变量
     protected virtual void Update()
     {
+        return;
         if (!photonView || photonView.IsMine == false)
         {
             return;
