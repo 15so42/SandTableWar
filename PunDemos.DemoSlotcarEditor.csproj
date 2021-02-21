@@ -272,6 +272,12 @@
  <Reference Include="websocket-sharp">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
+ <Reference Include="BehaviorDesigner.Editor">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Behavior Designer/Editor/BehaviorDesigner.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="BehaviorDesigner.Runtime">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Behavior Designer/Runtime/BehaviorDesigner.Runtime.dll</HintPath>
+ </Reference>
  <Reference Include="nunit.framework">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
