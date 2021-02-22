@@ -6,20 +6,14 @@ using UnityEngine;
 
 public class HasNewTargetPos : Conditional
 {
-    public SharedVector3 destinationPos=Vector3.zero;
-    public Vector3 lastDestinationPos;
-
-    public override void OnStart()
-    {
-        lastDestinationPos = destinationPos.Value = transform.position;
-        base.OnStart();
-    }
-
+    public SharedVector3 lastDestinationPos;
+    public SharedVector3 destinationPos;
+    
     public override TaskStatus OnUpdate()
     {
-        if (destinationPos != null && lastDestinationPos != destinationPos.Value)
+        if (destinationPos != null && lastDestinationPos.Value != destinationPos.Value)
         {
-            lastDestinationPos = destinationPos.Value;
+            lastDestinationPos.Value = destinationPos.Value;
             return TaskStatus.Success;
         }
         return TaskStatus.Failure;

@@ -117,17 +117,17 @@
  <Reference Include="Unity.CollabProxy.Editor">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Rider.Editor">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
  <Reference Include="Unity.Postprocessing.Editor">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.Rider.Editor">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.Postprocessing.Runtime">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UI">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -306,6 +306,9 @@
  <Reference Include="UnityEngine.XRModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
  </Reference>
+ <Reference Include="BehaviorDesigner.Runtime">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Behavior Designer/Runtime/BehaviorDesigner.Runtime.dll</HintPath>
+ </Reference>
  <Reference Include="DOTween">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/GameCode/DOTween/DOTween.dll</HintPath>
  </Reference>
@@ -314,9 +317,6 @@
  </Reference>
  <Reference Include="websocket-sharp">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
- </Reference>
- <Reference Include="BehaviorDesigner.Runtime">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Behavior Designer/Runtime/BehaviorDesigner.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

@@ -222,7 +222,13 @@ public class BattleUnitBase : MonoBehaviour
     public void SetTargetPos(Vector3 pos)
     {
         //stateController?.SetTargetPos(pos);
-        behaviorDesigner.SetVariableValue( "DestinationPos",pos);
+        if (behaviorDesigner)
+        {
+            //behaviorDesigner.SetVariableValue( "DestinationPos",pos);
+            behaviorDesigner.SendEvent("HasNewDestinationPos",pos);
+            Debug.Log(pos);
+        }
+        
     }
     #endregion
     

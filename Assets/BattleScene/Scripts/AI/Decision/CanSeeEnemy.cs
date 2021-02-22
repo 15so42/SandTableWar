@@ -23,7 +23,7 @@
 
         public override TaskStatus OnUpdate()
         {
-            if (enemyBattleUnit!=null)
+            if (enemyBattleUnit.Value!=null)
             {
                 //判断是否还在视野范围内
                 if (Vector3.Distance(enemyBattleUnit.Value.transform.position, transform.position) <=
@@ -48,7 +48,7 @@
                 }
             }
             //Debug.Log($"[{nameof(FindEnemyDecision)}]碰撞没有找到敌人");
-            return TaskStatus.Running;
+            return TaskStatus.Failure;
         }
 
         public BattleUnitBase FindEnemy()

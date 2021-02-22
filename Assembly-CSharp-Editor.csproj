@@ -65,6 +65,8 @@
      <Compile Include="Assets\FogOfWar\Scripts\Editor\FogOfWarChunkManagerEditor.cs" />
      <Compile Include="Assets\FogOfWar\Scripts\Editor\FogOfWarEditor.cs" />
      <Compile Include="Assets\FogOfWar\Scripts\Editor\Vector2iPropertyDrawer.cs" />
+     <Compile Include="Assets\nTools\PrefabPainter\Scripts\Editor\PrafabPainterGUI.cs" />
+     <Compile Include="Assets\nTools\PrefabPainter\Scripts\Editor\PrefabPainter.cs" />
      <None Include="Assets\Behavior Designer\Editor\GridShader.shader" />
  <Reference Include="UnityEditor.TestRunner">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
@@ -87,17 +89,17 @@
  <Reference Include="Unity.CollabProxy.Editor">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Rider.Editor">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
  <Reference Include="Unity.Postprocessing.Editor">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.Rider.Editor">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.Postprocessing.Runtime">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UI">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -285,6 +287,12 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="BehaviorDesigner.Editor">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Behavior Designer/Editor/BehaviorDesigner.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="BehaviorDesigner.Runtime">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Behavior Designer/Runtime/BehaviorDesigner.Runtime.dll</HintPath>
+ </Reference>
  <Reference Include="DOTween">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/GameCode/DOTween/DOTween.dll</HintPath>
  </Reference>
@@ -296,12 +304,6 @@
  </Reference>
  <Reference Include="websocket-sharp">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
- </Reference>
- <Reference Include="BehaviorDesigner.Editor">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Behavior Designer/Editor/BehaviorDesigner.Editor.dll</HintPath>
- </Reference>
- <Reference Include="BehaviorDesigner.Runtime">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Assets/Behavior Designer/Runtime/BehaviorDesigner.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

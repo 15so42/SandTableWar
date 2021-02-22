@@ -289,7 +289,7 @@ MonoBehaviour:
   spawnMarkPfb: {fileID: 0}
   spawnMark: {fileID: 0}
   isBuilding: 1
-  animModel: {fileID: 0}
+  animModel: {fileID: 3638050296220507716}
   height: 0
   buildTime: 5
   defencePoses:
