@@ -64,10 +64,14 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseChaseAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseEscapeAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseFightAction.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseInit.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseLookForWoundedAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseMineAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseTankFightAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\MoveToPosStateAction.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Action\SetMoveSpeedByNavSpeed.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Action\SyncLastDestinationPos.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Action\WeaponUpdate.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\CanSeeEnemy.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\CureCompletedDecision.cs" />
@@ -75,8 +79,9 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\FindEnemyDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasChaseTargetDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasEnoughCurePointDecision.cs" />
-     <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasNewTargetPos.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasNewMoveEvent.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\HasNewTargetPosDecision.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Decision\InAttackRange.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\InAttackRangeDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\IsInBuildingDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\ReachTargetPosDecision.cs" />

@@ -9,6 +9,7 @@ using UnityEngine.AI;
 using UnityTimer;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner;
+using Object = System.Object;
 
 public class BattleUnitBase : MonoBehaviour
 {
@@ -225,7 +226,7 @@ public class BattleUnitBase : MonoBehaviour
         if (behaviorDesigner)
         {
             //behaviorDesigner.SetVariableValue( "DestinationPos",pos);
-            behaviorDesigner.SendEvent("HasNewDestinationPos",pos);
+            behaviorDesigner.SendEvent("SetDestinationPos",pos);
             Debug.Log(pos);
         }
         

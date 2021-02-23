@@ -17,7 +17,6 @@
         public override void OnStart()
         {
             base.OnStart();
-            selfBattleUnit.Value = GetComponent<BattleUnitBase>();
             prop = selfBattleUnit.Value.prop;
         }
 

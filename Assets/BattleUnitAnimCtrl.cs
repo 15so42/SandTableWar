@@ -25,9 +25,9 @@ public class BattleUnitAnimCtrl : MonoBehaviour
     private PhotonView photonView;
     protected virtual void Start()
     {
-       return;
+       
         //stateController = GetComponent<BattleUnitBase>().stateController;
-        navMeshAgent = stateController.navMeshAgent;
+        navMeshAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         photonView = PhotonView.Get(this);
     }
