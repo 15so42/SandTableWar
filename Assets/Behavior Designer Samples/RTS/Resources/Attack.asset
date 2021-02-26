@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
+  m_Name: Attack
+  m_EditorClassIdentifier: 
+  mBehaviorSource:
+    behaviorName: Attack
+    behaviorDescription: Seek and attack the target
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(0,0)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,100)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Samples.NextAttackPosition","NodeData":{"Offset":"(-390,110)","Comment":"The
+        previous behavior would have set the target. Using that target get the next
+        available position."},"ID":2,"Name":"Next Attack Position","Instant":true,"SharedTransformtarget":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Target","IsShared":true},"SharedVector3targetPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"Position","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"BehaviorDesigner.Samples.PlaySpecifiedAnimation","NodeData":{"Offset":"(-190,110)","Comment":"Play
+        the run animation"},"ID":3,"Name":"Play Specified Animation","Instant":true,"StringanimationName":"run_forward"},{"Type":"BehaviorDesigner.Samples.Seek","NodeData":{"Offset":"(0,110)","Comment":"Move
+        towards the target"},"ID":4,"Name":"Seek","Instant":true,"SharedFloatmoveSpeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"","SinglemValue":15},"SharedFloatrotationSpeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"","SinglemValue":1000},"BooleanrotateToTarget":false,"BooleanavoidDefenseUnits":false,"SharedVector3targetPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"Position","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedTransformtarget":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":""}},{"Type":"BehaviorDesigner.Samples.PlaySpecifiedAnimation","NodeData":{"Offset":"(220,110)","Comment":"Play
+        the idle animation while attacking"},"ID":5,"Name":"Play Specified Animation","Instant":true,"StringanimationName":"idle"},{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(420,110)","Comment":"Until
+        fail will return failure, so invert it because a failure occurs when the
+        target can no longer be attacked."},"ID":6,"Name":"Inverter","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.UntilFailure","NodeData":{"Offset":"(0,110)","Comment":"Keep
+        firing the rocket until the target is destroyed"},"ID":7,"Name":"Until Failure","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,100)"},"ID":8,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Samples.IsAlive","NodeData":{"Offset":"(-170,110)","Comment":"Is
+        the target still alive?"},"ID":9,"Name":"Is Alive","Instant":true,"SharedTransformtarget":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Target","IsShared":true}},{"Type":"BehaviorDesigner.Samples.FireProjectile","NodeData":{"Offset":"(0,106)","Comment":"Yes,
+        so fire a rocket"},"ID":10,"Name":"Fire Projectile","Instant":true,"GameObjectprojectilePrefab":0,"SharedTransformtarget":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Target","IsShared":true}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(200,110)","Comment":"Wait
+        a moment to prevent rapid fire"},"ID":11,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"","SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"","BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"","SinglemValue":0},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"","SinglemValue":0}}]}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"Position","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Target","IsShared":true}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects:
+        - {fileID: 100000, guid: 237f78c344db2b642be0e205142393a2, type: 3}
+        byteData: 
+        byteDataArray: 
+      Version: 1.6.7

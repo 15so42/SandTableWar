@@ -1,0 +1,299 @@
+fileFormatVersion: 2
+guid: e6fec471c20b9d148b1f87910e67bea4
+ModelImporter:
+  fileIDToRecycleName:
+    100000: vehicle_skyCar_body_paintwork
+    100002: vehicle_skyCar_body_parts
+    100004: vehicle_skyCar_mudGuard_frontLeft
+    100006: vehicle_skyCar_mudGuard_frontRight
+    100008: vehicle_skyCar_suspension_frontLeft
+    100010: vehicle_skyCar_suspension_frontRight
+    100012: //RootNode
+    100014: vehicle_skyCar_underside
+    100016: vehicle_skyCar_wheel_frontLeft
+    100018: vehicle_skyCar_wheel_frontRight
+    100020: vehicle_skyCar_wheel_rearLeft
+    100022: vehicle_skyCar_wheel_rearRight
+    100024: pPlane2
+    100026: transform2
+    100028: vehicle_skyCar_brakeLights
+    100030: vehicle_skyCar_headLights
+    100032: vehicle_skyCar_brakeLights_glow
+    100034: vehicle_skyCar_headLights_glow
+    400000: vehicle_skyCar_body_paintwork
+    400002: vehicle_skyCar_body_parts
+    400004: vehicle_skyCar_mudGuard_frontLeft
+    400006: vehicle_skyCar_mudGuard_frontRight
+    400008: vehicle_skyCar_suspension_frontLeft
+    400010: vehicle_skyCar_suspension_frontRight
+    400012: //RootNode
+    400014: vehicle_skyCar_underside
+    400016: vehicle_skyCar_wheel_frontLeft
+    400018: vehicle_skyCar_wheel_frontRight
+    400020: vehicle_skyCar_wheel_rearLeft
+    400022: vehicle_skyCar_wheel_rearRight
+    400024: pPlane2
+    400026: transform2
+    400028: vehicle_skyCar_brakeLights
+    400030: vehicle_skyCar_headLights
+    400032: vehicle_skyCar_brakeLights_glow
+    400034: vehicle_skyCar_headLights_glow
+    2300000: vehicle_skyCar_body_paintwork
+    2300002: vehicle_skyCar_body_parts
+    2300004: vehicle_skyCar_mudGuard_frontLeft
+    2300006: vehicle_skyCar_mudGuard_frontRight
+    2300008: vehicle_skyCar_suspension_frontLeft
+    2300010: vehicle_skyCar_suspension_frontRight
+    2300012: vehicle_skyCar_underside
+    2300014: vehicle_skyCar_wheel_frontLeft
+    2300016: vehicle_skyCar_wheel_frontRight
+    2300018: vehicle_skyCar_wheel_rearLeft
+    2300020: vehicle_skyCar_wheel_rearRight
+    2300022: vehicle_skyCar_brakeLights
+    2300024: vehicle_skyCar_headLights
+    2300026: vehicle_skyCar_brakeLights_glow
+    2300028: vehicle_skyCar_headLights_glow
+    3300000: vehicle_skyCar_body_paintwork
+    3300002: vehicle_skyCar_body_parts
+    3300004: vehicle_skyCar_mudGuard_frontLeft
+    3300006: vehicle_skyCar_mudGuard_frontRight
+    3300008: vehicle_skyCar_suspension_frontLeft
+    3300010: vehicle_skyCar_suspension_frontRight
+    3300012: vehicle_skyCar_underside
+    3300014: vehicle_skyCar_wheel_frontLeft
+    3300016: vehicle_skyCar_wheel_frontRight
+    3300018: vehicle_skyCar_wheel_rearLeft
+    3300020: vehicle_skyCar_wheel_rearRight
+    3300022: vehicle_skyCar_brakeLights
+    3300024: vehicle_skyCar_headLights
+    3300026: vehicle_skyCar_brakeLights_glow
+    3300028: vehicle_skyCar_headLights_glow
+    4300000: vehicle_skyCar_wheel_rearLeft
+    4300002: vehicle_skyCar_wheel_rearRight
+    4300004: vehicle_skyCar_underside
+    4300006: vehicle_skyCar_mudGuard_frontLeft
+    4300008: vehicle_skyCar_suspension_frontLeft
+    4300010: vehicle_skyCar_suspension_frontRight
+    4300012: vehicle_skyCar_mudGuard_frontRight
+    4300014: vehicle_skyCar_body_paintwork
+    4300016: vehicle_skyCar_wheel_frontRight
+    4300018: vehicle_skyCar_wheel_frontLeft
+    4300020: vehicle_skyCar_body_parts
+    4300022: vehicle_skyCar_brakeLights
+    4300024: vehicle_skyCar_headLights
+    4300026: vehicle_skyCar_brakeLights_glow
+    4300028: vehicle_skyCar_headLights_glow
+    9500000: //RootNode
+  serializedVersion: 10
+  materials:
+    importMaterials: 0
+    materialName: 1
+    materialSearch: 2
+  animations:
+    generateAnimations: 3
+    bakeSimulation: 0
+    splitAnimations: 1
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .0199999996
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMesh: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  textMetaNamesToFileIDs:
+    //RootNode:
+      data:
+        first: 1
+        second: ac860100
+      data:
+        first: 4
+        second: 8c1a0600
+      data:
+        first: 111
+        second: 605fa900
+    vehicle_skyCar_body_paintwork:
+      data:
+        first: 1
+        second: d0860100
+      data:
+        first: 4
+        second: b01a0600
+      data:
+        first: 23
+        second: 8a182300
+      data:
+        first: 33
+        second: ca5a3200
+    vehicle_skyCar_body_parts:
+      data:
+        first: 1
+        second: c6860100
+      data:
+        first: 4
+        second: a61a0600
+      data:
+        first: 23
+        second: 80182300
+      data:
+        first: 33
+        second: c05a3200
+    vehicle_skyCar_brakeLights_glow:
+      data:
+        first: 1
+        second: d8860100
+      data:
+        first: 4
+        second: b81a0600
+      data:
+        first: 23
+        second: 92182300
+      data:
+        first: 33
+        second: d25a3200
+    vehicle_skyCar_headLights_glow:
+      data:
+        first: 1
+        second: c8860100
+      data:
+        first: 4
+        second: a81a0600
+      data:
+        first: 23
+        second: 82182300
+      data:
+        first: 33
+        second: c25a3200
+    vehicle_skyCar_mudGuard_frontLeft:
+      data:
+        first: 1
+        second: ca860100
+      data:
+        first: 4
+        second: aa1a0600
+      data:
+        first: 23
+        second: 84182300
+      data:
+        first: 33
+        second: c45a3200
+    vehicle_skyCar_mudGuard_frontRight:
+      data:
+        first: 1
+        second: dc860100
+      data:
+        first: 4
+        second: bc1a0600
+      data:
+        first: 23
+        second: 96182300
+      data:
+        first: 33
+        second: d65a3200
+    vehicle_skyCar_suspension_frontLeft:
+      data:
+        first: 1
+        second: da860100
+      data:
+        first: 4
+        second: ba1a0600
+      data:
+        first: 23
+        second: 94182300
+      data:
+        first: 33
+        second: d45a3200
+    vehicle_skyCar_suspension_frontRight:
+      data:
+        first: 1
+        second: d4860100
+      data:
+        first: 4
+        second: b41a0600
+      data:
+        first: 23
+        second: 8e182300
+      data:
+        first: 33
+        second: ce5a3200
+    vehicle_skyCar_underside:
+      data:
+        first: 1
+        second: ce860100
+      data:
+        first: 4
+        second: ae1a0600
+      data:
+        first: 23
+        second: 88182300
+      data:
+        first: 33
+        second: c85a3200
+    vehicle_skyCar_wheel_frontLeft:
+      data:
+        first: 1
+        second: cc860100
+      data:
+        first: 4
+        second: ac1a0600
+      data:
+        first: 23
+        second: 86182300
+      data:
+        first: 33
+        second: c65a3200
+    vehicle_skyCar_wheel_frontRight:
+      data:
+        first: 1
+        second: d2860100
+      data:
+        first: 4
+        second: b21a0600
+      data:
+        first: 23
+        second: 8c182300
+      data:
+        first: 33
+        second: cc5a3200
+    vehicle_skyCar_wheel_rearLeft:
+      data:
+        first: 1
+        second: d6860100
+      data:
+        first: 4
+        second: b61a0600
+      data:
+        first: 23
+        second: 90182300
+      data:
+        first: 33
+        second: d05a3200
+    vehicle_skyCar_wheel_rearRight:
+      data:
+        first: 1
+        second: c4860100
+      data:
+        first: 4
+        second: a41a0600
+      data:
+        first: 23
+        second: 7e182300
+      data:
+        first: 33
+        second: be5a3200

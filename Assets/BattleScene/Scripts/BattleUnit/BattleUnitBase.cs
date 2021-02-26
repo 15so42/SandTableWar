@@ -9,9 +9,10 @@ using UnityEngine.AI;
 using UnityTimer;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner;
+using BehaviorDesigner.Runtime.Tactical;
 using Object = System.Object;
 
-public class BattleUnitBase : MonoBehaviour
+public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
 {
     //[HideInInspector]public StateController stateController;
     public BehaviorTree behaviorDesigner;
@@ -543,6 +544,39 @@ public class BattleUnitBase : MonoBehaviour
         isInBuilding = false;
     }
     #endregion
-    
 
+
+    public void Damage(int amount)
+    {
+        ReduceHp(amount);
+    }
+
+    public bool IsAlive()
+    {
+        return prop.hp > 0;
+    }
+
+    #region 攻击行为树模块
+    public float AttackDistance()
+    {
+        return prop.attackDistance;
+    }
+
+    public bool CanAttack()
+    {
+        //为了使用战术行为树，此处需要适配对应的方法以攻击敌人
+        return true;
+    }
+
+    public float AttackAngle()
+    {
+        return 5;
+    }
+    
+    //使用战术包行为树的Attack接口
+    public void Attack(Vector3 targetPosition)
+    {
+        weapon.WeaponUpdate();
+    }
+    #endregion 
 }

@@ -27,10 +27,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 2.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6864109449133013493}
+  m_Father: {fileID: 4788964168601851224}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6866053531164441353
+--- !u!1 &4791541845252413348
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -38,13 +38,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6864109449133013493}
-  - component: {fileID: 6861845180192996799}
-  - component: {fileID: 6854352586483621083}
-  - component: {fileID: 6891873505614526091}
-  - component: {fileID: -5275485960050070890}
-  - component: {fileID: 7079932151677895146}
-  - component: {fileID: -1794971452224315405}
+  - component: {fileID: 4788964168601851224}
+  - component: {fileID: 4759686266890408210}
+  - component: {fileID: 4767178920142123126}
   m_Layer: 0
   m_Name: tent-medik
   m_TagString: Untagged
@@ -52,36 +48,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6864109449133013493
+--- !u!4 &4788964168601851224
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866053531164441353}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: 0, z: 70}
+  m_GameObject: {fileID: 4791541845252413348}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9065425138531134907}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 6864109449133013493}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6861845180192996799
+--- !u!33 &4759686266890408210
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866053531164441353}
+  m_GameObject: {fileID: 4791541845252413348}
   m_Mesh: {fileID: 4300000, guid: 8b4405832ce9c43949fe91c5d514fe59, type: 3}
---- !u!23 &6854352586483621083
+--- !u!23 &4767178920142123126
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866053531164441353}
+  m_GameObject: {fileID: 4791541845252413348}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -114,6 +110,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &6866053531164441353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6864109449133013493}
+  - component: {fileID: 6891873505614526091}
+  - component: {fileID: -1794971452224315405}
+  - component: {fileID: -5275485960050070890}
+  - component: {fileID: 7079932151677895146}
+  m_Layer: 0
+  m_Name: tent-medik
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6864109449133013493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866053531164441353}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4788964168601851224}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6891873505614526091
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -127,6 +158,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.000001, y: 2.75, z: 3.3750007}
   m_Center: {x: 0, y: 1.375, z: -0.00000011920929}
+--- !u!114 &-1794971452224315405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866053531164441353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &-5275485960050070890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +233,7 @@ MonoBehaviour:
     type: 3}
   spawnMark: {fileID: 0}
   isBuilding: 1
-  animModel: {fileID: 6866053531164441353}
+  animModel: {fileID: 4791541845252413348}
   height: 2.75
   buildTime: 6
 --- !u!114 &7079932151677895146
@@ -212,25 +265,3 @@ MonoBehaviour:
   lineOfSightPenetration: 0
   cellBased: 0
   antiFlicker: 0
---- !u!114 &-1794971452224315405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866053531164441353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  observableSearch: 2
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents: []
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0

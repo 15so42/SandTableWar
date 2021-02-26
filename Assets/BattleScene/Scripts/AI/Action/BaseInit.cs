@@ -10,7 +10,7 @@
         public SharedVector3 destinationPos;
         public SharedVector3 lastDestinationPos;
 
-        public override void OnStart()
+        public override void OnAwake()
         {
             selfBattleUnit.Value = GetComponent<BattleUnitBase>();
             selfGameObject.Value = gameObject;

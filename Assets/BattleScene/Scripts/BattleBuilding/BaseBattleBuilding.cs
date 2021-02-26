@@ -34,19 +34,13 @@ public class BaseBattleBuilding : BattleUnitBase
     {
         if (isBuilding)
         {
-            animModel.transform.position -= Vector3.up * height;
+            animModel.transform.localPosition -= Vector3.up * height;
 
             var sequence = DOTween.Sequence();
             sequence.Join(animModel.transform.DOShakeScale(.5f, .5f, buildTime/2));
-            for (int i = 0; i < buildTime; i++)
-            {
-                // if (buildTime % 2 == 0 && i%2==0 || buildTime%2==1 && i%2==1 || i==0) 
-                // {
-                    sequence.Append(animModel.transform.DOJump(animModel.transform.position + Vector3.up * i * (height/buildTime), 0.5f, 1, 0.2f));
-                    sequence.AppendInterval(0.8f);
-
-                //}
-            }
+            
+            sequence.Append(animModel.transform.DOLocalJump(animModel.transform.localPosition + Vector3.up * height, 0.1f, buildTime, buildTime));
+            
             sequence.OnComplete(() =>
             {
                 isBuilding = false;
@@ -62,7 +56,7 @@ public class BaseBattleBuilding : BattleUnitBase
     void PlayBuildCompleteFx()
     {
         
-        GetComponent<MeshRenderer>().material.DOColor(new Color(1, 1, 1, 1), "_EmissionColor", 0.3f)
+        animModel.GetComponent<MeshRenderer>().material.DOColor(new Color(1, 1, 1, 1), "_EmissionColor", 0.3f)
             .SetLoops(2, LoopType.Yoyo);
     }
 

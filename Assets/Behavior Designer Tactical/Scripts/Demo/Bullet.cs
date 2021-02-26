@@ -7,7 +7,7 @@ namespace BehaviorDesigner.Runtime.Tactical
         // The speed of the bullet
         public float speed;
         // The amount of damage the bullet does
-        public float damageAmount = 5;
+        public int damageAmount = 5;
         // Destroy itself after this amount of time
         public float selfDestructTime = 5;
 

@@ -9,7 +9,7 @@
         /// Take damage by the specified amount.
         /// </summary>
         /// <param name="amount">The amount of damage to take.</param>
-        void Damage(float amount);
+        void Damage(int amount);
 
         /// <summary>
         /// Is the object currently alive?

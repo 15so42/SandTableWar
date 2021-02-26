@@ -31,7 +31,7 @@ public class BuildingSpawnItem : MonoBehaviour,IBeginDragHandler,IDragHandler,IE
         MeshRenderer previewMeshRenderer = previewBuildingGo.AddComponent<MeshRenderer>();
         previewMeshRenderer.shadowCastingMode = ShadowCastingMode.Off;
         previewBuildingGo.AddComponent<CollisionDetection>();
-        MeshFilter building = BattleUnitBaseFactory.Instance.GetBattleUnitLocally(buildingInfo).GetComponent<MeshFilter>();
+        MeshFilter building = BattleUnitBaseFactory.Instance.GetBattleUnitLocally(buildingInfo).GetComponent<BaseBattleBuilding>().animModel.GetComponent<MeshFilter>();
         previewMeshFilter.mesh = building.sharedMesh;
         //碰撞体
         MeshCollider collision = previewBuildingGo.AddComponent<MeshCollider>();

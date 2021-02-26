@@ -8,9 +8,9 @@ namespace BehaviorDesigner.Runtime.Tactical
     public class Health : MonoBehaviour, IDamageable
     {
         // The amount of health to begin with
-        public float startHealth = 100;
+        public int startHealth = 100;
 
-        private float currentHealth;
+        private int currentHealth;
 
         /// <summary>
         /// Initailzies the current health.
@@ -24,7 +24,7 @@ namespace BehaviorDesigner.Runtime.Tactical
         /// Take damage. Deactivate if the amount of remaining health is 0.
         /// </summary>
         /// <param name="amount"></param>
-        public void Damage(float amount)
+        public void Damage(int amount)
         {
             currentHealth = Mathf.Max(currentHealth - amount, 0);
 

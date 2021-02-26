@@ -59,6 +59,7 @@ public class FightingManager
         {
             BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(298),Vector3.zero,-1);//生成碉堡
 
+            return;
             for (int i = 0; i < logicMap.minerals.Count; i++)
             {
                 Transform tmpMineral = logicMap.minerals[i];

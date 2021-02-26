@@ -11,6 +11,7 @@
         public SharedBattleUnit selfBattleUnit;
         public SharedBattleUnit enemyBattleUnit;
         public SharedGameObject returnedEnemy;
+        public SharedGameObjectList targetGroup;
 
         private BattleUnitBaseProp prop;
 
@@ -74,6 +75,8 @@
         private void SetEnemy(BattleUnitBase value)
         {
             enemyBattleUnit.Value = value;
-            returnedEnemy.Value = value.gameObject;
+            var o = value.gameObject;
+            returnedEnemy.Value = o;
+            targetGroup.Value.Add(o);
         }
     }

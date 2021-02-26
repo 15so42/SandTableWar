@@ -14,15 +14,15 @@ public class SetMoveSpeedByNavSpeed : Action
 
     [BehaviorDesigner.Runtime.Tasks.Tooltip("nav组件速度大于这个值人物开始以最大速度移动，小于这个值不懂")]
     public float sppedThreshould = 1;
-    public float maxSpeed=5;
+    public float maxSpeed=2;
     public float moveSpeedDampTime=10f;
     
-    private float refAnimSpeed;
+    public float refAnimSpeed;
 
-    public override void OnStart()
+    public override void OnAwake()
     {
         navMeshAgent = selfUnit.Value.transform.GetComponent<NavMeshAgent>();
-        anim = navMeshAgent.GetComponent<Animator>();
+        anim = navMeshAgent.transform.GetComponent<Animator>();
     }
 
     public override TaskStatus OnUpdate()
@@ -33,11 +33,7 @@ public class SetMoveSpeedByNavSpeed : Action
             Mathf.SmoothDamp(curAnimSeped,
                 targetAnimSpeed,
                 ref refAnimSpeed, moveSpeedDampTime * Time.deltaTime));
-       
-        if (Mathf.Abs(curAnimSeped - targetAnimSpeed) < 0.01f)
-        {
-            return TaskStatus.Success;
-        }
+        
         return TaskStatus.Running;
     }
 }
