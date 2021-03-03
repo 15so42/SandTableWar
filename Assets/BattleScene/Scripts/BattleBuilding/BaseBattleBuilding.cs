@@ -30,6 +30,7 @@ public class BaseBattleBuilding : BattleUnitBase
     [Header("建造动画模型")]public GameObject animModel;
     public float height=5f;
     public int buildTime=5;
+    public float buildingModelOffset;
     protected override void Awake()
     {
         if (isBuilding)
@@ -39,7 +40,7 @@ public class BaseBattleBuilding : BattleUnitBase
             var sequence = DOTween.Sequence();
             sequence.Join(animModel.transform.DOShakeScale(.5f, .5f, buildTime/2));
             
-            sequence.Append(animModel.transform.DOLocalJump(animModel.transform.localPosition + Vector3.up * height, 0.1f, buildTime, buildTime));
+            sequence.Append(animModel.transform.DOLocalJump(animModel.transform.localPosition + Vector3.up * (height + buildingModelOffset), 0.3f, buildTime, buildTime));
             
             sequence.OnComplete(() =>
             {

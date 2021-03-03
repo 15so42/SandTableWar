@@ -536,11 +536,13 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     public void OnEnterBuilding(DefenceBuilding building)
     {
         isInBuilding = true;
+        behaviorDesigner.SetVariableValue("isInBuilding",true);
         defenceBuilding = building;
     }
 
     public void OutBuilding()
     {
+        behaviorDesigner.SetVariableValue("isInBuilding",false);
         isInBuilding = false;
     }
     #endregion

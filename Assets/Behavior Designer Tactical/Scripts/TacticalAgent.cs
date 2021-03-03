@@ -25,6 +25,8 @@ namespace BehaviorDesigner.Runtime.Tactical
         public Vector3 AttackOffset { set { attackOffset = value; } }
         public Vector3 TargetOffset { set { targetOffset = value; } }
 
+        
+
         /// <summary>
         /// Caches the component referneces.
         /// </summary>
@@ -53,6 +55,8 @@ namespace BehaviorDesigner.Runtime.Tactical
         /// Returns the radius of the agent.
         /// </summary>
         public abstract float Radius();
+
+       
 
         /// <summary>
         /// Starts or stops the rotation from updating. Not all implementations will use this.
@@ -99,6 +103,19 @@ namespace BehaviorDesigner.Runtime.Tactical
                 }
             }
             return false;
+        }
+        
+        /// <summary>
+        /// Can the agent see the target transform?
+        /// </summary>
+        public bool CanSeeTargetByDistance()
+        {
+            var distance = (transform.position - targetTransform.position).magnitude;
+            if (distance >= attackAgent.AttackDistance()) {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

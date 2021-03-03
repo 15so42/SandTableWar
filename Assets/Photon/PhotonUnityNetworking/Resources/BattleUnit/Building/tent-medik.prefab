@@ -199,8 +199,8 @@ MonoBehaviour:
   weapon: {fileID: 0}
   prop:
     weaponProficiency: 1
-    maxHp: 3600
-    hp: 3600
+    maxHp: 36000
+    hp: 36000
     defense: 100
     viewDistance: 10
     attackDistance: 10
@@ -236,6 +236,7 @@ MonoBehaviour:
   animModel: {fileID: 4791541845252413348}
   height: 2.75
   buildTime: 6
+  buildingModelOffset: 0
 --- !u!114 &7079932151677895146
 MonoBehaviour:
   m_ObjectHideFlags: 0

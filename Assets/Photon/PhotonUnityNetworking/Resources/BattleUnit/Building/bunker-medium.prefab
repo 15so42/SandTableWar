@@ -292,6 +292,7 @@ MonoBehaviour:
   animModel: {fileID: 3638050296220507716}
   height: 0
   buildTime: 5
+  buildingModelOffset: 0
   defencePoses:
   - {fileID: 3636838294905752750}
   - {fileID: 3636838296089035695}

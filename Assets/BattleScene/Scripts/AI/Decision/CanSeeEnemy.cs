@@ -32,6 +32,8 @@
                     //Debug.Log($"[{nameof(FindEnemyDecision)}]本来就有敌人且在视野范围内");
                     return TaskStatus.Success;
                 }
+
+                enemyBattleUnit.Value = null;
             }
             
             //每一秒投射一次球形碰撞體來尋找敵人
@@ -77,6 +79,7 @@
             enemyBattleUnit.Value = value;
             var o = value.gameObject;
             returnedEnemy.Value = o;
-            targetGroup.Value.Add(o);
+            if(!targetGroup.Value.Contains(o))
+                targetGroup.Value.Add(o);
         }
     }

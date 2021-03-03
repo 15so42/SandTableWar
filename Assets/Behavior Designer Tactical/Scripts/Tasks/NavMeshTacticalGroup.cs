@@ -51,6 +51,11 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
                 return destinationSet && !navMeshAgent.pathPending && (transform.position - navMeshAgent.destination).magnitude <= navMeshAgent.stoppingDistance;
             }
 
+            public float GetStoppingDistance()
+            {
+                return navMeshAgent.stoppingDistance;
+            }
+
             /// <summary>
             /// Rotates towards the target rotation.
             /// </summary>

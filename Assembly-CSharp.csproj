@@ -73,6 +73,8 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\SetMoveSpeedByNavSpeed.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\SyncLastDestinationPos.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\WeaponUpdate.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\MyRetreat.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncDestinationPosToCurPos.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Decorator\EventReceiverChecker.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\CanSeeEnemy.cs" />
