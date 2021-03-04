@@ -37,15 +37,15 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
             // Try to attack the enemy while retreating.
             FindAttackTarget();
             if (tacticalAgent.CanSeeTargetByDistance()) {
-                Debug.LogError("true;;");
+                
                 //tacticalAgent.UpdateRotation(false);
                 if (tacticalAgent.RotateTowardsPosition(tacticalAgent.TargetTransform.position)) {
                     tacticalAgent.TryAttack();
                 }
             } else {
                 // The agent can update its rotation when the agent is far enough away that it can't attack.
-                Debug.LogError("false;;");
-                //tacticalAgent.UpdateRotation(true);
+               
+                tacticalAgent.UpdateRotation(true);
             }
 
             // The agents are only save once they have moved more than the safe distance away from the attack point.
@@ -62,4 +62,6 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
         
         
     }
+    
+    
 }

@@ -49,7 +49,15 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     [Header("受击点,别人攻击此目标时瞄准的位置")] public Transform victimPos;
     [Header("受击偏移，如果没有设置victimPos则使用这个")] public float victimOffset=1.5f;
     [Header("旋转阻尼")] public float rotateDamp = 10;
+    //重写寻路组件旋转控制
+    private bool overrideRotationCtrl=true;
+    private bool overrideMoveCtrl=true;
+    [Header("===移动===")]
+    public bool moveByAnim;
 
+    public float moveSpeedMultiplier=1;
+
+    [Header("兵种id")]
     public int configId;//配置id，即兵种id，1表示Solider1，2表示Tank_A等等
 
     private Outlinable victimOutline;
@@ -71,16 +79,20 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     [HideInInspector] public Vector3 spawnTargetPos;
 
     private FogOfWarUnit fogOfWarUnit;
+    private Animator animator;
+    private Rigidbody rigidbody;
     #region 逻辑控制
     protected virtual void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         if (navMeshAgent)
         {
-            navMeshAgent.angularSpeed = 0;//禁用nav的旋转
-            navMeshAgent.updatePosition = false;
+            navMeshAgent.updateRotation = !overrideRotationCtrl;
+            navMeshAgent.updatePosition = !overrideMoveCtrl;
         }
-           
+
+        animator = GetComponent<Animator>();
+        rigidbody = GetComponent<Rigidbody>();
         photonView = GetComponent<PhotonView>();
         weapon = GetComponent<Weapon>();//部分建筑类也需要有weapon，部分建筑可以攻击，不会攻击不需要添加weapon
         if (weapon != null)
@@ -166,24 +178,66 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
             
         }
         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
+        if(navMeshAgent)
+            Debug.Log(navMeshAgent.updateRotation);
         
+    }
+
+    /// <summary>
+    /// 开启火关闭转向
+    /// </summary>
+    /// <param name="update"></param>
+    public void UpdateRotation(bool update)
+    {
+        overrideRotationCtrl = update;
     }
 
     private Vector3 refDir;
     protected virtual void RotationControl()
     {
+        if (overrideRotationCtrl == false)
+            return;
         Vector3 horDir = navMeshAgent.desiredVelocity;
         horDir.y = 0;
         transform.forward = Vector3.SmoothDamp(transform.forward, horDir, ref refDir, Time.deltaTime * rotateDamp);
     }
+
+    private void OnAnimatorMove()
+    {
+        if (animator)
+        {
+            if (moveByAnim)
+            {
+                refAnimDeltaPos = animator.deltaPosition;
+            }
+        }
+           
+    }
     
+    private Vector3 refAnimDeltaPos;
     protected virtual void MovementControl()
     {
-        Vector3 horDir = navMeshAgent.desiredVelocity;
-        //transform.forward = Vector3.SmoothDamp(transform.forward, horDir, ref refDir, Time.deltaTime * rotateDamp);
-        transform.Translate(Vector3.forward*horDir.magnitude*Time.deltaTime,Space.Self);
+        if (overrideMoveCtrl == false)
+            return;
+        if (moveByAnim)
+        {
+            transform.Translate((refAnimDeltaPos*moveSpeedMultiplier)/Time.deltaTime,Space.World);
+            // Vector3 v=(refAnimDeltaPos*moveSpeedMultiplier)/Time.deltaTime;
+            // v.y = rigidbody.velocity.y;
+            // rigidbody.velocity = v;
+        }
+        else
+        {
+            Vector3 horDir = navMeshAgent.desiredVelocity;
+            transform.Translate(Vector3.forward * (horDir.magnitude * Time.deltaTime),Space.Self);
+        }
+       
         navMeshAgent.nextPosition = transform.position;
     }
+
+    
+   
+
     #endregion
 
     #region 销毁处理

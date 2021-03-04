@@ -16,12 +16,14 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
         {
             private NavMeshAgent navMeshAgent;
             private bool destinationSet;
+            private BattleUnitBase battleUnitBase;
 
             /// <summary>
             /// Caches the component references and initialize default values.
             /// </summary>
             public NavMeshTacticalAgent(Transform agent) : base(agent)
             {
+                battleUnitBase = agent.GetComponent<BattleUnitBase>();
                 navMeshAgent = agent.GetComponent<NavMeshAgent>();
 
                 if (navMeshAgent.hasPath) {
@@ -84,6 +86,11 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
             /// </summary>
             public override void UpdateRotation(bool update)
             {
+                if (battleUnitBase)
+                {
+                    battleUnitBase.UpdateRotation(update);
+                    return;
+                }
                 navMeshAgent.updateRotation = update;
             }
 

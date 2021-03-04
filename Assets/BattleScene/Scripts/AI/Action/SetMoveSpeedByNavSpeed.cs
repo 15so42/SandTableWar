@@ -10,14 +10,16 @@ public class SetMoveSpeedByNavSpeed : Action
     public SharedBattleUnit selfUnit;
     private NavMeshAgent navMeshAgent;
     private Animator anim;
-    public string moveAnimName = "Speed";
+    public string right = "Right";
+    public string forward = "Forward";
 
     [BehaviorDesigner.Runtime.Tasks.Tooltip("nav组件速度大于这个值人物开始以最大速度移动，小于这个值不懂")]
     public float sppedThreshould = 1;
     public float maxSpeed=2;
     public float moveSpeedDampTime=10f;
     
-    public float refAnimSpeed;
+    public float refForwardSpeed;
+    public float refRightSpeed;
 
     public override void OnAwake()
     {
@@ -27,13 +29,32 @@ public class SetMoveSpeedByNavSpeed : Action
 
     public override TaskStatus OnUpdate()
     {
-        float curAnimSeped = anim.GetFloat(moveAnimName);
-        float targetAnimSpeed = navMeshAgent.desiredVelocity.magnitude > sppedThreshould ? maxSpeed : 0;
-        anim.SetFloat(moveAnimName,
-            Mathf.SmoothDamp(curAnimSeped,
-                targetAnimSpeed,
-                ref refAnimSpeed, moveSpeedDampTime * Time.deltaTime));
+        float curRightSpeed = anim.GetFloat(right);
+        float curForwardSpeed = anim.GetFloat(forward);
+
+        Vector2 localDir = VectorFormWorldToLocal(navMeshAgent.desiredVelocity, transform).normalized;
+        float targetRightSpeed = localDir.x;
+        float targetForwardSpeed = localDir.y;
+        Debug.DrawRay(transform.position,(Vector3.forward*targetForwardSpeed+Vector3.right*targetRightSpeed)*10,Color.red);
+       
+        anim.SetFloat(right,
+            Mathf.SmoothDamp(curRightSpeed,
+                targetRightSpeed,
+                ref refRightSpeed, moveSpeedDampTime * Time.deltaTime));
+        
+        anim.SetFloat(forward,
+            Mathf.SmoothDamp(curForwardSpeed,
+                targetForwardSpeed,
+                ref refForwardSpeed, moveSpeedDampTime * Time.deltaTime));
         
         return TaskStatus.Running;
+    }
+    
+    Vector2 VectorFormWorldToLocal(Vector3 worldDirection, Transform localCoord)
+    {
+        float x = Vector3.Dot(worldDirection, localCoord.right);
+        
+        float y = Vector3.Dot(worldDirection, localCoord.forward);
+        return new Vector2(x, y);
     }
 }
