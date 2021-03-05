@@ -18,7 +18,7 @@ public class SetMoveSpeedByNavSpeed : Action
     
     private float refForwardSpeed;
     private float refRightSpeed;
-
+    public float targetRightSpeed;
     public override void OnAwake()
     {
         navMeshAgent = selfUnit.Value.transform.GetComponent<NavMeshAgent>();
@@ -32,7 +32,7 @@ public class SetMoveSpeedByNavSpeed : Action
 
         Vector2 localDir = VectorFormWorldToLocal(navMeshAgent.desiredVelocity, transform).normalized;
         float animSpeedRate = (float) navMeshAgent.velocity.magnitude / navMeshAgent.speed;//导航组件当前速度与最大速度的比值
-        float targetRightSpeed = localDir.x*animSpeedRate;
+        targetRightSpeed = localDir.x*animSpeedRate;
         float targetForwardSpeed = localDir.y*animSpeedRate;
         Debug.DrawRay(transform.position,(transform.forward*targetForwardSpeed+transform.right*targetRightSpeed)*10,Color.red);
        
@@ -48,7 +48,7 @@ public class SetMoveSpeedByNavSpeed : Action
 
         if (Vector3.Distance(navMeshAgent.destination,transform.position)<=navMeshAgent.stoppingDistance)
         {
-            if (curRightSpeed < 0.05f && curForwardSpeed < 0.05f)
+            if (curRightSpeed <= 0.05 && curForwardSpeed < 0.05f)
             {
                 anim.SetFloat(right,0f);
                 anim.SetFloat(forward,0f);
