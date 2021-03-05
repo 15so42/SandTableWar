@@ -178,9 +178,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
             
         }
         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
-        if(navMeshAgent)
-            Debug.Log(navMeshAgent.updateRotation);
-        
+
     }
 
     /// <summary>
