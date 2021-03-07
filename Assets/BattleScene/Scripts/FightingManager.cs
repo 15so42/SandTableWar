@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class FightingManager
 {
-    public BattleSceneState battleSceneState;
+    public SceneState battleSceneState;
     public LogicMap logicMap;
     public List<BattleUnitBase> selectedUnits = new List<BattleUnitBase>(); //选中的单位
 
@@ -39,20 +39,44 @@ public class FightingManager
     public PreviewBuilding previewBuilding;//建造预览中的建筑
     public GameObject usingItemGo;
 
+    private GameManager gameManager;
     public void Init()
     {
         mainCamera = Camera.main;
         logicMap = Object.FindObjectOfType<LogicMap>();
-        if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(GameManager.PLAYER_CAMP_ID, out var value))
+        gameManager=GameManager.Instance;
+        //单机
+        if (gameManager.gameMode == GameMode.Campaign)
         {
-            campId = (int)value;
-        };
+            campId = 0;
+        }else if (gameManager.gameMode == GameMode.PVP)
+        {
+            if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(GameManager.PLAYER_CAMP_ID, out var value))
+            {
+                campId = (int)value;
+            };
+        }
         selectMarkInCache = Resources.Load<GameObject>(SelectMarkPath);
         battleResMgr=new BattleResMgr();
     }
 
     public void SpawnBase()
     {
+        //单机
+        if (gameManager.gameMode==GameMode.Campaign)
+        {
+            //友方基地
+            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(299),logicMap.GetBasePosByPlayerId(campId),campId);
+            BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(campId));//相机位置
+            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(298),Vector3.zero,-1);//生成碉堡
+            //敌人基地
+            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(299),logicMap.GetBasePosByPlayerId(campId+1),campId+1);
+            
+            return;
+        }
+        
+        //联网
+        //基地
         BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(299),logicMap.GetBasePosByPlayerId(campId),campId);
         BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(campId));
         if (PhotonNetwork.IsMasterClient)
@@ -153,6 +177,16 @@ public class FightingManager
                 
             }
             
+        }
+        
+        //游戏时间控制，用于Debug
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Time.timeScale = 0.1f;
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Time.timeScale = 1f;
         }
         
     }

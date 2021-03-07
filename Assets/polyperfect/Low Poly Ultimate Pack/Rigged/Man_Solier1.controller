@@ -320,7 +320,7 @@ BlendTree:
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 0.3
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
@@ -329,7 +329,7 @@ BlendTree:
       type: 3}
     m_Threshold: 2
     m_Position: {x: 0, y: 1}
-    m_TimeScale: 0.3
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
@@ -338,7 +338,7 @@ BlendTree:
       type: 3}
     m_Threshold: 4
     m_Position: {x: -0.71, y: 0.71}
-    m_TimeScale: 0.3
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
@@ -347,7 +347,7 @@ BlendTree:
       type: 3}
     m_Threshold: 6
     m_Position: {x: 0.71, y: 0.71}
-    m_TimeScale: 0.3
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
@@ -356,7 +356,7 @@ BlendTree:
       type: 3}
     m_Threshold: 8
     m_Position: {x: -1, y: 0}
-    m_TimeScale: 0.3
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Forward
     m_Mirror: 0
@@ -365,7 +365,7 @@ BlendTree:
       type: 3}
     m_Threshold: 10
     m_Position: {x: 1, y: 0}
-    m_TimeScale: 0.3
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Forward
     m_Mirror: 0
@@ -374,7 +374,7 @@ BlendTree:
       type: 3}
     m_Threshold: 12
     m_Position: {x: -0.71, y: -0.71}
-    m_TimeScale: 0.3
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Forward
     m_Mirror: 0
@@ -383,7 +383,7 @@ BlendTree:
       type: 3}
     m_Threshold: 14
     m_Position: {x: 0.71, y: -0.71}
-    m_TimeScale: 0.3
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Forward
     m_Mirror: 0
@@ -392,7 +392,7 @@ BlendTree:
       type: 3}
     m_Threshold: 16
     m_Position: {x: 0, y: -1}
-    m_TimeScale: 0.3
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Forward
     m_Mirror: 0
@@ -559,7 +559,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Movement
-  m_Speed: 1
+  m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []

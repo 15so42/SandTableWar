@@ -6,6 +6,12 @@ public enum DamageType{
 	Physical,//物理伤害
 	Real//魔法伤害
 }
+
+public enum GameMode
+{
+	Campaign,//单机
+	PVP
+}
 public class GameManager
 {
 	//------------------------------------------------------------------------
@@ -23,6 +29,7 @@ public class GameManager
 	
 
 	public SceneStateController sceneStateController;
+	public GameMode gameMode;
 	
 	public const string PLAYER_READY = "IsPlayerReady";
 	public const string PLAYER_LOADED_LEVEL = "PlayerLoadedLevel";
@@ -78,6 +85,11 @@ public class GameManager
 		if (GetSceneController().state.GetType() == typeof(BattleSceneState))
 		{
 			return (sceneStateController.state as BattleSceneState)?.fightingManager;
+		}
+
+		if (GetSceneController().state.GetType() == typeof(SinglePlayerTestSceneState))
+		{
+			return (sceneStateController.state as SinglePlayerTestSceneState)?.fightingManager;
 		}
 
 		return null;

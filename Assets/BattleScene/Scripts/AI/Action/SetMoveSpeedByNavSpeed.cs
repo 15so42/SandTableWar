@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tactical.Tasks;
 using BehaviorDesigner.Runtime.Tasks;
+using BehaviorDesigner.Runtime.Tasks.Movement;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -45,17 +46,20 @@ public class SetMoveSpeedByNavSpeed : Action
             Mathf.SmoothDamp(curForwardSpeed,
                 targetForwardSpeed,
                 ref refForwardSpeed, SpeedAnimDampTime * Time.deltaTime));
-
-        if (Vector3.Distance(navMeshAgent.destination,transform.position)<=navMeshAgent.stoppingDistance)
-        {
-            if (curRightSpeed <= 0.05 && curForwardSpeed < 0.05f)
-            {
-                anim.SetFloat(right,0f);
-                anim.SetFloat(forward,0f);
-                return TaskStatus.Success;
-            }
-        }
+        
         return TaskStatus.Running;
+    }
+
+    private bool HasArrived()
+    {
+        float remainingDistance;
+        if (navMeshAgent.pathPending) {
+            remainingDistance = float.PositiveInfinity;
+        } else {
+            remainingDistance = navMeshAgent.remainingDistance;
+        }
+
+        return remainingDistance <= navMeshAgent.stoppingDistance;
     }
     
     Vector2 VectorFormWorldToLocal(Vector3 worldDirection, Transform localCoord)

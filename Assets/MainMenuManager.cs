@@ -14,6 +14,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class MainMenuManager : MonoBehaviourPunCallbacks,IOnEventCallback
 {
+	[SerializeField] private Button CampaignBtn;//单机模式
 	[SerializeField]private Button matchBtn;//匹配按钮，点击匹配按钮后开始匹配
 	[SerializeField]private Text loadingTips;//显示服务器连接状态
 
@@ -45,20 +46,23 @@ public class MainMenuManager : MonoBehaviourPunCallbacks,IOnEventCallback
 		    SceneManager.LoadScene("StartScene");
 	    }
 
+	    //单机按钮
+	    CampaignBtn.gameObject.SetActive(true);
 	    // 匹配按鈕
-        matchBtn.gameObject.SetActive(false);
+        matchBtn.gameObject.SetActive(true);
         //匹配计时面板
         matchTimePanel.gameObject.SetActive(false);
         //准备面板
         readyPanel.gameObject.SetActive(false);
+        loadingTips.gameObject.SetActive(false);
+        
         RegisterEvent();
-        //连接服务器
-        ConnectToCNServer(); 
         
     }
 
     void RegisterEvent()
     {
+	    CampaignBtn.onClick.AddListener(OnCampaignBtnClick);
 	    matchBtn.onClick.AddListener(OnMatchGameBtnClick);
 	    cancelMatchBtn.onClick.AddListener(OnCancelMatchBtnClick);
 	    readyBtn.onClick.AddListener(OnReadyBtnClick);
@@ -67,14 +71,26 @@ public class MainMenuManager : MonoBehaviourPunCallbacks,IOnEventCallback
 
     void UnRegisterEvent()
     {
+	    CampaignBtn.onClick.RemoveListener(OnCampaignBtnClick);
 	    matchBtn.onClick.RemoveListener(OnMatchGameBtnClick);
 	    readyBtn.onClick.RemoveListener(OnReadyBtnClick);
 	    cancelReadyBtn.onClick.RemoveListener(OnCancelReadyBtnClick);
     }
     
+    //单机模式
+    public void OnCampaignBtnClick()
+    {
+	    LoadCampaignScene();
+    }
+    
     // 開始匹配
     private void OnMatchGameBtnClick()
     {
+	    //连接服务器
+	    CampaignBtn.gameObject.SetActive(false);
+	    loadingTips.gameObject.SetActive(true);
+	    ConnectToCNServer(); 
+
 	    PhotonNetwork.JoinRandomRoom();
     }
 
@@ -284,6 +300,17 @@ public class MainMenuManager : MonoBehaviourPunCallbacks,IOnEventCallback
         
         private void LoadBattleSceneLocally()
         {
+	        GameManager.Instance.gameMode = GameMode.PVP;
 	        GameManager.Instance.sceneStateController.SetState(new BattleSceneState(GameManager.Instance.sceneStateController), "BattleScene");
+        }
+
+        //加载战役场景
+        private void LoadCampaignScene()
+        {
+	        GameManager.Instance.gameMode = GameMode.Campaign;
+	        PhotonNetwork.OfflineMode = true;
+	        GameManager.Instance.sceneStateController.SetState(new SinglePlayerTestSceneState(GameManager.Instance.sceneStateController), "SinglePlayerTestScene");
+
+	        
         }
 }

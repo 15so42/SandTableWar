@@ -821,6 +821,7 @@
      <Compile Include="Assets\GameCode\SceneState\ISceneState.cs" />
      <Compile Include="Assets\GameCode\SceneState\MainMenuSceneState.cs" />
      <Compile Include="Assets\GameCode\SceneState\SceneStateController.cs" />
+     <Compile Include="Assets\GameCode\SceneState\SinglePlayerTestSceneState.cs" />
      <Compile Include="Assets\GameCode\SceneState\StartSceneState.cs" />
      <Compile Include="Assets\GameCode\Tools\ResFactory.cs" />
      <Compile Include="Assets\GameCode\Tools\Singleton.cs" />

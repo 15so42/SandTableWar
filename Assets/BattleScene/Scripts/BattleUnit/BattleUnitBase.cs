@@ -87,8 +87,9 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         navMeshAgent = GetComponent<NavMeshAgent>();
         if (navMeshAgent)
         {
+          
             navMeshAgent.updateRotation = !overrideRotationCtrl;
-            navMeshAgent.updatePosition = !overrideMoveCtrl;
+            //navMeshAgent.updatePosition = !overrideMoveCtrl;
         }
 
         animator = GetComponent<Animator>();
@@ -173,7 +174,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
             if (navMeshAgent != null)
             {
                 RotationControl();
-                MovementControl();
+                //MovementControl();
             }
             
         }
@@ -551,7 +552,8 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
 
     public void UpdateHpUIInPhoton()
     {
-        PhotonView.Get(this).RPC(nameof(UpdateHpUI),RpcTarget.All,prop.hp);
+        UpdateHpUI(prop.hp);
+        PhotonView.Get(this).RPC(nameof(UpdateHpUI),RpcTarget.Others,prop.hp);
     }
 
     [PunRPC]
@@ -562,7 +564,8 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
 
     public void SetCampInPhoton(int value)
     {
-        PhotonView.Get(this).RPC(nameof(SetCampId),RpcTarget.All,value);
+        SetCampId(value);
+        PhotonView.Get(this).RPC(nameof(SetCampId),RpcTarget.Others,value);
     }
     #endregion
 

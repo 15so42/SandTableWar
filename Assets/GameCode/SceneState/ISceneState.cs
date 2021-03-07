@@ -6,7 +6,7 @@ public class SceneState
 {
 	// 狀態名稱
 
-	protected string StateName { get; set; } = "ISceneState";
+	public string StateName { get; set; } = "ISceneState";
 
 	// 控制者
 	protected readonly SceneStateController sceneController = null;

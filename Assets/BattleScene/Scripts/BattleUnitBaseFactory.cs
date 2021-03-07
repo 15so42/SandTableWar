@@ -9,9 +9,17 @@ public class BattleUnitBaseFactory : Singleton<BattleUnitBaseFactory>
     public BattleUnitBase SpawnBattleUnitAtPos(SpawnBattleUnitConfigInfo soliderInfo,Vector3 pos,int campId)
     {
         string path = (soliderInfo.id < 151) ? SoliderPath : BuildingPath;
+        GameObject spawnedBase;
+        if (GameManager.Instance.gameMode == GameMode.Campaign)
+        {
+            spawnedBase = GameObject.Instantiate(Resources.Load<GameObject>($"{path}{soliderInfo.resourceName}"), pos,
+                Quaternion.identity);
+        }
+        else
+        {
+            spawnedBase=PhotonNetwork.Instantiate($"{path}{soliderInfo.resourceName}", pos, Quaternion.identity);
+        }
         
-        GameObject spawnedBase=PhotonNetwork.Instantiate($"{path}{soliderInfo.resourceName}", pos, Quaternion.identity);
-      
         BattleUnitBase spawnedUnit = spawnedBase.GetComponent<BattleUnitBase>();
        
         spawnedUnit.configId = soliderInfo.id;
