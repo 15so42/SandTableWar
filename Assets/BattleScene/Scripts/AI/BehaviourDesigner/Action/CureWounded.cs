@@ -1,4 +1,5 @@
-﻿using UnityEngine.AI;
+﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace BehaviorDesigner.Runtime.Tactical.Tasks
 {
@@ -12,10 +13,21 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
         public SharedBattleUnit wounded;
         
         private NavMeshAgent navMeshAgent;
+
+        private bool startRotation;
         public override void OnAwake()
         {
             base.OnAwake();
             navMeshAgent = GetComponent<NavMeshAgent>();
+        }
+
+        public override void OnStart()
+        {
+            navMeshAgent.isStopped = false;
+            base.OnStart();
+            startRotation = selfUnit.Value.overrideRotationCtrl;
+            selfUnit.Value.UpdateRotation(true);
+            
         }
 
         public  override TaskStatus  OnUpdate()
@@ -31,9 +43,12 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
             
             if (IsInCureRange()) 
             {
-                navMeshAgent.isStopped = true;
-                (selfUnit.Value.animCtrl as MedicalAnimCtrl).CureAnim();
-                return TaskStatus.Success;
+                if (Vector3.Angle(selfUnit.Value.transform.forward, navMeshAgent.desiredVelocity) < 5)
+                {
+                    navMeshAgent.isStopped = true;
+                    (selfUnit.Value.animCtrl as MedicalAnimCtrl).CureAnim();
+                    return TaskStatus.Success;
+                }
             }
             return TaskStatus.Running;
             
@@ -42,7 +57,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
         public override void OnEnd()
         {
             base.OnEnd();
-            navMeshAgent.isStopped = false;
+            selfUnit.battleUnitBase.UpdateRotation(startRotation);
         }
 
         bool IsInCureRange()

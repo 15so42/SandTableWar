@@ -50,7 +50,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     [Header("受击偏移，如果没有设置victimPos则使用这个")] public float victimOffset=1.5f;
     [Header("旋转阻尼")] public float rotateDamp = 10;
     //重写寻路组件旋转控制
-    private bool overrideRotationCtrl=true;
+    [HideInInspector]public bool overrideRotationCtrl=true;
     private bool overrideMoveCtrl=true;
     [Header("===移动===")]
     public bool moveByAnim;
