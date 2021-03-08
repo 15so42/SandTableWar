@@ -33,13 +33,13 @@ public class TankAnimCtrl : BattleUnitAnimCtrl
     protected override void OnBattleState()
     {
         //base.OnBattleState();
-        if(stateController.enemy==null)
-            return;
-        Vector3 enemyPos = stateController.enemy.GetVictimPos();
-        Vector3 towerVec = enemyPos - tower.transform.position;
-        towerVec.y = 0;//炮塔只能水平旋转
-        Quaternion q = Quaternion.LookRotation(towerVec);
-        tower.transform.rotation = Quaternion.RotateTowards(tower.transform.rotation, q, towerRotateSpeed * Time.deltaTime);
+        // if(stateController.enemy==null)
+        //     return;
+        // Vector3 enemyPos = stateController.enemy.GetVictimPos();
+        // Vector3 towerVec = enemyPos - tower.transform.position;
+        // towerVec.y = 0;//炮塔只能水平旋转
+        // Quaternion q = Quaternion.LookRotation(towerVec);
+        // tower.transform.rotation = Quaternion.RotateTowards(tower.transform.rotation, q, towerRotateSpeed * Time.deltaTime);
 
 
         //Vector3 canonVec = enemyPos - canon.transform.position;
@@ -53,14 +53,14 @@ public class TankAnimCtrl : BattleUnitAnimCtrl
     /// </summary>
     protected override void OnIdleOrMoveState()
     {
-        //base.OnIdleOrMoveState();
-        //炮塔匀速旋转
-        Vector3 towerVec = stateController.targetPos - tower.transform.position;
-        towerVec.y = 0;//炮塔只能水平旋转
-        Quaternion q = Quaternion.LookRotation(towerVec);
-        tower.transform.rotation = Quaternion.RotateTowards(tower.transform.rotation, q, towerRotateSpeed * Time.deltaTime);
         
-        canon.transform.rotation = Quaternion.RotateTowards(canon.transform.rotation, tower.transform.rotation, canonRotateSpeed * Time.deltaTime);
+        //炮塔匀速旋转
+        // Vector3 towerVec = stateController.targetPos - tower.transform.position;
+        // towerVec.y = 0;//炮塔只能水平旋转
+        // Quaternion q = Quaternion.LookRotation(towerVec);
+        // tower.transform.rotation = Quaternion.RotateTowards(tower.transform.rotation, q, towerRotateSpeed * Time.deltaTime);
+        //
+        // canon.transform.rotation = Quaternion.RotateTowards(canon.transform.rotation, tower.transform.rotation, canonRotateSpeed * Time.deltaTime);
 
     }
 

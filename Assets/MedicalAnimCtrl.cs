@@ -18,10 +18,11 @@ public class MedicalAnimCtrl : BattleUnitAnimCtrl
     public void CureAnimEvent()
     {
         GameObject cureBag = GameObject.Instantiate(aidPacket, aidPacketSpawnPos.position, Quaternion.identity);
-        cureBag.transform.DOJump((stateController as MedicalStateController).cureTarget.GetVictimPos(), 1, 1, 0.5f).OnComplete(
+        MedicalSolider medicalSolider = (battleUnitBase as MedicalSolider);
+        cureBag.transform.DOJump(medicalSolider.cureTarget.GetVictimPos(), 1, 1, 0.5f).OnComplete(
             () =>
             {
-                (stateController as MedicalStateController).CureTargetUnit();
+                medicalSolider.CureTargetUnit();
                 cureBag.GetComponent<RecycleAbleObject>().Recycle();
             });
     }

@@ -60,6 +60,7 @@ public class FightingManager
         battleResMgr=new BattleResMgr();
     }
 
+    private BattleUnitBase enemyBase;
     public void SpawnBase()
     {
         //单机
@@ -70,7 +71,7 @@ public class FightingManager
             BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(campId));//相机位置
             BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(298),Vector3.zero,-1);//生成碉堡
             //敌人基地
-            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(299),logicMap.GetBasePosByPlayerId(campId+1),campId+1);
+            enemyBase=BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(299),logicMap.GetBasePosByPlayerId(campId+1),campId+1);
             
             return;
         }
@@ -187,6 +188,11 @@ public class FightingManager
         if (Input.GetKeyDown(KeyCode.X))
         {
             Time.timeScale = 1f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            (enemyBase as BaseBattleBuilding).AddUnitToSpawnStack(1);
         }
         
     }

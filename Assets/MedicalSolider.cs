@@ -6,6 +6,7 @@ public class MedicalSolider : BattleUnitBase
 {
     public int curePoint;
     public int lastTime;
+    public BattleUnitBase cureTarget;
     
     protected override void Awake()
     {
@@ -19,9 +20,28 @@ public class MedicalSolider : BattleUnitBase
         if (Time.time >= lastTime + 1 && curePoint<10)
         {
             curePoint++;
+            SetBDCurePoint();
             lastTime = (int) Time.time;
         }
         
+    }
+
+    //设置行为树的治疗点数
+    private void SetBDCurePoint()
+    {
+        behaviorDesigner.SetVariableValue("CurePoint",curePoint);
+    }
+    public void SetCureTarget(BattleUnitBase cureTarget)
+    {
+        this.cureTarget = cureTarget;
+    }
+
+    public void CureTargetUnit()
+    {
+        cureTarget.CureHp(10);
+        curePoint = 0;
+        SetBDCurePoint();
+        SetCureTarget(null);
     }
 
     private Vector3 refCureDire;

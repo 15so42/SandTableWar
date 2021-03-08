@@ -149,7 +149,7 @@ public class BaseBattleBuilding : BattleUnitBase
         SpawnBattleUnitConfigInfo curSpawnInfo=ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(toSpawn.Peek());
         if (fightingManager.ConsumeResByUnitInfo(curSpawnInfo));
         {
-            BattleUnitBase spawnedUnit=BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(curSpawnInfo,spawnPos.position,fightingManager.campId);
+            BattleUnitBase spawnedUnit=BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(curSpawnInfo,spawnPos.position,campId);
             spawnedUnit.spawnTargetPos = spawnMark.transform.position;
         }
         toSpawn.Pop();

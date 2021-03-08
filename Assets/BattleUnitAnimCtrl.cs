@@ -7,7 +7,8 @@ using UnityEngine.AI;
 public class BattleUnitAnimCtrl : MonoBehaviour
 {
     // Start is called before the first frame update
-    protected StateController stateController;
+    //protected StateController stateController;
+    protected BattleUnitBase battleUnitBase;
     protected Animator anim;
     protected NavMeshAgent navMeshAgent;//通过寻路组件的速度来控制动画播放
 
@@ -27,6 +28,7 @@ public class BattleUnitAnimCtrl : MonoBehaviour
     {
        
         //stateController = GetComponent<BattleUnitBase>().stateController;
+        battleUnitBase = GetComponent<BattleUnitBase>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         photonView = PhotonView.Get(this);
@@ -37,32 +39,32 @@ public class BattleUnitAnimCtrl : MonoBehaviour
     protected virtual void Update()
     {
         return;
-        if (!photonView || photonView.IsMine == false)
-        {
-            return;
-        }
-        StateCheck();
-
-        lastState = stateController.currentState;
+        // if (!photonView || photonView.IsMine == false)
+        // {
+        //     return;
+        // }
+        // StateCheck();
+        //
+        // lastState = stateController.currentState;
     }
 
     protected virtual void StateCheck()
     {
-        State curState = stateController.currentState;
-        if (curState.stateName == "闲置" || curState.stateName == "移动" ||
-            curState.stateName == "强行移动"||curState.stateName.StartsWith("房间")|| curState.stateName=="追赶")
-        {
-            OnIdleOrMoveState();
-        }
-
-        // if (lastState != curState && curState.stateName == "战斗")//进入战斗
+        // State curState = stateController.currentState;
+        // if (curState.stateName == "闲置" || curState.stateName == "移动" ||
+        //     curState.stateName == "强行移动"||curState.stateName.StartsWith("房间")|| curState.stateName=="追赶")
+        // {
+        //     OnIdleOrMoveState();
+        // }
+        //
+        // // if (lastState != curState && curState.stateName == "战斗")//进入战斗
+        // // {
+        // //     OnBattleState();
+        // // }
+        // if (curState.stateName == "战斗")//进入战斗
         // {
         //     OnBattleState();
         // }
-        if (curState.stateName == "战斗")//进入战斗
-        {
-            OnBattleState();
-        }
     }
     
 
