@@ -173,7 +173,11 @@ public class BaseBattleBuilding : BattleUnitBase
         else
         {
             toSpawn.Push(id);
-            interval = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(toSpawn.Peek()).spawnTime;
+            if (GameManager.Instance.gameMode == GameMode.Campaign)
+            {
+                interval = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(toSpawn.Peek()).spawnTime/3;
+            }else
+                interval = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(toSpawn.Peek()).spawnTime;
             timer = 0;
         }
     }

@@ -6,7 +6,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
     using BehaviorDesigner.Runtime;
     using BehaviorDesigner.Runtime.Tasks;
    
-    
+    [TaskCategory("MyRTS/Solider/Medical")]
     public class CureWounded : MyRtsAction
     {
         public SharedBattleUnit selfUnit;

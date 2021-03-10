@@ -2,9 +2,9 @@
 
 namespace BehaviorDesigner.Runtime.Tactical.Tasks
 {
-    public class MyRtsAction : Action
+    public abstract class MyRtsAction : Action
     {
-        protected TacticalAgent tacticalAgent;
+        protected NavMeshTacticalGroup.NavMeshTacticalAgent tacticalAgent;
 
         public override void OnStart()
         {

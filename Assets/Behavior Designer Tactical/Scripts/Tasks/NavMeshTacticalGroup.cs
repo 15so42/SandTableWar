@@ -32,6 +32,11 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
                 }
             }
 
+            public Vector3 GetDestinationPos()
+            {
+                return navMeshAgent.destination;
+            }
+
             /// <summary>
             /// Sets the destination.
             /// </summary>
