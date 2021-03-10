@@ -51,7 +51,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     [Header("旋转阻尼")] public float rotateDamp = 10;
     //重写寻路组件旋转控制
     [HideInInspector]public bool overrideRotationCtrl=true;
-    private bool overrideMoveCtrl=true;
+    [HideInInspector]public bool overrideMoveCtrl=false;
     [Header("===移动===")]
     public bool moveByAnim;
 
@@ -87,9 +87,8 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         navMeshAgent = GetComponent<NavMeshAgent>();
         if (navMeshAgent)
         {
-          
             navMeshAgent.updateRotation = !overrideRotationCtrl;
-            //navMeshAgent.updatePosition = !overrideMoveCtrl;
+            navMeshAgent.updatePosition = !overrideMoveCtrl;
         }
 
         animator = GetComponent<Animator>();
@@ -105,12 +104,17 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         isFirstSelected = true;
 
         behaviorDesigner = GetComponent<BehaviorTree>();
-        //stateController=new StateController(this);
+       
         
         
         fogOfWarUnit = GetComponent<FogOfWarUnit>();
         if (fogOfWarUnit != null)
-            fogOfWarUnit.circleRadius = prop.viewDistance/2;
+        {
+            fogOfWarUnit.circleRadius = prop.viewDistance;
+            fogOfWarUnit.team = campId;
+        }
+           
+        
     }
 
     // Start is called before the first frame update
@@ -128,9 +132,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
             Quaternion.identity,hpInfoParent);
         hpUi.owner = this;
         hpUi.Init();
-        //设置初始目标地点
-        //stateController.targetPos = spawnTargetPos;
-        //stateController.lastTargetPos = stateController.targetPos;
+       
         if (behaviorDesigner)
         {
             behaviorDesigner.SetVariableValue( "DestinationPos",transform.position);
@@ -143,7 +145,18 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         
         if (photonView.IsMine)
         {
-            selfUnits.Add(this);
+            if (GameManager.Instance.gameMode == GameMode.Campaign)
+            {
+                if (EnemyIdentifier.Instance.GetDiplomaticRelation(campId) == DiplomaticRelation.Self)
+                {
+                    selfUnits.Add(this);
+                }
+                else
+                {
+                    enemyUnits.Add(this);
+                    fightingManager.InitSelectMarkForUnit(this);
+                }
+            }
         }
         else
         {
@@ -164,19 +177,23 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     {
         if (photonView.IsMine)
         {
-            //stateController?.Update();
-            
-            if (Time.time - lastAddTime >= 1)
+            if (GameManager.Instance.gameMode == GameMode.Campaign)
             {
-                fightingManager.globalItemManager.AddPoint(globalItemType,amountBySecond);
-                lastAddTime = Time.time;
+                if (EnemyIdentifier.Instance.GetDiplomaticRelation(campId) == DiplomaticRelation.Self)
+                {
+                    if (Time.time - lastAddTime >= 1)
+                    {
+                        fightingManager.globalItemManager.AddPoint(globalItemType,amountBySecond);
+                        lastAddTime = Time.time;
+                    }
+                }
+                
             }
             if (navMeshAgent != null)
             {
                 RotationControl();
-                //MovementControl();
+                MovementControl();
             }
-            
         }
         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
 
@@ -188,7 +205,15 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     /// <param name="update"></param>
     public void UpdateRotation(bool update)
     {
-        overrideRotationCtrl = update;
+        
+        if (overrideRotationCtrl)
+        {
+            overrideRotationCtrl = update;
+        }
+        else
+        {
+            navMeshAgent.updateRotation = update;
+        }
     }
 
     private Vector3 refDir;
@@ -221,6 +246,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         if (moveByAnim)
         {
             transform.Translate((refAnimDeltaPos*moveSpeedMultiplier)/Time.deltaTime,Space.World);
+            //通过刚体移动
             // Vector3 v=(refAnimDeltaPos*moveSpeedMultiplier)/Time.deltaTime;
             // v.y = rigidbody.velocity.y;
             // rigidbody.velocity = v;
@@ -244,7 +270,13 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     {
         if (photonView.IsMine)
         {
-            selfUnits.Remove(this);
+            if (GameManager.Instance.gameMode == GameMode.Campaign)
+            {
+                if(EnemyIdentifier.Instance.GetDiplomaticRelation(campId)==DiplomaticRelation.Self)
+                    selfUnits.Remove(this);
+                else
+                    enemyUnits.Remove(this);
+            }
         }
         else
         {
@@ -276,7 +308,6 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     /// <param name="pos"></param>
     public void SetTargetPos(Vector3 pos)
     {
-        //stateController?.SetTargetPos(pos);
         if (behaviorDesigner)
         {
             //behaviorDesigner.SetVariableValue( "DestinationPos",pos);

@@ -118,6 +118,17 @@ namespace BehaviorDesigner.Runtime.Tactical
             return true;
         }
 
+        //便撤退边攻击的距离
+        public bool CanAttackDistanceWhenRetreat()
+        {
+            var distance = (transform.position - targetTransform.position).magnitude;
+            if (distance >= attackAgent.AttackDistance()*1.5f) {
+                return false;
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// Attacks the target.
         /// </summary>
