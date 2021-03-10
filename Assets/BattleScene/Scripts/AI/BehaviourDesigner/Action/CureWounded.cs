@@ -7,7 +7,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
     using BehaviorDesigner.Runtime.Tasks;
    
     
-    public class CureWounded : Action
+    public class CureWounded : MyRtsAction
     {
         public SharedBattleUnit selfUnit;
         public SharedBattleUnit wounded;
@@ -39,11 +39,11 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
 
             MedicalSolider medicalSolider = selfUnit.Value as MedicalSolider;
             medicalSolider.SetCureTarget(wounded.Value);
-            navMeshAgent.SetDestination(wounded.Value.transform.position);
+            tacticalAgent.SetDestination(wounded.Value.transform.position);
             
             if (IsInCureRange()) 
             {
-                if (Vector3.Angle(selfUnit.Value.transform.forward, navMeshAgent.desiredVelocity) < 5)
+                if (tacticalAgent.RotateTowardsPosition(wounded.Value.transform.position))
                 {
                     navMeshAgent.isStopped = true;
                     (selfUnit.Value.animCtrl as MedicalAnimCtrl).CureAnim();

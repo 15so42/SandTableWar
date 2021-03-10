@@ -12,7 +12,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
         /// <summary>
         /// The NavMeshTacticalAgent class contains component references and variables for each NavMeshAgent.
         /// </summary>
-        private class NavMeshTacticalAgent : TacticalAgent
+        public class NavMeshTacticalAgent : TacticalAgent
         {
             private NavMeshAgent navMeshAgent;
             private bool destinationSet;

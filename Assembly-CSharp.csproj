@@ -75,6 +75,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\WeaponUpdate.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\CureWounded.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\MyRetreat.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\MyRtsAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncDestinationPosToCurPos.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Conditional\HasWounded.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Decorator\EventReceiverChecker.cs" />
