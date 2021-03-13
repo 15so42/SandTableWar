@@ -78,7 +78,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     //初始目标点
     [HideInInspector] public Vector3 spawnTargetPos;
 
-    private FogOfWarUnit fogOfWarUnit;
+    protected FogOfWarUnit fogOfWarUnit;
     private Animator animator;
     private Rigidbody rigidbody;
     #region 逻辑控制
@@ -104,17 +104,20 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         isFirstSelected = true;
 
         behaviorDesigner = GetComponent<BehaviorTree>();
-       
-        
-        
+        //基础单位初始化关闭，建筑单位因为建造完成后才Awake，因此要在建造完成后再次打开
         fogOfWarUnit = GetComponent<FogOfWarUnit>();
-        if (fogOfWarUnit != null)
-        {
+        fogOfWarUnit.enabled = false;
+    }
+
+    protected virtual void SetFogOfWarTeam()
+    {
+        fogOfWarUnit = GetComponent<FogOfWarUnit>();
+        if(fogOfWarUnit){
+            fogOfWarUnit.enabled = true;
             fogOfWarUnit.circleRadius = prop.viewDistance;
             fogOfWarUnit.team = campId;
         }
-           
-        
+
     }
 
     // Start is called before the first frame update
@@ -591,6 +594,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     public void SetCampId(int value)
     {
         this.campId = value;
+        SetFogOfWarTeam();
     }
 
     public void SetCampInPhoton(int value)

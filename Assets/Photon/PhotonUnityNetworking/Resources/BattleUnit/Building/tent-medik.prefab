@@ -214,6 +214,8 @@ MonoBehaviour:
   victimPos: {fileID: 0}
   victimOffset: 1.5
   rotateDamp: 10
+  overrideRotationCtrl: 1
+  overrideMoveCtrl: 0
   moveByAnim: 0
   moveSpeedMultiplier: 0
   configId: 0
@@ -230,6 +232,7 @@ MonoBehaviour:
   - spawn_3_1
   - spawn_4_1
   - spawn_5_1
+  - spawn_8_1
   - close
   spawnMarkPfb: {fileID: 900307187978911580, guid: b44f100bacae5e8498188a0d84469a4e,
     type: 3}

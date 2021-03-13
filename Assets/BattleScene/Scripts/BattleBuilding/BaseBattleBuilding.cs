@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using FoW;
 using Photon.Pun;
 using UnityEngine;
 using UnityTimer;
@@ -33,6 +34,9 @@ public class BaseBattleBuilding : BattleUnitBase
     public float buildingModelOffset;
     protected override void Awake()
     {
+        //初始化迷雾
+        fogOfWarUnit = GetComponent<FogOfWarUnit>();
+        fogOfWarUnit.enabled = false;
         if (isBuilding)
         {
             animModel.transform.localPosition -= Vector3.up * height;
@@ -47,6 +51,8 @@ public class BaseBattleBuilding : BattleUnitBase
                 isBuilding = false;
                 PlayBuildCompleteFx();
                 Awake();
+                //因为awake会关掉迷雾需要再次开启
+                fogOfWarUnit.enabled = true;
                 Start();
             });
             return;

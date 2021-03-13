@@ -62,13 +62,13 @@ MonoBehaviour:
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
-    resourceName: Solider1
+  - id: 8
+    resourceName: Tank_Tiger
     spawnTime: 10
-    needPopulation: 1
-    needCoin: 1
-    needMineral: 1
-    needFood: 1
+    needPopulation: 4
+    needCoin: 20
+    needMineral: 20
+    needFood: 12
   - id: 1
     resourceName: Solider1
     spawnTime: 10
