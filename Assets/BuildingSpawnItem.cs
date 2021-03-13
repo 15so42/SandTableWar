@@ -15,7 +15,7 @@ public class BuildingSpawnItem : MonoBehaviour,IBeginDragHandler,IDragHandler,IE
     public void Init(SpawnBattleUnitConfigInfo buildingInfo)
     {
         this.buildingInfo = buildingInfo;
-        buildingIcon.sprite = BuildingIconLoader.GetSpriteByUnitId(buildingInfo.id);
+        buildingIcon.sprite = BuildingIconLoader.GetSpriteByUnitId(buildingInfo.battleUnitId);
         fightingManager=GameManager.Instance.GetFightingManager();
     }
     public void UpdateSpawnBuildingItem()

@@ -6,6 +6,7 @@ using UnityEngine;
 public class WorkerUnit : BattleUnitBase
 {
     public int mineOutputRate = 1;
+    public BattleUnitBase mineTarget;
    protected void Awake()
    {
        base.Awake();
@@ -13,20 +14,10 @@ public class WorkerUnit : BattleUnitBase
        
    }
 
-   protected override void Start()
+   public void SetMineTarget(BattleUnitBase mineTarget)
    {
-       base.Start();
-       
-       // State mineState = (stateController as WorkerStateController).mineState;
-       // mineState.OnStateEnterEvent.AddListener(() =>
-       // {
-       //     Debug.Log("采矿开始");
-       //     fightingManager.battleResMgr.AddIncreaseRate(BattleResType.mineral,mineOutputRate);
-       // });
-       // mineState.OnStateExitEvent.AddListener(() =>
-       // {
-       //     Debug.Log("采矿结束");
-       //     fightingManager.battleResMgr.ReduceIncreaseRate(BattleResType.mineral,mineOutputRate);
-       // });
+       this.mineTarget = mineTarget;
    }
+
+  
 }

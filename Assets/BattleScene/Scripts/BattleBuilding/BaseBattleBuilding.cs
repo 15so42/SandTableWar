@@ -17,9 +17,9 @@ public class BaseBattleBuilding : BattleUnitBase
     //private SpawnBattleUnitConfigInfo curSpawnInfo;
 
     public Transform spawnPos;
-    public Stack<int> toSpawn=new Stack<int>();
+    public Stack<BattleUnitId> toSpawn=new Stack<BattleUnitId>();
     [Header("建筑菜单，使用字符串表示对应菜单")]
-    public string[] menuCommands;
+    public BuildingMenuCommand[] menuCommands;
 
     [Header("出生点标志")] public GameObject spawnMarkPfb;
     public GameObject spawnMark;
@@ -152,7 +152,7 @@ public class BaseBattleBuilding : BattleUnitBase
 
     public void SpawnUnit()
     {
-        SpawnBattleUnitConfigInfo curSpawnInfo=ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(toSpawn.Peek());
+        SpawnBattleUnitConfigInfo curSpawnInfo=ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(toSpawn.Peek());
         if (fightingManager.ConsumeResByUnitInfo(curSpawnInfo));
         {
             BattleUnitBase spawnedUnit=BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(curSpawnInfo,spawnPos.position,campId);
@@ -162,14 +162,14 @@ public class BaseBattleBuilding : BattleUnitBase
         //下一个单位
         if (toSpawn.Count > 0)
         {
-            interval = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(toSpawn.Peek()).spawnTime;
+            interval = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(toSpawn.Peek()).spawnTime;
         }
 
         timer = 0;
 
     }
 
-    public void AddUnitToSpawnStack(int id)
+    public void AddUnitToSpawnStack(BattleUnitId id)
     {
         
         if (toSpawn.Count > 0)
@@ -181,9 +181,9 @@ public class BaseBattleBuilding : BattleUnitBase
             toSpawn.Push(id);
             if (GameManager.Instance.gameMode == GameMode.Campaign)
             {
-                interval = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(toSpawn.Peek()).spawnTime/3;
+                interval = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(toSpawn.Peek()).spawnTime/3;
             }else
-                interval = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(toSpawn.Peek()).spawnTime;
+                interval = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(toSpawn.Peek()).spawnTime;
             timer = 0;
         }
     }

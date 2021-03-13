@@ -8,7 +8,7 @@ public class BattleUnitBaseFactory : Singleton<BattleUnitBaseFactory>
     //建筑和士兵都是战斗单位，id表中士兵从1往后数，建筑从299往前数
     public BattleUnitBase SpawnBattleUnitAtPos(SpawnBattleUnitConfigInfo soliderInfo,Vector3 pos,int campId)
     {
-        string path = (soliderInfo.id < 151) ? SoliderPath : BuildingPath;
+        string path = (soliderInfo.battleUnitType == BattleUnitType.Solider) ? SoliderPath : BuildingPath;
         GameObject spawnedBase;
         if (GameManager.Instance.gameMode == GameMode.Campaign)
         {
@@ -22,7 +22,7 @@ public class BattleUnitBaseFactory : Singleton<BattleUnitBaseFactory>
         
         BattleUnitBase spawnedUnit = spawnedBase.GetComponent<BattleUnitBase>();
        
-        spawnedUnit.configId = soliderInfo.id;
+        spawnedUnit.configId = soliderInfo.battleUnitId;
         spawnedUnit.SetCampInPhoton(campId);
         return spawnedUnit;
     }
@@ -34,7 +34,7 @@ public class BattleUnitBaseFactory : Singleton<BattleUnitBaseFactory>
 
     public BattleUnitBase GetBattleUnitLocally(SpawnBattleUnitConfigInfo soliderInfo)
     {
-        string path = (soliderInfo.id < 151) ? SoliderPath : BuildingPath;
+        string path = (soliderInfo.battleUnitType == BattleUnitType.Solider) ? SoliderPath : BuildingPath;
         
         return Resources.Load<BattleUnitBase>($"{path}{soliderInfo.resourceName}");
     }

@@ -57,8 +57,8 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
 
     public float moveSpeedMultiplier=1;
 
-    [Header("兵种id")]
-    public int configId;//配置id，即兵种id，1表示Solider1，2表示Tank_A等等
+    [Header("兵种")]
+    public BattleUnitId configId;
 
     private Outlinable victimOutline;
     private Timer victimFxTimer;//受击特效计时器
@@ -302,6 +302,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     /// <param name="chaseTarget"></param>
     public void SetChaseTarget(BattleUnitBase chaseTarget)
     {
+        
         //stateController?.SetChaseTarget(chaseTarget);
     }
     

@@ -19,11 +19,11 @@
             
         }
 
-        public SpawnBattleUnitConfigInfo GetSpawnBattleUnitConfigInfoById(int id)
+        public SpawnBattleUnitConfigInfo GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId battleUnitId)
         {
             if (spawnBattleUnitUnitConfig == null)
                 return null;
-            return spawnBattleUnitUnitConfig.config.Find(x => x.id == id);
+            return spawnBattleUnitUnitConfig.config.Find(x => x.battleUnitId == battleUnitId);
         }
         
        

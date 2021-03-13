@@ -9,7 +9,7 @@ public class DefenceBuilding : BaseBattleBuilding
     [Header("防守点")]
     public Transform[] defencePoses;
 
-    [Header("可以进入的兵种id")] public int[] allowedId;
+    [Header("可以进入的兵种id")] public BattleUnitId[] allowedId;
     [Header("入口")] public Transform entrance;
     
     public List<BattleUnitBase> soliderInBuilding=new List<BattleUnitBase>();

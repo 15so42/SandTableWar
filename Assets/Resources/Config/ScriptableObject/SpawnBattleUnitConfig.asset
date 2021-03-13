@@ -13,2100 +13,2400 @@ MonoBehaviour:
   m_Name: SpawnBattleUnitConfig
   m_EditorClassIdentifier: 
   config:
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 10
     needCoin: 10
     needMineral: 2
     needFood: 10
-  - id: 2
+  - battleUnitType: 0
+    battleUnitId: 1
     resourceName: Tank_A
     spawnTime: 10
     needPopulation: 10
     needCoin: 10
     needMineral: 10
     needFood: 10
-  - id: 3
+  - battleUnitType: 0
+    battleUnitId: 4
     resourceName: Worker
     spawnTime: 10
     needPopulation: 10
     needCoin: 5
     needMineral: 0
     needFood: 10
-  - id: 4
+  - battleUnitType: 0
+    battleUnitId: 2
     resourceName: Scout
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 5
+  - battleUnitType: 0
+    battleUnitId: 3
     resourceName: MedicalSolider
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 6
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Engineer
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 7
+  - battleUnitType: 0
+    battleUnitId: 5
     resourceName: Mineral
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 8
+  - battleUnitType: 0
+    battleUnitId: 8
     resourceName: Tank_Tiger
     spawnTime: 10
     needPopulation: 4
     needCoin: 20
     needMineral: 20
     needFood: 12
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 1
+  - battleUnitType: 0
+    battleUnitId: 0
     resourceName: Solider1
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 297
+  - battleUnitType: 0
+    battleUnitId: 5
     resourceName: Mineral
     spawnTime: 0
     needPopulation: 0
     needCoin: 0
     needMineral: 0
     needFood: 0
-  - id: 298
+  - battleUnitType: 0
+    battleUnitId: 7
     resourceName: bunker-medium
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - id: 299
+  - battleUnitType: 0
+    battleUnitId: 6
     resourceName: tent-medik
     spawnTime: 10
     needPopulation: 2

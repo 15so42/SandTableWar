@@ -289,8 +289,12 @@ MonoBehaviour:
   spawnTargetPos: {x: 0, y: 0, z: 0}
   spawnPos: {fileID: 6780302482535544144}
   menuCommands:
-  - OutBuilding
-  - close
+  - buildingOperateType: 2
+    battleUnitId: 0
+    priceOff: 1
+  - buildingOperateType: 1
+    battleUnitId: 0
+    priceOff: 1
   spawnMarkPfb: {fileID: 0}
   spawnMark: {fileID: 0}
   isBuilding: 1
@@ -302,7 +306,7 @@ MonoBehaviour:
   - {fileID: 3636838294905752750}
   - {fileID: 3636838296089035695}
   - {fileID: 3636838294846732160}
-  allowedId: 01000000
+  allowedId: 00000000
   entrance: {fileID: 3636838294641506454}
   soliderInBuilding: []
 --- !u!65 &3636838295588243594

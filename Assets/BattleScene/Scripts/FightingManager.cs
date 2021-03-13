@@ -67,29 +67,29 @@ public class FightingManager
         if (gameManager.gameMode==GameMode.Campaign)
         {
             //友方基地
-            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(299),logicMap.GetBasePosByPlayerId(campId),campId);
+            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Base),logicMap.GetBasePosByPlayerId(campId),campId);
             BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(campId));//相机位置
-            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(298),Vector3.zero,-1);//生成碉堡
+            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Bunker_M),Vector3.zero,-1);//生成碉堡
             //敌人基地
-            enemyBase=BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(299),logicMap.GetBasePosByPlayerId(campId+1),campId+1);
+            enemyBase=BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Base),logicMap.GetBasePosByPlayerId(campId+1),campId+1);
             
             return;
         }
         
         //联网
         //基地
-        BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(299),logicMap.GetBasePosByPlayerId(campId),campId);
+        BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Base),logicMap.GetBasePosByPlayerId(campId),campId);
         BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(campId));
         if (PhotonNetwork.IsMasterClient)
         {
-            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(298),Vector3.zero,-1);//生成碉堡
+            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Bunker_M),Vector3.zero,-1);//生成碉堡
 
             return;
             for (int i = 0; i < logicMap.minerals.Count; i++)
             {
                 Transform tmpMineral = logicMap.minerals[i];
                 tmpMineral.gameObject.SetActive(false);
-                BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(297),tmpMineral.position,-1);//生成矿物
+                BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Mineral),tmpMineral.position,-1);//生成矿物
             }
         }
         
@@ -192,7 +192,7 @@ public class FightingManager
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            (enemyBase as BaseBattleBuilding).AddUnitToSpawnStack(1);
+            (enemyBase as BaseBattleBuilding).AddUnitToSpawnStack(BattleUnitId.Ranger);
         }
         
     }
@@ -335,10 +335,10 @@ public class FightingManager
     /// 是否含有足够的资源生成指定单位
     /// </summary>
     /// <returns></returns>
-    public bool HasEnoughResToSpawnSolider(int spawnId)
+    public bool HasEnoughResToSpawnSolider(BattleUnitId spawnId)
     {
         //todo 完善该方法
-        SpawnBattleUnitConfigInfo curSpawnInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(spawnId);
+        SpawnBattleUnitConfigInfo curSpawnInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(spawnId);
         int needPopulation = curSpawnInfo.needPopulation;
         int needCoin = curSpawnInfo.needCoin;
         int needMineral = curSpawnInfo.needMineral;

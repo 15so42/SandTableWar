@@ -63,7 +63,7 @@ public class SpawnBuildingDialog : Dialog<SpawnBuildingDialogContext>
          resBuildingContainer.gameObject.SetActive(false);
       });
       
-      AddSpawnBuildingItemByUnlock(SpawnBuildingTye.res, ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(299));
+      AddSpawnBuildingItemByUnlock(SpawnBuildingTye.res, ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Base));
    }
 
    //解锁可建造建筑时添加到对应的建造栏内

@@ -7,22 +7,22 @@ using UnityEngine.UI;
 public class BuildingSpawnMenuItem : BuildingMenuItem
 {
     [HideInInspector]public BaseBattleBuilding targetBuilding;
-    [HideInInspector]public int spawnId;
+    [HideInInspector]public BattleUnitId spawnId;
     private SpawnBattleUnitConfigInfo curUnitInfo;
     
     public Image spawnUnitImage;
     public Image fill;
     public Text amountText;
 
-    public void SetParams(int spawnId,BaseBattleBuilding targetBuilding)
+    public void SetParams(BattleUnitId spawnId,BaseBattleBuilding targetBuilding)
     {
         this.spawnId = spawnId;
         this.targetBuilding = targetBuilding;
     }
     public override void Init()
     {
-        curUnitInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(spawnId);
-        spawnUnitImage.sprite = UnitIconLoader.GetSpriteByUnitId(curUnitInfo.id);
+        curUnitInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(spawnId);
+        spawnUnitImage.sprite = UnitIconLoader.GetSpriteByUnitId(curUnitInfo.battleUnitId);
         fill.fillAmount = 0;
         amountText.text = "0";
     }
@@ -36,7 +36,7 @@ public class BuildingSpawnMenuItem : BuildingMenuItem
         }
     }
 
-    private int GetAmountByIdInSpawnStack(int id)
+    private int GetAmountByIdInSpawnStack(BattleUnitId id)
     {
         int count = 0;
         for (int i = 0; i < targetBuilding.toSpawn.Count; i++)
