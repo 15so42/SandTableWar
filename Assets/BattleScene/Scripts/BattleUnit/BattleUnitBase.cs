@@ -12,6 +12,7 @@ using BehaviorDesigner;
 using BehaviorDesigner.Runtime.Tactical;
 using Object = System.Object;
 
+[RequireComponent(typeof(FogOfWarEvents))]
 public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
 {
     //[HideInInspector]public StateController stateController;
@@ -79,8 +80,24 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     [HideInInspector] public Vector3 spawnTargetPos;
 
     protected FogOfWarUnit fogOfWarUnit;
+    protected FogOfWar fogOfWar;
+    protected FogOfWarEvents fogOfWarEvents;
     private Animator animator;
     private Rigidbody rigidbody;
+    
+    //*********************行为树常量区*********************
+    private const string BD_estinationPos="DestinationPos";
+    private const string BD_LastDestinationPos="LastDestinationPos";
+    private const string BD_EnemyBattleUnit="EnemyBattleUnit";
+    private const string BD_EnemyGameObject="EnemyGameObject";
+    //****************************************************
+    
+    //********************真正迷雾控制相关变量****************
+    private PhotonAnimatorView photonAnimatorView;//进入雾中后不同步
+    [Header("===战争迷雾===")]
+    public Renderer[] renderers;//进入战争迷雾后关闭相关的渲染
+    private bool isInFog = true;
+    
     #region 逻辑控制
     protected virtual void Awake()
     {
@@ -103,21 +120,61 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         animCtrl = GetComponent<BattleUnitAnimCtrl>();
         isFirstSelected = true;
 
+        //*************战争迷雾**********
         behaviorDesigner = GetComponent<BehaviorTree>();
-        //基础单位初始化关闭，建筑单位因为建造完成后才Awake，因此要在建造完成后再次打开
+        fogOfWar = Camera.main.GetComponent<FogOfWar>();
+        fogOfWarEvents = GetComponent<FogOfWarEvents>();
+        fogOfWarEvents.onFogEnter.AddListener(OnFogEnter);
+        fogOfWarEvents.onFogExit.AddListener(OnFogExit);
+        photonAnimatorView = GetComponent<PhotonAnimatorView>();
+        //因为设置campId是在awake后执行的，而且因为在网络中传输可能会有延迟，所以建筑一般先关闭迷雾，知道收到设置campId的消息后再根据情况决定是否打开迷雾。
         fogOfWarUnit = GetComponent<FogOfWarUnit>();
         fogOfWarUnit.enabled = false;
     }
 
+    //晚于Awake执行
     protected virtual void SetFogOfWarTeam()
     {
-        fogOfWarUnit = GetComponent<FogOfWarUnit>();
+        //fogOfWarUnit = GetComponent<FogOfWarUnit>();
         if(fogOfWarUnit){
             fogOfWarUnit.enabled = true;
             fogOfWarUnit.circleRadius = prop.viewDistance;
             fogOfWarUnit.team = campId;
         }
 
+    }
+
+    //这个方法和直观理解不太一样，Enter标识能看见，Exit表示看不见
+    public void OnFogEnter()
+    {
+        ShowRenderers(true);
+        if(photonAnimatorView)
+            photonAnimatorView.enabled = true;
+        isInFog = false;
+        // if(isInBuilding==false)
+        //     hpUi.gameObject.SetActive(true);
+    }
+
+    public void OnFogExit()
+    {
+        ShowRenderers(false);
+        if(photonAnimatorView)
+            photonAnimatorView.enabled = false;
+        isInFog = true;
+        //hpUi.gameObject.SetActive(false);
+    }
+
+    public bool IsInFog()
+    {
+        return isInFog;
+    }
+
+    private void ShowRenderers(bool status)
+    {
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].enabled = status;
+        }
     }
 
     // Start is called before the first frame update
@@ -300,9 +357,13 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     /// 设置追踪目标
     /// </summary>
     /// <param name="chaseTarget"></param>
-    public void SetChaseTarget(BattleUnitBase chaseTarget)
+    public virtual void SetChaseTarget(BattleUnitBase chaseTarget)
     {
-        
+        if (chaseTarget.configId != BattleUnitId.Mineral)
+        {
+            behaviorDesigner.SetVariableValue(BD_EnemyBattleUnit,chaseTarget);
+            behaviorDesigner.SetVariableValue(BD_EnemyGameObject,chaseTarget.gameObject);
+        }
         //stateController?.SetChaseTarget(chaseTarget);
     }
     
@@ -648,6 +709,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     {
         return prop.hp > 0;
     }
+    
 
     #region 攻击行为树模块
     public float AttackDistance()

@@ -34,30 +34,30 @@ public class BaseBattleBuilding : BattleUnitBase
     public float buildingModelOffset;
     protected override void Awake()
     {
-        //初始化迷雾
-        fogOfWarUnit = GetComponent<FogOfWarUnit>();
-        fogOfWarUnit.enabled = false;
-        if (isBuilding)
-        {
-            animModel.transform.localPosition -= Vector3.up * height;
+        base.Awake();
 
+        void OnBuildSuccess()
+        {
+            isBuilding = false;
+            PlayBuildCompleteFx();
+            fogOfWarUnit.enabled = true;
+        }
+        animModel.transform.localPosition -= Vector3.up * height;
+
+        if (buildTime == 0)
+        {
+            OnBuildSuccess();
+        }
+        else
+        {
             var sequence = DOTween.Sequence();
             sequence.Join(animModel.transform.DOShakeScale(.5f, .5f, buildTime/2));
-            
+        
             sequence.Append(animModel.transform.DOLocalJump(animModel.transform.localPosition + Vector3.up * (height + buildingModelOffset), 0.3f, buildTime, buildTime));
-            
-            sequence.OnComplete(() =>
-            {
-                isBuilding = false;
-                PlayBuildCompleteFx();
-                Awake();
-                //因为awake会关掉迷雾需要再次开启
-                fogOfWarUnit.enabled = true;
-                Start();
-            });
-            return;
+        
+            sequence.OnComplete(OnBuildSuccess);
         }
-        base.Awake();
+
     }
 
     void PlayBuildCompleteFx()
@@ -70,12 +70,9 @@ public class BaseBattleBuilding : BattleUnitBase
     // Start is called before the first frame update
     protected override void Start()
     {
-        if (isBuilding)
-        {
-            return;
-        }
         base.Start();
-        //ChangeSpawnId(spawnId);
+        hpUi.gameObject.SetActive(false);
+        
         if (spawnMarkPfb != null)
         {
             spawnMark=GameObject.Instantiate(spawnMarkPfb);
@@ -123,6 +120,10 @@ public class BaseBattleBuilding : BattleUnitBase
             return;
         }
         base.Update();
+        if (IsInFog() == false)
+        {
+            hpUi.gameObject.SetActive(true);
+        }
         if(photonView.IsMine==false)
             return;
         if (toSpawn.Count > 0)

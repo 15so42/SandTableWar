@@ -13,7 +13,7 @@ namespace FoW
         public UnityEvent onFogEnter;
         public UnityEvent onFogExit;
 
-        bool _isInFog = false;
+        bool _isInFog = true;
         Transform _transform;
 
         void Start()

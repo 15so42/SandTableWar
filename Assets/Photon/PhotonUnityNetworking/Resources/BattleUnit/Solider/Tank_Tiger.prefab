@@ -1408,6 +1408,7 @@ GameObject:
   - component: {fileID: 7652855899908256554}
   - component: {fileID: 259096257579861047}
   - component: {fileID: 8065260276797421025}
+  - component: {fileID: 3970324342756843223}
   - component: {fileID: 7017581630052517237}
   m_Layer: 0
   m_Name: Tank_Tiger
@@ -1664,6 +1665,7 @@ MonoBehaviour:
   animCtrl: {fileID: 0}
   visibleOnPhoton: 0
   spawnTargetPos: {x: 0, y: 0, z: 0}
+  renderers: []
   maxMovesSpeed: 3.5
   moveDampTime: 50
   moveThreshold: 0.1
@@ -1697,6 +1699,26 @@ MonoBehaviour:
   lineOfSightPenetration: 0
   cellBased: 0
   antiFlicker: 0
+--- !u!114 &3970324342756843223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6714188707150718372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e78508c6d76e84b954af6619d8c000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  minFogStrength: 0.2
+  onFogEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onFogExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7017581630052517237
 MonoBehaviour:
   m_ObjectHideFlags: 0

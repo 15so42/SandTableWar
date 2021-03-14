@@ -697,6 +697,7 @@ GameObject:
   - component: {fileID: 1699611972151474457}
   - component: {fileID: 5144462989979422508}
   - component: {fileID: 8532676080830365231}
+  - component: {fileID: -7451430334952249138}
   - component: {fileID: 1318645975}
   m_Layer: 0
   m_Name: MedicalSolider
@@ -1461,6 +1462,7 @@ MonoBehaviour:
   victimOffset: 1.5
   rotateDamp: 10
   overrideRotationCtrl: 1
+  overrideMoveCtrl: 0
   moveByAnim: 0
   moveSpeedMultiplier: 1
   configId: 0
@@ -1470,6 +1472,7 @@ MonoBehaviour:
   animCtrl: {fileID: 0}
   visibleOnPhoton: 0
   spawnTargetPos: {x: 0, y: 0, z: 0}
+  renderers: []
   curePoint: 0
   lastTime: 0
   cureTarget: {fileID: 0}
@@ -1606,6 +1609,26 @@ MonoBehaviour:
       Version: 1.6.7
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!114 &-7451430334952249138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592192127302537471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e78508c6d76e84b954af6619d8c000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  minFogStrength: 0.2
+  onFogEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onFogExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1318645975
 MonoBehaviour:
   m_ObjectHideFlags: 0

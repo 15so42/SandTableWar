@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 3636838295588243595}
   - component: {fileID: 3009354846530384926}
   - component: {fileID: -1019116400784405670}
+  - component: {fileID: 7138077299688559926}
   m_Layer: 0
   m_Name: bunker-medium
   m_TagString: Untagged
@@ -287,6 +288,7 @@ MonoBehaviour:
   animCtrl: {fileID: 0}
   visibleOnPhoton: 0
   spawnTargetPos: {x: 0, y: 0, z: 0}
+  renderers: []
   spawnPos: {fileID: 6780302482535544144}
   menuCommands:
   - buildingOperateType: 2
@@ -300,7 +302,7 @@ MonoBehaviour:
   isBuilding: 1
   animModel: {fileID: 3638050296220507716}
   height: 0
-  buildTime: 5
+  buildTime: 0
   buildingModelOffset: 0
   defencePoses:
   - {fileID: 3636838294905752750}
@@ -389,6 +391,26 @@ MonoBehaviour:
   lineOfSightPenetration: 0
   cellBased: 0
   antiFlicker: 0
+--- !u!114 &7138077299688559926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3638050296220507716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e78508c6d76e84b954af6619d8c000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  minFogStrength: 0.2
+  onFogEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onFogExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6309418664939643156
 GameObject:
   m_ObjectHideFlags: 0

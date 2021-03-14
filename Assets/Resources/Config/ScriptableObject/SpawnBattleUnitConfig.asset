@@ -2389,7 +2389,7 @@ MonoBehaviour:
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - battleUnitType: 0
+  - battleUnitType: 1
     battleUnitId: 5
     resourceName: Mineral
     spawnTime: 0
@@ -2397,7 +2397,7 @@ MonoBehaviour:
     needCoin: 0
     needMineral: 0
     needFood: 0
-  - battleUnitType: 0
+  - battleUnitType: 1
     battleUnitId: 7
     resourceName: bunker-medium
     spawnTime: 10
@@ -2405,7 +2405,7 @@ MonoBehaviour:
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - battleUnitType: 0
+  - battleUnitType: 1
     battleUnitId: 6
     resourceName: tent-medik
     spawnTime: 10

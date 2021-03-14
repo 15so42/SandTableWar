@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: -1794971452224315405}
   - component: {fileID: -5275485960050070890}
   - component: {fileID: 7079932151677895146}
+  - component: {fileID: 1110142681483629358}
   m_Layer: 0
   m_Name: tent-medik
   m_TagString: Untagged
@@ -225,6 +226,8 @@ MonoBehaviour:
   animCtrl: {fileID: 0}
   visibleOnPhoton: 0
   spawnTargetPos: {x: 0, y: 0, z: 0}
+  renderers:
+  - {fileID: 4767178920142123126}
   spawnPos: {fileID: 9065425138531134907}
   menuCommands:
   - buildingOperateType: 0
@@ -285,3 +288,23 @@ MonoBehaviour:
   lineOfSightPenetration: 0
   cellBased: 0
   antiFlicker: 0
+--- !u!114 &1110142681483629358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866053531164441353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e78508c6d76e84b954af6619d8c000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  minFogStrength: 0.2
+  onFogEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onFogExit:
+    m_PersistentCalls:
+      m_Calls: []
