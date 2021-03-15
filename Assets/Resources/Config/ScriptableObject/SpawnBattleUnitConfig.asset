@@ -62,14 +62,6 @@ MonoBehaviour:
     needMineral: 1
     needFood: 1
   - battleUnitType: 0
-    battleUnitId: 5
-    resourceName: Mineral
-    spawnTime: 10
-    needPopulation: 1
-    needCoin: 1
-    needMineral: 1
-    needFood: 1
-  - battleUnitType: 0
     battleUnitId: 8
     resourceName: Tank_Tiger
     spawnTime: 10

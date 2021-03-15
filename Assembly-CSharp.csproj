@@ -79,8 +79,11 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetMineMachine.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncDestinationPosToCurPos.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncTankAnim.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\Worker\CancelMinePlan.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\Worker\InterruptMineMachineSetUp.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Conditional\HasMineTarget.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Conditional\HasWounded.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Conditional\SimpleWithInDistance.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Decorator\EventReceiverChecker.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\CanSeeEnemy.cs" />

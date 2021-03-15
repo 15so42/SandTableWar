@@ -7,11 +7,17 @@ namespace BattleScene.Scripts.AI.BehaviourDesigner
     public class HasMineTarget : Conditional
     {
         public SharedBattleUnit selfUnit;
+        public SharedGameObject mineralGameObject;
         public override TaskStatus OnUpdate()
         {
             WorkerUnit workerUnit=selfUnit.Value as WorkerUnit;
             if (workerUnit.mineTarget != null)
+            {
+                mineralGameObject.Value = workerUnit.mineTarget.gameObject;
                 return TaskStatus.Success;
+            }
+                
+                
             return TaskStatus.Failure;
         }
     }

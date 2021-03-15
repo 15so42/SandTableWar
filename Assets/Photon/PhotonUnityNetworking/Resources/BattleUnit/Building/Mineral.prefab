@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 1711061469358623118}
   - component: {fileID: 1015743988528720509}
   - component: {fileID: 5744157720287979410}
+  - component: {fileID: -8431162008059215521}
+  - component: {fileID: 8602861154611000079}
   m_Layer: 0
   m_Name: Mineral
   m_TagString: Untagged
@@ -133,6 +135,10 @@ MonoBehaviour:
   victimPos: {fileID: 0}
   victimOffset: 1.5
   rotateDamp: 10
+  overrideRotationCtrl: 1
+  overrideMoveCtrl: 0
+  moveByAnim: 0
+  moveSpeedMultiplier: 1
   configId: 0
   isGoingBuilding: 0
   isInBuilding: 0
@@ -140,6 +146,7 @@ MonoBehaviour:
   animCtrl: {fileID: 0}
   visibleOnPhoton: 0
   spawnTargetPos: {x: 0, y: 0, z: 0}
+  renderers: []
 --- !u!114 &1711061469358623118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,3 +483,52 @@ MonoBehaviour:
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
+--- !u!114 &-8431162008059215521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710634306987668251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b130f358dcb26548b2ff0923d496dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  brightness: 1
+  shapeType: 0
+  absoluteOffset: 0
+  offset: {x: 0, y: 0}
+  boxSize: {x: 5, y: 5}
+  circleRadius: 5
+  innerRadius: 1
+  angle: 180
+  texture: {fileID: 0}
+  rotateToForward: 0
+  lineOfSightMask:
+    serializedVersion: 2
+    m_Bits: 0
+  lineOfSightPenetration: 0
+  cellBased: 0
+  antiFlicker: 0
+--- !u!114 &8602861154611000079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710634306987668251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e78508c6d76e84b954af6619d8c000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  minFogStrength: 0.2
+  onFogEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onFogExit:
+    m_PersistentCalls:
+      m_Calls: []

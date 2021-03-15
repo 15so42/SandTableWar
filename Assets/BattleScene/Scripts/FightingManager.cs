@@ -73,6 +73,13 @@ public class FightingManager
             //敌人基地
             enemyBase=BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Base),logicMap.GetBasePosByPlayerId(campId+1),campId+1);
             
+            //矿物
+            for (int i = 0; i < logicMap.minerals.Count; i++)
+            {
+                Transform tmpMineral = logicMap.minerals[i];
+                tmpMineral.gameObject.SetActive(false);
+                BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Mineral),tmpMineral.position,-1);//生成矿物
+            }
             return;
         }
         
@@ -83,8 +90,7 @@ public class FightingManager
         if (PhotonNetwork.IsMasterClient)
         {
             BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Bunker_M),Vector3.zero,-1);//生成碉堡
-
-            return;
+            
             for (int i = 0; i < logicMap.minerals.Count; i++)
             {
                 Transform tmpMineral = logicMap.minerals[i];

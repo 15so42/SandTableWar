@@ -27,7 +27,7 @@
             {
                 //判断是否还在视野范围内
                 if (Vector3.Distance(enemyBattleUnit.Value.transform.position, transform.position) <=
-                    prop.viewDistance)
+                    prop.viewDistance*1.1f)//1.03f是为了解决正巧在极限距离外一点点导致判断为false的问题
                 {
                     //Debug.Log($"[{nameof(FindEnemyDecision)}]本来就有敌人且在视野范围内");
                     return TaskStatus.Success;

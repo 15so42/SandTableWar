@@ -359,7 +359,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     /// <param name="chaseTarget"></param>
     public virtual void SetChaseTarget(BattleUnitBase chaseTarget)
     {
-        if (chaseTarget.configId != BattleUnitId.Mineral)
+        if (chaseTarget.configId != BattleUnitId.Mineral && chaseTarget!=this)
         {
             behaviorDesigner.SetVariableValue(BD_EnemyBattleUnit,chaseTarget);
             behaviorDesigner.SetVariableValue(BD_EnemyGameObject,chaseTarget.gameObject);
@@ -371,7 +371,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     /// 設置移動位置,和navmesh的setDestion類似
     /// </summary>
     /// <param name="pos"></param>
-    public void SetTargetPos(Vector3 pos)
+    public virtual void SetTargetPos(Vector3 pos)
     {
         if (behaviorDesigner)
         {
