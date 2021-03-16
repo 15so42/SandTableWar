@@ -80,6 +80,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncDestinationPosToCurPos.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncTankAnim.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\Worker\CancelMinePlan.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\Worker\FindOtherMineral.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\Worker\InterruptMineMachineSetUp.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Conditional\HasMineTarget.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Conditional\HasWounded.cs" />
