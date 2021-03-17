@@ -77,17 +77,17 @@ MonoBehaviour:
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - battleUnitType: 0
-    battleUnitId: 0
-    resourceName: Solider1
+  - battleUnitType: 1
+    battleUnitId: 8
+    resourceName: Farmland
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - battleUnitType: 0
-    battleUnitId: 0
-    resourceName: Solider1
+  - battleUnitType: 1
+    battleUnitId: 9
+    resourceName: FarmLand
     spawnTime: 10
     needPopulation: 1
     needCoin: 1

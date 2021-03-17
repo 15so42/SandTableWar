@@ -120,7 +120,7 @@ public class BaseBattleBuilding : BattleUnitBase
             return;
         }
         base.Update();
-        if (IsInFog() == false)
+        if (IsInFog())
         {
             hpUi.gameObject.SetActive(true);
         }
