@@ -41,6 +41,12 @@ public class BaseBattleBuilding : BattleUnitBase
             isBuilding = false;
             PlayBuildCompleteFx();
             fogOfWarUnit.enabled = true;
+            if (IsInFog() == false && hpUi)
+            {
+                hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;//防止血条ui跳动
+                hpUi.gameObject.SetActive(true);
+            }
+               
         }
         animModel.transform.localPosition -= Vector3.up * height;
 
@@ -50,6 +56,7 @@ public class BaseBattleBuilding : BattleUnitBase
         }
         else
         {
+           
             var sequence = DOTween.Sequence();
             sequence.Join(animModel.transform.DOShakeScale(.5f, .5f, buildTime/2));
         
@@ -72,6 +79,7 @@ public class BaseBattleBuilding : BattleUnitBase
     {
         base.Start();
         hpUi.gameObject.SetActive(false);
+       
         
         if (spawnMarkPfb != null)
         {
@@ -120,10 +128,10 @@ public class BaseBattleBuilding : BattleUnitBase
             return;
         }
         base.Update();
-        if (IsInFog())
-        {
-            hpUi.gameObject.SetActive(true);
-        }
+        // if (!IsInFog())
+        // {
+        //     hpUi.gameObject.SetActive(true);
+        // }
         if(photonView.IsMine==false)
             return;
         if (toSpawn.Count > 0)

@@ -13,7 +13,7 @@ namespace FoW
         public UnityEvent onFogEnter;
         public UnityEvent onFogExit;
 
-        bool _isInFog = true;
+        bool _isInFog = false;
         Transform _transform;
 
         void Start()
@@ -23,7 +23,8 @@ namespace FoW
 
         void Update()
         {
-            bool isinfog = FogOfWar.GetFogOfWarTeam(team).GetFogValue(_transform.position) < (byte)(minFogStrength * 255);
+            
+            bool isinfog = FogOfWar.GetFogOfWarTeam(team).GetFogValue(_transform.position) >= (byte)(minFogStrength * 255);
             if (_isInFog == isinfog)
                 return;
 

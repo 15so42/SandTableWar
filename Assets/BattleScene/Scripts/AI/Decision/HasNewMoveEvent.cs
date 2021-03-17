@@ -29,6 +29,5 @@ public class HasNewMoveEvent : Conditional
     public void SetNewDestination(Vector3 pos)
     {
         destinationPos.SetValue(pos);
-        Debug.Log("设置值"+pos);
     }
 }

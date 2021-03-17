@@ -96,7 +96,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     private PhotonAnimatorView photonAnimatorView;//进入雾中后不同步
     [Header("===战争迷雾===")]
     public Renderer[] renderers;//进入战争迷雾后关闭相关的渲染
-    private bool isInFog = true;
+    private bool isInFog = false;
     
     #region 逻辑控制
     protected virtual void Awake()
@@ -143,25 +143,26 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         }
 
     }
-
-    //这个方法和直观理解不太一样，Enter标识能看见，Exit表示看不见
+    
     public void OnFogEnter()
     {
-        ShowRenderers(true);
-        if(photonAnimatorView)
-            photonAnimatorView.enabled = true;
-        isInFog = false;
-        // if(isInBuilding==false)
-        //     hpUi.gameObject.SetActive(true);
-    }
-
-    public void OnFogExit()
-    {
+       
         ShowRenderers(false);
         if(photonAnimatorView)
             photonAnimatorView.enabled = false;
         isInFog = true;
-        //hpUi.gameObject.SetActive(false);
+        hpUi.gameObject.SetActive(false);
+       
+    }
+
+    public void OnFogExit()
+    {
+        
+        ShowRenderers(true);
+        if(photonAnimatorView)
+            photonAnimatorView.enabled = true;
+        isInFog = false;
+        hpUi.gameObject.SetActive(true);
     }
 
     public bool IsInFog()
@@ -373,6 +374,9 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     /// <param name="pos"></param>
     public virtual void SetTargetPos(Vector3 pos)
     {
+        bool isInfog=FogOfWar.GetFogOfWarTeam(0).GetFogValue(pos) >= (byte)(0.2f * 255);
+        
+        Debug.Log("isInFog"+isInfog);
         if (behaviorDesigner)
         {
             //behaviorDesigner.SetVariableValue( "DestinationPos",pos);
