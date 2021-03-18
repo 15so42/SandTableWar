@@ -27,17 +27,38 @@ public class BuildingSpawnItem : MonoBehaviour,IBeginDragHandler,IDragHandler,IE
     {
         fightingManager.isBuildingPreview = true;
         GameObject previewBuildingGo=new GameObject();
-        MeshFilter previewMeshFilter=previewBuildingGo.AddComponent<MeshFilter>();
+        
+       
         MeshRenderer previewMeshRenderer = previewBuildingGo.AddComponent<MeshRenderer>();
         previewMeshRenderer.shadowCastingMode = ShadowCastingMode.Off;
         previewBuildingGo.AddComponent<CollisionDetection>();
-        MeshFilter building = BattleUnitBaseFactory.Instance.GetBattleUnitLocally(buildingInfo).GetComponent<BaseBattleBuilding>().animModel.GetComponent<MeshFilter>();
-        previewMeshFilter.mesh = building.sharedMesh;
+        MeshFilter[] buildingMeshFilters = BattleUnitBaseFactory.Instance.GetBattleUnitLocally(buildingInfo).GetComponent<BaseBattleBuilding>().meshFilters;
+        
+        CombineInstance[] combineInstances = new CombineInstance[buildingMeshFilters.Length]; //新建一个合并组，长度与 meshfilters一致
+        for (int i = 0; i < buildingMeshFilters.Length; i++)                                  //遍历
+        {
+            combineInstances[i].mesh      = buildingMeshFilters[i].sharedMesh;                   //将共享mesh，赋值
+            combineInstances[i].transform = buildingMeshFilters[i].transform.localToWorldMatrix; //本地坐标转矩阵，赋值
+        }
+        Mesh newMesh = new Mesh();                                  //声明一个新网格对象
+        newMesh.CombineMeshes(combineInstances);
+
+        MeshFilter buildingMeshFilter = previewBuildingGo.AddComponent<MeshFilter>();
+        buildingMeshFilter.mesh = newMesh;
+        
+        // for (int i = 0; i < buildingMeshFilters.Length; i++)
+        // {
+        //     MeshFilter tempMeshFilter = previewBuildingGo
+        //     tempMeshFilter.mesh = buildingMeshFilters[i].sharedMesh;
+        //    
+        // }
+        
         //碰撞体
         MeshCollider collision = previewBuildingGo.AddComponent<MeshCollider>();
         collision.convex = true;
         collision.isTrigger = true;
-        collision.sharedMesh = building.sharedMesh;
+        collision.sharedMesh = buildingMeshFilter.sharedMesh;
+
         //加上刚体才能碰撞
         previewBuildingGo.AddComponent<Rigidbody>().isKinematic = true;
         //材质

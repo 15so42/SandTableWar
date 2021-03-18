@@ -38,5 +38,6 @@ public enum BattleUnitId
    Base,
    Bunker_M,
    Tank_Tiger,//虎式坦克
-   Farmland
+   Farmland,
+   AutomaticBattery_I,//I型自动炮台
 }

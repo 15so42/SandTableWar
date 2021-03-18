@@ -299,8 +299,10 @@ MonoBehaviour:
     priceOff: 1
   spawnMarkPfb: {fileID: 0}
   spawnMark: {fileID: 0}
-  isBuilding: 1
   animModel: {fileID: 3638050296220507716}
+  meshRenderers:
+  - {fileID: 3615124544171282538}
+  meshFilters: []
   height: 0
   buildTime: 0
   buildingModelOffset: 0

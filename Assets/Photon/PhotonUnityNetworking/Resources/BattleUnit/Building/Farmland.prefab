@@ -219,8 +219,13 @@ MonoBehaviour:
   menuCommands: []
   spawnMarkPfb: {fileID: 0}
   spawnMark: {fileID: 0}
-  isBuilding: 1
   animModel: {fileID: 7536500748593486704}
+  meshRenderers:
+  - {fileID: 7276674766310335696}
+  - {fileID: 9064573741807181836}
+  meshFilters:
+  - {fileID: 3839817465663084605}
+  - {fileID: 4982719057522039050}
   height: 2
   buildTime: 10
   buildingModelOffset: 0

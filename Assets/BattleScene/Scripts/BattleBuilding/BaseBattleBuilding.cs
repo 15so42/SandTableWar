@@ -26,9 +26,12 @@ public class BaseBattleBuilding : BattleUnitBase
     private BattleBuildingMenuDialog buildingMenuDialog;
 
     private Timer spawnMarkFadeTimer;
-
-    [Header("建造tween动画")] public bool isBuilding=true;
+    private bool isBuilding=true;
+    
     [Header("建造动画模型")]public GameObject animModel;
+    [Header("建造完成闪光MeshRender效果")] public MeshRenderer[] meshRenderers;
+    [Header("建造预览模型配置")] public MeshFilter[] meshFilters;
+    
     public float height=5f;
     public int buildTime=5;
     public float buildingModelOffset;
@@ -69,9 +72,17 @@ public class BaseBattleBuilding : BattleUnitBase
 
     void PlayBuildCompleteFx()
     {
-        
-        animModel.GetComponent<MeshRenderer>().material.DOColor(new Color(1, 1, 1, 1), "_EmissionColor", 0.3f)
-            .SetLoops(2, LoopType.Yoyo);
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            for (int j = 0; j < meshRenderers[i].materials.Length; j++)
+            {
+                Material material = meshRenderers[i].materials[j];
+                material.EnableKeyword("_EMISSION");
+                material.DOColor(new Color(1, 1, 1, 1), "_EmissionColor", 0.3f)
+                    .SetLoops(2, LoopType.Yoyo);
+            }
+           
+        }
     }
 
     // Start is called before the first frame update
@@ -241,6 +252,11 @@ public class BaseBattleBuilding : BattleUnitBase
     
     
     
+}
+
+public class BuildingPreviewMeshConfig
+{
+    public MeshFilter meshFilter;
 }
 
 

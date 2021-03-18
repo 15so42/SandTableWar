@@ -254,8 +254,11 @@ MonoBehaviour:
   spawnMarkPfb: {fileID: 900307187978911580, guid: b44f100bacae5e8498188a0d84469a4e,
     type: 3}
   spawnMark: {fileID: 0}
-  isBuilding: 1
   animModel: {fileID: 4791541845252413348}
+  meshRenderers:
+  - {fileID: 4767178920142123126}
+  meshFilters:
+  - {fileID: 4759686266890408210}
   height: 2.75
   buildTime: 6
   buildingModelOffset: 0

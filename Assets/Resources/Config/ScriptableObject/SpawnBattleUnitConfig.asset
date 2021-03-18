@@ -78,8 +78,8 @@ MonoBehaviour:
     needMineral: 1
     needFood: 1
   - battleUnitType: 1
-    battleUnitId: 8
-    resourceName: Farmland
+    battleUnitId: 5
+    resourceName: Mineral
     spawnTime: 10
     needPopulation: 1
     needCoin: 1
@@ -2382,12 +2382,12 @@ MonoBehaviour:
     needMineral: 1
     needFood: 1
   - battleUnitType: 1
-    battleUnitId: 5
-    resourceName: Mineral
-    spawnTime: 0
-    needPopulation: 0
-    needCoin: 0
-    needMineral: 0
+    battleUnitId: 10
+    resourceName: AutomaticBattery_I
+    spawnTime: 5
+    needPopulation: 1
+    needCoin: 5
+    needMineral: 20
     needFood: 0
   - battleUnitType: 1
     battleUnitId: 7
