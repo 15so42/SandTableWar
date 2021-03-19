@@ -138,6 +138,12 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             Stop();
         }
 
+        public virtual void RotateTowardPos(Vector3 position)
+        {
+            var targetRotation = Quaternion.LookRotation(position - transform.position);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, navMeshAgent.angularSpeed * Time.deltaTime);
+        }
+
         /// <summary>
         /// Reset the values back to their defaults.
         /// </summary>
