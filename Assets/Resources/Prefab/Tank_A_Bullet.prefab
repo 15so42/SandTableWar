@@ -109,8 +109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recycleTime: 2
   autoRecycle: 1
-  bulletType: 0
+  bulletType: 3
   baseDamage: 60
+  onTriggerEndFxType: 2
 --- !u!96 &8145120000079118319
 TrailRenderer:
   serializedVersion: 2
@@ -154,7 +155,7 @@ TrailRenderer:
   m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.4
     widthCurve:
       serializedVersion: 2
       m_Curve:

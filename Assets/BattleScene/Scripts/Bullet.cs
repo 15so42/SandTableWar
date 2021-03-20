@@ -12,7 +12,8 @@ public enum BulletType
 {
     B_9mm,
     B_45mm,
-    B_76mm
+    B_76mm,
+    Tank_Tiger_Bullet
 }
 public class Bullet : RecycleAbleObject
 {
@@ -23,11 +24,26 @@ public class Bullet : RecycleAbleObject
     //武器
     private Weapon weapon;
     public int baseDamage = 20;
-    
+
+    public List<HitFxConfig> hitFxConfigs;
+
+    [Header("子弹碰撞完后生成的特效，比如坦克炮弹生成爆炸烟雾特效")]
+    public BattleFxType onTriggerEndFxType;
+
+    private void Awake()
+    {
+        //初始化击中特效配置
+        hitFxConfigs=new List<HitFxConfig>();
+        hitFxConfigs.Add(new HitFxConfig(VictimMaterial.Human,BattleFxType.Blood_1));
+        hitFxConfigs.Add(new HitFxConfig(VictimMaterial.Metal,BattleFxType.Blood_1));
+        hitFxConfigs.Add(new HitFxConfig(VictimMaterial.Concrete,BattleFxType.Blood_1));
+        //todo 应该还需要overrideHitFxConfigs的，但是今天不想写了，以后需要时再来写
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -58,6 +74,20 @@ public class Bullet : RecycleAbleObject
             }
             OnTriggerUnit(otherUnit);
         }
+
+        //因为有时候是通过射线来判断的，所以onTriggerEnd不能写在这里
+        OnTriggerEnd(transform.position);
+       
+    }
+
+    public virtual void OnTriggerEnd(Vector3 pos)
+    {
+        if (onTriggerEndFxType != BattleFxType.None)
+        {
+            string fxName = ConfigHelper.Instance.GetFxPfbByBattleFxType(onTriggerEndFxType).name;
+            BattleFxManager.Instance.SpawnFxAtPosInPhoton(fxName, pos, transform.forward);
+        }
+        
     }
 
     public virtual void OnTriggerObstacle(GameObject go,RaycastHit hitInfo=default)
@@ -66,25 +96,29 @@ public class Bullet : RecycleAbleObject
         //PhotonView.Get(shooter).RPC("RecycleBullet",RpcTarget.All,this);
         if (hitInfo.collider != null)
         {
+            //todo 障碍物碰撞材料未完成
+            //string fxName = GetFxNameByHitConfig(targetUnitBase.victimMaterial);
             BattleFxManager.Instance.SpawnFxAtPosInPhoton("FX_DirtSplatter_Lash",hitInfo.point,hitInfo.normal);
         }
         
     }
 
-    public virtual void OnTriggerUnit(BattleUnitBase unitBase,RaycastHit hitInfo=default)
+    public virtual void OnTriggerUnit(BattleUnitBase targetUnitBase,RaycastHit hitInfo=default)
     {
         FightingManager fightingManager = GameManager.Instance.GetFightingManager();
         //计算伤害使用凶器进行计算，如使用子弹计算，但是记录是记录攻击者单位,凶器都需要拥有
-        int damageValue = CalcuateDamageValue(unitBase);
+        int damageValue = CalcuateDamageValue(targetUnitBase);
         //伤害机制还未确定，暂时使用攻击者，受害者，伤害量进行记录，不确定是否需要伤害记录功能，先留着吧
-        fightingManager.Attack(shooter, unitBase,damageValue);
+        fightingManager.Attack(shooter, targetUnitBase,damageValue);
         
         //Rpc销毁子弹
         //PhotonView.Get(shooter).RPC("RecycleBullet",RpcTarget.All,this);
         if (hitInfo.collider != null)
         {
-            BattleFxManager.Instance.SpawnFxAtPosInPhoton("FX_DirtSplatter_Lash", hitInfo.point, hitInfo.normal);
+            string fxName = GetFxNameByHitConfig(targetUnitBase.victimMaterial);
+            BattleFxManager.Instance.SpawnFxAtPosInPhoton(fxName, hitInfo.point, hitInfo.normal);
         }
+        
     }
 
     [PunRPC]
@@ -92,9 +126,15 @@ public class Bullet : RecycleAbleObject
     {
         
     }
-    
 
-    public override void ReUse()
+    public virtual string GetFxNameByHitConfig(VictimMaterial victimMaterial)
+    {
+        BattleFxType targetFxType = hitFxConfigs.Find(x => x.victimMaterial == victimMaterial).battleFxType;
+        string fxName = ConfigHelper.Instance.GetFxPfbByBattleFxType(targetFxType).name;
+        return fxName;
+    }
+
+        public override void ReUse()
     {
         base.ReUse();
         //需要的变量在重用前都会被重新设置而被覆盖为新值，所以不用管
@@ -124,3 +164,18 @@ public class Bullet : RecycleAbleObject
         shooter = unitBase;
     }
 }
+
+
+
+//击中特效配置
+public class HitFxConfig
+{
+    public HitFxConfig(VictimMaterial victimMaterial, BattleFxType battleFxType)
+    {
+        this.victimMaterial = victimMaterial;
+        this.battleFxType = battleFxType;
+    }
+    public VictimMaterial victimMaterial;
+    public BattleFxType battleFxType;
+}
+

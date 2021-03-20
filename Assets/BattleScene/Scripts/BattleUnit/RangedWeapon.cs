@@ -60,10 +60,12 @@
                     if (hitUnit)
                     {
                         iBullet.OnTriggerUnit(hitUnit,hitInfo);
+                        iBullet.OnTriggerEnd(hitInfo.point);
                     }
                     else
                     {
                         iBullet.OnTriggerObstacle(hitInfo.collider.gameObject,hitInfo);
+                        iBullet.OnTriggerEnd(hitInfo.point);
                     }
                 }
                 else//没有击中目标时，把最远射程位置传过去

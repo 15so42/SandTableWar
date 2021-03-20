@@ -1201,6 +1201,7 @@ GameObject:
   - component: {fileID: 3970324342756843223}
   - component: {fileID: 7017581630052517237}
   - component: {fileID: 6536760540851462888}
+  - component: {fileID: 6212610074683414474}
   m_Layer: 0
   m_Name: Tank_Tiger
   m_TagString: Untagged
@@ -1257,7 +1258,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6714188707150718372}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.28
+  m_Radius: 2.2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1319,11 +1320,12 @@ MonoBehaviour:
   atkRate: 0.3
   owner: {fileID: 0}
   shootPos: {fileID: 3575864999368864551}
-  flashFx: {fileID: 7742525985621136673, guid: c3c136b640fa90d479e2ff7b1ed39741, type: 3}
+  flashFx: {fileID: 8695086352503598387, guid: 9e19a6faebba8044597e630fe40e81de, type: 3}
   bullet: {fileID: 4317199290405529018, guid: cc49ae9ea382cea4facbd4229e0f11d2, type: 3}
   bulletDamageRate: 1
   detectionType: 0
   scatteringAngel: 2
+  barrel: {fileID: 4985280407843579701}
   recoil: 500000
 --- !u!114 &3186924952707805649
 MonoBehaviour:
@@ -1434,8 +1436,8 @@ MonoBehaviour:
     maxHp: 450
     hp: 450
     defense: 60
-    viewDistance: 20
-    attackDistance: 10
+    viewDistance: 25
+    attackDistance: 20
   hpUiOffset: {x: 0, y: 95, z: 0}
   selectMarkSize: 4
   selectMarkOffset: {x: 0, y: 0, z: 0}
@@ -1447,9 +1449,6 @@ MonoBehaviour:
   victimOffset: 1.5
   rotateDamp: 200
   overrideRotationCtrl: 1
-  overrideMoveCtrl: 0
-  moveByAnim: 0
-  moveSpeedMultiplier: 1
   configId: 0
   isGoingBuilding: 0
   isInBuilding: 0
@@ -1553,7 +1552,7 @@ MonoBehaviour:
         Bool Status","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsPursuing","IsShared":true,"BooleanmValue":false},"BooleantargetStatus":false},{"Type":"SetBoolStatus","NodeData":{"Offset":"(-50,220)"},"ID":18,"Name":"Set
         Fighting Status","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false},"BooleantargetStatus":false},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnFailure","NodeData":{"Offset":"(130,240)"},"ID":19,"Name":"Return
         Failure","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.ParallelComplete","NodeData":{"Offset":"(-80,120)"},"ID":20,"Name":"Parallel
-        Complete","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-250,230)"},"ID":21,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Interrupt","NodeData":{"Offset":"(-140,180.000122)"},"ID":22,"Name":"Interrupt","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Movement.Seek","NodeData":{"Offset":"(0,150.000122)"},"ID":23,"Name":"Seek","Instant":true,"SharedGameObjecttarget":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null},"SharedVector3targetPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedFloatspeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MoveSpeed","IsShared":true,"SinglemValue":5},"SharedFloatangularSpeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":120},"SharedFloatarriveDistance":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolstopOnTaskEnd":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolupdateRotation":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true}}]},{"Type":"BehaviorDesigner.Runtime.Tactical.Tasks.SyncDestinationPosToCurPos","NodeData":{"Offset":"(20,330.000122)"},"ID":24,"Name":"Sync
+        Complete","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-250,230)"},"ID":21,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Interrupt","NodeData":{"Offset":"(-140,180.000122)"},"ID":22,"Name":"Interrupt","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Movement.Seek","NodeData":{"Offset":"(0,150.000122)"},"ID":23,"Name":"Seek","Instant":true,"SharedGameObjecttarget":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null},"SharedVector3targetPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedFloatspeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MoveSpeed","IsShared":true,"SinglemValue":2},"SharedFloatangularSpeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":120},"SharedFloatarriveDistance":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolstopOnTaskEnd":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolupdateRotation":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true}}]},{"Type":"BehaviorDesigner.Runtime.Tactical.Tasks.SyncDestinationPosToCurPos","NodeData":{"Offset":"(20,330.000122)"},"ID":24,"Name":"Sync
         Destination Pos To Cur Pos","Instant":true,"SharedVector3DestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastDestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(200,360)"},"ID":25,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(-60,190.000122)"},"ID":26,"Name":"Inverter","Instant":true,"Children":[{"Type":"IsBoolTrue","NodeData":{"Offset":"(0,120.000122)","Comment":"\u4e0d\u662f\u6b63\u5728\u6218\u6597"},"ID":27,"Name":"Is
         Bool True","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(150,230.000122)"},"ID":28,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(-90,140.000122)"},"ID":29,"Name":"Until
         Success","Instant":true,"Children":[{"Type":"CanSeeEnemy","NodeData":{"Offset":"(0,130.000122)","Comment":"\u6709\u654c\u4eba\u65f6\u79fb\u52a8\u5206\u652f\u7ed3\u675f"},"ID":30,"Name":"Can
@@ -1563,15 +1562,15 @@ MonoBehaviour:
         See Enemy","Instant":true,"Singletimer":0,"Singleinterval":1,"SharedBattleUnitselfBattleUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"SharedBattleUnitenemyBattleUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},"SharedGameObjectreturnedEnemy":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"EnemyGameObjcet","IsShared":true},"SharedGameObjectListtargetGroup":{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"TargetGroup","IsShared":true,"List`1mValue":[]}},{"Type":"BehaviorDesigner.Runtime.Tasks.Interrupt","NodeData":{"Offset":"(120,190)","Comment":"\u5f3a\u884c\u79fb\u52a8\u65f6\u6253\u65ad\u6218\u6597\u884c\u4e3a"},"ID":35,"Name":"Interrupt","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnSuccess","NodeData":{"Offset":"(-10,110)"},"ID":36,"Name":"Return
         Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,120)"},"ID":37,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"InAttackRange","NodeData":{"Offset":"(-240,210)"},"ID":38,"Name":"In
         Attack Range","Instant":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"SharedBattleUnitenemyUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true}},{"Type":"BehaviorDesigner.Runtime.Tactical.Tasks.SyncDestinationPosToCurPos","NodeData":{"Offset":"(-70,280)"},"ID":39,"Name":"Sync
-        Destination Pos To Cur Pos","Instant":true,"SharedVector3DestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastDestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"SetBoolStatus","NodeData":{"Offset":"(130,210)"},"ID":40,"Name":"Set
+        Destination Pos To Cur Pos","Instant":true,"SharedVector3DestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastDestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"SetBoolStatus","NodeData":{"Offset":"(192.5,210)"},"ID":40,"Name":"Set
         Fighting Status","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false},"BooleantargetStatus":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Parallel","NodeData":{"Offset":"(560,190)"},"ID":41,"Name":"Parallel","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"WeaponUpdate","NodeData":{"Offset":"(-110,130.000122)"},"ID":42,"Name":"Weapon
         Update","Instant":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"SharedBattleUnitenemyUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},"BooleanneedRotate":false}]}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Interrupt","NodeData":{"Offset":"(780,200)","Comment":"\u5f3a\u884c\u79fb\u52a8\u5f0f\u6253\u65ad\u8ffd\u8e2a\u884c\u4e3a"},"ID":43,"Name":"Interrupt","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(80,150)"},"ID":44,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"SetBoolStatus","NodeData":{"Offset":"(0,240)"},"ID":45,"Name":"Set
         Bool Status","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsPursuing","IsShared":true,"BooleanmValue":false},"BooleantargetStatus":true},{"Type":"BehaviorDesigner.Runtime.Tasks.ParallelComplete","NodeData":{"Offset":"(250,170)"},"ID":46,"Name":"Parallel
-        Complete","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Movement.Pursue","NodeData":{"Offset":"(-120,130)"},"ID":47,"Name":"Pursue","Instant":true,"SharedFloattargetDistPrediction":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":20},"SharedFloattargetDistPredictionMult":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":20},"SharedGameObjecttarget":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"EnemyGameObjcet","IsShared":true},"SharedFloatspeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MoveSpeed","IsShared":true,"SinglemValue":5},"SharedFloatangularSpeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":120},"SharedFloatarriveDistance":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolstopOnTaskEnd":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolupdateRotation":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true}}]},{"Type":"SetBoolStatus","NodeData":{"Offset":"(460,190)"},"ID":48,"Name":"Set
+        Complete","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Movement.Pursue","NodeData":{"Offset":"(-120,130)"},"ID":47,"Name":"Pursue","Instant":true,"SharedFloattargetDistPrediction":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":20},"SharedFloattargetDistPredictionMult":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":20},"SharedGameObjecttarget":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"EnemyGameObjcet","IsShared":true},"SharedFloatspeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MoveSpeed","IsShared":true,"SinglemValue":2},"SharedFloatangularSpeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":120},"SharedFloatarriveDistance":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolstopOnTaskEnd":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolupdateRotation":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true}}]},{"Type":"SetBoolStatus","NodeData":{"Offset":"(460,190)"},"ID":48,"Name":"Set
         Bool Status","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsPursuing","IsShared":true,"BooleanmValue":false},"BooleantargetStatus":false}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.RestartBehaviorTree","NodeData":{"Offset":"(1190,290)"},"ID":49,"Name":"Restart
         Behavior Tree","Instant":true,"SharedGameObjectbehaviorGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null},"SharedIntgroup":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnFailure","NodeData":{"Offset":"(560,210)"},"ID":50,"Name":"Return
         Failure","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tactical.Tasks.SyncDestinationPosToCurPos","NodeData":{"Offset":"(10,160)"},"ID":51,"Name":"Sync
-        Destination Pos To Cur Pos","Instant":true,"SharedVector3DestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastDestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Parallel","NodeData":{"Offset":"(1220,290)"},"ID":52,"Name":"Parallel","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Idle","NodeData":{"Offset":"(-150,150)"},"ID":53,"Name":"Idle","Instant":true}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"SelfGameObject","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsPursuing","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"TargetGroup","IsShared":true,"List`1mValue":[]},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MoveSpeed","IsShared":true,"SinglemValue":5},{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"EnemyGameObjcet","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Turret","IsShared":true,"TransformmValue":2},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Barrel","IsShared":true,"TransformmValue":3},{"Type":"BehaviorDesigner.Runtime.SharedTransformList","Name":"Wheels","IsShared":true,"List`1mValue":[]}]}'
+        Destination Pos To Cur Pos","Instant":true,"SharedVector3DestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastDestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Parallel","NodeData":{"Offset":"(1220,290)"},"ID":52,"Name":"Parallel","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Idle","NodeData":{"Offset":"(-150,150)"},"ID":53,"Name":"Idle","Instant":true}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"SelfGameObject","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsPursuing","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"TargetGroup","IsShared":true,"List`1mValue":[]},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MoveSpeed","IsShared":true,"SinglemValue":2},{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"EnemyGameObjcet","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Turret","IsShared":true,"TransformmValue":2},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Barrel","IsShared":true,"TransformmValue":3},{"Type":"BehaviorDesigner.Runtime.SharedTransformList","Name":"Wheels","IsShared":true,"List`1mValue":[]}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -1596,10 +1595,27 @@ Rigidbody:
   m_GameObject: {fileID: 6714188707150718372}
   serializedVersion: 2
   m_Mass: 50000
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6212610074683414474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6714188707150718372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc55e7d9ae3417881fd6399ec30297d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overrideMovementCtrl: 1
+  moveByAnim: 0
+  moveByAnimSpeedMultiplier: 1
+  extraRotateSpeed: 3
+  arriveDistance: 1

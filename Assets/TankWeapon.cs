@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityTimer;
 
@@ -7,7 +8,7 @@ using UnityTimer;
 public class TankWeapon : RangedWeapon
 {
     private Transform tower;
-
+    public Transform barrel;//炮管
     [Header("坦克开炮后坐力")] public int recoil;
     // Start is called before the first frame update
     void Start()
@@ -40,9 +41,11 @@ public class TankWeapon : RangedWeapon
         base.Attack();
         Rigidbody rigidbody = GetComponent<Rigidbody>();
         rigidbody.isKinematic = false;
-        rigidbody.AddForce((shootPos.transform.position-GetEnemy().transform.position)*recoil);
+        Vector3 shootDir = shootPos.transform.position - GetEnemy().transform.position;
+        rigidbody.AddForce(shootDir*recoil+Vector3.up);
         Timer.Register(0.5f,() =>
            rigidbody.isKinematic = true);
+        barrel.transform.DOLocalMove(new Vector3(0,0,-0.6f), 0.1f).SetLoops(2,LoopType.Yoyo);
     }
 
     // Update is called once per frame

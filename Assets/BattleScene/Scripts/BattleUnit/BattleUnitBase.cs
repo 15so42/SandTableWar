@@ -10,6 +10,7 @@ using UnityTimer;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner;
 using BehaviorDesigner.Runtime.Tactical;
+using DefaultNamespace;
 using Object = System.Object;
 
 [RequireComponent(typeof(FogOfWarEvents))]
@@ -47,16 +48,12 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     public int amountBySecond=0; 
     private float lastAddTime=0;
 
+    [Header("受击类型,表明自己是肉体，机器或者是建筑")] public VictimMaterial victimMaterial;
     [Header("受击点,别人攻击此目标时瞄准的位置")] public Transform victimPos;
     [Header("受击偏移，如果没有设置victimPos则使用这个")] public float victimOffset=1.5f;
     [Header("旋转阻尼")] public float rotateDamp = 10;
     //重写寻路组件旋转控制
-    [HideInInspector]public bool overrideRotationCtrl=true;
-    [HideInInspector]public bool overrideMoveCtrl=false;
-    [Header("===移动===")]
-    public bool moveByAnim;
-
-    public float moveSpeedMultiplier=1;
+    [HideInInspector]public bool overrideRotationCtrl=true;//旋转控制比较简单，就不用抽离了
 
     [Header("兵种")]
     public BattleUnitId configId;
@@ -105,7 +102,6 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         if (navMeshAgent)
         {
             navMeshAgent.updateRotation = !overrideRotationCtrl;
-            navMeshAgent.updatePosition = !overrideMoveCtrl;
         }
 
         animator = GetComponent<Animator>();
@@ -253,7 +249,6 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
             if (navMeshAgent != null)
             {
                 RotationControl();
-                MovementControl();
             }
         }
         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
@@ -286,43 +281,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         horDir.y = 0;
         transform.forward = Vector3.SmoothDamp(transform.forward, horDir, ref refDir, Time.deltaTime * rotateDamp);
     }
-
-    private void OnAnimatorMove()
-    {
-        if (animator)
-        {
-            if (moveByAnim)
-            {
-                refAnimDeltaPos = animator.deltaPosition;
-            }
-        }
-           
-    }
     
-    private Vector3 refAnimDeltaPos;
-    protected virtual void MovementControl()
-    {
-        if (overrideMoveCtrl == false)
-            return;
-        if (moveByAnim)
-        {
-            transform.Translate((refAnimDeltaPos*moveSpeedMultiplier)/Time.deltaTime,Space.World);
-            //通过刚体移动
-            // Vector3 v=(refAnimDeltaPos*moveSpeedMultiplier)/Time.deltaTime;
-            // v.y = rigidbody.velocity.y;
-            // rigidbody.velocity = v;
-        }
-        else
-        {
-            Vector3 horDir = navMeshAgent.desiredVelocity;
-            transform.Translate(Vector3.forward * (horDir.magnitude * Time.deltaTime),Space.Self);
-        }
-       
-        navMeshAgent.nextPosition = transform.position;
-    }
-
-    
-   
 
     #endregion
 

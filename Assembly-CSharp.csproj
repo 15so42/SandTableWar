@@ -76,6 +76,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\CureWounded.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\MyRetreat.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\MyRtsAction.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetCurPostToDest.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetMineMachine.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncDestinationPosToCurPos.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncTankAnim.cs" />
@@ -86,6 +87,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Conditional\HasWounded.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Conditional\SimpleWithInDistance.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Decorator\EventReceiverChecker.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\SetStoppingDistance.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\CanSeeEnemy.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\CureCompletedDecision.cs" />
@@ -848,6 +850,7 @@
      <Compile Include="Assets\Mine.cs" />
      <Compile Include="Assets\MineralUnit.cs" />
      <Compile Include="Assets\MouseShapeManager.cs" />
+     <Compile Include="Assets\NavMeshUnitMovement.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
@@ -864,6 +867,7 @@
      <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
      <Compile Include="Assets\PreviewBuilding.cs" />
      <Compile Include="Assets\RangeMark.cs" />
+     <Compile Include="Assets\Resources\Config\ScriptableObject\BattleFxConfig.cs" />
      <Compile Include="Assets\Resources\Config\ScriptableObject\MouseShapeConfig.cs" />
      <Compile Include="Assets\Resources\Config\ScriptableObject\SpawnBattleUnitConfig.cs" />
      <Compile Include="Assets\Scout.cs" />
