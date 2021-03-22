@@ -5,8 +5,9 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
 {
     public abstract class NavMeshGroupMovement : GroupMovement
     {
+        
         [Tooltip("All of the agents")]
-        public SharedGameObject[] agents = null;
+        public SharedGameObjectList agents = null;
         [Tooltip("The speed of the agents")]
         public SharedFloat speed = 10;
         [Tooltip("The angular speed of the agents")]
@@ -18,11 +19,11 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
 
         public override void OnStart()
         {
-            navMeshAgents = new NavMeshAgent[agents.Length];
-            transforms = new Transform[agents.Length];
-            for (int i = 0; i < agents.Length; ++i) {
-                transforms[i] = agents[i].Value.transform;
-                navMeshAgents[i] = agents[i].Value.GetComponent<NavMeshAgent>();
+            navMeshAgents = new NavMeshAgent[agents.Value.Count];
+            transforms = new Transform[agents.Value.Count];
+            for (int i = 0; i <agents.Value.Count; ++i) {
+                transforms[i] = agents.Value[i].transform;
+                navMeshAgents[i] = agents.Value[i].GetComponent<NavMeshAgent>();
                 navMeshAgents[i].speed = speed.Value;
                 navMeshAgents[i].angularSpeed = angularSpeed.Value;
                 navMeshAgents[i].isStopped = false;

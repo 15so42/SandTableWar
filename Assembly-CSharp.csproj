@@ -73,11 +73,13 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\SetMoveSpeedByNavSpeed.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\SyncLastDestinationPos.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\WeaponUpdate.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\CarveOrUnCarve.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\CureWounded.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\MyRetreat.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\MyRtsAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetCurPostToDest.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetMineMachine.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetStoppingDistance.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncDestinationPosToCurPos.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncTankAnim.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\Worker\CancelMinePlan.cs" />
@@ -87,7 +89,6 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Conditional\HasWounded.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Conditional\SimpleWithInDistance.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Decorator\EventReceiverChecker.cs" />
-     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\SetStoppingDistance.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\CanSeeEnemy.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\CureCompletedDecision.cs" />

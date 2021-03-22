@@ -234,8 +234,10 @@ public class FightingManager
     /// <param name="pos"></param>
     public void MoveToSpecificPos(Vector3 pos)
     {
+        selectedUnits[0].SetFlockLeader(selectedUnits);
         foreach (var unit in selectedUnits)
         {
+            
             unit.SetTargetPos(pos);
             //todo 添加特效
             // GameObject mark = GameObject.CreatePrimitive(PrimitiveType.Sphere);

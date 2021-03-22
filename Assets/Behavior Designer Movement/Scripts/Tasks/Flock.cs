@@ -18,17 +18,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         public SharedFloat cohesionWeight = 0.5f;
         [Tooltip("The greater the separationWeight is the more likely it is that the agents will be separated")]
         public SharedFloat separationWeight = 0.6f;
+
+        [Tooltip("是否是leader，Leader不会被集群参数影响")] public SharedBool isFlockLeader;
+        //public SharedBattleUnit selfUnit;
+        
         
         // The agents will always be flocking so always return running
         public override TaskStatus OnUpdate()
         {
             // Determine a destination for each agent
-            for (int i = 0; i < agents.Length; ++i) {
+            for (int i = 0; i < agents.Value.Count; ++i) {
+                if (agents.Value[i] == gameObject)
+                {
+                    continue;//只有leader会设置floack的agents数组，如果运行到这一句，说明自己就是leader，leader不需要受到集群控制，因此跳过
+                }
                 Vector3 alignment, cohesion, separation;
                 // determineFlockAttributes will determine which direction to head, which common position to move toward, and how far apart each agent is from one another,
                 DetermineFlockParameters(i, out alignment, out cohesion, out separation);
                 // Weigh each parameter to give one more of an influence than another
                 var velocity = alignment * alignmentWeight.Value + cohesion * cohesionWeight.Value + separation * separationWeight.Value;
+                Debug.DrawLine(transforms[i].position,transforms[i].position + velocity * lookAheadDistance.Value,Color.blue);
                 // Set the destination based on the velocity multiplied by the look ahead distance
                 if (!SetDestination(i, transforms[i].position + velocity * lookAheadDistance.Value)) {
                     // Go the opposite direction if the destination is invalid
@@ -36,7 +45,13 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                     SetDestination(i, transforms[i].position + velocity * lookAheadDistance.Value);
                 }
             }
+            // if (agents.Value.Count == 0)//这个东西在单机过一次后就不为0了.
+            // {
+            //     isFlockLeader = false;
+            //     return TaskStatus.Failure;
+            // }
             return TaskStatus.Running;
+           
         }
 
         // Determine the three flock parameters: alignment, cohesion, and separation.
@@ -49,7 +64,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             int neighborCount = 0;
             var agentPosition = transforms[index].position;
             // Loop through each agent to determine the alignment, cohesion, and separation
-            for (int i = 0; i < agents.Length; ++i) {
+            for (int i = 0; i < agents.Value.Count; ++i) {
                 // The agent can't compare against itself
                 if (index != i) {
                     var position = transforms[i].position;
@@ -74,6 +89,13 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             separation = ((separation / neighborCount) * -1).normalized;
         }
 
+        public override void OnEnd()
+        {
+            base.OnEnd();
+            agents.Value.Clear();
+            isFlockLeader.Value = false;
+        }
+
         // Reset the public variables
         public override void OnReset()
         {
@@ -84,6 +106,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             alignmentWeight = 0.4f;
             cohesionWeight = 0.5f;
             separationWeight = 0.6f;
+            
         }
     }
 }

@@ -345,6 +345,17 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         
     }
     #endregion
+
+    public void SetFlockLeader(List<BattleUnitBase> agents)
+    {
+        List<GameObject> list=new List<GameObject>();
+        for (int i = 0; i < agents.Count; i++)
+        {
+            list.Add(agents[i].gameObject);
+        }
+        behaviorDesigner.SetVariableValue("FlockGroup",list);
+        behaviorDesigner.SetVariableValue("IsFlockLeader",true);
+    }
     
     #region 表现
     public void SetSelectMark(GameObject mark)
@@ -408,6 +419,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         {
             selectMark.gameObject.SetActive(false);
         }
+        behaviorDesigner.SetVariableValue("IsFlockLeader",false);
     }
 
     /// <summary>

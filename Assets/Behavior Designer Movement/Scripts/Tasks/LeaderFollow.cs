@@ -37,7 +37,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         {
             var behindPosition = LeaderBehindPosition();
             // Determine a destination for each agent
-            for (int i = 0; i < agents.Length; ++i) {
+            for (int i = 0; i < agents.Value.Count; ++i) {
                 // Get out of the way of the leader if the leader is currently looking at the agent and is getting close
                 if (LeaderLookingAtAgent(i) && Vector3.Magnitude(leaderTransform.position - transforms[i].position) < aheadDistance.Value) {
                     SetDestination(i, transforms[i].position + (transforms[i].position - leaderTransform.position).normalized * aheadDistance.Value);
@@ -62,7 +62,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             int neighborCount = 0;
             var agentTransform = transforms[agentIndex];
             // Loop through each agent to determine the separation
-            for (int i = 0; i < agents.Length; ++i) {
+            for (int i = 0; i <agents.Value.Count; ++i) {
                 // The agent can't compare against itself
                 if (agentIndex != i) {
                     // Only determine the parameters if the other agent is its neighbor

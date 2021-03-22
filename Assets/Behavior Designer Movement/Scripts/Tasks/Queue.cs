@@ -25,7 +25,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         public override TaskStatus OnUpdate()
         {
             // Determine a destination for each agent
-            for (int i = 0; i < agents.Length; ++i) {
+            for (int i = 0; i < agents.Value.Count; ++i) {
                 if (AgentAhead(i)) {
                     SetDestination(i, transforms[i].position + transforms[i].forward * slowDownSpeed.Value + DetermineSeparation(i));
                 } else {
@@ -40,7 +40,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         {
             // queueAhead is the distance in front of the current agent
             var queueAhead = Velocity(index) * maxQueueAheadDistance.Value;
-            for (int i = 0; i < agents.Length; ++i) {
+            for (int i = 0; i < agents.Value.Count; ++i) {
                 // Return the first agent that is ahead of the current agent
                 if (index != i && Vector3.SqrMagnitude(queueAhead - transforms[i].position) < maxQueueRadius.Value) {
                     return true;
@@ -56,7 +56,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             int neighborCount = 0;
             var agentTransform = transforms[agentIndex];
             // Loop through each agent to determine the separation
-            for (int i = 0; i < agents.Length; ++i) {
+            for (int i = 0; i < agents.Value.Count; ++i) {
                 // The agent can't compare against itself
                 if (agentIndex != i) {
                     // Only determine the parameters if the other agent is its neighbor
