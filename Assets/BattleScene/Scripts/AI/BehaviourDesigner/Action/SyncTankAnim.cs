@@ -11,8 +11,9 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
         public SharedTransform barrel;//炮管
         public SharedBattleUnit enemyUnit;
 
+        public SharedTransformList wheels;
         [Header("炮塔转速")] public int turretRotateSpeed=45;
-
+        
        
 
         public override TaskStatus OnUpdate()
@@ -40,10 +41,14 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
             Quaternion q = Quaternion.LookRotation(turretVec);
             turretTrans.rotation = Quaternion.RotateTowards(turretTrans.rotation, q, turretRotateSpeed * Time.deltaTime);
 
-            // foreach (var wheel in wheels)
-            // {
-            //     
-            // }
+            float speed = tacticalAgent.GetVelocity().magnitude;
+            Debug.Log(speed);
+            float ratio = speed / 2;
+            foreach (var wheel in wheels.Value)
+            {
+                
+                wheel.transform.Rotate(new Vector3(60,0,0)*Time.deltaTime*ratio,Space.Self);
+            }
             return TaskStatus.Running;
         }
     }

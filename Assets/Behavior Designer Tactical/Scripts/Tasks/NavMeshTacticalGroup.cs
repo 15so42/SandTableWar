@@ -37,6 +37,11 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
                 return navMeshAgent.destination;
             }
 
+            public Vector3 GetVelocity()
+            {
+                return navMeshAgent.velocity;
+            }
+
             /// <summary>
             /// Sets the destination.
             /// </summary>
