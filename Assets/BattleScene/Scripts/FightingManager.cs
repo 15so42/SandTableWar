@@ -7,6 +7,7 @@ using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FightingManager
 {
@@ -235,16 +236,69 @@ public class FightingManager
     public void MoveToSpecificPos(Vector3 pos)
     {
         selectedUnits[0].SetFlockLeader(selectedUnits);
+        
+        List<DestinationSphereData> destinationSphereData=new List<DestinationSphereData>();
+        int i = 0;
+        float radius=1;//每填充一个单位，随机位置半径增大1
         foreach (var unit in selectedUnits)
         {
+            unit.navMeshAgent.avoidancePriority = i;
+            i++;
+
+            int randomTime = 20;
             
-            unit.SetTargetPos(pos);
+            while (randomTime > 0)//次数限制
+            {
+                randomTime--;
+
+                Vector3 randomPos = pos + Random.insideUnitSphere * radius;
+                
+                NavMeshHit hit;
+                NavMesh.SamplePosition(randomPos, out hit, radius,-1);
+                Vector3 sampledPos = hit.position;
+                if (CanAgentReach(destinationSphereData, sampledPos, unit.navMeshAgent.radius))//能防止
+                {
+                    destinationSphereData.Add(new DestinationSphereData(sampledPos,radius));
+                    unit.SetTargetPos(sampledPos);
+                    GameObject mark = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    mark.transform.position = sampledPos;
+                    mark.transform.localScale = Vector3.one * (unit.navMeshAgent.radius * 2);
+                    break;
+                }
+                radius++;
+            }
+
+            //radius++;
+           
+            
+            //unit.SetTargetPos(pos);
             //todo 添加特效
             // GameObject mark = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             // mark.transform.position = raycastHit.point;
         }
-    }
 
+        // for (int j = 0; j < destinationSphereData.Count; j++)
+        // {
+        //     unit
+        // }
+    }
+    
+    //检测预测终点是否已经有其他agent占用
+    public bool CanAgentReach(List<DestinationSphereData> destinationSphereData,Vector3 sampledPos,float radius)
+    {
+        for (int i = 0; i < destinationSphereData.Count; i++)
+        {
+            Vector3 targetPoint = destinationSphereData[i].point;
+            float targetRadius = destinationSphereData[i].radius;
+            if (Vector3.Distance(sampledPos, targetPoint) < targetRadius+ radius)//与任意一个圆相交则错误
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
     /// <summary>
     /// 追踪目标
     /// </summary>
@@ -368,4 +422,16 @@ public class FightingManager
         return battleResMgr.ConsumeResByUnitInfo(spawnInfo);
     }
     
+}
+
+/////////////////////////////////用于多单位设置终点////////////////////////////////
+public class DestinationSphereData
+{
+    public DestinationSphereData(Vector3 pos, float radius)
+    {
+        this.point = pos;
+        this.radius = radius;
+    }
+    public Vector3 point;
+    public float radius;
 }

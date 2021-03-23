@@ -53,7 +53,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     [Header("受击偏移，如果没有设置victimPos则使用这个")] public float victimOffset=1.5f;
     [Header("旋转阻尼")] public float rotateDamp = 10;
     //重写寻路组件旋转控制
-    [HideInInspector]public bool overrideRotationCtrl=true;//旋转控制比较简单，就不用抽离了
+    public bool overrideRotationCtrl=true;//旋转控制比较简单，就不用抽离了
 
     [Header("兵种")]
     public BattleUnitId configId;
@@ -419,7 +419,8 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         {
             selectMark.gameObject.SetActive(false);
         }
-        behaviorDesigner.SetVariableValue("IsFlockLeader",false);
+        if(behaviorDesigner && behaviorDesigner.GetVariable("IsFlockLeader")!=null)
+            behaviorDesigner.SetVariableValue("IsFlockLeader",false);
     }
 
     /// <summary>
