@@ -13,6 +13,8 @@ using UnityTimer;
 
         private NavMeshAgent navMeshAgent;
         private int lastPriority=50;
+
+        private int frameCount = 0;
         public override void OnAwake()
         {
             base.OnAwake();
@@ -23,29 +25,31 @@ using UnityTimer;
         public override void OnStart()
         {
             lastPriority = navMeshAgent.avoidancePriority;
+            frameCount = 0;
         }
 
         public override TaskStatus OnUpdate()
         {
-            // if (targetStatus)
-            // {
-            //     GetComponent<NavMeshAgent>().enabled = !targetStatus;
-            //     navMeshObstacle.enabled = targetStatus;
-            //     navMeshObstacle.carving = targetStatus;
-            // }
-            // else
-            // {
-            //     StartCoroutine(EnableUnitMovementCoroutine());
-            // }
             if (targetStatus)
             {
-               navMeshAgent.avoidancePriority = 1;
+                GetComponent<NavMeshAgent>().enabled = !targetStatus;
+                navMeshObstacle.enabled = targetStatus;
+                navMeshObstacle.carving = targetStatus;
             }
             else
             {
-                navMeshAgent.avoidancePriority = 50;
+                if (frameCount == 1)
+                {
+                    navMeshAgent.enabled = true;
+                    return TaskStatus.Success;
+                }
+
+                navMeshObstacle.carving = false;
+                navMeshObstacle.enabled = false;
+                frameCount=1;
+                return TaskStatus.Running;
             }
-           
+
             return base.OnUpdate();
         }
 
