@@ -24,7 +24,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
                 targetTurretLookPos = enemyUnit.Value.GetVictimPos();
             else
             {
-                if (tacticalAgent.HasArrived() == false)
+                if (tacticalAgent.GetNavMeshEnableStatus() && tacticalAgent.HasArrived() == false)
                 {
                     targetTurretLookPos = tacticalAgent.GetDestinationPos();
                 }

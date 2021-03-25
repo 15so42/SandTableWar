@@ -28,7 +28,7 @@ namespace BattleScene.Scripts
 
         private void OnDestroy()
         {
-            recycleTimer.Cancel();
+            recycleTimer?.Cancel();
         }
 
         public virtual void ReUse()

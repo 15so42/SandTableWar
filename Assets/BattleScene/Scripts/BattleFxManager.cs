@@ -21,7 +21,7 @@ namespace BattleScene.Scripts
 
         public const string fxPath = "Prefab/Fx/";
         [PunRPC]
-        private void SpawnFxAtPos(string fxName,Vector3 pos,Vector3 forward)
+        public GameObject SpawnFxAtPos(string fxName,Vector3 pos,Vector3 forward)
         {
             RecycleAbleObject recycleAbleObject = UnityObjectPoolManager.Allocate(fxName);//对象池
             GameObject fxGo;
@@ -36,7 +36,7 @@ namespace BattleScene.Scripts
 
             fxGo.transform.position = pos;
             fxGo.transform.forward = forward;
-            
+            return fxGo;
         }
 
         public void SpawnFxAtPosInPhoton(string fxName,Vector3 pos,Vector3 forward)

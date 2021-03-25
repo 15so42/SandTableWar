@@ -32,6 +32,10 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
                 }
             }
 
+            public bool GetNavMeshEnableStatus()
+            {
+                return navMeshAgent.enabled;
+            }
             public Vector3 GetDestinationPos()
             {
                 return navMeshAgent.destination;

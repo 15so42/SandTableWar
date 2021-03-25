@@ -23,10 +23,13 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
 
         public override void OnStart()
         {
-            navMeshAgent.isStopped = false;
+            if (navMeshAgent.enabled)
+            {
+                navMeshAgent.isStopped = false;
+            }
             base.OnStart();
-            startRotation = selfUnit.Value.overrideRotationCtrl;
-            selfUnit.Value.UpdateRotation(true);
+            //startRotation = selfUnit.Value.overrideRotationCtrl;
+            //selfUnit.Value.UpdateRotation(true);
             
         }
 
@@ -43,9 +46,9 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
             
             if (IsInCureRange()) 
             {
+                navMeshAgent.isStopped = true;
                 if (tacticalAgent.RotateTowardsPosition(wounded.Value.transform.position))
                 {
-                    navMeshAgent.isStopped = true;
                     (selfUnit.Value.animCtrl as MedicalAnimCtrl).CureAnim();
                     return TaskStatus.Success;
                 }
@@ -57,7 +60,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
         public override void OnEnd()
         {
             base.OnEnd();
-            selfUnit.battleUnitBase.UpdateRotation(startRotation);
+            //selfUnit.battleUnitBase.UpdateRotation(startRotation);
         }
 
         bool IsInCureRange()

@@ -28,6 +28,7 @@ public enum BattleFxType
     
     //爆炸
     Explosion_1,
+    DestionMark,
 }
 
 public enum VictimMaterial

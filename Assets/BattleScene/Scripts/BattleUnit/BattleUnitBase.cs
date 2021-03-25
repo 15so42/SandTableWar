@@ -326,7 +326,8 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         }
         //stateController?.SetChaseTarget(chaseTarget);
     }
-    
+
+    private GameObject destinationMark;
     /// <summary>
     /// 設置移動位置,和navmesh的setDestion類似
     /// </summary>
@@ -335,12 +336,26 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     {
         bool isInfog=FogOfWar.GetFogOfWarTeam(0).GetFogValue(pos) >= (byte)(0.2f * 255);
         
-        Debug.Log("isInFog"+isInfog);
+        
         if (behaviorDesigner)
         {
-            //behaviorDesigner.SetVariableValue( "DestinationPos",pos);
             behaviorDesigner.SendEvent("SetDestinationPos",pos);
-            Debug.Log(pos);
+            RemoveDestinationMark();
+            string fxName = ConfigHelper.Instance.GetFxPfbByBattleFxType(BattleFxType.DestionMark).name;
+            destinationMark= BattleFxManager.Instance.SpawnFxAtPos(fxName,pos,Vector3.forward);
+            destinationMark.GetComponent<FxDestinationMark>().SetAgentRadius(navMeshAgent.radius*2);
+            
+        }
+       
+    }
+    
+    //移除寻路标志
+    public void RemoveDestinationMark()
+    {
+        if (destinationMark != null)
+        {
+            destinationMark.GetComponent<RecycleAbleObject>().Recycle();
+            destinationMark = null;
         }
         
     }

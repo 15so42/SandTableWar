@@ -235,7 +235,7 @@ public class FightingManager
     /// <param name="pos"></param>
     public void MoveToSpecificPos(Vector3 pos)
     {
-        selectedUnits[0].SetFlockLeader(selectedUnits);
+        //selectedUnits[0].SetFlockLeader(selectedUnits);
         
         List<DestinationSphereData> destinationSphereData=new List<DestinationSphereData>();
         int i = 0;
@@ -260,9 +260,9 @@ public class FightingManager
                 {
                     destinationSphereData.Add(new DestinationSphereData(sampledPos,radius));
                     unit.SetTargetPos(sampledPos);
-                    GameObject mark = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                    mark.transform.position = sampledPos;
-                    mark.transform.localScale = Vector3.one * (unit.navMeshAgent.radius * 2);
+                    // GameObject mark = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    // mark.transform.position = sampledPos;
+                    // mark.transform.localScale = Vector3.one * (unit.navMeshAgent.radius * 2);
                     break;
                 }
                 radius++;
@@ -290,7 +290,7 @@ public class FightingManager
         {
             Vector3 targetPoint = destinationSphereData[i].point;
             float targetRadius = destinationSphereData[i].radius;
-            if (Vector3.Distance(sampledPos, targetPoint) < targetRadius+ radius)//与任意一个圆相交则错误
+            if (Vector3.Distance(sampledPos, targetPoint) < targetRadius+ radius+0.5f)//与任意一个圆相交则错误
             {
                 return false;
             }

@@ -47,7 +47,7 @@ namespace DefaultNamespace
         private float dampSpeed;
         public void Update()
         {
-           if(overrideMovementCtrl==false || HasArrived() || navMeshAgent.isStopped)
+           if(overrideMovementCtrl==false || navMeshAgent.enabled==false|| HasArrived() || navMeshAgent.isStopped )
                return;
            
            if (moveByAnim)

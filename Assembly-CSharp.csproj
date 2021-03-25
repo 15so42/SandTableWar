@@ -77,6 +77,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\CureWounded.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\MyRetreat.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\MyRtsAction.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\RemoveDestinationMark.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetCurPostToDest.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetMineMachine.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetStoppingDistance.cs" />
@@ -812,6 +813,7 @@
      <Compile Include="Assets\FogOfWar\Scripts\HideInFog.cs" />
      <Compile Include="Assets\FogOfWar\Scripts\Vector2i.cs" />
      <Compile Include="Assets\FogOfWar\Scripts\Vector3i.cs" />
+     <Compile Include="Assets\FxDestinationMark.cs" />
      <Compile Include="Assets\GameCode\BaseClass\IGameSystem.cs" />
      <Compile Include="Assets\GameCode\DOTween\Modules\DOTweenModuleAudio.cs" />
      <Compile Include="Assets\GameCode\DOTween\Modules\DOTweenModulePhysics.cs" />
