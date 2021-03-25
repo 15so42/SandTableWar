@@ -246,27 +246,29 @@ public class FightingManager
             i++;
 
             int randomTime = 20;
-            
             while (randomTime > 0)//次数限制
             {
                 randomTime--;
 
                 Vector3 randomPos = pos + Random.insideUnitSphere * radius;
-                
-                NavMeshHit hit;
-                NavMesh.SamplePosition(randomPos, out hit, radius,-1);
-                Vector3 sampledPos = hit.position;
-                if (CanAgentReach(destinationSphereData, sampledPos, unit.navMeshAgent.radius))//能防止
+
+                if (NavMesh.SamplePosition(randomPos, out var hit, radius, -1))
                 {
-                    destinationSphereData.Add(new DestinationSphereData(sampledPos,radius));
-                    unit.SetTargetPos(sampledPos);
-                    // GameObject mark = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                    // mark.transform.position = sampledPos;
-                    // mark.transform.localScale = Vector3.one * (unit.navMeshAgent.radius * 2);
-                    break;
+                    var sampledPos = hit.position;//不一定能找到可移动的位置
+                    if (CanAgentReach(destinationSphereData, sampledPos, unit.navMeshAgent.radius))//能防止
+                    {
+                        destinationSphereData.Add(new DestinationSphereData(sampledPos,radius));
+                        unit.SetTargetPos(sampledPos);
+                        break;
+                    }
                 }
                 radius++;
+              
             }
+
+          
+            TipsDialog.ShowDialog("没有可移动的位置");
+           
 
             //radius++;
            
