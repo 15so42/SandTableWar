@@ -41,8 +41,16 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
             }
 
             MedicalSolider medicalSolider = selfUnit.Value as MedicalSolider;
+            if (wounded.Value == selfUnit.Value)
+            {
+                //是自己的话直接加血
+                medicalSolider.SetCureTarget(wounded.Value);
+                medicalSolider.CureTargetUnit();
+                return TaskStatus.Success;
+            }
             medicalSolider.SetCureTarget(wounded.Value);
             tacticalAgent.SetDestination(wounded.Value.transform.position);
+            
             
             if (IsInCureRange()) 
             {
@@ -59,8 +67,9 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
 
         public override void OnEnd()
         {
+            navMeshAgent.isStopped = false;
+            navMeshAgent.SetDestination(transform.position);
             base.OnEnd();
-            //selfUnit.battleUnitBase.UpdateRotation(startRotation);
         }
 
         bool IsInCureRange()

@@ -242,6 +242,8 @@ public class FightingManager
         float radius=1;//每填充一个单位，随机位置半径增大1
         foreach (var unit in selectedUnits)
         {
+            if(unit==null)
+                return;//单位已经被消灭
             unit.navMeshAgent.avoidancePriority = i;
             i++;
 
@@ -267,7 +269,7 @@ public class FightingManager
             }
 
           
-            TipsDialog.ShowDialog("没有可移动的位置");
+            
            
 
             //radius++;

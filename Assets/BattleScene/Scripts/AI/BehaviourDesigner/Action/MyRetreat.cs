@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
+using UnityEngine.AI;
 using Tooltip = BehaviorDesigner.Runtime.Tasks.TooltipAttribute;
 using HelpURL = BehaviorDesigner.Runtime.Tasks.HelpURLAttribute;
 
@@ -26,7 +27,13 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
                     tacticalAgent.UpdateRotation(false);
             }
         }
-        
+
+        public override void OnStart()
+        {
+            base.OnStart();
+            tacticalAgent.SetDestination(destinationPos.Value);
+        }
+
 
         public override TaskStatus OnUpdate()
         {
