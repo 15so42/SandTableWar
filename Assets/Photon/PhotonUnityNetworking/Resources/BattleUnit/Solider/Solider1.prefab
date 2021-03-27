@@ -1480,7 +1480,7 @@ MonoBehaviour:
   rotateToForward: 0
   lineOfSightMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   lineOfSightPenetration: 0
   cellBased: 0
   antiFlicker: 0

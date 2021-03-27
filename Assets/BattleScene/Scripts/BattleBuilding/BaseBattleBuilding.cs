@@ -84,6 +84,19 @@ public class BaseBattleBuilding : BattleUnitBase
            
         }
     }
+    
+    public override  void OnFogExit()
+    {
+        ShowRenderers(true);
+        if(photonAnimatorView)
+            photonAnimatorView.enabled = true;
+        isInFog = false;
+        if (isBuilding == false)
+        {
+            hpUi.gameObject.SetActive(true);
+        }
+       
+    }
 
     // Start is called before the first frame update
     protected override void Start()

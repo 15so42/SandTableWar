@@ -90,10 +90,10 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     //****************************************************
     
     //********************真正迷雾控制相关变量****************
-    private PhotonAnimatorView photonAnimatorView;//进入雾中后不同步
+    protected PhotonAnimatorView photonAnimatorView;//进入雾中后不同步
     [Header("===战争迷雾===")]
     public Renderer[] renderers;//进入战争迷雾后关闭相关的渲染
-    private bool isInFog = false;
+    protected bool isInFog = false;
     
     #region 逻辑控制
     protected virtual void Awake()
@@ -151,7 +151,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
        
     }
 
-    public void OnFogExit()
+    public virtual void OnFogExit()
     {
         
         ShowRenderers(true);
@@ -166,7 +166,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         return isInFog;
     }
 
-    private void ShowRenderers(bool status)
+    protected void ShowRenderers(bool status)
     {
         for (int i = 0; i < renderers.Length; i++)
         {
@@ -629,7 +629,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
             PlayVictimFx();
         }
         prop.hp = hp;
-        if (hp <= 0 && photonView.IsMine)
+        if (hp <= 0)
         {
             Die();
         }
