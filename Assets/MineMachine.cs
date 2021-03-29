@@ -19,6 +19,7 @@ public class MineMachine : BaseBattleBuilding
             transform.position + Random.insideUnitSphere, transform.position + Random.insideUnitSphere,
             transform.position + Random.insideUnitSphere, transform.position + Random.insideUnitSphere
         };
+        GameManager.Instance.GetFightingManager().battleResMgr.AddIncreaseRate(BattleResType.mineral,1);
     }
 
     //private float timer;
@@ -53,6 +54,7 @@ public class MineMachine : BaseBattleBuilding
             lineRenderers[i].transform.gameObject.AddComponent<MeshCollider>().convex=true;
             lineRenderers[i].gameObject.AddComponent<Rigidbody>();
         }
+        GameManager.Instance.GetFightingManager().battleResMgr.ReduceIncreaseRate(BattleResType.mineral,1);
         base.Die();
     }
 }
