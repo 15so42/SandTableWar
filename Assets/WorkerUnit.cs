@@ -64,23 +64,30 @@ public class WorkerUnit : BattleUnitBase
 
    public void SetMineMachine()
    {
-       iMineMachine =
-           GameObject.Instantiate(MineMachineModel, mineTarget.transform.position, Quaternion.identity);
+       iMineMachine = BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.MineMachine),
+           mineTarget.transform.position,GameManager.Instance.GetSelfId()).gameObject;
+          // GameObject.Instantiate(MineMachineModel, mineTarget.transform.position, Quaternion.identity);
+        iMineMachine.GetComponent<MineMachine>().buildTime = setMineMachineTime;
        sequence = DOTween.Sequence();
-       sequence.Join(iMineMachine.transform.DOShakeScale(5f));
+       //sequence.Join(iMineMachine.transform.DOShakeScale(2f));
+       iMineMachine.transform.localScale=Vector3.zero;
+       sequence.Join(iMineMachine.transform.DOScale(Vector3.one, setMineMachineTime/2f));
+       sequence.Append(iMineMachine.transform.DOJump(iMineMachine.transform.position + Vector3.up * 2.5f , 0.3f, 3, setMineMachineTime));
         
-       sequence.Append(iMineMachine.transform.DOLocalJump(iMineMachine.transform.localPosition + Vector3.up * 5 , 0.3f, setMineMachineTime, setMineMachineTime));
-        
-       sequence.OnComplete(OnSetMineMachineComplete);
+       sequence.OnComplete(()=>
+       {
+           OnSetMineMachineComplete(iMineMachine);
+       });
    }
 
-   private void OnSetMineMachineComplete()
+   private void OnSetMineMachineComplete(GameObject mineMachine)
    {
        MineralUnit curMineral=mineTarget as MineralUnit;
        curMineral.HasWorkerWorking = false;
        curMineral.HasMineMachine = true;
        SetMineTarget(null);
        GetComponent<Animator>().SetBool("SetMineMachine",false);
+       iMineMachine.GetComponent<MineMachine>().StartMine();
    }
    
 
@@ -90,7 +97,7 @@ public class WorkerUnit : BattleUnitBase
        sequence.Kill();
        if (iMineMachine)
        {
-           Destroy(iMineMachine);
+           iMineMachine.GetComponent<BattleUnitBase>().Die();
        }
        MineralUnit curMineral=mineTarget as MineralUnit;
        if (curMineral != null)//移动时已经提前打断挖矿，但是遇敌没有，所以遇敌时还有挖矿目标，需要处理

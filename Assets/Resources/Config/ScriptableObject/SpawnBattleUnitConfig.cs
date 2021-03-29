@@ -27,7 +27,7 @@ public enum BattleUnitType
    Building
 }
 
-public enum BattleUnitId
+public enum BattleUnitId//不要改变顺序，否则会全部爆炸
 {
    Ranger,//突击兵
    Tank_A,
@@ -40,4 +40,6 @@ public enum BattleUnitId
    Tank_Tiger,//虎式坦克
    Farmland,
    AutomaticBattery_I,//I型自动炮台
+   MineMachine,
+
 }

@@ -851,6 +851,7 @@
      <Compile Include="Assets\MedicalAnimCtrl.cs" />
      <Compile Include="Assets\MedicalSolider.cs" />
      <Compile Include="Assets\Mine.cs" />
+     <Compile Include="Assets\MineMachine.cs" />
      <Compile Include="Assets\MineralUnit.cs" />
      <Compile Include="Assets\MouseShapeManager.cs" />
      <Compile Include="Assets\NavMeshUnitMovement.cs" />
@@ -907,9 +908,6 @@
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
  <Reference Include="Unity.Timeline">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
@@ -924,6 +922,9 @@
  </Reference>
  <Reference Include="Unity.Postprocessing.Runtime">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

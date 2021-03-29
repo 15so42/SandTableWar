@@ -35,6 +35,8 @@ public class BaseBattleBuilding : BattleUnitBase
     public float height=5f;
     public int buildTime=5;
     public float buildingModelOffset;
+
+    protected Sequence buildSequence;
     protected override void Awake()
     {
         base.Awake();
@@ -44,9 +46,10 @@ public class BaseBattleBuilding : BattleUnitBase
             isBuilding = false;
             PlayBuildCompleteFx();
             fogOfWarUnit.enabled = true;
-            if (IsInFog() == false && hpUi)
+            if (IsInFog() == false && hpUi != null && needShowHpUi)
             {
-                hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;//防止血条ui跳动
+                hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;//防止血条ui瞬移
+                
                 hpUi.gameObject.SetActive(true);
             }
                
@@ -60,17 +63,19 @@ public class BaseBattleBuilding : BattleUnitBase
         else
         {
            
-            var sequence = DOTween.Sequence();
-            sequence.Join(animModel.transform.DOShakeScale(.5f, .5f, buildTime/2));
-        
-            sequence.Append(animModel.transform.DOLocalJump(animModel.transform.localPosition + Vector3.up * (height + buildingModelOffset), 0.3f, buildTime, buildTime));
-        
-            sequence.OnComplete(OnBuildSuccess);
+            buildSequence = DOTween.Sequence();
+            if (height > 0)
+            {
+                buildSequence.Join(animModel.transform.DOShakeScale(.5f, .5f, buildTime/2));
+                buildSequence.Append(animModel.transform.DOLocalJump(animModel.transform.localPosition + Vector3.up * (height + buildingModelOffset), 0.3f, buildTime, buildTime));
+            }
+
+            buildSequence.OnComplete(OnBuildSuccess);
         }
 
     }
 
-    void PlayBuildCompleteFx()
+    protected void PlayBuildCompleteFx()
     {
         for (int i = 0; i < meshRenderers.Length; i++)
         {
@@ -85,13 +90,14 @@ public class BaseBattleBuilding : BattleUnitBase
         }
     }
     
+    
     public override  void OnFogExit()
     {
         ShowRenderers(true);
         if(photonAnimatorView)
             photonAnimatorView.enabled = true;
         isInFog = false;
-        if (isBuilding == false)
+        if (isBuilding == false && needShowHpUi)
         {
             hpUi.gameObject.SetActive(true);
         }
@@ -102,7 +108,8 @@ public class BaseBattleBuilding : BattleUnitBase
     protected override void Start()
     {
         base.Start();
-        hpUi.gameObject.SetActive(false);
+        if(IsInFog() || isBuilding)
+            hpUi.gameObject.SetActive(false);
        
         
         if (spawnMarkPfb != null)

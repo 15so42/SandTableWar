@@ -93,10 +93,10 @@ MonoBehaviour:
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - battleUnitType: 0
-    battleUnitId: 0
-    resourceName: Solider1
-    spawnTime: 10
+  - battleUnitType: 1
+    battleUnitId: 11
+    resourceName: MineMachine
+    spawnTime: 0
     needPopulation: 1
     needCoin: 1
     needMineral: 1

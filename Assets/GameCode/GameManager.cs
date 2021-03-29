@@ -37,7 +37,11 @@ public class GameManager
 	
 	private GameManager()
 	{}
-	
+
+	public int GetSelfId()
+	{
+		return GetFightingManager().campId;
+	}
 	public void Init()
 	{
 		// 註冊遊戲事件系統

@@ -32,7 +32,9 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     protected BaseHpUi hpUi;
     protected Transform hpInfoParent;
     protected Camera mainCam;
+    public bool needShowHpUi = true;
     public Vector3 hpUiOffset=new Vector3(0,20,0);
+    
     
     //选中特效，选中特效由FightingManager动态生成并设置成单位的子物体，一般单位不控制选中特效，除非需要额外增加选中特效效果，比如旋转
     private GameObject selectMark;
@@ -158,7 +160,8 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         if(photonAnimatorView)
             photonAnimatorView.enabled = true;
         isInFog = false;
-        hpUi.gameObject.SetActive(true);
+        if(needShowHpUi)
+            hpUi.gameObject.SetActive(true);
     }
 
     public bool IsInFog()
@@ -180,15 +183,20 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     /// </summary>
     protected virtual void Start()
     {
+        isBattleUnitBaseNotNull = this!=null;
         fightingManager = GameManager.Instance.GetFightingManager();
-        //生成血条
-        mainCam = Camera.main;
-        hpInfoParent = UITool.FindUIGameObject("HpInfo").transform;
-        var position = transform.position;
-        hpUi = Instantiate(Resources.Load<BaseHpUi>("Prefab/UI/BaseHpUi"), mainCam.WorldToScreenPoint(position),
-            Quaternion.identity,hpInfoParent);
-        hpUi.owner = this;
-        hpUi.Init();
+        if (hpUi == null)
+        {
+            //生成血条
+            mainCam = Camera.main;
+            hpInfoParent = UITool.FindUIGameObject("HpInfo").transform;
+            var position = transform.position;
+            hpUi = Instantiate(Resources.Load<BaseHpUi>("Prefab/UI/BaseHpUi"), mainCam.WorldToScreenPoint(position),
+                Quaternion.identity,hpInfoParent);
+            hpUi.owner = this;
+            hpUi.Init();
+        }
+       
        
         if (behaviorDesigner)
         {
@@ -594,11 +602,22 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         UpdateHpUIInPhoton();
     }
     
-    private void Die()
+    public virtual void Die()
     {
         Destroy(hpUi);
-        PhotonNetwork.Destroy(gameObject);
-        animCtrl.DieAnim();
+
+        if (animCtrl)
+        {
+            animCtrl.DieAnim();
+        }
+        Timer.Register(6f,()=>
+        {
+            if (isBattleUnitBaseNotNull)
+            {
+                Debug.Log("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+gameObject.name);
+                PhotonNetwork.Destroy(gameObject);
+            }
+        });
     }
     
     public Vector3 GetVictimPos()
@@ -668,6 +687,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     private DefenceBuilding targetDefenceBuilding;
     private static readonly int ColorString = Shader.PropertyToID("_Color");
     private static readonly int EmissionString = Shader.PropertyToID("_EmissionColor");
+    private bool isBattleUnitBaseNotNull;
 
     public void GoInDefenceBuilding(DefenceBuilding defenceBuilding)
     {
