@@ -6403,7 +6403,7 @@ MonoBehaviour:
   detectionType: 0
   scatteringAngel: 2
   barrel: {fileID: 4985280407843579701}
-  recoil: 500000
+  recoil: 300000
 --- !u!114 &3186924952707805649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6515,6 +6515,7 @@ MonoBehaviour:
     defense: 60
     viewDistance: 25
     attackDistance: 20
+  needShowHpUi: 1
   hpUiOffset: {x: 0, y: 95, z: 0}
   selectMarkSize: 4
   selectMarkOffset: {x: 0, y: 0, z: 0}

@@ -242,7 +242,7 @@ public class FightingManager
         float radius=1;//每填充一个单位，随机位置半径增大1
         foreach (var unit in selectedUnits)
         {
-            if(unit==null)
+            if(unit==null || unit.navMeshAgent==false)
                 return;//单位已经被消灭
             unit.navMeshAgent.avoidancePriority = i;
             i++;

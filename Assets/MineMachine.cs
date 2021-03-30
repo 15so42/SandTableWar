@@ -50,6 +50,7 @@ public class MineMachine : BaseBattleBuilding
         Destroy(hpUi.gameObject);
         for (int i = 0; i < lineRenderers.Length; i++)
         {
+            lineRenderers[i].enabled = false;
             lineRenderers[i].transform.parent.SetParent(null);
             lineRenderers[i].transform.gameObject.AddComponent<MeshCollider>().convex=true;
             lineRenderers[i].gameObject.AddComponent<Rigidbody>();

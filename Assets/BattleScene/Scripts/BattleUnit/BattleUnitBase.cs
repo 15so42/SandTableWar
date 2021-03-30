@@ -259,7 +259,12 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
                 RotationControl();
             }
         }
-        hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
+
+        if (hpUi.gameObject&&hpUi.isActiveAndEnabled)
+        {
+            hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
+        }
+        
 
     }
 
@@ -604,7 +609,11 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     
     public virtual void Die()
     {
-        Destroy(hpUi);
+        if (hpUi.gameObject)
+        {
+            Destroy(hpUi);
+        }
+        
 
         if (animCtrl)
         {

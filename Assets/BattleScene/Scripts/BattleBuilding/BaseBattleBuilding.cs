@@ -245,7 +245,15 @@ public class BaseBattleBuilding : BattleUnitBase
             return;
         }
         base.MouseClickHandle();
-        buildingMenuDialog = BattleBuildingMenuDialog.ShowDialog(this,menuCommands) as BattleBuildingMenuDialog;
+
+        //打开菜单时关闭建筑血条，关闭菜单时血条回复为打开前的状态
+        bool beforeOpenDialog = hpUi.gameObject.activeSelf;
+        void OnDialogClose()
+        {
+            hpUi.gameObject.SetActive(beforeOpenDialog);
+        }
+        hpUi.gameObject.SetActive(false);
+        buildingMenuDialog = BattleBuildingMenuDialog.ShowDialog(this,menuCommands,OnDialogClose) as BattleBuildingMenuDialog;
     }
 
     public float GetSpawnRatio()

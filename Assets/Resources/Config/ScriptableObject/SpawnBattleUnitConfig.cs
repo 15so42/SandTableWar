@@ -14,6 +14,9 @@ public class SpawnBattleUnitConfigInfo
    public BattleUnitType battleUnitType;
    public BattleUnitId battleUnitId;
    public string resourceName;
+   [Header("中文名称")]
+   public string battleUnitName;
+   public bool hasExtraIcon;
    public float spawnTime;
    public int needPopulation=1;
    public int needCoin = 1;

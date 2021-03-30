@@ -11,8 +11,10 @@ public class BuildingSpawnMenuItem : BuildingMenuItem
     private SpawnBattleUnitConfigInfo curUnitInfo;
     
     public Image spawnUnitImage;
+    public Image extraImage;
     public Image fill;
     public Text amountText;
+    public Text nameText;
 
     public void SetParams(BattleUnitId spawnId,BaseBattleBuilding targetBuilding)
     {
@@ -23,8 +25,25 @@ public class BuildingSpawnMenuItem : BuildingMenuItem
     {
         curUnitInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(spawnId);
         spawnUnitImage.sprite = UnitIconLoader.GetSpriteByUnitId(curUnitInfo.battleUnitId);
+        if (curUnitInfo.hasExtraIcon)
+        {
+            Sprite sprite=UnitIconLoader.GetExtraIconSpriteByUnitId(curUnitInfo.battleUnitId);
+            if (sprite != null)
+            {
+                extraImage.sprite=sprite;
+            }
+            else
+            {
+                extraImage.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            extraImage.gameObject.SetActive(false);
+        }
         fill.fillAmount = 0;
         amountText.text = "0";
+        nameText.text = curUnitInfo.battleUnitName;
     }
 
     public override void Update()

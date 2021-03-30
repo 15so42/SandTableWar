@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class BuildingMenuDialogContext : DialogContext
@@ -23,7 +25,9 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
    public const string pathPrefix = "Prefab/UI/BuildingMenuItem/";
    private List<BuildingMenuItem> buildingMenuItems=new List<BuildingMenuItem>();
    private Dictionary<GameObject,Vector3> itemsGo=new Dictionary<GameObject, Vector3>();
-   public static Dialog ShowDialog(BaseBattleBuilding targetUnitBase, BuildingMenuCommand[] menus)
+
+   private Camera mainCamera;
+   public static Dialog ShowDialog(BaseBattleBuilding targetUnitBase, BuildingMenuCommand[] menus,UnityAction closeAction)
    {
       var dialog = GetShowingDialog(nameof(BattleBuildingMenuDialog)) as BattleBuildingMenuDialog;
       if (dialog != null)
@@ -31,12 +35,15 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
          return null;
       }
 
+      AppendCloseCallBack(closeAction);
       return DialogUtil.ShowDialogWithContext(nameof(BattleBuildingMenuDialog), new BuildingMenuDialogContext(targetUnitBase,menus));
    }
    
 
    public override void Show()
    {
+      hasAnim = false;
+      mainCamera = Camera.main;
       base.Show();
       BuildingMenuCommand[] menus = dialogContext.menus;
       for (int i=0;i<menus.Length;i++)
@@ -65,6 +72,8 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
       GameObject spawnPfb =
          Resources.Load<GameObject>(pathPrefix + "SpawnButton");
       GameObject iBtn = Instantiate(spawnPfb,GetBtnPosByIndex(index),Quaternion.identity,btnParent);
+     PlayScaleAnim(iBtn);
+      
       
       iBtn.GetComponent<Button>().onClick.AddListener(()=>
       {
@@ -89,6 +98,7 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
       GameObject closePfb =
          Resources.Load<GameObject>(pathPrefix +"CloseButton");
       GameObject iBtn = Instantiate(closePfb,GetBtnPosByIndex(index),Quaternion.identity,btnParent);
+      PlayScaleAnim(iBtn);
       iBtn.GetComponent<Button>().onClick.AddListener(Close);
       BuildingMenuItem item = iBtn.GetComponent<BuildingMenuItem>();
       if (item)
@@ -102,7 +112,9 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
    {
       GameObject outBuildingPfb =
          Resources.Load<GameObject>(pathPrefix + "OutBuildingButton");
+      
       GameObject iBtn = Instantiate(outBuildingPfb,GetBtnPosByIndex(index),Quaternion.identity,btnParent);
+      PlayScaleAnim(iBtn);
       
       iBtn.GetComponent<Button>().onClick.AddListener(()=>
       {
@@ -115,6 +127,13 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
          buildingMenuItems.Add(item);
       }
       itemsGo.Add(iBtn,GetOffsetByIndex(index));
+   }
+
+   public void PlayScaleAnim(GameObject iBtn)
+   {
+      iBtn.transform.localScale=Vector3.zero;
+      var sequence = DOTween.Sequence();
+      sequence.Append(iBtn.transform.DOScale(Vector3.one, 0.5f)).SetEase(Ease.OutBounce);
    }
    
 

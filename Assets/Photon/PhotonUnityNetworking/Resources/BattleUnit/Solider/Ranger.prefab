@@ -671,7 +671,7 @@ GameObject:
   - component: {fileID: 5127244294025001196}
   - component: {fileID: 1318645975}
   m_Layer: 9
-  m_Name: Solider1
+  m_Name: Ranger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -741,6 +741,7 @@ MonoBehaviour:
     defense: 10
     viewDistance: 20
     attackDistance: 20
+  needShowHpUi: 1
   hpUiOffset: {x: 0, y: 65, z: 0}
   selectMarkSize: 2.2
   selectMarkOffset: {x: 0, y: 0.2, z: 0}
