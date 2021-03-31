@@ -38,49 +38,9 @@ public class BattleUnitAnimCtrl : MonoBehaviour
     //不同人物写对应的脚本控制对应的变量
     protected virtual void Update()
     {
-        return;
-        // if (!photonView || photonView.IsMine == false)
-        // {
-        //     return;
-        // }
-        // StateCheck();
-        //
-        // lastState = stateController.currentState;
-    }
-
-    protected virtual void StateCheck()
-    {
-        // State curState = stateController.currentState;
-        // if (curState.stateName == "闲置" || curState.stateName == "移动" ||
-        //     curState.stateName == "强行移动"||curState.stateName.StartsWith("房间")|| curState.stateName=="追赶")
-        // {
-        //     OnIdleOrMoveState();
-        // }
-        //
-        // // if (lastState != curState && curState.stateName == "战斗")//进入战斗
-        // // {
-        // //     OnBattleState();
-        // // }
-        // if (curState.stateName == "战斗")//进入战斗
-        // {
-        //     OnBattleState();
-        // }
+      
     }
     
-
-    protected virtual void OnIdleOrMoveState()
-    {
-        anim.SetBool(isFighting,false);
-        anim.SetFloat(speed,
-            Mathf.SmoothDamp(anim.GetFloat(speed), navMeshAgent.desiredVelocity.magnitude > 1 ? 2 : 0,
-                ref refAnimSpeed, moveSpeedDampTime*Time.deltaTime));
-    }
-
-    
-    protected virtual void OnBattleState()
-    {
-        anim.SetBool(isFighting,true);
-    }
     
     //攻击由weapon调用
     public virtual void AttackAnim()

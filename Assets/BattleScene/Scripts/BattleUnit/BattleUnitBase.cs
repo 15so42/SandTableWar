@@ -149,8 +149,10 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         if(photonAnimatorView)
             photonAnimatorView.enabled = false;
         isInFog = true;
-        hpUi.gameObject.SetActive(false);
-       
+        if (hpUi && hpUi.gameObject)
+        {
+            hpUi.gameObject.SetActive(false);
+        }
     }
 
     public virtual void OnFogExit()
@@ -260,7 +262,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
             }
         }
 
-        if (hpUi.gameObject&&hpUi.isActiveAndEnabled)
+        if (hpUi&&hpUi.gameObject&&hpUi.isActiveAndEnabled)
         {
             hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
         }
@@ -609,9 +611,9 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     
     public virtual void Die()
     {
-        if (hpUi.gameObject)
+        if (hpUi && hpUi.gameObject)
         {
-            Destroy(hpUi);
+            Destroy(hpUi.gameObject);
         }
         
 
@@ -619,14 +621,20 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         {
             animCtrl.DieAnim();
         }
-        Timer.Register(6f,()=>
+
+        if (isBattleUnitBaseNotNull)
         {
-            if (isBattleUnitBaseNotNull)
+            Timer.Register(6f,()=>
             {
-                Debug.Log("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+gameObject.name);
-                PhotonNetwork.Destroy(gameObject);
-            }
-        });
+                if (isBattleUnitBaseNotNull)
+                {
+                    //Debug.Log("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+gameObject.name);
+                    PhotonNetwork.Destroy(gameObject);
+                    isBattleUnitBaseNotNull = false;
+                }
+            });
+        }
+       
     }
     
     public Vector3 GetVictimPos()
@@ -661,7 +669,12 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         {
             Die();
         }
-        hpUi.UpdateHpUi();
+
+        if (hpUi && hpUi.gameObject)
+        {
+            hpUi.UpdateHpUi();
+        }
+       
         
     }
 

@@ -18,6 +18,7 @@ public class GlobalItemRangeDisplayer : MonoBehaviour
         outlinable = GetComponent<Outlinable>();
     }
 
+    private int lastFrameUnitCount=0;
     public void Display()
     {
         outlinable.OutlineParameters.Enabled = true;
@@ -25,26 +26,43 @@ public class GlobalItemRangeDisplayer : MonoBehaviour
         for (int i = 0; i < BattleUnitBase.selfUnits.Count; i++)
         {
             unitBase = BattleUnitBase.selfUnits[i];
-            
-            if(unitBase==null)
+
+            if (unitBase == null)
+            {
                 continue;
+            }
+                
             
             if (circles.Count <= i)
             {
                circles.Add(GameObject.Instantiate(circlePfb,transform));
             }
-
+            
             GameObject circle = circles[i];
             circle.transform.position = unitBase.transform.position;
             float size = unitBase.prop.viewDistance*2;
             circle.transform.localScale=new Vector3(size,0.1f,size);
         }
-        outlinable.AddAllChildRenderersToRenderingList();
+
+        while (circles.Count > BattleUnitBase.selfUnits.Count)//删除多余视野
+        {
+            Destroy(circles[circles.Count-1]);
+        }
+        if (lastFrameUnitCount != BattleUnitBase.selfUnits.Count)
+        {
+            outlinable.AddAllChildRenderersToRenderingList();
+            lastFrameUnitCount = BattleUnitBase.selfUnits.Count;
+        }
+        
     }
 
+    public void OnSelfUnitCreate()
+    {
+        
+    }
     private void Update()
     {
-        GlobalItemRangeDisplayer.Instance.Display();
+        Display();
     }
 
     public void Hide()

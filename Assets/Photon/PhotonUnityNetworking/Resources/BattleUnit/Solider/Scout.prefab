@@ -1465,6 +1465,7 @@ MonoBehaviour:
     defense: 0
     viewDistance: 40
     attackDistance: 10
+  needShowHpUi: 1
   hpUiOffset: {x: 0, y: 65, z: 0}
   selectMarkSize: 2.2
   selectMarkOffset: {x: 0, y: 0.1, z: 0}

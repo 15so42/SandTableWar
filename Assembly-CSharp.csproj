@@ -790,6 +790,7 @@
      <Compile Include="Assets\BuildingSpawnMenuItem.cs" />
      <Compile Include="Assets\CollisionDetection.cs" />
      <Compile Include="Assets\DefenceBuilding.cs" />
+     <Compile Include="Assets\EnemySpawner.cs" />
      <Compile Include="Assets\FogOfWar\Samples\Test2D\FogOfWarTest2DPlayer.cs" />
      <Compile Include="Assets\FogOfWar\Samples\Test3D\FogOfWarTestEnemy.cs" />
      <Compile Include="Assets\FogOfWar\Samples\Test3D\FogOfWarTestGUI.cs" />
@@ -908,9 +909,6 @@
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
  <Reference Include="Unity.Timeline">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
@@ -925,6 +923,9 @@
  </Reference>
  <Reference Include="Unity.Postprocessing.Runtime">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

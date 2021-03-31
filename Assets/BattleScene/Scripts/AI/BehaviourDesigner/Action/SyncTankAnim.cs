@@ -42,7 +42,6 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
             turretTrans.rotation = Quaternion.RotateTowards(turretTrans.rotation, q, turretRotateSpeed * Time.deltaTime);
 
             float speed = tacticalAgent.GetVelocity().magnitude;
-            Debug.Log(speed);
             float ratio = speed / 2;
             foreach (var wheel in wheels.Value)
             {

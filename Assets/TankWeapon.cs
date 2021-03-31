@@ -26,7 +26,7 @@ public class TankWeapon : RangedWeapon
             Vector3 towerDir = tower.transform.forward;
             towerDir.y = 0;
             float angle = Vector3.Angle(enemyDir, towerDir);
-            Debug.Log(angle);
+           
             if (Vector3.Angle(enemyDir, towerDir) < 10f)
             {
                 atkTimer = 0;
@@ -45,8 +45,13 @@ public class TankWeapon : RangedWeapon
         Quaternion rotate = Quaternion.Euler(0, 90, 0);//因为扭矩是绕向量旋转，所以需要先将向量绕y周旋转90
         shootDir = rotate * shootDir;
         rigidbody.AddTorque(shootDir*recoil,ForceMode.Impulse);
-        Timer.Register(3f,() =>
-           rigidbody.isKinematic = true);
+        Timer.Register(3f, () =>
+        {
+            if (rigidbody)
+            {
+                rigidbody.isKinematic = true;
+            }
+        });
         barrel.transform.DOLocalMove(new Vector3(0,0,-0.6f), 0.1f).SetLoops(2,LoopType.Yoyo);
     }
 

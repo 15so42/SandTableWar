@@ -12,8 +12,13 @@ public class BattleCamera : MonoBehaviour
     public float horThreshould = 0.9f;
     public float verThreshould = 0.9f;
 
-    public float horSpeed = 2f;
-    public float verSpeed = 2f;
+    public float horSpeed = -24f;
+    public float verSpeed = -24f;
+    public float heightSpeed = -198f;
+    [Header("拉升速度")]
+    public float heightLerpSpeed = 0.1f;
+
+    public float climbForce=10f;
 
     public static BattleCamera Instance;
     public Vector3 offset;
@@ -21,6 +26,8 @@ public class BattleCamera : MonoBehaviour
 
     [Header("框选")] public Material rectMat;
     public Color rectColor=Color.green;
+
+    private Rigidbody rigidbody;
     private void Awake()
     {
         Instance = this;
@@ -33,10 +40,11 @@ public class BattleCamera : MonoBehaviour
         mainCamera = GetComponent<Camera>();
     }
 
+    private float heightLerp;
     // Update is called once per frame
     void Update()
     {
-        #region 相机边缘移动
+        #region 相机边缘移动和拉升
         Vector2 mousePos = Input.mousePosition;
         float horAxis = 0;
         float verAxis = 0;
@@ -52,8 +60,25 @@ public class BattleCamera : MonoBehaviour
             verAxis = 1;
         if (mousePos.y < Screen.height * (1 - verThreshould))
             verAxis = -1;
+        
+        //************爬升*****************
+        float heightAxis = Input.GetAxis("Mouse ScrollWheel");
+        heightAxis = heightAxis != 0 ? heightAxis / Mathf.Abs(heightAxis) : 0;
+        if (heightAxis != 0)
+        {
+            heightLerp = Mathf.Lerp(heightLerp, heightAxis, heightLerpSpeed*Time.deltaTime);
+        }
+        else
+        {
+            heightLerp = Mathf.Lerp(heightLerp, 0, heightLerpSpeed*Time.deltaTime);
+        }
+        heightLerp = Mathf.Abs(heightLerp) < 0.001f ? 0 : heightLerp;
+        
+        
+        
         //todo 斜向会较快，应保证速度相同
         transform.Translate((Vector3.right * (horAxis * horSpeed)+Vector3.forward * (verAxis * verSpeed))*Time.deltaTime,Space.World);
+        transform.Translate(transform.up * (heightLerp*heightSpeed * Time.deltaTime),Space.Self);
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.lockState = CursorLockMode.None;
@@ -61,6 +86,8 @@ public class BattleCamera : MonoBehaviour
         
 
         #endregion
+        
+       
 
         #region 框选单位
 

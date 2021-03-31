@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 8252430663595817556}
   - component: {fileID: 284954009021231150}
   - component: {fileID: 5918974301740712173}
+  - component: {fileID: 5096094497817110075}
   - component: {fileID: -4078612767611638886}
   m_Layer: 0
   m_Name: Tank_A
@@ -573,13 +574,13 @@ MonoBehaviour:
   atkRate: 0.3
   owner: {fileID: 0}
   shootPos: {fileID: 8264968204976261782}
-  flashFx: {fileID: 7742525985621136673, guid: c3c136b640fa90d479e2ff7b1ed39741, type: 3}
+  flashFx: {fileID: 8695086352503598387, guid: 9e19a6faebba8044597e630fe40e81de, type: 3}
   bullet: {fileID: 4317199290405529018, guid: cc49ae9ea382cea4facbd4229e0f11d2, type: 3}
   bulletDamageRate: 1
   detectionType: 0
   scatteringAngel: 2
-  barrel: {fileID: 0}
-  recoil: 0
+  barrel: {fileID: 1634437978102679415}
+  recoil: 150000
 --- !u!114 &5669207548518253706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,8 +666,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.0928755, y: 1.8297272, z: 2.5244348}
-  m_Center: {x: 0, y: 0.85, z: 0}
+  m_Size: {x: 2.0928755, y: 1.2884583, z: 2.5244348}
+  m_Center: {x: 0, y: 0.5793656, z: 0}
 --- !u!114 &-2229466761417150100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,6 +692,7 @@ MonoBehaviour:
     defense: 60
     viewDistance: 20
     attackDistance: 10
+  needShowHpUi: 1
   hpUiOffset: {x: 0, y: 95, z: 0}
   selectMarkSize: 4
   selectMarkOffset: {x: 0, y: 0, z: 0}
@@ -874,6 +876,49 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.5, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &5096094497817110075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592192127302537471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc55e7d9ae3417881fd6399ec30297d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overrideMovementCtrl: 1
+  moveByAnim: 0
+  moveByAnimSpeedMultiplier: 1
+  extraRotateSpeed: 1
+  arriveDistance: 1
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  stoppingDistance: 0
+  maxSpeed: 5
 --- !u!54 &-4078612767611638886
 Rigidbody:
   m_ObjectHideFlags: 0
