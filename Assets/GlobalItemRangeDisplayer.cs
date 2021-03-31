@@ -47,9 +47,11 @@ public class GlobalItemRangeDisplayer : MonoBehaviour
         while (circles.Count > BattleUnitBase.selfUnits.Count)//删除多余视野
         {
             Destroy(circles[circles.Count-1]);
+            circles.RemoveAt(circles.Count - 1);
         }
         if (lastFrameUnitCount != BattleUnitBase.selfUnits.Count)
         {
+            Debug.Log("重构范围显示");
             outlinable.AddAllChildRenderersToRenderingList();
             lastFrameUnitCount = BattleUnitBase.selfUnits.Count;
         }
