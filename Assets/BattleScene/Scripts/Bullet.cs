@@ -154,7 +154,7 @@ public class Bullet : RecycleAbleObject
     {
         //传入伤害值和防御值和伤害类型，伤害类型待定
         float damage = baseDamage * ((RangedWeapon) weapon).bulletDamageRate;
-        return GameManager.Instance.GetFightingManager().CalDamage((int)damage, victim.prop.defense, DamageType.Physical);
+        return GameManager.Instance.GetFightingManager().CalDamage((int)damage, damageProp,victim.prop, DamageType.Physical);
     }
 
     public void SetWeapon(Weapon weapon)

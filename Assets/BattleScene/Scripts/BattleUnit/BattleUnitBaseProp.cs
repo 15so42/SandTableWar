@@ -9,7 +9,13 @@ public class BattleUnitBaseProp
     public float weaponProficiency = 1f; //武器熟练度倍率，如果要做单位自定义的话有用，先留着吧
     public int maxHp=100;
     public int hp=100;
-    public int defense=0;
+    [Header("defense")] 
+    public int penetrateDamageResistance=30;
+    public int explosionDamageResistance=30;
+    public int electricalDamageResistance=30;
+    public int soulDamageResistance=30;
+    public int realDamageResistance=30;
+    
     [Header("视野范围")]
     public float viewDistance = 10f;
     public float attackDistance = 10f;

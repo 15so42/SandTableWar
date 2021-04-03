@@ -6512,7 +6512,11 @@ MonoBehaviour:
     weaponProficiency: 1
     maxHp: 450
     hp: 450
-    defense: 60
+    penetrateDamageResistance: 120
+    explosionDamageResistance: 120
+    electricalDamageResistance: 30
+    soulDamageResistance: 30
+    realDamageResistance: 30
     viewDistance: 25
     attackDistance: 20
   needShowHpUi: 1

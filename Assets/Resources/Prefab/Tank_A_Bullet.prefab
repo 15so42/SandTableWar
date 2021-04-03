@@ -112,6 +112,12 @@ MonoBehaviour:
   bulletType: 3
   baseDamage: 60
   onTriggerEndFxType: 2
+  damageProp:
+    damageValue: 60
+    penetrateRate: 0.3
+    explosionRate: 0.7
+    soul: 0
+    electromagnetism: 0
 --- !u!96 &8145120000079118319
 TrailRenderer:
   serializedVersion: 2

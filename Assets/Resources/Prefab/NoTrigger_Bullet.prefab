@@ -111,6 +111,13 @@ MonoBehaviour:
   autoRecycle: 1
   bulletType: 0
   baseDamage: 20
+  onTriggerEndFxType: 0
+  damageProp:
+    damageValue: 0
+    penetrateRate: 0.2
+    explosionRate: 0
+    soul: 0
+    electromagnetism: 0
 --- !u!96 &8145120000079118319
 TrailRenderer:
   serializedVersion: 2

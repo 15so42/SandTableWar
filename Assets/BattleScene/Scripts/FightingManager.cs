@@ -371,10 +371,21 @@ public class FightingManager
         }
     }
     
-    public int CalDamage(int damage, int defense, DamageType damageType)
+    public int CalDamage(int damage,DamageProp attackerDamageProp,BattleUnitBaseProp  victimProp, DamageType damageType)
     {
+        int resultDamage = 0;
+        if (damageType == DamageType.Physical)
+        {
+            float penetrateDamage = damage * attackerDamageProp.penetrateRate *
+                                  (1 - victimProp.penetrateDamageResistance /
+                                      (victimProp.penetrateDamageResistance + 100));
+            float explosionDamage = damage * attackerDamageProp.explosionRate *
+                                    (1 - victimProp.explosionDamageResistance /
+                                        (victimProp.explosionDamageResistance + 100));
+            resultDamage = (int)penetrateDamage + (int)explosionDamage;
+        }
         //使用英雄联盟的伤害计算公式
-        return damage *(1 - (defense / (defense + 100)));
+        return resultDamage;
     }
 
     public void Attack(BattleUnitBase attcker,BattleUnitBase victim,int damageValue)

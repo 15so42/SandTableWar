@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using Photon.Pun;
 using UnityEngine;
 using Object = System.Object;
@@ -9,10 +10,15 @@ public class Mine : BattleUnitBase
 {
    public GameObject explosionFx;
    public float radius=3;
-   
+   private DamageProp damageProp;
    protected override void Start()
    {
       base.Start();
+      damageProp = new DamageProp()
+      {
+         penetrateRate = 0.3f,
+         explosionRate = 0.7f
+      };
    }
 
    private void OnTriggerEnter(Collider other)
@@ -43,7 +49,7 @@ public class Mine : BattleUnitBase
          BattleUnitBase battleUnitBase = collider.GetComponentInChildren<BattleUnitBase>();
          if (battleUnitBase)
          {
-            int damage = fightingManager.CalDamage(250, battleUnitBase.prop.defense, DamageType.Physical);
+            int damage = fightingManager.CalDamage(250,damageProp, battleUnitBase.prop, DamageType.Physical);
             fightingManager.Attack(this,battleUnitBase,damage);
          }
                
