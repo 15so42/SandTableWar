@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
+  m_Name: TankAttack
+  m_EditorClassIdentifier: 
+  mBehaviorSource:
+    behaviorName: TankAttack
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(581.292236,711.591858)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-24.44447,125.000023)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CarveOrUnCarve","NodeData":{"Offset":"(-342.532562,319.9053)"},"ID":2,"Name":"Carve
+        Or Un Carve","Instant":true,"BooleantargetStatus":true},{"Type":"BehaviorDesigner.Runtime.Tactical.Tasks.SyncDestinationPosToCurPos","NodeData":{"Offset":"(-202.5325,229.9053)"},"ID":3,"Name":"Sync
+        Destination Pos To Cur Pos","Instant":true,"SharedVector3DestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastDestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"RemoveDestinationMark","NodeData":{"Offset":"(-72.53249,329.9053)"},"ID":4,"Name":"Remove
+        Destination Mark","Instant":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true}},{"Type":"SetBoolStatus","NodeData":{"Offset":"(-2.53248978,229.9053)"},"ID":5,"Name":"Set
+        Fighting Status","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false},"BooleantargetStatus":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Parallel","NodeData":{"Offset":"(337.4674,209.905167)"},"ID":6,"Name":"Parallel","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"WeaponUpdate","NodeData":{"Offset":"(-3.24686432,132.7622)"},"ID":7,"Name":"Weapon
+        Update","Instant":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"SharedBattleUnitenemyUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},"BooleanneedRotate":false}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"SelfGameObject","IsShared":true}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.6.7

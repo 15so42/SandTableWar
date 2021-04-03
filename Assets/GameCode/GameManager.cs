@@ -4,7 +4,10 @@ using Photon.Pun;
 
 public enum DamageType{
 	Physical,//物理伤害
-	Real//魔法伤害
+	Electromagnetism,//电磁伤害
+	Soul,//灵魂伤害
+	Magic,//魔法伤害
+	Real
 }
 
 public enum GameMode

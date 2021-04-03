@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BattleScene.Scripts;
+using DefaultNamespace;
 using Photon.Pun;
 using UnityEngine;
 
@@ -29,6 +30,8 @@ public class Bullet : RecycleAbleObject
 
     [Header("子弹碰撞完后生成的特效，比如坦克炮弹生成爆炸烟雾特效")]
     public BattleFxType onTriggerEndFxType;
+
+    public DamageProp damageProp;
 
     private void Awake()
     {
@@ -68,7 +71,7 @@ public class Bullet : RecycleAbleObject
         }
         else
         {
-            if (otherUnit == shooter)
+            if (otherUnit == shooter || otherUnit.campId== shooter.campId)//避免友军伤害
             {
                 return;
             }

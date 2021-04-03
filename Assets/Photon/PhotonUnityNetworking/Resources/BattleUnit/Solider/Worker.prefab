@@ -465,6 +465,7 @@ MonoBehaviour:
     defense: 0
     viewDistance: 20
     attackDistance: 10
+  needShowHpUi: 1
   hpUiOffset: {x: 0, y: 20, z: 0}
   selectMarkSize: 2.2
   selectMarkOffset: {x: 0, y: 0, z: 0}
@@ -1004,7 +1005,7 @@ MonoBehaviour:
         Other Mineral","Instant":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"Int32findRadius":20}]}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnFailure","NodeData":{"Offset":"(1376.84717,315.464264)"},"ID":68,"Name":"Return
         Failure","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tactical.Tasks.SyncDestinationPosToCurPos","NodeData":{"Offset":"(10.5386963,173.151855)"},"ID":69,"Name":"Sync
         Destination Pos To Cur Pos","Instant":true,"SharedVector3DestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastDestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Parallel","NodeData":{"Offset":"(1868.77393,348.445984)"},"ID":70,"Name":"Parallel","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Idle","NodeData":{"Offset":"(-160.049561,157.269531)"},"ID":71,"Name":"Idle","Instant":true},{"Type":"SetMoveSpeedByNavSpeed","NodeData":{"Offset":"(115.244629,157.269531)"},"ID":72,"Name":"Set
-        Move Speed By Nav Speed","Instant":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"Stringright":"Right","Stringforward":"Forward","SingleSpeedAnimDampTime":10,"SingletargetRightSpeed":0}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"SelfGameObject","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"TargetGroup","IsShared":true,"List`1mValue":[]},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MoveSpeed","IsShared":true,"SinglemValue":5},{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"EnemyGameObjcet","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFleeing","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"MineralGameObject","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsSetMineMachine","IsShared":true,"BooleanmValue":false}]}'
+        Move Speed By Nav Speed","Instant":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"Stringright":"Right","Stringforward":"Forward","SingleSpeedAnimDampTime":10,"SingletargetRightSpeed":0}]}]},"DetachedTasks":[{"Type":"BehaviorDesigner.Runtime.Tasks.Parallel","NodeData":{"Offset":"(179.528137,0.916626)"},"ID":73,"Name":"Parallel","Instant":true,"AbortTypeabortType":"None"}],"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"SelfGameObject","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"TargetGroup","IsShared":true,"List`1mValue":[]},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MoveSpeed","IsShared":true,"SinglemValue":5},{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"EnemyGameObjcet","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFleeing","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"MineralGameObject","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsSetMineMachine","IsShared":true,"BooleanmValue":false}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -1015,7 +1016,7 @@ MonoBehaviour:
         byteDataArray: 
       Version: 1.6.7
   gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
+  showBehaviorDesignerGizmo: 0
 --- !u!208 &1342464644980024674
 NavMeshObstacle:
   m_ObjectHideFlags: 0

@@ -615,12 +615,24 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         {
             Destroy(hpUi.gameObject);
         }
-        
+
+        if (behaviorDesigner)
+        {
+            behaviorDesigner.enabled = false;
+        }
+
+        var navMeshUnitMovement = GetComponent<NavMeshUnitMovement>();
+        if (navMeshUnitMovement)
+        {
+            navMeshUnitMovement.enabled = false;
+        }
 
         if (animCtrl)
         {
             animCtrl.DieAnim();
         }
+
+        isAlive = false;
 
         if (isBattleUnitBaseNotNull)
         {
@@ -635,6 +647,11 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
             });
         }
        
+    }
+
+    public bool IsAlive()
+    {
+        return isAlive;
     }
     
     public Vector3 GetVictimPos()
@@ -710,6 +727,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     private static readonly int ColorString = Shader.PropertyToID("_Color");
     private static readonly int EmissionString = Shader.PropertyToID("_EmissionColor");
     private bool isBattleUnitBaseNotNull;
+    private bool isAlive = true;
 
     public void GoInDefenceBuilding(DefenceBuilding defenceBuilding)
     {
@@ -737,11 +755,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     {
         ReduceHp(amount);
     }
-
-    public bool IsAlive()
-    {
-        return prop.hp > 0;
-    }
+    
     
 
     #region 攻击行为树模块

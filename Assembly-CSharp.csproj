@@ -103,6 +103,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\InAttackRange.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\InAttackRangeDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\IsBoolTrue.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\Decision\IsEnemyAlive.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\IsInBuildingDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\ReachTargetPosDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\MedicalStateController.cs" />
@@ -789,6 +790,7 @@
      <Compile Include="Assets\BuildingSpawnItem.cs" />
      <Compile Include="Assets\BuildingSpawnMenuItem.cs" />
      <Compile Include="Assets\CollisionDetection.cs" />
+     <Compile Include="Assets\DamageProp.cs" />
      <Compile Include="Assets\DefenceBuilding.cs" />
      <Compile Include="Assets\EnemySpawner.cs" />
      <Compile Include="Assets\FogOfWar\Samples\Test2D\FogOfWarTest2DPlayer.cs" />
@@ -909,6 +911,9 @@
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.Timeline">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
@@ -923,9 +928,6 @@
  </Reference>
  <Reference Include="Unity.Postprocessing.Runtime">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
