@@ -22,6 +22,8 @@ namespace DefaultNamespace
         public AnimationCurve speedCurve;
         public float stoppingDistance;
         public float maxSpeed = 5;
+
+        private Vector3 myDesiredVelocity;
         public void Start()
         {
             navMeshAgent =  GetComponent<NavMeshAgent>();
@@ -65,7 +67,11 @@ namespace DefaultNamespace
                // {
                //     targetSpeed = extraRotateSpeed;
                // }
-
+               
+               // if (navMeshAgent.hasPath)
+               // {
+               //     Vector3 corner=navMeshAgent.path.co
+               // }
                targetSpeed = GetSpeedByDistance(navMeshAgent.remainingDistance);
                dampSpeed = Mathf.Lerp(dampSpeed, targetSpeed, Time.deltaTime*5f);
                
