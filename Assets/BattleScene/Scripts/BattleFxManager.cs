@@ -44,5 +44,11 @@ namespace BattleScene.Scripts
             SpawnFxAtPos(fxName,pos,forward);
             photonView.RPC(nameof(SpawnFxAtPos),RpcTarget.Others,new Object[]{fxName,pos,forward});
         }
+
+        public void SpawnFxAtPosInPhotonByFxType(BattleFxType battleFxType, Vector3 pos, Vector3 forward)
+        {
+            string fxName=ConfigHelper.Instance.GetFxPfbByBattleFxType(battleFxType).name;
+            SpawnFxAtPosInPhoton(fxName,pos,forward);
+        }
     }
 }

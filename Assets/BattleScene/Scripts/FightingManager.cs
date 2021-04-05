@@ -376,12 +376,17 @@ public class FightingManager
         int resultDamage = 0;
         if (damageType == DamageType.Physical)
         {
-            float penetrateDamage = damage * attackerDamageProp.penetrateRate *
-                                  (1 - victimProp.penetrateDamageResistance /
-                                      (victimProp.penetrateDamageResistance + 100));
-            float explosionDamage = damage * attackerDamageProp.explosionRate *
-                                    (1 - victimProp.explosionDamageResistance /
-                                        (victimProp.explosionDamageResistance + 100));
+            int reducedPenetrateResistance =  victimProp.penetrateDamageResistance - attackerDamageProp.penetrateResistanceIgnoreValue ;
+            reducedPenetrateResistance = reducedPenetrateResistance < 0 ? 0 : reducedPenetrateResistance;
+            float penetrateDamage = damage  *
+                                  (1 - (float)reducedPenetrateResistance /
+                                      (reducedPenetrateResistance + 50));
+            
+            int reducedExplosionResistance = victimProp.explosionDamageResistance - attackerDamageProp.explosionResistanceIgnoreValue ;
+            reducedExplosionResistance = reducedExplosionResistance < 0 ? 0 : reducedExplosionResistance;
+            float explosionDamage = damage * 
+                                    (1 - (float)reducedExplosionResistance /
+                                        (reducedExplosionResistance + 50));
             resultDamage = (int)penetrateDamage + (int)explosionDamage;
         }
         //使用英雄联盟的伤害计算公式

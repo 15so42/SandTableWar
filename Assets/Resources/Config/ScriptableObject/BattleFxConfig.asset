@@ -19,3 +19,11 @@ MonoBehaviour:
     fxPfb: {fileID: 2251644809544070713, guid: 18a2169652ec0564e8878a6d130ec5be, type: 3}
   - battleFxType: 3
     fxPfb: {fileID: 7328543048033309410, guid: c4a085d4405a00e42ad69c99de486a8c, type: 3}
+  - battleFxType: 4
+    fxPfb: {fileID: 1917294684143757981, guid: 3afcc970b5220454bbd13a1230eff619, type: 3}
+  - battleFxType: 5
+    fxPfb: {fileID: 146248104519675687, guid: d424db5c1950b9245baa94da8dfcac22, type: 3}
+  - battleFxType: 6
+    fxPfb: {fileID: 1248045319662409115, guid: 739f14fcb9041564889418e6fb3cb126, type: 3}
+  - battleFxType: 7
+    fxPfb: {fileID: 3072468448101454961, guid: fd8c6e453fe55a149855b0ff939c334d, type: 3}

@@ -38,8 +38,8 @@ public class Bullet : RecycleAbleObject
         //初始化击中特效配置
         hitFxConfigs=new List<HitFxConfig>();
         hitFxConfigs.Add(new HitFxConfig(VictimMaterial.Human,BattleFxType.Blood_1));
-        hitFxConfigs.Add(new HitFxConfig(VictimMaterial.Metal,BattleFxType.Blood_1));
-        hitFxConfigs.Add(new HitFxConfig(VictimMaterial.Concrete,BattleFxType.Blood_1));
+        hitFxConfigs.Add(new HitFxConfig(VictimMaterial.Metal,BattleFxType.MetalHitSmall));
+        hitFxConfigs.Add(new HitFxConfig(VictimMaterial.Concrete,BattleFxType.ConcreteHitSmall));
         //todo 应该还需要overrideHitFxConfigs的，但是今天不想写了，以后需要时再来写
     }
 
@@ -108,12 +108,21 @@ public class Bullet : RecycleAbleObject
 
     public virtual void OnTriggerUnit(BattleUnitBase targetUnitBase,RaycastHit hitInfo=default)
     {
-        FightingManager fightingManager = GameManager.Instance.GetFightingManager();
-        //计算伤害使用凶器进行计算，如使用子弹计算，但是记录是记录攻击者单位,凶器都需要拥有
-        int damageValue = CalcuateDamageValue(targetUnitBase);
-        //伤害机制还未确定，暂时使用攻击者，受害者，伤害量进行记录，不确定是否需要伤害记录功能，先留着吧
-        fightingManager.Attack(shooter, targetUnitBase,damageValue);
-        
+        //取消友军伤害
+        DiplomaticRelation diplomaticRelation =
+            EnemyIdentifier.Instance.GetDiplomaticRelation(shooter.campId, targetUnitBase.campId);
+        bool canDamage = !(diplomaticRelation == DiplomaticRelation.Self || diplomaticRelation == DiplomaticRelation.Ally);
+
+        if (canDamage)
+        {
+            FightingManager fightingManager = GameManager.Instance.GetFightingManager();
+            //计算伤害使用凶器进行计算，如使用子弹计算，但是记录是记录攻击者单位,凶器都需要拥有
+            int damageValue = CalcuateDamageValue(targetUnitBase);
+            //伤害机制还未确定，暂时使用攻击者，受害者，伤害量进行记录，不确定是否需要伤害记录功能，先留着吧
+            fightingManager.Attack(shooter, targetUnitBase,damageValue);
+
+        }
+       
         //Rpc销毁子弹
         //PhotonView.Get(shooter).RPC("RecycleBullet",RpcTarget.All,this);
         if (hitInfo.collider != null)

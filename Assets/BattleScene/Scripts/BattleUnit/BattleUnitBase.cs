@@ -11,6 +11,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner;
 using BehaviorDesigner.Runtime.Tactical;
 using DefaultNamespace;
+using UnityEngine.Events;
 using Object = System.Object;
 
 [RequireComponent(typeof(FogOfWarEvents))]
@@ -96,6 +97,9 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     [Header("===战争迷雾===")]
     public Renderer[] renderers;//进入战争迷雾后关闭相关的渲染
     protected bool isInFog = false;
+    
+    //***************************************事件绑定****************
+    public UnityEvent OnHpChanged;
     
     #region 逻辑控制
     protected virtual void Awake()
@@ -682,6 +686,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
             PlayVictimFx();
         }
         prop.hp = hp;
+        OnHpChanged?.Invoke();
         if (hp <= 0)
         {
             Die();

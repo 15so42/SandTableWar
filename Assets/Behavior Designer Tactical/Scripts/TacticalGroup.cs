@@ -132,6 +132,10 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
             if (leader.Value == null) {
                 if (targetGroup.Value.Count > 0) {
                     for (int i = 0; i < targetGroup.Value.Count; ++i) {
+                        if (targetGroup.Value[i] == null)
+                        {
+                            continue;//单位已经被销毁了
+                        }
                         var damageable = (targetGroup.Value[i].GetComponentInParent(typeof(IDamageable)) as IDamageable);
                         if (damageable != null) {
                             AddTarget(targetGroup.Value[i].transform, damageable);

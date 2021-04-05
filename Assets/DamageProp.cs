@@ -4,9 +4,8 @@
     public class DamageProp
     {
         public int damageValue;
-        //穿透伤害补正和爆破伤害补正，两者加起来为1
-        public float penetrateRate = 1;//穿透
-        public float explosionRate = 0;//爆破
+        public int penetrateResistanceIgnoreValue = 0;//穿甲抗性的抗性穿透
+        public int explosionResistanceIgnoreValue = 0;//爆破抗性的抗性穿透值
         public int soul;//灵魂
         public int electromagnetism;
     }

@@ -16,8 +16,8 @@ public class Mine : BattleUnitBase
       base.Start();
       damageProp = new DamageProp()
       {
-         penetrateRate = 0.3f,
-         explosionRate = 0.7f
+         penetrateResistanceIgnoreValue = 10,
+         explosionResistanceIgnoreValue = 40
       };
    }
 

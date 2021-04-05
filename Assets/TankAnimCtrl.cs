@@ -21,10 +21,17 @@ public class TankAnimCtrl : BattleUnitAnimCtrl
         towerOffset = tower.transform.position - transform.position;
     }
 
+    private Vector3 lastTankEuler;
     protected override void Update()
     {
         base.Update();
         tower.transform.position = transform.position + towerOffset;
+        //删除tank本身旋转时带动炮塔的旋转依保证炮塔方向正确
+        float angle = transform.eulerAngles.y - lastTankEuler.y;
+        Vector3 towerEuler = tower.transform.eulerAngles;
+        tower.transform.eulerAngles=new Vector3(towerEuler.x,towerEuler.y-angle,towerEuler.z);
+        lastTankEuler = transform.eulerAngles;
+
     }
 
     public override void AttackAnim()

@@ -704,7 +704,7 @@ MonoBehaviour:
   mouseOverOutline: {fileID: 0}
   globalItemType: 0
   amountBySecond: 0
-  victimMaterial: 0
+  victimMaterial: 1
   victimPos: {fileID: 0}
   victimOffset: 1.5
   rotateDamp: 200

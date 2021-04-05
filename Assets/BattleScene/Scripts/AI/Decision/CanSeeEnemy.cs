@@ -27,13 +27,14 @@
             {
                 //判断是否还在视野范围内
                 if (Vector3.Distance(enemyBattleUnit.Value.transform.position, transform.position) <=
-                    prop.viewDistance*1.1f)//1.03f是为了解决正巧在极限距离外一点点导致判断为false的问题
+                    prop.viewDistance*1.1f && enemyBattleUnit.Value.IsAlive())//1.03f是为了解决正巧在极限距离外一点点导致判断为false的问题
                 {
                     //Debug.Log($"[{nameof(FindEnemyDecision)}]本来就有敌人且在视野范围内");
                     return TaskStatus.Success;
                 }
-
+                targetGroup.Value.Remove(enemyBattleUnit.Value.gameObject);
                 enemyBattleUnit.Value = null;
+                
             }
             
             //每一秒投射一次球形碰撞體來尋找敵人

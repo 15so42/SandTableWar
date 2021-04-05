@@ -19,6 +19,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
         public override TaskStatus OnUpdate()
         {
             var turretTrans = turret.Value.transform;
+            
             Vector3 targetTurretLookPos = Vector3.zero;
             if (enemyUnit.Value != null)
                 targetTurretLookPos = enemyUnit.Value.GetVictimPos();
