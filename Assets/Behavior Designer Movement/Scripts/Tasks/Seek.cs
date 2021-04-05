@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,7 +15,15 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         [Tooltip("If target is null then use the target position")]
         public SharedVector3 targetPosition;
 
-       
+        private BattleUnitBase selfUnit;
+        private NavMeshUnitMovement navMeshUnitMovement;
+
+        public override void OnAwake()
+        {
+            base.OnAwake();
+            selfUnit = GetComponent<BattleUnitBase>();
+            navMeshUnitMovement = GetComponent<NavMeshUnitMovement>();
+        }
 
         public override void OnStart()
         {
@@ -27,13 +36,16 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         // Return running if the agent hasn't reached the destination yet
         public override TaskStatus OnUpdate()
         {
+            SetDestination(Target());
+            
+            if (navMeshUnitMovement && navMeshUnitMovement.isTurnRound)
+            {
+                return TaskStatus.Running;
+            }
             if (HasArrived()) {
                 return TaskStatus.Success;
             }
 
-            SetDestination(Target());
-           
-            
            // navMeshAgent.Move(transform.forward *6*Time.deltaTime);
 
             return TaskStatus.Running;

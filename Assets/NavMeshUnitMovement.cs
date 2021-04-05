@@ -1,4 +1,6 @@
 ﻿using System;
+using BattleScene.Scripts;
+using BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -23,9 +25,16 @@ namespace DefaultNamespace
         public float stoppingDistance;
         public float maxSpeed = 5;
 
+
+
+        private BattleUnitBase battleUnitBase;
+        public bool isTurnRound;
+        private bool setTrunRoundDes=false;
+
         private Vector3 myDesiredVelocity;
         public void Start()
         {
+            battleUnitBase = GetComponent<BattleUnitBase>();
             navMeshAgent =  GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
             navMeshAgent.speed = 0;
@@ -47,9 +56,17 @@ namespace DefaultNamespace
         private Vector3 refAnimDeltaPos;
         private float targetSpeed;
         private float dampSpeed;
+
+
+        private Vector3 lastDes;
+        private Vector3 d1;
+        private Vector3 d2;
         public void Update()
         {
-           if(overrideMovementCtrl==false || navMeshAgent.enabled==false|| HasArrived() || navMeshAgent.isStopped )
+            
+            // if(navMeshAgent.destination)
+
+            if(overrideMovementCtrl==false || navMeshAgent.enabled==false|| HasArrived() || navMeshAgent.isStopped )
                return;
            
            if (moveByAnim)
@@ -58,6 +75,7 @@ namespace DefaultNamespace
            }
            else
            {
+               
               
                // if (navMeshAgent.remainingDistance < arriveDistance + 2)
                // {
@@ -67,15 +85,50 @@ namespace DefaultNamespace
                // {
                //     targetSpeed = extraRotateSpeed;
                // }
+
+               Vector3 targetDir = navMeshAgent.destination - transform.position;
+               if (Vector3.Angle(targetDir, transform.forward) > 120 && isTurnRound==false)
+               {
+                   lastDes = navMeshAgent.destination;
+                   isTurnRound = true;
+                   navMeshAgent.autoBraking = false;
+               }
+              
+
+               if (isTurnRound)
+               {
+                   if (setTrunRoundDes == false)
+                   {
+                       
+                       d1 = transform.position + transform.right * 5 +
+                           transform.right * (5 * Mathf.Cos(120*Mathf.Deg2Rad))+ transform.forward * (5 * Mathf.Sin(120*Mathf.Deg2Rad));
+                       BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.DestionMark,d1,Vector3.forward);
+                       d2=transform.position + transform.right * 5 +
+                          transform.right * (5 * Mathf.Cos(60*Mathf.Deg2Rad)) + transform.forward * (5 * Mathf.Sin(60*Mathf.Deg2Rad));
+                       BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.DestionMark,d2,Vector3.forward);
+                       setTrunRoundDes = true;
+                       battleUnitBase.SetTargetPos(d1);
+                   }
+
+                   if (Vector3.Distance(transform.position, d1) <1.1f)
+                   {
+                       battleUnitBase.SetTargetPos(d2);
+                   }
+                   if (Vector3.Distance(transform.position, d2)<1.1f )
+                   {
+                       battleUnitBase.SetTargetPos(lastDes);
+                       setTrunRoundDes = false;
+                       isTurnRound = false;
+                       navMeshAgent.autoBraking = true;
+                   }
+                   
+               }
                
-               // if (navMeshAgent.hasPath)
-               // {
-               //     Vector3 corner=navMeshAgent.path.co
-               // }
-               targetSpeed = GetSpeedByDistance(navMeshAgent.remainingDistance);
-               dampSpeed = Mathf.Lerp(dampSpeed, targetSpeed, Time.deltaTime*5f);
-               
-               navMeshAgent.Move(transform.forward * (dampSpeed * Time.deltaTime));
+                   
+               // targetSpeed = GetSpeedByDistance(navMeshAgent.remainingDistance);
+               // dampSpeed = Mathf.Lerp(dampSpeed, targetSpeed, Time.deltaTime*5f);
+               //
+               // navMeshAgent.Move(transform.forward * (dampSpeed * Time.deltaTime));
            }
         }
 
