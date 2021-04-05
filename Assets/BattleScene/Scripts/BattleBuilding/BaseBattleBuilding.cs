@@ -101,7 +101,11 @@ public class BaseBattleBuilding : BattleUnitBase
         {
             hpUi.gameObject.SetActive(true);
         }
-       
+        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        if (diplomaticRelation == DiplomaticRelation.Enemy)
+        {
+            enemyUnitsInMyView.Add(this);
+        }
     }
 
     // Start is called before the first frame update

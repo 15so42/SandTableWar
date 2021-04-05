@@ -1,4 +1,5 @@
 ﻿
+    using System.Collections.Generic;
     using BehaviorDesigner.Runtime;
     using BehaviorDesigner.Runtime.Tasks;
     using UnityEngine;
@@ -14,11 +15,16 @@
         public SharedGameObjectList targetGroup;
 
         private BattleUnitBaseProp prop;
-
+        private List<BattleUnitBase> selfUnits;
+        private List<BattleUnitBase> enemyUnitsInMyView;
+        //public bool ignoreHeight=true;
+        //todo 添加防空检测
         public override void OnStart()
         {
             base.OnStart();
             prop = selfBattleUnit.Value.prop;
+            enemyUnitsInMyView = BattleUnitBase.enemyUnitsInMyView;
+            selfUnits = BattleUnitBase.selfUnits;
         }
 
         public override TaskStatus OnUpdate()
@@ -56,21 +62,48 @@
 
         public BattleUnitBase FindEnemy()
         {
-            //todo 檢測範圍需要修改
-            Collider[] colliders = Physics.OverlapSphere(transform.position, prop.viewDistance);
-            foreach (var collider in colliders)
+            //找到迷雾外的距离内的单位
+            DiplomaticRelation diplomaticRelation =
+                EnemyIdentifier.Instance.GetDiplomaticRelation(selfBattleUnit.Value.campId);
+            if (diplomaticRelation == DiplomaticRelation.Self)
             {
-                BattleUnitBase unitBase = collider.GetComponent<BattleUnitBase>();
-                if (unitBase==null)
+                for (int i = 0; i < enemyUnitsInMyView.Count; i++)
                 {
-                    continue;
+                    if (Vector3.Distance(enemyUnitsInMyView[i].transform.position, transform.position) <
+                        prop.viewDistance)
+                    {
+                        return enemyUnitsInMyView[i];
+                    }
                 }
-                //todo 區分敵我的方式在不同模式中還需完善,如2v2模式不能使用這種方式區分
-                if (unitBase.campId != selfBattleUnit.Value.campId && unitBase.campId!=-1)
+            }else if (diplomaticRelation == DiplomaticRelation.Enemy)
+            {
+                for (int i = 0; i < selfUnits.Count; i++)
                 {
-                    return unitBase;
+                    if (Vector3.Distance(selfUnits[i].transform.position, transform.position) <
+                        prop.viewDistance)
+                    {
+                        return selfUnits[i];
+                    }
                 }
             }
+            
+            
+            
+            // //todo 檢測範圍需要修改
+            // Collider[] colliders = Physics.OverlapSphere(transform.position, prop.viewDistance);
+            // foreach (var collider in colliders)
+            // {
+            //     BattleUnitBase unitBase = collider.GetComponent<BattleUnitBase>();
+            //     if (unitBase==null)
+            //     {
+            //         continue;
+            //     }
+            //     //todo 區分敵我的方式在不同模式中還需完善,如2v2模式不能使用這種方式區分
+            //     if (unitBase.campId != selfBattleUnit.Value.campId && unitBase.campId!=-1)
+            //     {
+            //         return unitBase;
+            //     }
+            // }
            
             return null;
         }

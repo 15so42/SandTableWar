@@ -66,6 +66,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     //静态全局单位列表
     public static List<BattleUnitBase> selfUnits=new List<BattleUnitBase>();
     public static List<BattleUnitBase> enemyUnits=new List<BattleUnitBase>();
+    public static List<BattleUnitBase> enemyUnitsInMyView=new List<BattleUnitBase>();
     //进入房间
     [HideInInspector]public bool isGoingBuilding;
     [HideInInspector]public bool isInBuilding;
@@ -157,6 +158,11 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         {
             hpUi.gameObject.SetActive(false);
         }
+        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        if (diplomaticRelation == DiplomaticRelation.Enemy)
+        {
+            enemyUnitsInMyView.Remove(this);
+        }
     }
 
     public virtual void OnFogExit()
@@ -166,8 +172,13 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         if(photonAnimatorView)
             photonAnimatorView.enabled = true;
         isInFog = false;
-        if(needShowHpUi)
+        if (needShowHpUi)
             hpUi.gameObject.SetActive(true);
+        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        if (diplomaticRelation == DiplomaticRelation.Enemy)
+        {
+            enemyUnitsInMyView.Add(this);
+        }
     }
 
     public bool IsInFog()
@@ -314,7 +325,14 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
                 if(EnemyIdentifier.Instance.GetDiplomaticRelation(campId)==DiplomaticRelation.Self)
                     selfUnits.Remove(this);
                 else
+                {
+                    if (enemyUnitsInMyView.Contains(this))
+                    {
+                        enemyUnitsInMyView.Remove(this);
+                    }
                     enemyUnits.Remove(this);
+                }
+                   
             }
         }
         else
@@ -619,7 +637,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         {
             Destroy(hpUi.gameObject);
         }
-
+        fogOfWarUnit.enabled = false;
         if (behaviorDesigner)
         {
             behaviorDesigner.enabled = false;

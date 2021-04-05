@@ -59,11 +59,6 @@ public class TankAUnit : BattleUnitBase,IPhotonViewCallback,IPunObservable
       // tankAnimCtrl.canon.transform.rotation = Quaternion.RotateTowards( tankAnimCtrl.canon.transform.rotation, canonTargetRotation, tankAnimCtrl.canonRotateSpeed * Time.deltaTime);
       //
 
-      if (IsAlive()==false)
-      {
-         DOTween.To(() => prop.viewDistance, x => prop.viewDistance = x, 0, 12f);
-         fogOfWarUnit.circleRadius = prop.viewDistance;
-      }
    }
    
 
@@ -97,6 +92,6 @@ public class TankAUnit : BattleUnitBase,IPhotonViewCallback,IPunObservable
       
       BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.MetalHitLarge,transform.position,Vector3.up); 
       base.Die();
-      
+
    }
 }

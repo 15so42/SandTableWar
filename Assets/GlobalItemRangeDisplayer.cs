@@ -40,6 +40,14 @@ public class GlobalItemRangeDisplayer : MonoBehaviour
             
             GameObject circle = circles[i];
             circle.transform.position = unitBase.transform.position;
+            if (unitBase.IsAlive())
+            {
+                circle.gameObject.SetActive(true);
+            }
+            else
+            {
+                circle.gameObject.SetActive(false);
+            }
             float size = unitBase.prop.viewDistance*2;
             circle.transform.localScale=new Vector3(size,0.1f,size);
         }
