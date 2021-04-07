@@ -20728,7 +20728,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6714188707150718372}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2cafb87140a90b4ca9223a14d1dea5b, type: 3}
   m_Name: 
@@ -21040,6 +21040,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   stoppingDistance: 0
   maxSpeed: 5
+  isTurnRound: 0
+  turnRadius: 2
+  turnDegree: 100
 --- !u!208 &1680783049143311671
 NavMeshObstacle:
   m_ObjectHideFlags: 0

@@ -371,9 +371,6 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     /// <param name="pos"></param>
     public virtual void SetTargetPos(Vector3 pos)
     {
-        bool isInfog=FogOfWar.GetFogOfWarTeam(0).GetFogValue(pos) >= (byte)(0.2f * 255);
-        
-        
         if (behaviorDesigner)
         {
             behaviorDesigner.SendEvent("SetDestinationPos",pos);
