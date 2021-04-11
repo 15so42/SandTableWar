@@ -1449,7 +1449,11 @@ MonoBehaviour:
     weaponProficiency: 1
     maxHp: 100
     hp: 100
-    defense: 0
+    penetrateDamageResistance: 30
+    explosionDamageResistance: 30
+    electricalDamageResistance: 30
+    soulDamageResistance: 30
+    realDamageResistance: 30
     viewDistance: 10
     attackDistance: 10
   needShowHpUi: 1
@@ -1473,6 +1477,9 @@ MonoBehaviour:
   visibleOnPhoton: 0
   spawnTargetPos: {x: 0, y: 0, z: 0}
   renderers: []
+  OnHpChanged:
+    m_PersistentCalls:
+      m_Calls: []
   curePoint: 0
   lastTime: 0
   cureTarget: {fileID: 0}
@@ -1566,7 +1573,7 @@ MonoBehaviour:
         New Move Event","Instant":true,"SharedVector3lastDestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3destinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"CarveOrUnCarve","NodeData":{"Offset":"(-784.9747,286.462158)"},"ID":25,"Name":"Carve
         Or Un Carve","Instant":true,"BooleantargetStatus":false},{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(-646.2909,257.150879)"},"ID":26,"Name":"Inverter","Instant":true,"Children":[{"Type":"IsBoolTrue","NodeData":{"Offset":"(-9.393966,105.151512)"},"ID":27,"Name":"Is
         Bool True","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsInBuilding","IsShared":true,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnSuccess","NodeData":{"Offset":"(-499.982422,219.907227)"},"ID":28,"Name":"Return
-        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,118)"},"ID":29,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-266.004578,131.335587)"},"ID":30,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsBoolTrue","NodeData":{"Offset":"(-109.597839,120.833305)","Comment":"\u5982\u679c\u6b63\u5728\u6218\u6597\u6216\u8005\u6b63\u5728\u8ffd\u8d76\n\uff0c\u5728\u6709\u4e86\u65b0\u7684\u79fb\u52a8\u547d\u4ee4\u540e\u5f00\u59cb\u64a4\u9000"},"ID":31,"Name":"Is
+        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,118)"},"ID":29,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-316.004578,131.335587)"},"ID":30,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsBoolTrue","NodeData":{"Offset":"(-109.597839,120.833305)","Comment":"\u5982\u679c\u6b63\u5728\u6218\u6597\u6216\u8005\u6b63\u5728\u8ffd\u8d76\n\uff0c\u5728\u6709\u4e86\u65b0\u7684\u79fb\u52a8\u547d\u4ee4\u540e\u5f00\u59cb\u64a4\u9000"},"ID":31,"Name":"Is
         Bool True","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsPursuing","IsShared":true,"BooleanmValue":false}},{"Type":"IsBoolTrue","NodeData":{"Offset":"(56.4080276,128.0747)"},"ID":32,"Name":"Is
         Bool True","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.ParallelComplete","NodeData":{"Offset":"(0,140)"},"ID":33,"Name":"Parallel
         Complete","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tactical.Tasks.MyRetreat","NodeData":{"Offset":"(-100,144.375)"},"ID":34,"Name":"My

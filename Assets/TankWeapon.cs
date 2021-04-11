@@ -39,19 +39,20 @@ public class TankWeapon : RangedWeapon
     public override void Attack()
     {
         base.Attack();
-        Rigidbody rigidbody = GetComponent<Rigidbody>();
-        rigidbody.isKinematic = false;
-        Vector3 shootDir = (shootPos.transform.position - GetEnemy().transform.position).normalized;
-        Quaternion rotate = Quaternion.Euler(0, 90, 0);//因为扭矩是绕向量旋转，所以需要先将向量绕y周旋转90
-        shootDir = rotate * shootDir;
-        rigidbody.AddTorque(shootDir*recoil,ForceMode.Impulse);
-        Timer.Register(3f, () =>
-        {
-            if (rigidbody)
-            {
-                rigidbody.isKinematic = true;
-            }
-        });
+        //坦克后坐力，效果不太好，关了
+        // Rigidbody rigidbody = GetComponent<Rigidbody>();
+        // rigidbody.isKinematic = false;
+        // Vector3 shootDir = (shootPos.transform.position - GetEnemy().transform.position).normalized;
+        // Quaternion rotate = Quaternion.Euler(0, 90, 0);//因为扭矩是绕向量旋转，所以需要先将向量绕y周旋转90
+        // shootDir = rotate * shootDir;
+        // rigidbody.AddTorque(shootDir*recoil,ForceMode.Impulse);
+        // Timer.Register(3f, () =>
+        // {
+        //     if (rigidbody)
+        //     {
+        //         rigidbody.isKinematic = true;
+        //     }
+        // });
         barrel.transform.DOLocalMove(new Vector3(0,0,-0.6f), 0.1f).SetLoops(2,LoopType.Yoyo);
     }
 
