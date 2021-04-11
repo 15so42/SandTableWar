@@ -42,13 +42,13 @@ public class GlobalItem : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragH
   {
       isUsing = true;
       GameManager.Instance.GetFightingManager().isUsingItem = true;
-      GlobalItemRangeDisplayer.Instance.Display();
+      //GlobalItemRangeDisplayer.Instance.Display();
   }
 
   public void OnDrag(PointerEventData eventData)
   {
     //throw new System.NotImplementedException();
-    GlobalItemRangeDisplayer.Instance.Display();
+    //GlobalItemRangeDisplayer.Instance.Display();
   }
 
   public void OnEndDrag(PointerEventData eventData)
