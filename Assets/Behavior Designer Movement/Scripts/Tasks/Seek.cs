@@ -16,13 +16,13 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         public SharedVector3 targetPosition;
 
         private BattleUnitBase selfUnit;
-        private NavMeshUnitMovement navMeshUnitMovement;
+        private NavMeshVehicleMovement navMeshVehicleMovement;
 
         public override void OnAwake()
         {
             base.OnAwake();
             selfUnit = GetComponent<BattleUnitBase>();
-            navMeshUnitMovement = GetComponent<NavMeshUnitMovement>();
+            navMeshVehicleMovement = GetComponent<NavMeshVehicleMovement>();
         }
 
         public override void OnStart()
@@ -36,18 +36,16 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         // Return running if the agent hasn't reached the destination yet
         public override TaskStatus OnUpdate()
         {
-            SetDestination(Target());
-            
-            if (navMeshUnitMovement && navMeshUnitMovement.isTurnRound)
+            if (navMeshVehicleMovement && navMeshVehicleMovement.isTurnRound)
             {
+                navMeshVehicleMovement.SetRealDest(Target());
                 return TaskStatus.Running;
             }
+            SetDestination(Target());
+           
             if (HasArrived()) {
                 return TaskStatus.Success;
             }
-
-           // navMeshAgent.Move(transform.forward *6*Time.deltaTime);
-
             return TaskStatus.Running;
         }
         

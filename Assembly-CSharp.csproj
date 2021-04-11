@@ -857,7 +857,7 @@
      <Compile Include="Assets\MineMachine.cs" />
      <Compile Include="Assets\MineralUnit.cs" />
      <Compile Include="Assets\MouseShapeManager.cs" />
-     <Compile Include="Assets\NavMeshUnitMovement.cs" />
+     <Compile Include="Assets\NavMeshVehicleMovement.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />

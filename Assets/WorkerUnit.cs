@@ -111,7 +111,7 @@ public class WorkerUnit : BattleUnitBase
        GetComponent<Animator>().SetBool("SetMineMachine",false);
    }
    
-   public override void SetTargetPos(Vector3 pos)
+   public override void SetTargetPos(Vector3 pos,bool showMark=true)
    {
        //在有挖矿目标的时候设置其他目的地，则取消挖矿目标
        if (mineTarget!=null && mineTarget.transform.position!=pos)

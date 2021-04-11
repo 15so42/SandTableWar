@@ -142,13 +142,17 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
                         }
                     }
                 } else {
-                    var foundAttackGroup = GameObject.FindGameObjectsWithTag(targetTag.Value);
-                    for (int i = 0; i < foundAttackGroup.Length; ++i) {
-                        var damageable = (foundAttackGroup[i].GetComponentInParent(typeof(IDamageable)) as IDamageable);
-                        if (damageable != null) {
-                            AddTarget(foundAttackGroup[i].transform, damageable);
+                    if (!string.IsNullOrEmpty(targetTag.Value))
+                    {
+                        var foundAttackGroup = GameObject.FindGameObjectsWithTag(targetTag.Value);
+                        for (int i = 0; i < foundAttackGroup.Length; ++i) {
+                            var damageable = (foundAttackGroup[i].GetComponentInParent(typeof(IDamageable)) as IDamageable);
+                            if (damageable != null) {
+                                AddTarget(foundAttackGroup[i].transform, damageable);
+                            }
                         }
                     }
+                    
                 }
 
                 if (targets.Count == 0) {

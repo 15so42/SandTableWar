@@ -44,5 +44,6 @@ public enum BattleUnitId//不要改变顺序，否则会全部爆炸
    Farmland,
    AutomaticBattery_I,//I型自动炮台
    MineMachine,
+   EngineeringBay,//工程站
 
 }

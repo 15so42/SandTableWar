@@ -85,6 +85,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     protected FogOfWarEvents fogOfWarEvents;
     private Animator animator;
     private Rigidbody rigidbody;
+    private NavMeshVehicleMovement navMeshVehicleMovement;
     
     //*********************行为树常量区*********************
     private const string BD_estinationPos="DestinationPos";
@@ -121,6 +122,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         }
 
         animCtrl = GetComponent<BattleUnitAnimCtrl>();
+        navMeshVehicleMovement = GetComponent<NavMeshVehicleMovement>();
         isFirstSelected = true;
 
         //*************战争迷雾**********
@@ -133,6 +135,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         //因为设置campId是在awake后执行的，而且因为在网络中传输可能会有延迟，所以建筑一般先关闭迷雾，知道收到设置campId的消息后再根据情况决定是否打开迷雾。
         fogOfWarUnit = GetComponent<FogOfWarUnit>();
         fogOfWarUnit.enabled = false;
+        
     }
 
     //晚于Awake执行
@@ -365,19 +368,37 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     }
 
     private GameObject destinationMark;
-    /// <summary>
-    /// 設置移動位置,和navmesh的setDestion類似
-    /// </summary>
-    /// <param name="pos"></param>
-    public virtual void SetTargetPos(Vector3 pos)
+
+    public virtual void SetTargetPos(Vector3 pos, bool showMark = true)
     {
-        if (behaviorDesigner)
+        //if the vehicle is turning,you cant set new destination because of new destination will create a new
+        //path which cause the vehicle move straight to new destination;just set real destination.
+        //when vehicle completed turning,the vehicle will move to real dest;
+
+        //set dest like this
+        // if (navMeshVehicleMovement && navMeshVehicleMovement.isTurnRound)
+        // {
+        //     navMeshVehicleMovement.SetRealDest(pos);
+        // }
+        // else
+        // {
+        //     navMeshAgent.SetDestination(pos);//if not,just setDest on usual
+        // }
+    
+
+    //this is my code in my project,it's special in specific project
+    if (behaviorDesigner)
         {
             behaviorDesigner.SendEvent("SetDestinationPos",pos);
             RemoveDestinationMark();
-            string fxName = ConfigHelper.Instance.GetFxPfbByBattleFxType(BattleFxType.DestionMark).name;
-            destinationMark= BattleFxManager.Instance.SpawnFxAtPos(fxName,pos,Vector3.forward);
-            destinationMark.GetComponent<FxDestinationMark>().SetAgentRadius(navMeshAgent.radius*2);
+        
+            
+            if (showMark)
+            {
+                string fxName = ConfigHelper.Instance.GetFxPfbByBattleFxType(BattleFxType.DestionMark).name;
+                destinationMark= BattleFxManager.Instance.SpawnFxAtPos(fxName,pos,Vector3.forward);
+                destinationMark.GetComponent<FxDestinationMark>().SetAgentRadius(navMeshAgent.radius*2);
+            }
             
         }
        
@@ -640,7 +661,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
             behaviorDesigner.enabled = false;
         }
 
-        var navMeshUnitMovement = GetComponent<NavMeshUnitMovement>();
+        var navMeshUnitMovement = GetComponent<NavMeshVehicleMovement>();
         if (navMeshUnitMovement)
         {
             navMeshUnitMovement.enabled = false;
