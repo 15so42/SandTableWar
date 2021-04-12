@@ -5,6 +5,7 @@ using DG.Tweening;
 using FoW;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityTimer;
 
 public class BaseBattleBuilding : BattleUnitBase
@@ -32,28 +33,35 @@ public class BaseBattleBuilding : BattleUnitBase
     [Header("建造完成闪光MeshRender效果")] public MeshRenderer[] meshRenderers;
     [Header("建造预览模型配置")] public MeshFilter[] meshFilters;
     
+    
     public float height=5f;
     public int buildTime=5;
     public float buildingModelOffset;
+    private NavMeshObstacle navMeshObstacle;
 
     protected Sequence buildSequence;
     protected override void Awake()
     {
         base.Awake();
 
-        void OnBuildSuccess()
-        {
-            isBuilding = false;
-            PlayBuildCompleteFx();
-            fogOfWarUnit.enabled = true;
-            if (IsInFog() == false && hpUi != null && needShowHpUi)
-            {
-                hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;//防止血条ui瞬移
-                
-                hpUi.gameObject.SetActive(true);
-            }
-               
-        }
+        navMeshObstacle = GetComponent<NavMeshObstacle>();
+        navMeshObstacle.enabled = false;
+        // void OnBuildSuccess()
+        // {
+        //     isBuilding = false;
+        //     PlayBuildCompleteFx();
+        //     fogOfWarUnit.enabled = true;
+        //     if (IsInFog() == false && hpUi != null && needShowHpUi)
+        //     {
+        //         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;//防止血条ui瞬移
+        //         
+        //         hpUi.gameObject.SetActive(true);
+        //     }
+        //
+        //     navMeshObstacle.enabled = true;
+        //     navMeshObstacle.carving = true;
+        //
+        // }
         animModel.transform.localPosition -= Vector3.up * height;
 
         if (buildTime == 0)
@@ -72,6 +80,22 @@ public class BaseBattleBuilding : BattleUnitBase
 
             buildSequence.OnComplete(OnBuildSuccess);
         }
+
+    }
+    public virtual void OnBuildSuccess()
+    {
+        isBuilding = false;
+        PlayBuildCompleteFx();
+        fogOfWarUnit.enabled = true;
+        if (IsInFog() == false && hpUi != null && needShowHpUi)
+        {
+            hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;//防止血条ui瞬移
+                
+            hpUi.gameObject.SetActive(true);
+        }
+
+        navMeshObstacle.enabled = true;
+        navMeshObstacle.carving = true;
 
     }
 

@@ -64,5 +64,11 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             target = null;
             targetPosition = Vector3.zero;
         }
+
+        public override void OnEnd()
+        {
+            target.Value = null;
+            base.OnEnd();
+        }
     }
 }

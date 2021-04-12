@@ -70,7 +70,7 @@
                 for (int i = 0; i < enemyUnitsInMyView.Count; i++)
                 {
                     if (Vector3.Distance(enemyUnitsInMyView[i].transform.position, transform.position) <
-                        prop.viewDistance)
+                        prop.viewDistance && enemyUnitsInMyView[i].IsAlive())
                     {
                         return enemyUnitsInMyView[i];
                     }

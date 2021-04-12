@@ -54,18 +54,18 @@ public class MainBattleDialog : Dialog<MainBattleDialogContext>
 
     private void UpdateResPanel()
     {
-        populationText.text = battleResMgr.GetRemainingResByResType(BattleResType.population).ToString();
-        int populationIncrease = battleResMgr.battleResIncreaseRate[BattleResType.population];
-        populationIncreaseRateText.text = $"{(populationIncrease > 0 ? "+" : "-")}{populationIncrease}/s";
-        coinText.text = battleResMgr.GetRemainingResByResType(BattleResType.coin).ToString();
-        int coinIncrease = battleResMgr.battleResIncreaseRate[BattleResType.coin];
-        coinIncreaseRateText.text = $"{(coinIncrease > 0 ? "+" : "-")}{coinIncrease}/s";
-        mineralText.text = battleResMgr.GetRemainingResByResType(BattleResType.mineral).ToString();
-        int mineralIncrease = battleResMgr.battleResIncreaseRate[BattleResType.mineral];
-        mineralIncreaseRateText.text = $"{(mineralIncrease > 0 ? "+" : "-")}{mineralIncrease}/s";
-        foodText.text = battleResMgr.GetRemainingResByResType(BattleResType.food).ToString();
-        int foodIncrease = battleResMgr.battleResIncreaseRate[BattleResType.food];
-        foodIncreaseRateText.text = $"{(foodIncrease > 0 ? "+" : "-")}{foodIncrease}/s";
+        populationText.text = battleResMgr.GetRemainingResByResType(BattleResType.population).ToString("#0");
+        float populationIncrease = battleResMgr.battleResIncreaseRate[BattleResType.population];
+        populationIncreaseRateText.text = $"{(populationIncrease > 0 ? "+" : "-")}{populationIncrease:#0.0}/s";
+        coinText.text = battleResMgr.GetRemainingResByResType(BattleResType.coin).ToString("#0");
+        float coinIncrease = battleResMgr.battleResIncreaseRate[BattleResType.coin];
+        coinIncreaseRateText.text = $"{(coinIncrease > 0 ? "+" : "-")}{coinIncrease:#0.0}/s";
+        mineralText.text = battleResMgr.GetRemainingResByResType(BattleResType.mineral).ToString("#0");
+        float mineralIncrease = battleResMgr.battleResIncreaseRate[BattleResType.mineral];
+        mineralIncreaseRateText.text = $"{(mineralIncrease > 0 ? "+" : "-")}{mineralIncrease:#0.0}/s";
+        foodText.text = battleResMgr.GetRemainingResByResType(BattleResType.food).ToString("#0");
+        float foodIncrease = battleResMgr.battleResIncreaseRate[BattleResType.food];
+        foodIncreaseRateText.text = $"{(foodIncrease > 0 ? "+" : "-")}{foodIncrease:#0.0}/s";
     }
 
     #region 全局道具

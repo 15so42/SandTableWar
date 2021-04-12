@@ -16,7 +16,7 @@ public enum BattleResType
     public class BattleResMgr
     {
         private int lastTime;
-        public Dictionary<BattleResType,int> battleResHolder=new Dictionary<BattleResType, int>()
+        public Dictionary<BattleResType,float> battleResHolder=new Dictionary<BattleResType, float>()
         {
             {BattleResType.population,10},
             {BattleResType.coin,10},
@@ -26,7 +26,7 @@ public enum BattleResType
         /// <summary>
         /// 增长速率
         /// </summary>
-        public Dictionary<BattleResType,int> battleResIncreaseRate=new Dictionary<BattleResType, int>()
+        public Dictionary<BattleResType,float> battleResIncreaseRate=new Dictionary<BattleResType, float>()
         {
             {BattleResType.population,1},
             {BattleResType.coin,1},
@@ -60,7 +60,7 @@ public enum BattleResType
             return GetRemainingResByResType(resType) >= needRes;
         }
 
-        public int GetRemainingResByResType(BattleResType resType)
+        public float GetRemainingResByResType(BattleResType resType)
         {
             if (!battleResHolder.ContainsKey(resType))
             {
@@ -104,7 +104,7 @@ public enum BattleResType
         /// <summary>
         ///     增加增长率
         /// </summary>
-        public void AddIncreaseRate(BattleResType type, int num)
+        public void AddIncreaseRate(BattleResType type, float num)
         {
             battleResIncreaseRate[type] += num;
         }

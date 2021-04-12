@@ -848,6 +848,7 @@
      <Compile Include="Assets\GlobalItem.cs" />
      <Compile Include="Assets\GlobalItemManager.cs" />
      <Compile Include="Assets\GlobalItemRangeDisplayer.cs" />
+     <Compile Include="Assets\IsInBuildingArea.cs" />
      <Compile Include="Assets\LogicMap.cs" />
      <Compile Include="Assets\MainBattleDialog.cs" />
      <Compile Include="Assets\MainMenuManager.cs" />
@@ -874,6 +875,7 @@
      <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
      <Compile Include="Assets\PreviewBuilding.cs" />
      <Compile Include="Assets\RangeMark.cs" />
+     <Compile Include="Assets\ResourceBuilding.cs" />
      <Compile Include="Assets\Resources\Config\ScriptableObject\BattleFxConfig.cs" />
      <Compile Include="Assets\Resources\Config\ScriptableObject\MouseShapeConfig.cs" />
      <Compile Include="Assets\Resources\Config\ScriptableObject\SpawnBattleUnitConfig.cs" />

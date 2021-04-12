@@ -121,10 +121,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7758812345396289492}
   - component: {fileID: 8451836037098012865}
-  - component: {fileID: 8456622762566907770}
   - component: {fileID: 2239558301409053133}
   - component: {fileID: 8907646483920853734}
   - component: {fileID: 8205793918497862663}
+  - component: {fileID: 8912261973508340188}
+  - component: {fileID: 9196838304704858886}
   m_Layer: 0
   m_Name: Farmland
   m_TagString: Untagged
@@ -169,66 +170,6 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &8456622762566907770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6982556433534584174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bc3ef106ac2713439029c6aa3f47d6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  behaviorDesigner: {fileID: 0}
-  navMeshAgent: {fileID: 0}
-  photonView: {fileID: 0}
-  campId: 0
-  weapon: {fileID: 0}
-  prop:
-    weaponProficiency: 1
-    maxHp: 100
-    hp: 100
-    defense: 0
-    viewDistance: 10
-    attackDistance: 10
-  hpUiOffset: {x: 0, y: 20, z: 0}
-  selectMarkSize: 1
-  selectMarkOffset: {x: 0, y: 0, z: 0}
-  isFirstSelected: 0
-  mouseOverOutline: {fileID: 0}
-  globalItemType: 0
-  amountBySecond: 0
-  victimPos: {fileID: 0}
-  victimOffset: 1.5
-  rotateDamp: 10
-  overrideRotationCtrl: 1
-  overrideMoveCtrl: 0
-  moveByAnim: 0
-  moveSpeedMultiplier: 1
-  configId: 0
-  isGoingBuilding: 0
-  isInBuilding: 0
-  defenceBuilding: {fileID: 0}
-  animCtrl: {fileID: 0}
-  visibleOnPhoton: 0
-  spawnTargetPos: {x: 0, y: 0, z: 0}
-  renderers: []
-  spawnPos: {fileID: 0}
-  menuCommands: []
-  spawnMarkPfb: {fileID: 0}
-  spawnMark: {fileID: 0}
-  animModel: {fileID: 7536500748593486704}
-  meshRenderers:
-  - {fileID: 7276674766310335696}
-  - {fileID: 9064573741807181836}
-  meshFilters:
-  - {fileID: 3839817465663084605}
-  - {fileID: 4982719057522039050}
-  height: 2
-  buildTime: 10
-  buildingModelOffset: 0
 --- !u!65 &2239558301409053133
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -291,6 +232,93 @@ MonoBehaviour:
   onFogExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!208 &8912261973508340188
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6982556433534584174}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.185, y: 0.5, z: 2.25}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &9196838304704858886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6982556433534584174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d40d64fe34764484864ec86d2c972306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behaviorDesigner: {fileID: 0}
+  navMeshAgent: {fileID: 0}
+  photonView: {fileID: 0}
+  campId: 0
+  weapon: {fileID: 0}
+  prop:
+    weaponProficiency: 1
+    maxHp: 100
+    hp: 100
+    penetrateDamageResistance: 30
+    explosionDamageResistance: 30
+    electricalDamageResistance: 30
+    soulDamageResistance: 30
+    realDamageResistance: 30
+    viewDistance: 10
+    attackDistance: 10
+  needShowHpUi: 1
+  hpUiOffset: {x: 0, y: 20, z: 0}
+  selectMarkSize: 1
+  selectMarkOffset: {x: 0, y: 0, z: 0}
+  isFirstSelected: 0
+  mouseOverOutline: {fileID: 0}
+  globalItemType: 0
+  amountBySecond: 0
+  victimMaterial: 2
+  victimPos: {fileID: 0}
+  victimOffset: 1.5
+  rotateDamp: 10
+  overrideRotationCtrl: 1
+  configId: 0
+  isGoingBuilding: 0
+  isInBuilding: 0
+  defenceBuilding: {fileID: 0}
+  animCtrl: {fileID: 0}
+  visibleOnPhoton: 0
+  spawnTargetPos: {x: 0, y: 0, z: 0}
+  renderers:
+  - {fileID: 7276674766310335696}
+  - {fileID: 9064573741807181836}
+  OnHpChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  spawnPos: {fileID: 0}
+  menuCommands: []
+  spawnMarkPfb: {fileID: 0}
+  spawnMark: {fileID: 0}
+  animModel: {fileID: 7536500748593486704}
+  meshRenderers:
+  - {fileID: 7276674766310335696}
+  - {fileID: 9064573741807181836}
+  meshFilters:
+  - {fileID: 3839817465663084605}
+  - {fileID: 4982719057522039050}
+  height: 2
+  buildTime: 10
+  buildingModelOffset: 0
+  resIncreaseRateConfigs:
+  - battleResType: 3
+    increaseSpeed: 0.3
 --- !u!1 &7536500748593486704
 GameObject:
   m_ObjectHideFlags: 0

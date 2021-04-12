@@ -94,6 +94,11 @@ public class GlobalItemRangeDisplayer : MonoBehaviour
             displayRangeStatuses[i].active = false;
         }
     }
+
+    public List<BattleUnitBase> GetBuildRange()
+    {
+        return BattleUnitBase.selfUnits.FindAll(x=>x.configId==BattleUnitId.Base || x.configId==BattleUnitId.EngineeringBay);
+    }
 }
 
 public enum DisplayRangeType

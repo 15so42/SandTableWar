@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 3009354846530384926}
   - component: {fileID: -1019116400784405670}
   - component: {fileID: 7138077299688559926}
+  - component: {fileID: 921840387758543842}
   m_Layer: 0
   m_Name: bunker-medium
   m_TagString: Untagged
@@ -264,7 +265,11 @@ MonoBehaviour:
     weaponProficiency: 1
     maxHp: 100
     hp: 100
-    defense: 0
+    penetrateDamageResistance: 30
+    explosionDamageResistance: 30
+    electricalDamageResistance: 30
+    soulDamageResistance: 30
+    realDamageResistance: 30
     viewDistance: 10
     attackDistance: 10
   needShowHpUi: 1
@@ -288,6 +293,9 @@ MonoBehaviour:
   visibleOnPhoton: 0
   spawnTargetPos: {x: 0, y: 0, z: 0}
   renderers: []
+  OnHpChanged:
+    m_PersistentCalls:
+      m_Calls: []
   spawnPos: {fileID: 6780302482535544144}
   menuCommands:
   - buildingOperateType: 2
@@ -412,6 +420,22 @@ MonoBehaviour:
   onFogExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!208 &921840387758543842
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3638050296220507716}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 4.0670004, y: 2.0470002, z: 5.6140003}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.637, y: 1.7540001, z: -0.40300003}
+  m_TimeToStationary: 0.5
 --- !u!1 &6309418664939643156
 GameObject:
   m_ObjectHideFlags: 0

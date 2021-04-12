@@ -35,6 +35,7 @@ public class BuildingSpawnItem : MonoBehaviour,IBeginDragHandler,IDragHandler,IE
         MeshRenderer previewMeshRenderer = previewBuildingGo.AddComponent<MeshRenderer>();
         previewMeshRenderer.shadowCastingMode = ShadowCastingMode.Off;
         previewBuildingGo.AddComponent<CollisionDetection>();
+        previewBuildingGo.AddComponent<IsInBuildingArea>();
         MeshFilter[] buildingMeshFilters = BattleUnitBaseFactory.Instance.GetBattleUnitLocally(buildingInfo).GetComponent<BaseBattleBuilding>().meshFilters;
         
         CombineInstance[] combineInstances = new CombineInstance[buildingMeshFilters.Length]; //新建一个合并组，长度与 meshfilters一致
@@ -70,20 +71,18 @@ public class BuildingSpawnItem : MonoBehaviour,IBeginDragHandler,IDragHandler,IE
         PreviewBuilding previewBuilding= previewBuildingGo.AddComponent<PreviewBuilding>();
         //设置实际的建筑以便生成实际建筑
         previewBuilding.buildingInfo = buildingInfo;
-      
-
+        
         fightingManager.previewBuilding = previewBuilding;
+        
         
         globalItemRangeDisplayer.SetColor(DisplayRangeType.BuildingArea,Color.red);
         globalItemRangeDisplayer.EnableDisplayRangeType(DisplayRangeType.BuildingArea,true);
+        List<BattleUnitBase> buildRange = globalItemRangeDisplayer.GetBuildRange();
+        globalItemRangeDisplayer.SetList(DisplayRangeType.BuildingArea,buildRange);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        GlobalItemRangeDisplayer globalItemRangeDisplayer=GlobalItemRangeDisplayer.Instance;
-        List<BattleUnitBase> buildRange=BattleUnitBase.selfUnits.FindAll(x=>x.configId==BattleUnitId.Base || x.configId==BattleUnitId.EngineeringBay);
-        globalItemRangeDisplayer.SetList(DisplayRangeType.BuildingArea,buildRange);
-        
         //throw new System.NotImplementedException();
     }
 

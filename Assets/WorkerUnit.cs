@@ -85,6 +85,7 @@ public class WorkerUnit : BattleUnitBase
        MineralUnit curMineral=mineTarget as MineralUnit;
        curMineral.HasWorkerWorking = false;
        curMineral.HasMineMachine = true;
+       curMineral.MineMachine = mineMachine.GetComponent<MineMachine>();
        SetMineTarget(null);
        GetComponent<Animator>().SetBool("SetMineMachine",false);
        iMineMachine.GetComponent<MineMachine>().StartMine();
