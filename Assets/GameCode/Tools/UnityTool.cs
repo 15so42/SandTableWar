@@ -106,4 +106,12 @@ public static class UnityTool
 	{
 		return Mathf.Sqrt(Mathf.Pow((pointB.x - pointA.x), 2) + Mathf.Pow((pointB.z - pointA.z), 2));
 	}
+
+	public static void SetActiveVirtual(GameObject gameObject,bool targetStatus)
+	{
+		if (gameObject.activeSelf != targetStatus)
+		{
+			gameObject.SetActive(targetStatus);
+		}
+	}
 }

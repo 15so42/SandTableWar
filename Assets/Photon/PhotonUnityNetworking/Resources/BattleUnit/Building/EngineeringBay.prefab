@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2623218485440058524}
   - component: {fileID: 3438932178858658777}
   - component: {fileID: 3972993399684782718}
+  - component: {fileID: 440858038703366493}
   m_Layer: 0
   m_Name: EngineeringBay
   m_TagString: Untagged
@@ -105,7 +106,7 @@ MonoBehaviour:
     electricalDamageResistance: 30
     soulDamageResistance: 30
     realDamageResistance: 30
-    viewDistance: 10
+    viewDistance: 20
     attackDistance: 10
   needShowHpUi: 1
   hpUiOffset: {x: 0, y: 20, z: 0}
@@ -200,8 +201,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 11.408872, y: 6.748308, z: 8.643615}
-  m_Center: {x: 0.83812284, y: 2.874154, z: 0.16157198}
+  m_Size: {x: 1.1728125, y: 6.748308, z: 1.387845}
+  m_Center: {x: 0.07251406, y: 2.874154, z: 0.044225216}
 --- !u!114 &3438932178858658777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +252,19 @@ MonoBehaviour:
   onFogExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &440858038703366493
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753323473813583426}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0278988, y: 1.848711, z: 6.2287617}
+  m_Center: {x: 1.9382191, y: 0.4243555, z: -0.0026445389}
 --- !u!1001 &2743884112040577152
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -202,8 +202,12 @@ MonoBehaviour:
     weaponProficiency: 1
     maxHp: 36000
     hp: 36000
-    defense: 100
-    viewDistance: 10
+    penetrateDamageResistance: 30
+    explosionDamageResistance: 30
+    electricalDamageResistance: 30
+    soulDamageResistance: 30
+    realDamageResistance: 30
+    viewDistance: 20
     attackDistance: 10
   needShowHpUi: 1
   hpUiOffset: {x: 0, y: 165, z: 0}
@@ -227,6 +231,9 @@ MonoBehaviour:
   spawnTargetPos: {x: 0, y: 0, z: 0}
   renderers:
   - {fileID: 4767178920142123126}
+  OnHpChanged:
+    m_PersistentCalls:
+      m_Calls: []
   spawnPos: {fileID: 9065425138531134907}
   menuCommands:
   - buildingOperateType: 0

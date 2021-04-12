@@ -12,11 +12,14 @@ public class BuildingSpawnItem : MonoBehaviour,IBeginDragHandler,IDragHandler,IE
     public Image buildingIcon;
     
     private FightingManager fightingManager;
+
+    private GlobalItemRangeDisplayer globalItemRangeDisplayer;
     public void Init(SpawnBattleUnitConfigInfo buildingInfo)
     {
         this.buildingInfo = buildingInfo;
         buildingIcon.sprite = BuildingIconLoader.GetSpriteByUnitId(buildingInfo.battleUnitId);
-        fightingManager=GameManager.Instance.GetFightingManager();
+        fightingManager=GameManager.Instance.GetFightingManager(); 
+        globalItemRangeDisplayer=GlobalItemRangeDisplayer.Instance;
     }
     public void UpdateSpawnBuildingItem()
     {
@@ -71,13 +74,15 @@ public class BuildingSpawnItem : MonoBehaviour,IBeginDragHandler,IDragHandler,IE
 
         fightingManager.previewBuilding = previewBuilding;
         
-       GlobalItemRangeDisplayer.Instance.SetColor(Color.red);
+        globalItemRangeDisplayer.SetColor(DisplayRangeType.BuildingArea,Color.red);
+        globalItemRangeDisplayer.EnableDisplayRangeType(DisplayRangeType.BuildingArea,true);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        GlobalItemRangeDisplayer globalItemRangeDisplayer=GlobalItemRangeDisplayer.Instance;
         List<BattleUnitBase> buildRange=BattleUnitBase.selfUnits.FindAll(x=>x.configId==BattleUnitId.Base || x.configId==BattleUnitId.EngineeringBay);
-        GlobalItemRangeDisplayer.Instance.SetList(buildRange);
+        globalItemRangeDisplayer.SetList(DisplayRangeType.BuildingArea,buildRange);
         
         //throw new System.NotImplementedException();
     }
@@ -85,7 +90,6 @@ public class BuildingSpawnItem : MonoBehaviour,IBeginDragHandler,IDragHandler,IE
     public void OnEndDrag(PointerEventData eventData)
     {
         //throw new System.NotImplementedException();
-        GlobalItemRangeDisplayer.Instance.SetDefaultColor();
-        GlobalItemRangeDisplayer.Instance.SetDefaultList();
+        globalItemRangeDisplayer.EnableDisplayRangeType(DisplayRangeType.BuildingArea,false);
     }
 }

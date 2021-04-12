@@ -90,7 +90,9 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     //*********************行为树常量区*********************
     private const string BD_estinationPos="DestinationPos";
     private const string BD_LastDestinationPos="LastDestinationPos";
+    private const string BD_ChaseTarget="ChaseTarget";
     private const string BD_EnemyBattleUnit="EnemyBattleUnit";
+    private const string BD_TargetGroup="TargetGroup";
     private const string BD_EnemyGameObject="EnemyGameObject";
     //****************************************************
     
@@ -361,10 +363,11 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     {
         if (chaseTarget.configId != BattleUnitId.Mineral && chaseTarget!=this)
         {
-            behaviorDesigner.SetVariableValue(BD_EnemyBattleUnit,chaseTarget);
-            behaviorDesigner.SetVariableValue(BD_EnemyGameObject,chaseTarget.gameObject);
+            behaviorDesigner.SetVariableValue(BD_ChaseTarget,chaseTarget.gameObject);
+            SetTargetPos(chaseTarget.transform.position);
+            //behaviorDesigner.SetVariableValue(BD_EnemyGameObject,chaseTarget.gameObject);
         }
-        //stateController?.SetChaseTarget(chaseTarget);
+        
     }
 
     private GameObject destinationMark;
@@ -820,6 +823,15 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     public void Attack(Vector3 targetPosition)
     {
         weapon.WeaponUpdate();
+    }
+
+    public void SetEnemy(BattleUnitBase enemy)
+    {
+        behaviorDesigner.SetVariableValue(BD_EnemyBattleUnit,enemy);
+        GameObject o = enemy.gameObject;
+        var targetGroup = behaviorDesigner.GetVariable(BD_TargetGroup);
+        if(!(targetGroup as SharedGameObjectList).Value.Contains(o))
+            (targetGroup as SharedGameObjectList).Value.Add(o);
     }
     #endregion 
 }
