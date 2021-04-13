@@ -579,6 +579,7 @@ MonoBehaviour:
   bulletDamageRate: 1
   detectionType: 0
   scatteringAngel: 2
+  tower: {fileID: 3648318360558081745}
   barrel: {fileID: 1634437978102679415}
   recoil: 150000
 --- !u!114 &5669207548518253706
@@ -652,9 +653,7 @@ MonoBehaviour:
   - {fileID: 284533438581821977}
   - {fileID: 3038436158726833308}
   tower: {fileID: 3648318360558081745}
-  towerRotateSpeed: 30
   canon: {fileID: 1634437978102679415}
-  canonRotateSpeed: 15
 --- !u!65 &622427495703398001
 BoxCollider:
   m_ObjectHideFlags: 0

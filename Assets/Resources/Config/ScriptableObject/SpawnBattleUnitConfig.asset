@@ -133,16 +133,16 @@ MonoBehaviour:
     needCoin: 1
     needMineral: 1
     needFood: 1
-  - battleUnitType: 0
-    battleUnitId: 0
-    resourceName: Solider1
-    battleUnitName: 
+  - battleUnitType: 1
+    battleUnitId: 13
+    resourceName: AutomaticBattery_T
+    battleUnitName: "\u81EA\u52A8\u70AE\u53F0-T\u578B"
     hasExtraIcon: 0
     spawnTime: 10
-    needPopulation: 1
-    needCoin: 1
-    needMineral: 1
-    needFood: 1
+    needPopulation: 0
+    needCoin: 20
+    needMineral: 20
+    needFood: 0
   - battleUnitType: 0
     battleUnitId: 0
     resourceName: Solider1

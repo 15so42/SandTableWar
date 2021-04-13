@@ -7,14 +7,11 @@ using UnityTimer;
 //tank必须炮管瞄准后才能发射
 public class TankWeapon : RangedWeapon
 {
-    private Transform tower;
+    public Transform tower;
     public Transform barrel;//炮管
     [Header("坦克开炮后坐力")] public int recoil;
     // Start is called before the first frame update
-    void Start()
-    {
-        tower = GetComponent<TankAnimCtrl>().tower;
-    }
+   
     public override void WeaponUpdate()
     {
         atkTimer += Time.deltaTime;
@@ -27,7 +24,7 @@ public class TankWeapon : RangedWeapon
             towerDir.y = 0;
             float angle = Vector3.Angle(enemyDir, towerDir);
            
-            if (Vector3.Angle(enemyDir, towerDir) < 10f)
+            if (angle < 5f)
             {
                 atkTimer = 0;
                 Attack();

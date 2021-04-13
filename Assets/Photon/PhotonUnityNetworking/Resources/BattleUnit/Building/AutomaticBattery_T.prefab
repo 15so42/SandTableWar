@@ -1,0 +1,651 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2640215016856884647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4176645617928044838}
+  - component: {fileID: 4100934981941284319}
+  - component: {fileID: 3479339147508184875}
+  - component: {fileID: 5141676360613667305}
+  - component: {fileID: 8688301645540643014}
+  - component: {fileID: 8292704117362066455}
+  - component: {fileID: 2763082695251294079}
+  - component: {fileID: 4098996765347667296}
+  - component: {fileID: 5994548748100616133}
+  - component: {fileID: 4898818860163670542}
+  - component: {fileID: 4288471171908059437}
+  m_Layer: 0
+  m_Name: AutomaticBattery_T
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4176645617928044838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640215016856884647}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8651786569293888440}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4100934981941284319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640215016856884647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &3479339147508184875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640215016856884647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e78508c6d76e84b954af6619d8c000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  minFogStrength: 0.2
+  onFogEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onFogExit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5141676360613667305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640215016856884647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc3ef106ac2713439029c6aa3f47d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behaviorDesigner: {fileID: 0}
+  navMeshAgent: {fileID: 0}
+  photonView: {fileID: 0}
+  campId: 0
+  weapon: {fileID: 0}
+  prop:
+    weaponProficiency: 1
+    maxHp: 800
+    hp: 800
+    penetrateDamageResistance: 90
+    explosionDamageResistance: 60
+    electricalDamageResistance: 30
+    soulDamageResistance: 30
+    realDamageResistance: 30
+    viewDistance: 20
+    attackDistance: 20
+  needShowHpUi: 1
+  hpUiOffset: {x: 0, y: 20, z: 0}
+  selectMarkSize: 1
+  selectMarkOffset: {x: 0, y: 0, z: 0}
+  isFirstSelected: 0
+  mouseOverOutline: {fileID: 0}
+  globalItemType: 0
+  amountBySecond: 0
+  victimMaterial: 0
+  victimPos: {fileID: 0}
+  victimOffset: 1.5
+  rotateDamp: 10
+  overrideRotationCtrl: 1
+  configId: 0
+  isGoingBuilding: 0
+  isInBuilding: 0
+  defenceBuilding: {fileID: 0}
+  animCtrl: {fileID: 0}
+  visibleOnPhoton: 0
+  spawnTargetPos: {x: 0, y: 0, z: 0}
+  renderers:
+  - {fileID: 1608570716178396213}
+  - {fileID: 6634370689591700047}
+  - {fileID: 1689145431232862338}
+  OnHpChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  spawnPos: {fileID: 0}
+  menuCommands: []
+  spawnMarkPfb: {fileID: 0}
+  spawnMark: {fileID: 0}
+  animModel: {fileID: 8312099716941848834}
+  meshRenderers:
+  - {fileID: 1608570716178396213}
+  - {fileID: 6634370689591700047}
+  - {fileID: 1689145431232862338}
+  meshFilters:
+  - {fileID: 2949892137223694150}
+  - {fileID: 5628539798033278562}
+  - {fileID: 3001617471829000994}
+  height: 5
+  buildTime: 5
+  buildingModelOffset: 0
+--- !u!114 &8688301645540643014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640215016856884647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 0
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 0}
+  mBehaviorSource:
+    behaviorName: AutomaticBatteryT
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(459.672821,-33.75891)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Parallel","NodeData":{"Offset":"(-60.00003,210)"},"ID":1,"Name":"Parallel","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"SyncAutomaticBatteryAnim","NodeData":{"Offset":"(-360,190)"},"ID":2,"Name":"Sync
+        Automatic Battery Anim","Instant":true,"SharedTransformturret":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Turret","IsShared":true,"TransformmValue":0},"SharedBattleUnitenemyUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},"Int32turretRotateSpeed":45},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(69.99997,200)"},"ID":3,"Name":"Selector","Instant":true,"AbortTypeabortType":"Self","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnFailure","NodeData":{"Offset":"(-1670,180)"},"ID":4,"Name":"Return
+        Failure","Instant":true,"Children":[{"Type":"BaseInit","NodeData":{"Offset":"(-10,110)"},"ID":5,"Name":"Base
+        Init","Instant":true,"SharedBattleUnitselfBattleUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"SharedGameObjectselfGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"SelfGameObject","IsShared":true},"SharedVector3destinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3lastDestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-130,250)"},"ID":6,"Name":"Selector","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-260,110)"},"ID":7,"Name":"Sequence","Instant":true,"Disabled":true,"AbortTypeabortType":"Both","Children":[{"Type":"HasNewMoveEvent","NodeData":{"Offset":"(-820,310)"},"ID":8,"Name":"Has
+        New Move Event","Instant":true,"SharedVector3lastDestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3destinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"CarveOrUnCarve","NodeData":{"Offset":"(-650,310)"},"ID":9,"Name":"Carve
+        Or Un Carve","Instant":true,"BooleantargetStatus":false},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnSuccess","NodeData":{"Offset":"(-500,220)"},"ID":10,"Name":"Return
+        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,120)"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-270,130)"},"ID":12,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsBoolTrue","NodeData":{"Offset":"(-90,100)","Comment":"\u5982\u679c\u6b63\u5728\u6218\u6597\u6216\u8005\u6b63\u5728\u8ffd\u8d76\n\uff0c\u5728\u6709\u4e86\u65b0\u7684\u79fb\u52a8\u547d\u4ee4\u540e\u5f00\u59cb\u64a4\u9000"},"ID":13,"Name":"Is
+        Bool True","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsPursuing","IsShared":true,"BooleanmValue":false}},{"Type":"IsBoolTrue","NodeData":{"Offset":"(80,110)"},"ID":14,"Name":"Is
+        Bool True","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.ParallelComplete","NodeData":{"Offset":"(0,140)"},"ID":15,"Name":"Parallel
+        Complete","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tactical.Tasks.MyRetreat","NodeData":{"Offset":"(-20,140)"},"ID":16,"Name":"My
+        Retreat","Instant":true,"SharedVector3destinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"BooleancanRotate":true,"SharedGameObjectleader":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null},"SharedIntleaderGroupIndex":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedGameObjectListtargetGroup":{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"TargetGroup","IsShared":true,"List`1mValue":[]},"SharedStringtargetTag":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":""},"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedVector3attackOffset":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":null,"Vector3mValue":"(0,0,0)"},"SharedVector3targetOffset":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":null,"Vector3mValue":"(0,0,0)"},"SharedBooluseTargetBone":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"HumanBodyBonestargetBone":"Hips"}]},{"Type":"RemoveDestinationMark","NodeData":{"Offset":"(150,230)"},"ID":17,"Name":"Remove
+        Destination Mark","Instant":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.PerformInterruption","NodeData":{"Offset":"(-320,220)"},"ID":18,"Name":"Perform
+        Interruption","Instant":true,"Interrupt[]interruptTasks":[],"SharedBoolinterruptSuccess":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}},{"Type":"SetBoolStatus","NodeData":{"Offset":"(-180,220)","Comment":"\u8ffd\u8e2a\u72b6\u6001\u8bbe\u4e3afalse"},"ID":19,"Name":"Set
+        Bool Status","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsPursuing","IsShared":true,"BooleanmValue":false},"BooleantargetStatus":false},{"Type":"SetBoolStatus","NodeData":{"Offset":"(-50,220)"},"ID":20,"Name":"Set
+        Fighting Status","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false},"BooleantargetStatus":false},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnFailure","NodeData":{"Offset":"(130,240)"},"ID":21,"Name":"Return
+        Failure","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.ParallelComplete","NodeData":{"Offset":"(-80,120)"},"ID":22,"Name":"Parallel
+        Complete","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-300,280)"},"ID":23,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.ParallelSelector","NodeData":{"Offset":"(-210,220)"},"ID":24,"Name":"Parallel
+        Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-190,120)"},"ID":25,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsBoolTrue","NodeData":{"Offset":"(-100,180)"},"ID":26,"Name":"IsFlockLeader","Instant":true,"Disabled":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFlockLeader","IsShared":true,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.Movement.Seek","NodeData":{"Offset":"(80,170)","Comment":"\u53ea\u6709flockLeader\u624d\u80fd\u4f7f\u7528seek"},"ID":27,"Name":"Seek","Instant":true,"SharedGameObjecttarget":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"ChaseTarget","IsShared":true},"SharedVector3targetPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedFloatspeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MoveSpeed","IsShared":true,"SinglemValue":5},"SharedFloatangularSpeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":120},"SharedFloatarriveDistance":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolstopOnTaskEnd":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolupdateRotation":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true}},{"Type":"CarveOrUnCarve","NodeData":{"Offset":"(260,170)"},"ID":28,"Name":"Carve
+        Or Un Carve","Instant":true,"BooleantargetStatus":true},{"Type":"RemoveDestinationMark","NodeData":{"Offset":"(420,170)"},"ID":29,"Name":"Remove
+        Destination Mark","Instant":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Movement.Flock","NodeData":{"Offset":"(110,160)"},"ID":30,"Name":"Flock","Instant":true,"Disabled":true,"SharedFloatneighborDistance":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":100},"SharedFloatlookAheadDistance":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":10},"SharedFloatalignmentWeight":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":2},"SharedFloatcohesionWeight":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":2.6},"SharedFloatseparationWeight":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1.4},"SharedBoolisFlockLeader":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedGameObjectListagents":{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"FlockGroup","IsShared":true,"List`1mValue":[]},"SharedFloatspeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MoveSpeed","IsShared":true,"SinglemValue":5},"SharedFloatangularSpeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":120}}]},{"Type":"BehaviorDesigner.Runtime.Tactical.Tasks.SyncDestinationPosToCurPos","NodeData":{"Offset":"(70,330)"},"ID":31,"Name":"Sync
+        Destination Pos To Cur Pos","Instant":true,"SharedVector3DestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastDestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(200,360)"},"ID":32,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(-60,190)"},"ID":33,"Name":"Inverter","Instant":true,"Children":[{"Type":"IsBoolTrue","NodeData":{"Offset":"(0,120)","Comment":"\u4e0d\u662f\u6b63\u5728\u6218\u6597"},"ID":34,"Name":"Is
+        Bool True","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(149.999969,230)"},"ID":35,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(-90,140)"},"ID":36,"Name":"Until
+        Success","Instant":true,"Children":[{"Type":"CanSeeEnemy","NodeData":{"Offset":"(0,130)","Comment":"\u6709\u654c\u4eba\u65f6\u79fb\u52a8\u5206\u652f\u7ed3\u675f"},"ID":37,"Name":"Can
+        See Enemy","Instant":true,"Singletimer":0,"Singleinterval":1,"SharedBattleUnitselfBattleUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"SharedBattleUnitenemyBattleUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},"SharedGameObjectreturnedEnemy":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"EnemyGameObjcet","IsShared":true},"SharedGameObjectListtargetGroup":{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"TargetGroup","IsShared":true,"List`1mValue":[]}}]},{"Type":"BehaviorDesigner.Runtime.Tactical.Tasks.SyncDestinationPosToCurPos","NodeData":{"Offset":"(90,150)"},"ID":38,"Name":"Sync
+        Destination Pos To Cur Pos","Instant":true,"SharedVector3DestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastDestinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"}}]}]}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(250,120)"},"ID":39,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"CanSeeEnemy","NodeData":{"Offset":"(-150.000031,190)"},"ID":40,"Name":"Can
+        See Enemy","Instant":true,"Singletimer":0,"Singleinterval":1,"SharedBattleUnitselfBattleUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"SharedBattleUnitenemyBattleUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},"SharedGameObjectreturnedEnemy":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"EnemyGameObjcet","IsShared":true},"SharedGameObjectListtargetGroup":{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"TargetGroup","IsShared":true,"List`1mValue":[]}},{"Type":"BehaviorDesigner.Runtime.Tasks.Interrupt","NodeData":{"Offset":"(120,190)","Comment":"\u5f3a\u884c\u79fb\u52a8\u65f6\u6253\u65ad\u6218\u6597\u884c\u4e3a"},"ID":41,"Name":"Interrupt","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnSuccess","NodeData":{"Offset":"(-10,110)"},"ID":42,"Name":"Return
+        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(30,130)"},"ID":43,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-110,130)"},"ID":44,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"InAttackRange","NodeData":{"Offset":"(-40,170)"},"ID":45,"Name":"In
+        Attack Range","Instant":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"SharedBattleUnitenemyUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(20,130)"},"ID":46,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"IsEnemyAlive","NodeData":{"Offset":"(0,160)"},"ID":47,"Name":"Is
+        Enemy Alive","Instant":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"SharedBattleUnitenemyUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true}}]},{"Type":"WeaponUpdate","NodeData":{"Offset":"(172.57605,130.052032)"},"ID":48,"Name":"Weapon
+        Update","Instant":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"SharedBattleUnitenemyUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},"BooleanneedRotate":false}]}]}]},{"Type":"IsEnemyAlive","NodeData":{"Offset":"(550,200)","Comment":"\u5982\u679c\u654c\u4eba\u5df2\u7ecf\u6b7b\u4e86\u5219\u4e0d\u8981\u8ffd\u4e86"},"ID":49,"Name":"Is
+        Enemy Alive","Instant":true,"Disabled":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},"SharedBattleUnitenemyUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true}},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnFailure","NodeData":{"Offset":"(800,240)"},"ID":50,"Name":"Return
+        Failure","Instant":true,"Disabled":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Interrupt","NodeData":{"Offset":"(0,120)","Comment":"\u5f3a\u884c\u79fb\u52a8\u5f0f\u6253\u65ad\u8ffd\u8e2a\u884c\u4e3a"},"ID":51,"Name":"Interrupt","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(80,150)"},"ID":52,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"SetBoolStatus","NodeData":{"Offset":"(0,240)"},"ID":53,"Name":"Set
+        Bool Status","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsPursuing","IsShared":true,"BooleanmValue":false},"BooleantargetStatus":true},{"Type":"CarveOrUnCarve","NodeData":{"Offset":"(120,290)"},"ID":54,"Name":"Carve
+        Or Un Carve","Instant":true,"BooleantargetStatus":false},{"Type":"BehaviorDesigner.Runtime.Tasks.ParallelComplete","NodeData":{"Offset":"(250,170)"},"ID":55,"Name":"Parallel
+        Complete","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Movement.Pursue","NodeData":{"Offset":"(-10,130)"},"ID":56,"Name":"Pursue","Instant":true,"SharedFloattargetDistPrediction":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":20},"SharedFloattargetDistPredictionMult":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":20},"SharedGameObjecttarget":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"EnemyGameObjcet","IsShared":true},"SharedFloatspeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MoveSpeed","IsShared":true,"SinglemValue":5},"SharedFloatangularSpeed":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":120},"SharedFloatarriveDistance":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolstopOnTaskEnd":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolupdateRotation":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true}}]},{"Type":"SetBoolStatus","NodeData":{"Offset":"(460,190)"},"ID":57,"Name":"Set
+        Bool Status","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsPursuing","IsShared":true,"BooleanmValue":false},"BooleantargetStatus":false}]}]}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Parallel","NodeData":{"Offset":"(1220,290)"},"ID":58,"Name":"Parallel","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Idle","NodeData":{"Offset":"(-4.16669846,150)"},"ID":59,"Name":"Idle","Instant":true}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Turret","IsShared":true,"TransformmValue":1},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Barrel","IsShared":true,"TransformmValue":2},{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"SelfGameObject","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastDestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsPursuing","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"TargetGroup","IsShared":true,"List`1mValue":[]},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFlockLeader","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"ChaseTarget","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MoveSpeed","IsShared":true,"SinglemValue":5},{"Type":"BehaviorDesigner.Runtime.SharedGameObjectList","Name":"FlockGroup","IsShared":true,"List`1mValue":[]},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"EnemyGameObjcet","IsShared":true}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects:
+        - {fileID: 4840332922818717028}
+        - {fileID: 4840332922818717028}
+        - {fileID: 2669167814497866093}
+        byteData: 
+        byteDataArray: 
+      Version: 1.6.7
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 0
+--- !u!114 &8292704117362066455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640215016856884647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b90fc002afd43b940922c9dc48407fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atkValue: 1
+  atkRate: 1
+  owner: {fileID: 0}
+  shootPos: {fileID: 4764140896559236762}
+  flashFx: {fileID: 8695086352503598387, guid: 9e19a6faebba8044597e630fe40e81de, type: 3}
+  bullet: {fileID: 4317199290405529018, guid: cc49ae9ea382cea4facbd4229e0f11d2, type: 3}
+  bulletDamageRate: 1
+  detectionType: 0
+  scatteringAngel: 5
+  tower: {fileID: 4840332922818717028}
+  barrel: {fileID: 2669167814497866093}
+  recoil: 0
+--- !u!208 &2763082695251294079
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640215016856884647}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.305, y: 0.71, z: 1.295}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &4098996765347667296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640215016856884647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b130f358dcb26548b2ff0923d496dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  brightness: 1
+  shapeType: 0
+  absoluteOffset: 0
+  offset: {x: 0, y: 0}
+  boxSize: {x: 5, y: 5}
+  circleRadius: 5
+  innerRadius: 1
+  angle: 180
+  texture: {fileID: 0}
+  rotateToForward: 0
+  lineOfSightMask:
+    serializedVersion: 2
+    m_Bits: 0
+  lineOfSightPenetration: 0
+  cellBased: 0
+  antiFlicker: 0
+--- !u!114 &5994548748100616133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640215016856884647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e78508c6d76e84b954af6619d8c000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  minFogStrength: 0.2
+  onFogEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onFogExit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &4898818860163670542
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640215016856884647}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.813025, y: 1.3246942, z: 2.1577418}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &4288471171908059437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640215016856884647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f07806f6d0b15ae42aba0f1e8648b754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeedDampTime: 10
+--- !u!1 &2744195199759878752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4764140896559236762}
+  m_Layer: 0
+  m_Name: ShootPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4764140896559236762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744195199759878752}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.076, y: 1.13, z: 3.593}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2669167814497866093}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &3138788079313089156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8545525861337526705}
+  - component: {fileID: 2949892137223694150}
+  - component: {fileID: 1608570716178396213}
+  m_Layer: 0
+  m_Name: "\u7ACB\u65B9\u4F53.001"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8545525861337526705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138788079313089156}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8651786569293888440}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2949892137223694150
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138788079313089156}
+  m_Mesh: {fileID: 1243799223545203308, guid: cd7b1f95e26750c4d904454fc714ec61, type: 3}
+--- !u!23 &1608570716178396213
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138788079313089156}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 40a353f6117398145a3e785d9854de93, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &4369496447403664140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2669167814497866093}
+  - component: {fileID: 5628539798033278562}
+  - component: {fileID: 6634370689591700047}
+  m_Layer: 0
+  m_Name: BarrelModel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2669167814497866093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369496447403664140}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4764140896559236762}
+  m_Father: {fileID: 4840332922818717028}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!33 &5628539798033278562
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369496447403664140}
+  m_Mesh: {fileID: 1779601754579333883, guid: cd7b1f95e26750c4d904454fc714ec61, type: 3}
+--- !u!23 &6634370689591700047
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369496447403664140}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: c48ed0c67054fc24da0ac1cced5a308c, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &8286702762409946128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4840332922818717028}
+  - component: {fileID: 3001617471829000994}
+  - component: {fileID: 1689145431232862338}
+  m_Layer: 0
+  m_Name: Turret
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4840332922818717028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8286702762409946128}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2669167814497866093}
+  m_Father: {fileID: 8651786569293888440}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3001617471829000994
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8286702762409946128}
+  m_Mesh: {fileID: -7872496254930725850, guid: cd7b1f95e26750c4d904454fc714ec61, type: 3}
+--- !u!23 &1689145431232862338
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8286702762409946128}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: c48ed0c67054fc24da0ac1cced5a308c, type: 2}
+  - {fileID: 2100000, guid: ffce2a7e1519d465684f3f97da456fa9, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &8312099716941848834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8651786569293888440}
+  m_Layer: 0
+  m_Name: "RTS\u81EA\u52A8\u70AE\u53F0T"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8651786569293888440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8312099716941848834}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8545525861337526705}
+  - {fileID: 4840332922818717028}
+  m_Father: {fileID: 4176645617928044838}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

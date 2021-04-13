@@ -66,6 +66,7 @@ public class SpawnBuildingDialog : Dialog<SpawnBuildingDialogContext>
       AddSpawnBuildingItemByUnlock(SpawnBuildingTye.res, ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Base));
       AddSpawnBuildingItemByUnlock(SpawnBuildingTye.res, ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Farmland));
       AddSpawnBuildingItemByUnlock(SpawnBuildingTye.tactics, ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.AutomaticBattery_I));
+      AddSpawnBuildingItemByUnlock(SpawnBuildingTye.tactics, ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.AutomaticBattery_T));
       AddSpawnBuildingItemByUnlock(SpawnBuildingTye.tactics, ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.EngineeringBay));
    }
 

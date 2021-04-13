@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AutomaticBatteryAnimCtrl.cs" />
      <Compile Include="Assets\BattleBuildingMenuDialog.cs" />
      <Compile Include="Assets\BattleCamera.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseChaseAction - Copy.cs" />
@@ -81,6 +82,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetCurPostToDest.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetMineMachine.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetStoppingDistance.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncAutomaticBatteryAnim.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncDestinationPosToCurPos.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncTankAnim.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\Worker\CancelMinePlan.cs" />

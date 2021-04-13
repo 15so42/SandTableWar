@@ -8,9 +8,9 @@ public class TankAnimCtrl : BattleUnitAnimCtrl
     public Transform[] wheels;
 
     [Header("炮台")] public Transform tower;
-    public float towerRotateSpeed=30f;
+   // public float towerRotateSpeed=30f;
     [Header("炮管")] public Transform canon;
-    public float canonRotateSpeed;
+    //public float canonRotateSpeed;
 
     private Vector3 towerOffset;
 
