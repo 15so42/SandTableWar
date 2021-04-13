@@ -166,9 +166,9 @@ public class BaseBattleBuilding : BattleUnitBase
         {
             spawnMark.transform.position=spawnPos.position;
         }
-
+        GameManager.Instance.GetFightingManager().EnableSelectUnitByRect(true);
         fightingManager.isDragFromBuilding = false;
-        fightingManager.buildingSpawnMark = null;
+        fightingManager.buildingWhichIsSetSpawnPos = null;
     }
     
     //更换生成的单位
@@ -279,6 +279,7 @@ public class BaseBattleBuilding : BattleUnitBase
         void OnDialogClose()
         {
             hpUi.gameObject.SetActive(beforeOpenDialog);
+            
         }
         hpUi.gameObject.SetActive(false);
         buildingMenuDialog = BattleBuildingMenuDialog.ShowDialog(this,menuCommands,OnDialogClose) as BattleBuildingMenuDialog;
@@ -295,6 +296,11 @@ public class BaseBattleBuilding : BattleUnitBase
         {
             return;
         }
+        
+    }
+
+    public void StartSetSpawnPos()
+    {
         //没有重生点的建筑不适用拖拽修改建筑目标点
         if (spawnPos == null || photonView.IsMine==false)
         {
@@ -303,9 +309,8 @@ public class BaseBattleBuilding : BattleUnitBase
         spawnMarkFadeTimer?.Cancel();
         spawnMark.SetActive(true);
         fightingManager.isDragFromBuilding = true;
-        fightingManager.buildingSpawnMark = this;
+        fightingManager.buildingWhichIsSetSpawnPos = this;
     }
-    
     
     
 }

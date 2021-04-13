@@ -26,6 +26,7 @@ public class BattleCamera : MonoBehaviour
 
     [Header("框选")] public Material rectMat;
     public Color rectColor=Color.green;
+    private bool canSelectUnitByRect=true;
 
     private Rigidbody rigidbody;
     private void Awake()
@@ -40,6 +41,11 @@ public class BattleCamera : MonoBehaviour
         mainCamera = GetComponent<Camera>();
     }
 
+    public void EnableSelectUnityByRect(bool status)
+    {
+        canSelectUnitByRect = status;
+    }
+    
     private float heightLerp;
     // Update is called once per frame
     void Update()
@@ -95,8 +101,12 @@ public class BattleCamera : MonoBehaviour
         {
             if(UITool.IsPointerOverUIObject(Input.mousePosition))
                 return;
-            start = Input.mousePosition;
-            isDrawingRectangle = true;
+            if (canSelectUnitByRect)
+            {
+                start = Input.mousePosition;
+                isDrawingRectangle = true;
+            }
+           
         }
 
         if (Input.GetMouseButtonUp(0))

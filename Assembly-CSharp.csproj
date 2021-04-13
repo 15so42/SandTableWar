@@ -789,6 +789,7 @@
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedVector4.cs" />
      <Compile Include="Assets\BuildingCloseMenuItem.cs" />
      <Compile Include="Assets\BuildingCommonMenuItem.cs" />
+     <Compile Include="Assets\BuildingSetSpawnPosMenuItem.cs" />
      <Compile Include="Assets\BuildingSpawnItem.cs" />
      <Compile Include="Assets\BuildingSpawnMenuItem.cs" />
      <Compile Include="Assets\CollisionDetection.cs" />

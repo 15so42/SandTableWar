@@ -25,7 +25,7 @@ public class PreviewBuilding : MonoBehaviour
 
     public void OnBuildingPreviewEnd(Vector3 pos)
     {
-        if (collisionDetection.CanPlace())
+        if (collisionDetection.CanPlace()&& isInBuildingArea.CanPlace())
         {
             BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(buildingInfo,pos,GameManager.Instance.GetFightingManager().campId);
         }

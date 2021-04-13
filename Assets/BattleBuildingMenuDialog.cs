@@ -27,16 +27,15 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
    private Dictionary<GameObject,Vector3> itemsGo=new Dictionary<GameObject, Vector3>();
 
    private Camera mainCamera;
-   public static Dialog ShowDialog(BaseBattleBuilding targetUnitBase, BuildingMenuCommand[] menus,UnityAction closeAction)
+   public static Dialog ShowDialog(BaseBattleBuilding targetUnitBase, BuildingMenuCommand[] menus,Action closeAction)
    {
       var dialog = GetShowingDialog(nameof(BattleBuildingMenuDialog)) as BattleBuildingMenuDialog;
       if (dialog != null)
       {
          return null;
       }
-
-      AppendCloseCallBack(closeAction);
-      return DialogUtil.ShowDialogWithContext(nameof(BattleBuildingMenuDialog), new BuildingMenuDialogContext(targetUnitBase,menus));
+      
+      return DialogUtil.ShowDialogWithContext(nameof(BattleBuildingMenuDialog), new BuildingMenuDialogContext(targetUnitBase,menus),null,closeAction);
    }
    
 
@@ -56,6 +55,10 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
          {
             case BuildingOperateType.Spawn : //生成单位
                InstantiateSpawnBtn(i,buildingMenuCommand.battleUnitId,buildingMenuCommand.priceOff);
+               break;
+            case BuildingOperateType.SetSpawnPos : //进入修改出生点位置模式
+               BuildingSetSpawnPosMenuItem buildingSetSpawnPosMenuItem = InstantiateCommonBtn(i, "SetSpawnPosButton", null) as BuildingSetSpawnPosMenuItem;
+               buildingSetSpawnPosMenuItem?.SetParams(dialogContext.targetUnitBase, this);
                break;
             case BuildingOperateType.Close ://关闭菜单
                InstantiateCloseBtn(i);
@@ -107,6 +110,23 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
       }
       itemsGo.Add(iBtn,GetOffsetByIndex(index));
    }
+
+   private BuildingMenuItem InstantiateCommonBtn(int index,string pfbName,UnityAction action)
+   {
+      GameObject tmpPfb =
+         Resources.Load<GameObject>(pathPrefix +pfbName);
+      GameObject iBtn = Instantiate(tmpPfb,GetBtnPosByIndex(index),Quaternion.identity,btnParent);
+      PlayScaleAnim(iBtn);
+      iBtn.GetComponent<Button>().onClick.AddListener(action);
+      BuildingMenuItem item = iBtn.GetComponent<BuildingMenuItem>();
+      if (item)
+      {
+         buildingMenuItems.Add(item);
+      }
+      itemsGo.Add(iBtn,GetOffsetByIndex(index));
+      return item;
+   }
+   
 
    private void InstantiateOutBuildingBtn(int index)
    {
@@ -173,7 +193,8 @@ public enum BuildingOperateType
 {
    Spawn,
    Close,
-   OutBuilding
+   OutBuilding,
+   SetSpawnPos
 }
 [System.Serializable]
 public class BuildingMenuCommand

@@ -33,7 +33,7 @@ public class FightingManager
     public bool isUsingItem;
     //建筑物拖拽，用于设置出生点
     public bool isDragFromBuilding;
-    public BaseBattleBuilding buildingSpawnMark;
+    public BaseBattleBuilding buildingWhichIsSetSpawnPos;
 
     //通过建筑菜单生成建筑
     public bool isBuildingPreview;
@@ -149,7 +149,7 @@ public class FightingManager
 
                 if (isDragFromBuilding)
                 {
-                    buildingSpawnMark.GetSpawnMark().transform.position = raycastHit.point;
+                    buildingWhichIsSetSpawnPos.GetSpawnMark().transform.position = raycastHit.point;
                 }
                 
                 if (isBuildingPreview)
@@ -174,7 +174,7 @@ public class FightingManager
 
                 if (isDragFromBuilding)
                 {
-                    buildingSpawnMark.OnDragMarkEnd();
+                    buildingWhichIsSetSpawnPos.OnDragMarkEnd();
                 }
 
                 if (isBuildingPreview)
@@ -327,6 +327,14 @@ public class FightingManager
 
     #endregion
 
+    /// <summary>
+    /// 是否可以框选单位
+    /// </summary>
+    /// <param name="status"></param>
+    public void EnableSelectUnitByRect(bool status)
+    {
+        BattleCamera.Instance.EnableSelectUnityByRect(status);
+    }
     public void SelectUnit(BattleUnitBase unitBase)
     {
         if (!selectedUnits.Contains(unitBase))

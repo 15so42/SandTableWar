@@ -255,6 +255,9 @@ MonoBehaviour:
   - buildingOperateType: 0
     battleUnitId: 8
     priceOff: 1
+  - buildingOperateType: 3
+    battleUnitId: 0
+    priceOff: 1
   - buildingOperateType: 1
     battleUnitId: 0
     priceOff: 1
