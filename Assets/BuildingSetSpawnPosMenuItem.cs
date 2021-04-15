@@ -15,12 +15,12 @@ public class BuildingSetSpawnPosMenuItem : BuildingMenuItem,IPointerDownHandler
    
     public void OnPointerDown(PointerEventData eventData)
     {
-        (ownerBattleUnitBase as BaseBattleBuilding).StartSetSpawnPos();
-        // GameManager.Instance.GetFightingManager().isDragFromBuilding = true;
-        // GameManager.Instance.GetFightingManager().buildingWhichIsSetSpawnPos = ownerBattleUnitBase as BaseBattleBuilding;
-        GameManager.Instance.GetFightingManager().EnableSelectUnitByRect(false);
-        
-        ownerDialog.Close();
+        // (ownerBattleUnitBase as BaseBattleBuilding).StartSetSpawnPos();
+        // // GameManager.Instance.GetFightingManager().isDragFromBuilding = true;
+        // // GameManager.Instance.GetFightingManager().buildingWhichIsSetSpawnPos = ownerBattleUnitBase as BaseBattleBuilding;
+        // GameManager.Instance.GetFightingManager().EnableSelectUnitByRect(false);
+        //
+        // ownerDialog.Close();
     }
 
     public override void Init()

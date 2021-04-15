@@ -172,10 +172,10 @@ public class FightingManager
                     globalItemManager.ClearUsingItem();
                 }
 
-                if (isDragFromBuilding)
-                {
-                    buildingWhichIsSetSpawnPos.OnDragMarkEnd();
-                }
+                // if (isDragFromBuilding)
+                // {
+                //     buildingWhichIsSetSpawnPos.OnDragMarkEnd();
+                // }
 
                 if (isBuildingPreview)
                 {
@@ -210,6 +210,11 @@ public class FightingManager
         {
             return;//防止UI穿透
         }
+        if (isDragFromBuilding)
+        {
+            buildingWhichIsSetSpawnPos.OnDragMarkEnd();
+        }
+        
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit raycastHit;
         if (Physics.Raycast(ray, out raycastHit, 999))

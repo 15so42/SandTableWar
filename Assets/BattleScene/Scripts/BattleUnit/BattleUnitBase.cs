@@ -78,7 +78,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     public bool visibleOnPhoton;
     
     //初始目标点
-    [HideInInspector] public Vector3 spawnTargetPos;
+    [HideInInspector] public Vector3 spawnTargetPos=UnityTool.cantReachPoint;
 
     protected FogOfWarUnit fogOfWarUnit;
     protected FogOfWar fogOfWar;
@@ -224,6 +224,10 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         {
             behaviorDesigner.SetVariableValue( "DestinationPos",transform.position);
             behaviorDesigner.EnableBehavior();
+            if (spawnTargetPos != UnityTool.cantReachPoint)
+            {
+                SetTargetPos(spawnTargetPos);
+            }
         }
        
         

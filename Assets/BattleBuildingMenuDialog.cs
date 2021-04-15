@@ -57,7 +57,13 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
                InstantiateSpawnBtn(i,buildingMenuCommand.battleUnitId,buildingMenuCommand.priceOff);
                break;
             case BuildingOperateType.SetSpawnPos : //进入修改出生点位置模式
-               BuildingSetSpawnPosMenuItem buildingSetSpawnPosMenuItem = InstantiateCommonBtn(i, "SetSpawnPosButton", null) as BuildingSetSpawnPosMenuItem;
+               BuildingSetSpawnPosMenuItem buildingSetSpawnPosMenuItem = InstantiateCommonBtn(i, "SetSpawnPosButton",
+                  () =>
+                  {
+                     dialogContext.targetUnitBase.StartSetSpawnPos();
+                     GameManager.Instance.GetFightingManager().EnableSelectUnitByRect(false);
+                     Close();
+                  }) as BuildingSetSpawnPosMenuItem;
                buildingSetSpawnPosMenuItem?.SetParams(dialogContext.targetUnitBase, this);
                break;
             case BuildingOperateType.Close ://关闭菜单

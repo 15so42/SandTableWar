@@ -40,6 +40,9 @@ public class BaseBattleBuilding : BattleUnitBase
     private NavMeshObstacle navMeshObstacle;
 
     protected Sequence buildSequence;
+
+    private bool isOpenMenu;//是否打开了菜单
+    private LineRenderer spawnPosLine;//显示
     protected override void Awake()
     {
         base.Awake();
@@ -90,7 +93,7 @@ public class BaseBattleBuilding : BattleUnitBase
         if (IsInFog() == false && hpUi != null && needShowHpUi)
         {
             hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;//防止血条ui瞬移
-                
+            spawnMark.transform.position = spawnPos.transform.position;    
             hpUi.gameObject.SetActive(true);
         }
 
@@ -146,6 +149,9 @@ public class BaseBattleBuilding : BattleUnitBase
             spawnMark.SetActive(false);
             spawnMark.transform.position = spawnPos.position;
         }
+
+        spawnPosLine = LineFactory.Instance.GetLineByLineMode(LineMode.Dotted);
+        spawnPosLine.enabled = false;
     }
 
     public GameObject GetSpawnMark()
@@ -155,8 +161,9 @@ public class BaseBattleBuilding : BattleUnitBase
 
     public void OnDragMarkEnd()
     {
-        if (spawnMarkFadeTimer == null|| spawnMarkFadeTimer.isCompleted==false)
+        if (spawnMarkFadeTimer == null|| spawnMarkFadeTimer.isCompleted==false || spawnMarkFadeTimer.isDone)
         {
+            spawnMarkFadeTimer?.Cancel();
             spawnMarkFadeTimer=Timer.Register(3,()=>
             {
                 spawnMark.SetActive(false);
@@ -206,6 +213,23 @@ public class BaseBattleBuilding : BattleUnitBase
                 }
             }
         }
+
+        if (spawnMark)
+        {
+            spawnPosLine.enabled = spawnMark.activeSelf;
+            if (spawnMark.activeSelf)
+            {
+                var spawnPosition = spawnMark.transform.position;
+                var transPosition = transform.position;
+                spawnPosLine.SetPositions(new Vector3[]{transPosition + Vector3.up,spawnPosition + Vector3.up});
+                float distance = Vector3.Distance(transPosition, spawnPosition);
+                Material material=spawnPosLine.material;
+                material.SetTextureScale("_MainTex", new Vector2(distance/4,1));
+                
+                material.SetTextureOffset("_MainTex", material.mainTextureOffset-new Vector2(1,0)*Time.deltaTime);
+            }
+        }
+        
       
     }
 
@@ -279,9 +303,17 @@ public class BaseBattleBuilding : BattleUnitBase
         void OnDialogClose()
         {
             hpUi.gameObject.SetActive(beforeOpenDialog);
-            
+            isOpenMenu = false;
+            if (GameManager.Instance.GetFightingManager().isDragFromBuilding==false)
+            {
+                OnDragMarkEnd();
+            }
+           
         }
         hpUi.gameObject.SetActive(false);
+        spawnMarkFadeTimer?.Cancel();
+        spawnMark.SetActive(true);
+        isOpenMenu = true;
         buildingMenuDialog = BattleBuildingMenuDialog.ShowDialog(this,menuCommands,OnDialogClose) as BattleBuildingMenuDialog;
     }
 

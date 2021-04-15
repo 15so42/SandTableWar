@@ -6,6 +6,7 @@ using System.Collections.Generic;
 //
 public static class UnityTool
 {
+	public static Vector3 cantReachPoint=new Vector3(-9999999,-9999999,-9999999);
 	// 附加GameObject
 	public static void Attach( GameObject ParentObj, GameObject ChildObj, Vector3 Pos )
 	{
