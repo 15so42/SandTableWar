@@ -312,7 +312,10 @@ public class BaseBattleBuilding : BattleUnitBase
         }
         hpUi.gameObject.SetActive(false);
         spawnMarkFadeTimer?.Cancel();
-        spawnMark.SetActive(true);
+        if (spawnMark)
+        {
+            spawnMark.SetActive(true);
+        }
         isOpenMenu = true;
         buildingMenuDialog = BattleBuildingMenuDialog.ShowDialog(this,menuCommands,OnDialogClose) as BattleBuildingMenuDialog;
     }

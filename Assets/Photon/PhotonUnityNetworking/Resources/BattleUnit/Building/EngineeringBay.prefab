@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8617076660449610460}
   - component: {fileID: 2623218485440058524}
   - component: {fileID: 3438932178858658777}
-  - component: {fileID: 3972993399684782718}
   - component: {fileID: 440858038703366493}
   - component: {fileID: 5806272867335961377}
   m_Layer: 0
@@ -233,26 +232,6 @@ MonoBehaviour:
   lineOfSightPenetration: 0
   cellBased: 0
   antiFlicker: 0
---- !u!114 &3972993399684782718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2753323473813583426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82e78508c6d76e84b954af6619d8c000, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
-  minFogStrength: 0.2
-  onFogEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  onFogExit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!65 &440858038703366493
 BoxCollider:
   m_ObjectHideFlags: 0

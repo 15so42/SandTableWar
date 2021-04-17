@@ -15,6 +15,7 @@ using UnityEngine.Events;
 using Object = System.Object;
 
 [RequireComponent(typeof(FogOfWarEvents))]
+[RequireComponent(typeof(FogOfWarUnit))]
 public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
 {
     //[HideInInspector]public StateController stateController;
@@ -394,6 +395,10 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     
 
     //this is my code in my project,it's special in specific project
+    if (navMeshAgent == null)
+    {
+        return;
+    }
     if (behaviorDesigner)
         {
             behaviorDesigner.SendEvent("SetDestinationPos",pos);

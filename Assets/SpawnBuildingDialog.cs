@@ -68,6 +68,7 @@ public class SpawnBuildingDialog : Dialog<SpawnBuildingDialogContext>
       AddSpawnBuildingItemByUnlock(SpawnBuildingTye.tactics, ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.AutomaticBattery_I));
       AddSpawnBuildingItemByUnlock(SpawnBuildingTye.tactics, ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.AutomaticBattery_T));
       AddSpawnBuildingItemByUnlock(SpawnBuildingTye.tactics, ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.EngineeringBay));
+      AddSpawnBuildingItemByUnlock(SpawnBuildingTye.tactics, ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.MilitaryDepot));
    }
 
    //解锁可建造建筑时添加到对应的建造栏内
