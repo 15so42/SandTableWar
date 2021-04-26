@@ -43,7 +43,7 @@ public class GameManager
 
 	public int GetSelfId()
 	{
-		return GetFightingManager().campId;
+		return GetFightingManager().myFactionId;
 	}
 	public void Init()
 	{

@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 7079932151677895146}
   - component: {fileID: 1110142681483629358}
   - component: {fileID: 2913092065756089507}
+  - component: {fileID: -7834803065508815861}
   m_Layer: 0
   m_Name: tent-medik
   m_TagString: Untagged
@@ -197,7 +198,8 @@ MonoBehaviour:
   behaviorDesigner: {fileID: 0}
   navMeshAgent: {fileID: 0}
   photonView: {fileID: 0}
-  campId: 0
+  factionType: 0
+  factionId: 0
   weapon: {fileID: 0}
   prop:
     weaponProficiency: 1
@@ -210,6 +212,7 @@ MonoBehaviour:
     realDamageResistance: 30
     viewDistance: 20
     attackDistance: 10
+  taskLauncherComp: {fileID: 0}
   needShowHpUi: 1
   hpUiOffset: {x: 0, y: 165, z: 0}
   selectMarkSize: 6
@@ -337,3 +340,65 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &-7834803065508815861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866053531164441353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c500c886482740f791bd1c98dd4c0cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleUnitBase: {fileID: 0}
+  minHealth: 70
+  maxTasks: 4
+  tasksList:
+  - code: create_worker
+    battleUnitId: 4
+    unitCreationAttributes:
+      units: 04000000
+    updateTasksOnComplete: []
+    factionTypes:
+    - {fileID: 11400000, guid: 1e5c5ad984df2c64990a2d3d814a3929, type: 2}
+    description: "\u521B\u5EFA\u5DE5\u4EBA"
+    type: 11
+    allowedType: 0
+    reloadTime: 10
+    launchEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    startEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    completeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    cancelEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - code: create_scout
+    battleUnitId: 2
+    unitCreationAttributes:
+      units: 02000000
+    updateTasksOnComplete: []
+    factionTypes:
+    - {fileID: 11400000, guid: 1e5c5ad984df2c64990a2d3d814a3929, type: 2}
+    description: "\u521B\u5EFA\u4FA6\u5BDF\u5175"
+    type: 11
+    allowedType: 0
+    reloadTime: 10
+    launchEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    startEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    completeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    cancelEvent:
+      m_PersistentCalls:
+        m_Calls: []

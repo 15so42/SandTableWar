@@ -71,7 +71,7 @@ public class Bullet : RecycleAbleObject
         }
         else
         {
-            if (otherUnit == shooter || otherUnit.campId== shooter.campId)//避免友军伤害
+            if (otherUnit == shooter || otherUnit.factionId== shooter.factionId)//避免友军伤害
             {
                 return;
             }
@@ -110,7 +110,7 @@ public class Bullet : RecycleAbleObject
     {
         //取消友军伤害
         DiplomaticRelation diplomaticRelation =
-            EnemyIdentifier.Instance.GetDiplomaticRelation(shooter.campId, targetUnitBase.campId);
+            EnemyIdentifier.Instance.GetDiplomaticRelation(shooter.factionId, targetUnitBase.factionId);
         bool canDamage = !(diplomaticRelation == DiplomaticRelation.Self || diplomaticRelation == DiplomaticRelation.Ally);
 
         if (canDamage)

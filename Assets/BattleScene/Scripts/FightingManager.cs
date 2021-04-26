@@ -11,12 +11,12 @@ using UnityEngine.AI;
 
 public class FightingManager
 {
-    public SceneState battleSceneState;
+    public static FightingManager Instance;
     public LogicMap logicMap;
     public List<BattleUnitBase> selectedUnits = new List<BattleUnitBase>(); //选中的单位
 
     private Camera mainCamera;
-    public int campId;
+    public int myFactionId;
 
     //选中特效
     private const string SelectMarkPath = "Fx/SelectMark";
@@ -27,7 +27,7 @@ public class FightingManager
     public bool isHoldCtrl;
     
     //资源
-    public BattleResMgr battleResMgr;
+    public BattleResMgr myBattleResMgr;
 
     public GlobalItemManager globalItemManager;
     public bool isUsingItem;
@@ -41,24 +41,26 @@ public class FightingManager
     public GameObject usingItemGo;
 
     private GameManager gameManager;
+    
+    private List<FactionManager> factionManagers=new List<FactionManager>();
     public void Init()
     {
+        Instance = this;
         mainCamera = Camera.main;
         logicMap = Object.FindObjectOfType<LogicMap>();
         gameManager=GameManager.Instance;
         //单机
         if (gameManager.gameMode == GameMode.Campaign)
         {
-            campId = 0;
+            
         }else if (gameManager.gameMode == GameMode.PVP)
         {
             if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(GameManager.PLAYER_CAMP_ID, out var value))
             {
-                campId = (int)value;
+                myFactionId = (int)value;
             };
         }
         selectMarkInCache = Resources.Load<GameObject>(SelectMarkPath);
-        battleResMgr=new BattleResMgr();
     }
 
     private BattleUnitBase enemyBase;
@@ -67,12 +69,22 @@ public class FightingManager
         //单机
         if (gameManager.gameMode==GameMode.Campaign)
         {
+            int currentLevel = PlayerPrefs.GetInt(GameConst.CurrentCampaignLevelKey,0);
+            LevelConfig levelConfig = ConfigHelper.Instance.GetLevelConfig(currentLevel);
+
+            for (int i = 0; i < levelConfig.factionSlots.Count; i++)
+            {
+                FactionSlot factionSlot = levelConfig.factionSlots[i];
+                FactionManager factionManager=new FactionManager(i,logicMap.GetBasePosByPlayerId(i),levelConfig.factionSlots[i]);
+                factionManager.UpdateMaxPopulation(factionSlot.maxPopulation);
+                factionManager.Init();
+                factionManagers.Add(factionManager);
+            }
             //友方基地
-            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Base),logicMap.GetBasePosByPlayerId(campId),campId);
-            BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(campId));//相机位置
-            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Bunker_M),Vector3.zero,-1);//生成碉堡
-            //敌人基地
-            enemyBase=BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Base),logicMap.GetBasePosByPlayerId(campId+1),campId+1);
+            BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(myFactionId));//相机位置
+            myBattleResMgr = GetMyFaction().BattleResMgr;
+            //BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Bunker_M),Vector3.zero,-1);//生成碉堡
+           
             
             //矿物
             for (int i = 0; i < logicMap.minerals.Count; i++)
@@ -81,13 +93,15 @@ public class FightingManager
                 tmpMineral.gameObject.SetActive(false);
                 BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Mineral),tmpMineral.position,-1);//生成矿物
             }
+            
+            EventCenter.Broadcast(EnumEventType.AllFactionsInit);
             return;
         }
         
         //联网
         //基地
-        BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Base),logicMap.GetBasePosByPlayerId(campId),campId);
-        BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(campId));
+        BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Base),logicMap.GetBasePosByPlayerId(myFactionId),myFactionId);
+        BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(myFactionId));
         if (PhotonNetwork.IsMasterClient)
         {
             BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Bunker_M),Vector3.zero,-1);//生成碉堡
@@ -102,7 +116,21 @@ public class FightingManager
         
     }
 
-   
+    public FactionManager GetMyFaction()
+    {
+        return factionManagers.Find(x => x.FactionSlot.isPlayer);
+    }
+    
+    public FactionManager GetFaction(int value)
+    {
+        return factionManagers.Find(x => x.FactionId==value);
+    }
+
+
+    public float GetSpeedModifier()
+    {
+        return Time.timeScale;
+    }
 
     public void Update()
     {
@@ -134,8 +162,12 @@ public class FightingManager
         {
             isHoldCtrl = false;
         }
+
+        foreach (var factionManager in factionManagers)
+        {
+            factionManager.Update();
+        }
         
-        battleResMgr.Update();
         if (isUsingItem || isDragFromBuilding || isBuildingPreview)
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -439,10 +471,10 @@ public class FightingManager
         int needMineral = curSpawnInfo.needMineral;
         int needFood = curSpawnInfo.needFood;
         //先判断是否所有都满足再消耗
-        if (battleResMgr.HasEnoughRes(BattleResType.population, needPopulation) &&
-            battleResMgr.HasEnoughRes(BattleResType.coin, needCoin) &&
-            battleResMgr.HasEnoughRes(BattleResType.mineral, needMineral) &&
-            battleResMgr.HasEnoughRes(BattleResType.food, needFood))
+        if (myBattleResMgr.HasEnoughRes(BattleResType.population, needPopulation) &&
+            myBattleResMgr.HasEnoughRes(BattleResType.coin, needCoin) &&
+            myBattleResMgr.HasEnoughRes(BattleResType.mineral, needMineral) &&
+            myBattleResMgr.HasEnoughRes(BattleResType.food, needFood))
         {
             return true;
         }
@@ -452,7 +484,7 @@ public class FightingManager
 
     public bool ConsumeResByUnitInfo(SpawnBattleUnitConfigInfo spawnInfo)
     {
-        return battleResMgr.ConsumeResByUnitInfo(spawnInfo);
+        return myBattleResMgr.ConsumeResByUnitInfo(spawnInfo);
     }
     
 }

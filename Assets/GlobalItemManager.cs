@@ -88,7 +88,7 @@ public class GlobalItemManager : MonoBehaviour
         {
             GameObject iMine=PhotonNetwork.Instantiate("BattleUnit/Mine",pos,Quaternion.identity);
             //BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos()
-            iMine.GetComponent<BattleUnitBase>().SetCampInPhoton(GameManager.Instance.GetFightingManager().campId);
+            iMine.GetComponent<BattleUnitBase>().SetCampInPhoton(GameManager.Instance.GetFightingManager().myFactionId);
         }
     }
 

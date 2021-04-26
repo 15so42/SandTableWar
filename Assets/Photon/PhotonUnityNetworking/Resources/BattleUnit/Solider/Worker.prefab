@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 6119880681794987264}
   - component: {fileID: 1342464644980024674}
   - component: {fileID: 1318645975}
+  - component: {fileID: 3333977350338338443}
   m_Layer: 0
   m_Name: Worker
   m_TagString: Untagged
@@ -456,7 +457,8 @@ MonoBehaviour:
   behaviorDesigner: {fileID: 0}
   navMeshAgent: {fileID: 0}
   photonView: {fileID: 0}
-  campId: 0
+  factionType: 0
+  factionId: 0
   weapon: {fileID: 0}
   prop:
     weaponProficiency: 1
@@ -469,6 +471,8 @@ MonoBehaviour:
     realDamageResistance: 30
     viewDistance: 20
     attackDistance: 10
+  resCollectorComp: {fileID: 0}
+  taskLauncherComp: {fileID: 0}
   needShowHpUi: 1
   hpUiOffset: {x: 0, y: 20, z: 0}
   selectMarkSize: 2.2
@@ -1079,6 +1083,20 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
+--- !u!114 &3333977350338338443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592192127302537471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1568d36991e34eb6bcb372640f6adb5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectionObjects:
+  - resourceType: {fileID: 11400000, guid: a29559bc6dab35040a42527622ae5011, type: 2}
 --- !u!1 &5161056531410845774
 GameObject:
   m_ObjectHideFlags: 0

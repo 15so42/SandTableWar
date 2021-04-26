@@ -16,7 +16,7 @@ using Object = System.Object;
 
 [RequireComponent(typeof(FogOfWarEvents))]
 [RequireComponent(typeof(FogOfWarUnit))]
-public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
+public class BattleUnitBase : Entity,IDamageable,IAttackAgent
 {
     //[HideInInspector]public StateController stateController;
     public BehaviorTree behaviorDesigner;
@@ -24,10 +24,20 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     protected FightingManager fightingManager;
     public PhotonView photonView;
 
-    public int campId;//陣營Id,用於區分敵我
+    public BattleUnitType factionType;
+    public virtual BattleUnitType GetEntityType()
+    {
+        return factionType;
+    }
+    
+    public int factionId;//陣營Id,用於區分敵我
     //單位都是用武器攻擊敵人，因此抽象出武器類
     [HideInInspector]public Weapon weapon;
     public BattleUnitBaseProp prop;//单位基础属性
+
+    public ResourceCollector resCollectorComp;
+
+    public TaskLauncher taskLauncherComp;
     
     //血条UI，通过动态加载到对应画布
     [Header("血条UI")]
@@ -109,12 +119,20 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     #region 逻辑控制
     protected virtual void Awake()
     {
+        InitFactionEntityType();
+        fightingManager=FightingManager.Instance;
+        
         navMeshAgent = GetComponent<NavMeshAgent>();
         if (navMeshAgent)
         {
             navMeshAgent.updateRotation = !overrideRotationCtrl;
         }
 
+        taskLauncherComp = GetComponent<TaskLauncher>();
+
+        resCollectorComp = GetComponent<ResourceCollector>();
+        
+        
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         photonView = GetComponent<PhotonView>();
@@ -141,6 +159,18 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         
     }
 
+    //用于某些需要在设置相关信息后再执行的操作
+    public void Init()
+    {
+        if (configId == BattleUnitId.Base)
+        {
+            if (factionId!=fightingManager.myFactionId && taskLauncherComp)
+            {
+                taskLauncherComp.Init(FightingManager.Instance,this);
+            }
+        }
+    }
+
     //晚于Awake执行
     protected virtual void SetFogOfWarTeam()
     {
@@ -148,9 +178,14 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         if(fogOfWarUnit){
             fogOfWarUnit.enabled = true;
             fogOfWarUnit.circleRadius = prop.viewDistance;
-            fogOfWarUnit.team = campId;
+            fogOfWarUnit.team = factionId;
         }
 
+    }
+
+    protected virtual void InitFactionEntityType()
+    {
+        factionType = BattleUnitType.Unit;
     }
     
     public void OnFogEnter()
@@ -164,7 +199,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         {
             hpUi.gameObject.SetActive(false);
         }
-        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
         if (diplomaticRelation == DiplomaticRelation.Enemy)
         {
             enemyUnitsInMyView.Remove(this);
@@ -180,7 +215,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         isInFog = false;
         if (needShowHpUi)
             hpUi.gameObject.SetActive(true);
-        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
         if (diplomaticRelation == DiplomaticRelation.Enemy)
         {
             enemyUnitsInMyView.Add(this);
@@ -239,7 +274,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         {
             if (GameManager.Instance.gameMode == GameMode.Campaign)
             {
-                if (EnemyIdentifier.Instance.GetDiplomaticRelation(campId) == DiplomaticRelation.Self)
+                if (EnemyIdentifier.Instance.GetDiplomaticRelation(factionId) == DiplomaticRelation.Self)
                 {
                     selfUnits.Add(this);
                 }
@@ -271,7 +306,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         {
             if (GameManager.Instance.gameMode == GameMode.Campaign)
             {
-                if (EnemyIdentifier.Instance.GetDiplomaticRelation(campId) == DiplomaticRelation.Self)
+                if (EnemyIdentifier.Instance.GetDiplomaticRelation(factionId) == DiplomaticRelation.Self)
                 {
                     if (Time.time - lastAddTime >= 1)
                     {
@@ -332,7 +367,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         {
             if (GameManager.Instance.gameMode == GameMode.Campaign)
             {
-                if(EnemyIdentifier.Instance.GetDiplomaticRelation(campId)==DiplomaticRelation.Self)
+                if(EnemyIdentifier.Instance.GetDiplomaticRelation(factionId)==DiplomaticRelation.Self)
                     selfUnits.Remove(this);
                 else
                 {
@@ -549,7 +584,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     //鼠标进入时，用于更改鼠标形状及标识单位，提示可执行操作等
     private void OnMouseEnter()
     {
-        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
         if (relation == DiplomaticRelation.Enemy)
         {
             MouseShapeManager.Instance.SetMouseState(MouseState.OnEnemyUnit);
@@ -582,7 +617,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
 
     protected virtual void OnRightMouseUp()
     {
-        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
         if (relation == DiplomaticRelation.Neutral)
         {
             ShowNeutralSelectMark();
@@ -616,7 +651,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
             return;//防止UI穿透
         }
 
-        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
         if (relation == DiplomaticRelation.Self)
         {
             if (fightingManager.isHoldShift) //加选
@@ -641,6 +676,11 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     public bool IsMine()
     {
         return photonView.IsMine;
+    }
+
+    public virtual bool IsIdle()
+    {
+        return true;
     }
     
     [PunRPC]
@@ -718,6 +758,11 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
         }
     }
 
+    public FactionManager GetFactionManager()
+    {
+        return fightingManager.GetFaction(factionId);
+    }
+
     #endregion
     
     #region 同步属性
@@ -757,7 +802,7 @@ public class BattleUnitBase : MonoBehaviour,IDamageable,IAttackAgent
     [PunRPC]
     public void SetCampId(int value)
     {
-        this.campId = value;
+        this.factionId = value;
         SetFogOfWarTeam();
     }
 

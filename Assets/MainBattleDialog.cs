@@ -42,7 +42,7 @@ public class MainBattleDialog : Dialog<MainBattleDialogContext>
         base.Show();
         gameManager=GameManager.Instance;
         fightingManager = gameManager.GetFightingManager();
-        battleResMgr = fightingManager.battleResMgr;
+        battleResMgr = fightingManager.myBattleResMgr;
         globalItemManager.Init();
     }
 

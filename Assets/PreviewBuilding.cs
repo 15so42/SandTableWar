@@ -27,7 +27,7 @@ public class PreviewBuilding : MonoBehaviour
     {
         if (collisionDetection.CanPlace()&& isInBuildingArea.CanPlace())
         {
-            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(buildingInfo,pos,GameManager.Instance.GetFightingManager().campId);
+            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(buildingInfo,pos,GameManager.Instance.GetFightingManager().myFactionId);
         }
         
         Destroy(gameObject);

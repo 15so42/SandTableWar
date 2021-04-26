@@ -6,5 +6,20 @@ public enum EnumEventType
 {
     OnBattleStart,
     OnGamePaused,
+    
+    UnitCreated,
+    UnitDied,
+    
+    OnTaskLauncherAdded,
+    OnTaskLauncherRemoved,
+    
+    OnTaskLaunched,
+    OnTaskStarted,
+    OnTaskCanceled,
+    OnTaskCompleted,
+    
+    AllFactionsInit,
+    
+    OnCurrentPopulationUpdated,
 }
 

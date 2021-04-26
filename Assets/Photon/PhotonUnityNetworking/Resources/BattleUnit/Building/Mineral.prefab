@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 5744157720287979410}
   - component: {fileID: -8431162008059215521}
   - component: {fileID: 8602861154611000079}
+  - component: {fileID: -2919305782080195955}
+  - component: {fileID: -5451296911975223415}
   m_Layer: 0
   m_Name: Mineral
   m_TagString: Untagged
@@ -116,15 +118,22 @@ MonoBehaviour:
   behaviorDesigner: {fileID: 0}
   navMeshAgent: {fileID: 0}
   photonView: {fileID: 0}
-  campId: 0
+  factionType: 0
+  factionId: 0
   weapon: {fileID: 0}
   prop:
     weaponProficiency: 1
     maxHp: 100
     hp: 100
-    defense: 0
+    penetrateDamageResistance: 30
+    explosionDamageResistance: 30
+    electricalDamageResistance: 30
+    soulDamageResistance: 30
+    realDamageResistance: 30
     viewDistance: 10
     attackDistance: 10
+  resCollectorComp: {fileID: 0}
+  taskLauncherComp: {fileID: 0}
   needShowHpUi: 0
   hpUiOffset: {x: 0, y: 150, z: 0}
   selectMarkSize: 2.2
@@ -146,6 +155,10 @@ MonoBehaviour:
   visibleOnPhoton: 0
   spawnTargetPos: {x: 0, y: 0, z: 0}
   renderers: []
+  OnHpChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  MineMachine: {fileID: 0}
 --- !u!114 &1711061469358623118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,3 +544,31 @@ MonoBehaviour:
   onFogExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-2919305782080195955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710634306987668251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f78d9a003b3d5478341fa5ba75f00f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWorker: 0
+--- !u!114 &-5451296911975223415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710634306987668251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28cc3a8e5f8a65b4aa41cc765013de25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceTypeInfo: {fileID: 11400000, guid: a29559bc6dab35040a42527622ae5011, type: 2}
+  workerManager: {fileID: 0}
+  isEmpty: 0

@@ -277,6 +277,9 @@ public class MainMenuManager : MonoBehaviourPunCallbacks,IOnEventCallback
 	        campId = PhotonNetwork.PlayerList.Length - 1;//在玩家進入房間后執行此函數，所以要減1
 	        Hashtable initialProps = new  Hashtable() {{GameManager.PLAYER_READY, isPlayerReady}, {GameManager.PLAYER_LOADED_LEVEL, false},{GameManager.PLAYER_CAMP_ID,campId}};
 	        PhotonNetwork.LocalPlayer.SetCustomProperties(initialProps);
+	        Debug.Log(PhotonNetwork.LocalPlayer.CustomProperties);
+	        // PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable(){{GameManager.PLAYER_CAMP_ID,1}},new Hashtable(){{GameManager.PLAYER_CAMP_ID,10}});
+	        // Debug.Log(PhotonNetwork.LocalPlayer.CustomProperties);
         }
         
     	public void OnEvent(EventData photonEvent)

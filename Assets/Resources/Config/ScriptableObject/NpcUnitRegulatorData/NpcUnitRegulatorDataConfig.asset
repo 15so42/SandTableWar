@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d72640d2f8d2c448a727bf99b778e2, type: 3}
+  m_Name: NpcUnitRegulatorDataConfig
+  m_EditorClassIdentifier: 
+  pairs:
+  - battleUnitId: 4
+    easyData: {fileID: 11400000, guid: 39e4dce1d388f044d93fef3e912d9467, type: 2}
+    normalData: {fileID: 11400000, guid: 73f405a3e977feb4a95ab502e71e8c35, type: 2}
+    hardData: {fileID: 11400000, guid: 4c7e7b80f937bf641a451482e6c31064, type: 2}
+  commonPair:
+    battleUnitId: 0
+    easyData: {fileID: 11400000, guid: 7a006b9b513983b4ea77e49f7be56430, type: 2}
+    normalData: {fileID: 11400000, guid: 7a006b9b513983b4ea77e49f7be56430, type: 2}
+    hardData: {fileID: 11400000, guid: 7a006b9b513983b4ea77e49f7be56430, type: 2}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ResourceInfo))]
 public class MineralUnit : BattleUnitBase
 {
    public bool HasMineMachine { get; set; }
@@ -13,6 +14,11 @@ public class MineralUnit : BattleUnitBase
       base.Awake();
       SetCampInPhoton(-1);//中立
       
+   }
+
+   protected override void InitFactionEntityType()
+   {
+      factionType = BattleUnitType.Resource;
    }
 
    public override void Die()

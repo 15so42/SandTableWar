@@ -33,12 +33,12 @@ public class DefenceBuilding : BaseBattleBuilding
         }
         
         //判断是否与允许进入
-        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
         
         
         if (battleUnitBase.isGoingBuilding)
         {
-            if (campId != -1 && relation != DiplomaticRelation.Ally)//自己不是中立，表示已经有人，而且要进入的人时敌人就不能进入
+            if (factionId != -1 && relation != DiplomaticRelation.Ally)//自己不是中立，表示已经有人，而且要进入的人时敌人就不能进入
             {
                 battleUnitBase.isGoingBuilding = false;
                 return;
@@ -50,7 +50,7 @@ public class DefenceBuilding : BaseBattleBuilding
                 //首个进入时改变阵营
                 if (soliderInBuilding.Count == 1)
                 {
-                    SetCampInPhoton(battleUnitBase.campId);
+                    SetCampInPhoton(battleUnitBase.factionId);
                 }
             }
         }
@@ -73,7 +73,7 @@ public class DefenceBuilding : BaseBattleBuilding
         base.OnRightMouseUp();
         fightingManager.MoveToSpecificPos(GetEntrance());
         int count = 0;
-        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
         if (relation == DiplomaticRelation.Enemy)
         {
             return;

@@ -26,8 +26,9 @@ public class SpawnBattleUnitConfigInfo
 
 public enum BattleUnitType
 {
-   Solider,
-   Building
+   Unit,
+   Building,
+   Resource
 }
 
 public enum BattleUnitId//不要改变顺序，否则会全部爆炸
@@ -47,5 +48,6 @@ public enum BattleUnitId//不要改变顺序，否则会全部爆炸
    EngineeringBay,//工程站
    AutomaticBattery_T,//T型自动炮台
    MilitaryDepot,
+   None,
 
 }

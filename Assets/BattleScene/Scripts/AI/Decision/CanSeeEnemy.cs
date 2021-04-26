@@ -64,7 +64,7 @@
         {
             //找到迷雾外的距离内的单位
             DiplomaticRelation diplomaticRelation =
-                EnemyIdentifier.Instance.GetDiplomaticRelation(selfBattleUnit.Value.campId);
+                EnemyIdentifier.Instance.GetDiplomaticRelation(selfBattleUnit.Value.factionId);
             if (diplomaticRelation == DiplomaticRelation.Self)
             {
                 for (int i = 0; i < enemyUnitsInMyView.Count; i++)

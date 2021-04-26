@@ -26,7 +26,7 @@ public class Mine : BattleUnitBase
       BattleUnitBase battleUnitBase = other.GetComponent<BattleUnitBase>();
       if (battleUnitBase)
       {
-         if (battleUnitBase.campId != campId)
+         if (battleUnitBase.factionId != factionId)
          {
             Explosion();
          }

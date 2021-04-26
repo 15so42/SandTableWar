@@ -116,8 +116,12 @@ public class BaseBattleBuilding : BattleUnitBase
            
         }
     }
-    
-    
+
+    protected override void InitFactionEntityType()
+    {
+        factionType = BattleUnitType.Building;
+    }
+
     public override  void OnFogExit()
     {
         ShowRenderers(true);
@@ -128,7 +132,7 @@ public class BaseBattleBuilding : BattleUnitBase
         {
             hpUi.gameObject.SetActive(true);
         }
-        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
         if (diplomaticRelation == DiplomaticRelation.Enemy)
         {
             enemyUnitsInMyView.Add(this);
@@ -157,6 +161,16 @@ public class BaseBattleBuilding : BattleUnitBase
     public GameObject GetSpawnMark()
     {
         return spawnMark;
+    }
+
+    public Vector3 GetSpawnPos()
+    {
+        NavMeshHit navMeshHit;
+        if(NavMesh.SamplePosition(spawnPos.transform.position, out navMeshHit,20,-1))
+        {
+            return navMeshHit.position;
+        }
+        return spawnPos.position;
     }
 
     public void OnDragMarkEnd()
@@ -247,7 +261,7 @@ public class BaseBattleBuilding : BattleUnitBase
         SpawnBattleUnitConfigInfo curSpawnInfo=ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(toSpawn.Peek());
         if (fightingManager.ConsumeResByUnitInfo(curSpawnInfo));
         {
-            BattleUnitBase spawnedUnit=BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(curSpawnInfo,spawnPos.position,campId);
+            BattleUnitBase spawnedUnit=BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(curSpawnInfo,spawnPos.position,factionId);
             spawnedUnit.spawnTargetPos = spawnMark.transform.position;
         }
         toSpawn.Pop();
@@ -291,7 +305,7 @@ public class BaseBattleBuilding : BattleUnitBase
             return;//防止UI穿透
         }
 
-        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(campId);
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
         if ( relation== DiplomaticRelation.Neutral|| relation==DiplomaticRelation.Enemy || relation == DiplomaticRelation.Ally )
         {
             return;

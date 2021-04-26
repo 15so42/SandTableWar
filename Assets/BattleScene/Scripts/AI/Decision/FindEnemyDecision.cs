@@ -47,7 +47,7 @@
                     continue;
                 }
                 //todo 區分敵我的方式在不同模式中還需完善,如2v2模式不能使用這種方式區分
-                if (unitBase.campId != controller.owner.campId && unitBase.campId!=-1)
+                if (unitBase.factionId != controller.owner.factionId && unitBase.factionId!=-1)
                 {
                     return unitBase;
                 }

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847fb7fadc154eaabba429b4780fcdb3, type: 3}
+  m_Name: RangerData
+  m_EditorClassIdentifier: 
+  minAmountRange:
+    min: 1
+    max: 2
+  maxAmountRange:
+    min: 10
+    max: 15
+  maxPendingAmount:
+    min: 1
+    max: 2
+  startCreatingAfter:
+    min: 10
+    max: 15
+  ratioRange:
+    min: 0.1
+    max: 0.2

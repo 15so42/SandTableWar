@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
+[RequireComponent(typeof(ResourceCollector))]
 public class WorkerUnit : BattleUnitBase
 {
     public int mineOutputRate = 1;
@@ -12,14 +13,17 @@ public class WorkerUnit : BattleUnitBase
     public int setMineMachineTime = 10;
     private GameObject iMineMachine;
     private Sequence sequence;
+
+    private ResourceCollector resourceCollector;
    protected void Awake()
    {
        base.Awake();
        weapon = null;
-       
+       resourceCollector = GetComponent<ResourceCollector>();
+       resourceCollector.RegisterSetTargetAction(SetMineTarget);
    }
 
-   public void SetMineTarget(BattleUnitBase mineTarget)
+   public void SetMineTarget(ResourceInfo mineTarget)
    {
        if (mineTarget == null)
        {
@@ -28,7 +32,7 @@ public class WorkerUnit : BattleUnitBase
        }
        //当前挖矿目标
        MineralUnit thisMineralUnit= this.mineTarget as MineralUnit;
-       MineralUnit mineralUnit=mineTarget as MineralUnit;
+       MineralUnit mineralUnit=mineTarget.GetComponent<MineralUnit>();
        
        //当前有挖矿目标时，取消当前挖矿目标
        if (this.mineTarget != null)
@@ -44,7 +48,7 @@ public class WorkerUnit : BattleUnitBase
        if (mineralUnit.HasWorkerWorking == false)
        {
            mineralUnit.HasWorkerWorking = true;
-           this.mineTarget = mineTarget;
+           this.mineTarget = mineralUnit;
        }
        else
        {
@@ -144,7 +148,7 @@ public class WorkerUnit : BattleUnitBase
    {
        if (battleUnitBase.configId == BattleUnitId.Mineral)
        {
-           SetMineTarget(battleUnitBase);
+           SetMineTarget(battleUnitBase.GetComponent<ResourceInfo>());
        }
    }
 

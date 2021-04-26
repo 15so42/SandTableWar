@@ -13,7 +13,7 @@
             FightingManager fightingManager = GameManager.Instance.GetFightingManager();
             for (int i = 0; i < resIncreaseRateConfigs.Count; i++)
             {
-               fightingManager.battleResMgr.AddIncreaseRate(resIncreaseRateConfigs[i].battleResType,resIncreaseRateConfigs[i].increaseSpeed);
+               fightingManager.myBattleResMgr.UpdateIncreaseRate(resIncreaseRateConfigs[i].battleResType,resIncreaseRateConfigs[i].increaseSpeed,true);
                 
             }
         }

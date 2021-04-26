@@ -15,6 +15,19 @@ public enum BattleResType
     /// </summary>
     public class BattleResMgr
     {
+        public struct ResourceInput
+        {
+            public BattleResType resType;
+            public int Amount;
+        }
+
+        [System.Serializable]
+        public struct ResourceInputRange
+        {
+            public BattleResType resType;
+            public IntRange Amount;
+        }
+        
         private int lastTime;
         public Dictionary<BattleResType,float> battleResHolder=new Dictionary<BattleResType, float>()
         {
@@ -58,6 +71,27 @@ public enum BattleResType
         public bool HasEnoughRes(BattleResType resType, int needRes)
         {
             return GetRemainingResByResType(resType) >= needRes;
+        }
+
+        public bool HasRequiredResources(ResourceInput[] resourceInputs)
+        {
+            for (int i = 0; i < resourceInputs.Length; i++)
+            {
+                if (!HasEnoughRes(resourceInputs[i].resType, resourceInputs[i].Amount))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public void UpdateRequiredResources(ResourceInput[] resourceInputs,bool add)
+        {
+            for (int i = 0; i < resourceInputs.Length; i++)
+            {
+                UpdateResource(resourceInputs[i].resType,resourceInputs[i].Amount,add);
+            }
         }
 
         public float GetRemainingResByResType(BattleResType resType)
@@ -104,16 +138,19 @@ public enum BattleResType
         /// <summary>
         ///     增加增长率
         /// </summary>
-        public void AddIncreaseRate(BattleResType type, float num)
+        public void UpdateIncreaseRate(BattleResType type, float num,bool add)
         {
-            battleResIncreaseRate[type] += num;
+            battleResIncreaseRate[type] += ( add ? 1 :-1 ) * num;
         }
         
-        public void ReduceIncreaseRate(BattleResType type, int num)
+        public void UpdateResource(BattleResType type, float num,bool add)
         {
-            battleResIncreaseRate[type] -= num;
+            battleResHolder[type] += ( add ? 1 :-1 )* num;
         }
         
+      
+        
+       
         
         /// <summary>
         /// 

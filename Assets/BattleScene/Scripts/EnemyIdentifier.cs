@@ -16,11 +16,11 @@ public class EnemyIdentifier : Singleton<EnemyIdentifier>
         if (targetId == -1) //-1表示中立
             return DiplomaticRelation.Neutral;
         FightingManager fightingManager = GameManager.Instance.GetFightingManager();
-        if (fightingManager.campId == targetId)
+        if (fightingManager.myFactionId == targetId)
         {
             return DiplomaticRelation.Self;
         }
-        if (fightingManager.campId % 2 == targetId % 2)//奇偶性相同为队友，否则为敌人
+        if (fightingManager.myFactionId % 2 == targetId % 2)//奇偶性相同为队友，否则为敌人
         {
             return DiplomaticRelation.Ally;
         }
