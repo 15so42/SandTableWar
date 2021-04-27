@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityTimer;
 
 [RequireComponent(typeof(ResourceCollector))]
 public class WorkerUnit : BattleUnitBase
@@ -28,6 +29,7 @@ public class WorkerUnit : BattleUnitBase
        if (mineTarget == null)
        {
            this.mineTarget = null;
+           UpdateIdleStatus(true);
            return;
        }
        //当前挖矿目标
@@ -43,6 +45,7 @@ public class WorkerUnit : BattleUnitBase
        if (mineralUnit.HasMineMachine)
        {
            TipsDialog.ShowDialog("该矿石已经有矿机了，无需操作");
+           UpdateIdleStatus(true);
            return;
        }
        if (mineralUnit.HasWorkerWorking == false)
@@ -53,14 +56,19 @@ public class WorkerUnit : BattleUnitBase
        else
        {
            this.mineTarget=FindOtherClosetMineral(mineTarget.transform.position);
-           if(this.mineTarget==null)
+           if (this.mineTarget == null)
+           {
+               UpdateIdleStatus(true);
                return;
+           }
+               
            (this.mineTarget as MineralUnit).HasWorkerWorking = true;
        }
 
        if (this.mineTarget != null)
        {
            SetTargetPos(this.mineTarget.transform.position);
+           UpdateIdleStatus(false);
        }
        
        
@@ -69,7 +77,7 @@ public class WorkerUnit : BattleUnitBase
    public void SetMineMachine()
    {
        iMineMachine = BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.MineMachine),
-           mineTarget.transform.position,GameManager.Instance.GetSelfId()).gameObject;
+           mineTarget.transform.position,factionId).gameObject;
           // GameObject.Instantiate(MineMachineModel, mineTarget.transform.position, Quaternion.identity);
         iMineMachine.GetComponent<MineMachine>().buildTime = setMineMachineTime;
        sequence = DOTween.Sequence();
@@ -90,9 +98,15 @@ public class WorkerUnit : BattleUnitBase
        curMineral.HasWorkerWorking = false;
        curMineral.HasMineMachine = true;
        curMineral.MineMachine = mineMachine.GetComponent<MineMachine>();
+       curMineral.GetComponent<ResourceInfo>().isEmpty = true;
        SetMineTarget(null);
        GetComponent<Animator>().SetBool("SetMineMachine",false);
-       iMineMachine.GetComponent<MineMachine>().StartMine();
+       Timer.Register(2, () =>
+       {
+           iMineMachine.GetComponent<MineMachine>().StartMine();
+           UpdateIdleStatus(true);
+       });//播放起立动画后才算完成
+
    }
    
 

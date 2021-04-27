@@ -38,8 +38,8 @@ using UnityEngine;
 
         public void SetTarget(ResourceInfo value)
         {
-            onSetTargetAction = null;//清除之前的action
             target = value;
+            target.workerManager.Add(this);
             onSetTargetAction?.Invoke(value);
         }
 

@@ -891,6 +891,7 @@
      <Compile Include="Assets\NpcCommander.cs" />
      <Compile Include="Assets\NpcComponent.cs" />
      <Compile Include="Assets\NpcResourceCollector.cs" />
+     <Compile Include="Assets\NpcResourceManager.cs" />
      <Compile Include="Assets\NpcUnitCreator.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />

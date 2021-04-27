@@ -115,7 +115,8 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     
     //***************************************事件绑定****************
     public UnityEvent OnHpChanged;
-    
+
+    private bool isIdle=true;
     #region 逻辑控制
     protected virtual void Awake()
     {
@@ -294,6 +295,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         {
             mouseOverOutline.OutlineParameters.Enabled = false;
         }
+        EventCenter.Broadcast(EnumEventType.UnitCreated,this);
     }
 
     // Update is called once per frame
@@ -680,7 +682,12 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
 
     public virtual bool IsIdle()
     {
-        return true;
+        return isIdle;
+    }
+
+    public  void UpdateIdleStatus(bool value)
+    {
+        isIdle = value;
     }
     
     [PunRPC]

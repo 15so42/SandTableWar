@@ -47,7 +47,11 @@ public class MineMachine : BaseBattleBuilding
 
     public override void Die()
     {
-        Destroy(hpUi.gameObject);
+        if (hpUi && hpUi.gameObject)
+        {
+            Destroy(hpUi.gameObject);
+        }
+        
         for (int i = 0; i < lineRenderers.Length; i++)
         {
             lineRenderers[i].enabled = false;

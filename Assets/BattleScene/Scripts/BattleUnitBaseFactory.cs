@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class BattleUnitBaseFactory : Singleton<BattleUnitBaseFactory>
@@ -6,13 +7,15 @@ public class BattleUnitBaseFactory : Singleton<BattleUnitBaseFactory>
     public const string SoliderPath = "BattleUnit/Solider/";
     public const string BuildingPath = "BattleUnit/Building/";
     
+    public List<BattleUnitBase> cachedBattleUnits=new List<BattleUnitBase>();
+    
     public BattleUnitBase SpawnBattleUnitAtPos(SpawnBattleUnitConfigInfo soliderInfo,Vector3 pos,int factionId)
     {
         string path = (soliderInfo.battleUnitType == BattleUnitType.Unit) ? SoliderPath : BuildingPath;
         GameObject spawnedBase;
         if (GameManager.Instance.gameMode == GameMode.Campaign)
         {
-            spawnedBase = GameObject.Instantiate(Resources.Load<GameObject>($"{path}{soliderInfo.resourceName}"), pos,
+            spawnedBase = GameObject.Instantiate(GetBattleUnitLocally(soliderInfo).gameObject, pos,
                 Quaternion.identity);
         }
         else
@@ -34,11 +37,26 @@ public class BattleUnitBaseFactory : Singleton<BattleUnitBaseFactory>
         return SpawnBattleUnitAtPos(soliderInfo, pos, factionId);
     }
 
-    public BattleUnitBase GetBattleUnitLocally(SpawnBattleUnitConfigInfo soliderInfo)
+    private BattleUnitBase GetBattleUnitLocally(SpawnBattleUnitConfigInfo soliderInfo)
     {
+        //先从缓存列表中
+        BattleUnitBase battleUnitBase = cachedBattleUnits.Find(x => x.name == soliderInfo.resourceName);
+        if (battleUnitBase != null)
+        {
+            return battleUnitBase;
+        }
+        
         string path = (soliderInfo.battleUnitType == BattleUnitType.Unit) ? SoliderPath : BuildingPath;
         
-        return Resources.Load<BattleUnitBase>($"{path}{soliderInfo.resourceName}");
+        BattleUnitBase newBattleUnitBase= Resources.Load<BattleUnitBase>($"{path}{soliderInfo.resourceName}");
+        cachedBattleUnits.Add(newBattleUnitBase);
+        return newBattleUnitBase;
+    }
+
+    public BattleUnitBase GetBattleUnitLocally(BattleUnitId battleUnitId)
+    {
+        SpawnBattleUnitConfigInfo soliderInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(battleUnitId);
+        return GetBattleUnitLocally(soliderInfo);
     }
     
     

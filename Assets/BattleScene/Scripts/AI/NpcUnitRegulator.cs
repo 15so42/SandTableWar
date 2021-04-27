@@ -63,7 +63,8 @@ namespace BattleScene.Scripts.AI
         
         public List<BattleUnitBase> GetIdleUnitsFirst ()
         {
-            return instances.OrderByDescending(unit => unit.IsIdle()).ToList();
+            var result = instances.OrderByDescending(unit => unit.IsIdle()).ToList();
+            return result;
         }
 
         private void AddExisting(BattleUnitBase BattleUnit)

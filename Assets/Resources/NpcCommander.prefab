@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1721609797592688882}
   - component: {fileID: 353379120}
+  - component: {fileID: 7503508325189982727}
   m_Layer: 0
   m_Name: NpcResourcesCollector
   m_TagString: Untagged
@@ -43,21 +44,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432bc4e2b13f04c47b01fb9df62eae41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectors:
-  - {fileID: 3333977350338338443, guid: 6303ee4335e9b424eaa657884576fbfd, type: 3}
+  collectors: 04000000
   collectionSettings:
   - type: {fileID: 11400000, guid: a29559bc6dab35040a42527622ae5011, type: 2}
     instanceCollectorsRatio:
-      min: 0.5
-      max: 0.5
+      min: 0.6
+      max: 0.8
     maxCollectorsRatioRange:
-      min: 2
-      max: 3
+      min: 5
+      max: 6
     minCollectorsAmount: 1
   collectionTimerRange:
     min: 3
     max: 5
   collectOnDemand: 1
+--- !u!114 &7503508325189982727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721609797592688885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44f10acf1d7ee4742b5e20155b25eecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allResource: []
 --- !u!1 &1721609797728828589
 GameObject:
   m_ObjectHideFlags: 0

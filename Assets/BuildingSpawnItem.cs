@@ -36,7 +36,7 @@ public class BuildingSpawnItem : MonoBehaviour,IBeginDragHandler,IDragHandler,IE
         previewMeshRenderer.shadowCastingMode = ShadowCastingMode.Off;
         previewBuildingGo.AddComponent<CollisionDetection>();
         previewBuildingGo.AddComponent<IsInBuildingArea>();
-        MeshFilter[] buildingMeshFilters = BattleUnitBaseFactory.Instance.GetBattleUnitLocally(buildingInfo).GetComponent<BaseBattleBuilding>().meshFilters;
+        MeshFilter[] buildingMeshFilters = BattleUnitBaseFactory.Instance.GetBattleUnitLocally(buildingInfo.battleUnitId).GetComponent<BaseBattleBuilding>().meshFilters;
         
         CombineInstance[] combineInstances = new CombineInstance[buildingMeshFilters.Length]; //新建一个合并组，长度与 meshfilters一致
         for (int i = 0; i < buildingMeshFilters.Length; i++)                                  //遍历

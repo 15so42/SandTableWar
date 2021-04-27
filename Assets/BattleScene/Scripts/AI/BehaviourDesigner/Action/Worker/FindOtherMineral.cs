@@ -10,7 +10,12 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks.Worker
         public int findRadius=30;
         public override TaskStatus OnUpdate()
         {
-            ResourceInfo otherMineral = FindOtherClosetMineral().GetComponent<ResourceInfo>();
+            BattleUnitBase otherMineralUnit = FindOtherClosetMineral();
+            if (otherMineralUnit == null)
+            {
+                return TaskStatus.Failure;
+            }
+            ResourceInfo otherMineral = otherMineralUnit.GetComponent<ResourceInfo>();
             if (otherMineral != null)
             {
                 (selfUnit.Value as WorkerUnit).SetMineTarget(otherMineral);

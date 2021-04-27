@@ -48,7 +48,8 @@ public class BaseBattleBuilding : BattleUnitBase
         base.Awake();
 
         navMeshObstacle = GetComponent<NavMeshObstacle>();
-        navMeshObstacle.enabled = false;
+        if(navMeshObstacle)
+            navMeshObstacle.enabled = false;
         // void OnBuildSuccess()
         // {
         //     isBuilding = false;
@@ -97,8 +98,12 @@ public class BaseBattleBuilding : BattleUnitBase
             hpUi.gameObject.SetActive(true);
         }
 
-        navMeshObstacle.enabled = true;
-        navMeshObstacle.carving = true;
+        if (navMeshObstacle)
+        {
+            navMeshObstacle.enabled = true;
+            navMeshObstacle.carving = true;
+        }
+       
 
     }
 

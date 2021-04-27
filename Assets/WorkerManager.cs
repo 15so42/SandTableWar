@@ -17,6 +17,12 @@ public class WorkerManager : MonoBehaviour
         
     }
 
+
+    public void Add(ResourceCollector resourceCollector)
+    {
+        
+    }
+
     public int currentWorker ;
     //todo 
     public int GetAvailableSlots()

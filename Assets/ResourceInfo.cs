@@ -27,6 +27,7 @@ public class ResourceInfo : MonoBehaviour
     void Start()
     {
         workerManager = GetComponent<WorkerManager>();
+        EventCenter.Broadcast(EnumEventType.ResourceCreated,this);
     }
 
     public ResourceTypeInfo GetResourceType()

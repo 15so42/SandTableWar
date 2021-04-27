@@ -19,7 +19,7 @@ public class FactionManager
     /// <summary>
     /// 基地位置
     /// </summary>
-    private Vector3 basePos;
+    public Vector3 basePos;
     
     //阵营id
     private  int factionId;

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using BattleScene.Scripts.AI;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -79,7 +80,7 @@ namespace RTSEngine
     {
         #region Class Properties
         [SerializeField, Tooltip("Potential list of units with the Resource Collector component that the NPC faction can use to collect resources.")]
-        private List<ResourceCollector> collectors = new List<ResourceCollector>(); //potential units with a Resource Collector component.
+        private List<BattleUnitId> collectors = new List<BattleUnitId>(); //potential units with a Resource Collector component.
 
         [SerializeField, Tooltip("A list of resource types and settings regarding regulating their collection.")]
         //this list is manipulated by you through the inspector
@@ -172,15 +173,16 @@ namespace RTSEngine
             collectorMonitor.Init(factionMgr);
 
             //Go ahead and add the resource collector regulator (if there's one)..
-            foreach (ResourceCollector collector in collectors)
+            foreach (BattleUnitId collectorId in collectors)
             {
-                Assert.IsNotNull(collector, 
-                    $"[NPCResourceCollector] NPC Faction ID: {factionMgr.FactionId} 'Collectors' list has some unassigned elements.");
+                // Assert.IsNotNull(collector, 
+                //     $"[NPCResourceCollector] NPC Faction ID: {factionMgr.FactionId} 'Collectors' list has some unassigned elements.");
 
                 NpcUnitRegulator nextRegulator = null;
+                BattleUnitBase battleUnitBase=BattleUnitBaseFactory.Instance.GetBattleUnitLocally(collectorId);
                 //as soon a collector prefab produces a valid unit regulator instance (matches the faction type and faction npc manager), add it to monitor component
-                if (collector.CanCollectResourceType(resourceType, false) //also make sure the resource collector can collect this resource type.
-                    && (nextRegulator = npcCommander.GetNpcComp<NpcUnitCreator>().ActivateUnitRegulator(collector.GetComponent<BattleUnitBase>().configId)) != null)
+                if (battleUnitBase.GetComponent<ResourceCollector>().CanCollectResourceType(resourceType, false) //also make sure the resource collector can collect this resource type.
+                    && (nextRegulator = npcCommander.GetNpcComp<NpcUnitCreator>().ActivateUnitRegulator(collectorId)) != null)
                     collectorMonitor.Add(nextRegulator.battleUnitId);
             }
 
@@ -303,6 +305,7 @@ namespace RTSEngine
 
                     Activate(); //set state back to active so we can keep monitoring whether resource collectors have been correctly assigned or not.
 
+                    rtc.instances.OrderByDescending(x => Vector3.Distance(x.transform.position, factionMgr.basePos));//按基地距离排序
                     //go through all resource instances of the current type
                     foreach(ResourceInfo resource in rtc.instances)
                     {
