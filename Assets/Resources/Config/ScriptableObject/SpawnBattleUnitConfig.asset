@@ -143,10 +143,10 @@ MonoBehaviour:
     needCoin: 20
     needMineral: 20
     needFood: 0
-  - battleUnitType: 0
-    battleUnitId: 0
-    resourceName: Solider1
-    battleUnitName: 
+  - battleUnitType: 1
+    battleUnitId: 16
+    resourceName: ResourceTree
+    battleUnitName: "\u6811"
     hasExtraIcon: 0
     spawnTime: 10
     needPopulation: 1

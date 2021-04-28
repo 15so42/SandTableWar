@@ -132,7 +132,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         taskLauncherComp = GetComponent<TaskLauncher>();
 
         resCollectorComp = GetComponent<ResourceCollector>();
-        
+        animator = GetComponent<Animator>();
         
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();

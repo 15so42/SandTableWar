@@ -11,9 +11,9 @@ namespace BattleScene.Scripts.AI.BehaviourDesigner
         public override TaskStatus OnUpdate()
         {
             WorkerUnit workerUnit=selfUnit.Value as WorkerUnit;
-            if (workerUnit.mineTarget != null)
+            if (workerUnit.resourceTarget != null)
             {
-                mineralGameObject.Value = workerUnit.mineTarget.gameObject;
+                mineralGameObject.Value = workerUnit.resourceTarget.gameObject;
                 return TaskStatus.Success;
             }
                 

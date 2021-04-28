@@ -8,85 +8,93 @@ using UnityTimer;
 [RequireComponent(typeof(ResourceCollector))]
 public class WorkerUnit : BattleUnitBase
 {
-    public int mineOutputRate = 1;
-    public BattleUnitBase mineTarget;
-    [Header("MineMachine")] public GameObject MineMachineModel;
+    public ResourceInfo resourceTarget;
+    [Header("MineMachine")] 
+    public GameObject MineMachineModel;
     public int setMineMachineTime = 10;
-    private GameObject iMineMachine;
-    private Sequence sequence;
+  
+    private Sequence SerMineMachineSequence;
 
     private ResourceCollector resourceCollector;
+
+    //临时变量
+    private GameObject iMineMachine;
    protected void Awake()
    {
        base.Awake();
        weapon = null;
        resourceCollector = GetComponent<ResourceCollector>();
-       resourceCollector.RegisterSetTargetAction(SetMineTarget);
+       resourceCollector.RegisterSetTargetAction(SetTargetResource);
+      
    }
 
-   public void SetMineTarget(ResourceInfo mineTarget)
+   
+   public void SetTargetResource(ResourceInfo target)
    {
-       if (mineTarget == null)
+       if (target == null)
        {
-           this.mineTarget = null;
+           resourceTarget = null;
            UpdateIdleStatus(true);
            return;
        }
-       //当前挖矿目标
-       MineralUnit thisMineralUnit= this.mineTarget as MineralUnit;
-       MineralUnit mineralUnit=mineTarget.GetComponent<MineralUnit>();
-       
+      
+
+
        //当前有挖矿目标时，取消当前挖矿目标
-       if (this.mineTarget != null)
+       if (resourceTarget != null)
        {
-           thisMineralUnit.HasWorkerWorking = false;
-           thisMineralUnit.OnUnSelect();
+           //当前挖矿目标
+           BattleUnitBase preResourceUnit= this.resourceTarget.GetComponent<BattleUnitBase>();
+           ResourceInfo preResourceInfo = preResourceUnit.GetComponent<ResourceInfo>();
+           
+           preResourceInfo.workerManager.Remove(this.resourceCollector);
+           preResourceUnit.OnUnSelect();
        }
-       if (mineralUnit.HasMineMachine)
+       if (target.IsEmpty)
        {
-           TipsDialog.ShowDialog("该矿石已经有矿机了，无需操作");
+           TipsDialog.ShowDialog("目标资源已空或处于锁定状态");
            UpdateIdleStatus(true);
            return;
        }
-       if (mineralUnit.HasWorkerWorking == false)
+       if (target.workerManager.CanAddWorker())
        {
-           mineralUnit.HasWorkerWorking = true;
-           this.mineTarget = mineralUnit;
+           target.workerManager.Add(resourceCollector);
+           this.resourceTarget = target;
        }
        else
        {
-           this.mineTarget=FindOtherClosetMineral(mineTarget.transform.position);
-           if (this.mineTarget == null)
+           this.resourceTarget = GetFactionManager().FindOtherNearestMineral(target.resourceTypeInfo.resourceType,target.transform.position);
+           resourceCollector.target = resourceTarget;
+           if (this.resourceTarget == null)
            {
                UpdateIdleStatus(true);
                return;
            }
-               
-           (this.mineTarget as MineralUnit).HasWorkerWorking = true;
+           
+           target.workerManager.Add(resourceCollector);
        }
 
-       if (this.mineTarget != null)
+       if (resourceTarget != null)
        {
-           SetTargetPos(this.mineTarget.transform.position);
+           SetTargetPos(this.resourceTarget.transform.position);
            UpdateIdleStatus(false);
        }
-       
-       
    }
+   
 
    public void SetMineMachine()
    {
        iMineMachine = BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.MineMachine),
-           mineTarget.transform.position,factionId).gameObject;
+           resourceTarget.transform.position,factionId).gameObject;
           // GameObject.Instantiate(MineMachineModel, mineTarget.transform.position, Quaternion.identity);
         iMineMachine.GetComponent<MineMachine>().buildTime = setMineMachineTime;
-       sequence = DOTween.Sequence();
+       SerMineMachineSequence = DOTween.Sequence();
        //sequence.Join(iMineMachine.transform.DOShakeScale(2f));
        iMineMachine.transform.localScale=Vector3.zero;
-       sequence.Join(iMineMachine.transform.DOScale(Vector3.one, setMineMachineTime/2f));
-       sequence.Append(iMineMachine.transform.DOJump(iMineMachine.transform.position + Vector3.up * 2.5f , 0.3f, 3, setMineMachineTime));
+       SerMineMachineSequence.Join(iMineMachine.transform.DOScale(Vector3.one, setMineMachineTime/2f));
+       SerMineMachineSequence.Append(iMineMachine.transform.DOJump(iMineMachine.transform.position + Vector3.up * 2.5f , 0.3f, 3, setMineMachineTime));
         
-       sequence.OnComplete(()=>
+       SerMineMachineSequence.OnComplete(()=>
        {
            OnSetMineMachineComplete(iMineMachine);
        });
@@ -94,12 +102,13 @@ public class WorkerUnit : BattleUnitBase
 
    private void OnSetMineMachineComplete(GameObject mineMachine)
    {
-       MineralUnit curMineral=mineTarget as MineralUnit;
-       curMineral.HasWorkerWorking = false;
+       MineralUnit curMineral = resourceTarget.GetComponent<MineralUnit>();
+     
+       resourceTarget.workerManager.Remove(resourceCollector);
        curMineral.HasMineMachine = true;
        curMineral.MineMachine = mineMachine.GetComponent<MineMachine>();
        curMineral.GetComponent<ResourceInfo>().isEmpty = true;
-       SetMineTarget(null);
+       SetTargetResource(null);
        GetComponent<Animator>().SetBool("SetMineMachine",false);
        Timer.Register(2, () =>
        {
@@ -113,58 +122,54 @@ public class WorkerUnit : BattleUnitBase
    //毁坏矿机
    public void InterruptMineMachineSetUp()
    {
-       sequence.Kill();
+       SerMineMachineSequence.Kill();
        if (iMineMachine)
        {
            iMineMachine.GetComponent<BattleUnitBase>().Die();
        }
-       MineralUnit curMineral=mineTarget as MineralUnit;
+       MineralUnit curMineral=resourceTarget.GetComponent<MineralUnit>();
        if (curMineral != null)//移动时已经提前打断挖矿，但是遇敌没有，所以遇敌时还有挖矿目标，需要处理
        {
-           curMineral.HasWorkerWorking = false;
+           resourceTarget.workerManager.Remove(resourceCollector);
            curMineral.HasMineMachine = false;
            curMineral.OnUnSelect();
-           SetMineTarget(null);
+           SetTargetResource(null);
        }
       
        GetComponent<Animator>().SetBool("SetMineMachine",false);
+   }
+
+   public void InterruptCollectWood()
+   {
+       
    }
    
    public override void SetTargetPos(Vector3 pos,bool showMark=true)
    {
        //在有挖矿目标的时候设置其他目的地，则取消挖矿目标
-       if (mineTarget!=null && mineTarget.transform.position!=pos)
+       if (resourceTarget!=null && resourceTarget.transform.position!=pos)
        {
-           (mineTarget as MineralUnit).HasWorkerWorking = false;
-           mineTarget.OnUnSelect();
-           SetMineTarget(null);    
+           resourceTarget.workerManager.Remove(resourceCollector);
+           resourceTarget.GetComponent<MineralUnit>().OnUnSelect();
+           SetTargetResource(null);    
        }
        base.SetTargetPos(pos);
    }
 
-   private BattleUnitBase FindOtherClosetMineral(Vector3 pos)
+   private ResourceInfo FindOtherClosetMineral(ResourceType resourceType,Vector3 pos)
    {
-       Collider[] colliders = Physics.OverlapSphere(pos, 30);
-       for (int i = 0; i < colliders.Length; i++)
-       {
-           BattleUnitBase battleUnitBase = colliders[i].GetComponent<BattleUnitBase>();
-           if (battleUnitBase && battleUnitBase.configId == BattleUnitId.Mineral && battleUnitBase.IsInFog()==false &&
-               (battleUnitBase as MineralUnit).HasWorkerWorking==false && (battleUnitBase as MineralUnit).HasMineMachine == false)
-           {
-               return battleUnitBase;
-           }
-       }
-
-       return null;
+       return GetFactionManager().FindOtherNearestMineral(resourceTarget.resourceTypeInfo.resourceType,pos);
+       
    }
 
    public override void SetChaseTarget(BattleUnitBase battleUnitBase)
    {
        if (battleUnitBase.configId == BattleUnitId.Mineral)
        {
-           SetMineTarget(battleUnitBase.GetComponent<ResourceInfo>());
+           SetTargetResource(battleUnitBase.GetComponent<ResourceInfo>());
        }
    }
 
+  
   
 }

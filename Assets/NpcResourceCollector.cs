@@ -117,6 +117,7 @@ namespace RTSEngine
             //CustomEvents.UnitCreated += OnUnitCreated;
             
             EventCenter.AddListener<BattleUnitBase>(EnumEventType.UnitCreated,OnUnitCreated);
+            EventCenter.AddListener<BattleUnitBase,ResourceInfo>(EnumEventType.OnUnitCollectionOrder,OnUnitCollectionOrder);
         }
 
         /// <summary>
@@ -130,6 +131,7 @@ namespace RTSEngine
             //CustomEvents.ResourceEmpty -= OnResourceEmpty;
             //CustomEvents.UnitCreated -= OnUnitCreated;
             EventCenter.RemoveListener<BattleUnitBase>(EnumEventType.UnitCreated,OnUnitCreated);
+            EventCenter.RemoveListener<BattleUnitBase,ResourceInfo>(EnumEventType.OnUnitCollectionOrder,OnUnitCollectionOrder);
             
             foreach(ResourceTypeCollection rtc in collectionInfo.Values)
                 rtc.collectorMonitor.Disable();
@@ -187,7 +189,7 @@ namespace RTSEngine
             }
 
             Assert.IsTrue(collectorMonitor.GetCount() > 0, 
-                $"[NPCBuildingConstructor] NPC Faction ID: {factionMgr.FactionId} doesn't have a resource collector regulator assigned for resource type: {resourceType.Key}!");
+                $"[NPCBuildingConstructor] NPC Faction ID: {factionMgr.FactionId} doesn't have a resource collector regulator assigned for resource type: {resourceType.resourceType}!");
         }
         #endregion
 
@@ -334,6 +336,7 @@ namespace RTSEngine
         {
             if (resourceInfo == null //if the resource is invalid
                 || resourceInfo.IsEmpty //or it's empty
+                || resourceInfo.CanAddWorker()==false
                 || (auto == false && collectOnDemand == false) //or if this was requested by another component and we don't allow collection on demand
                 || !collectionInfo.ContainsKey(resourceInfo.GetResourceType())) //or the resource type can be collected by the NPC faction
                 return;

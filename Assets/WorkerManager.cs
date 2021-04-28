@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WorkerManager : MonoBehaviour
 {
+    public List<ResourceCollector> workers=new List<ResourceCollector>();
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +18,22 @@ public class WorkerManager : MonoBehaviour
         
     }
 
+    public bool CanAddWorker()
+    {
+        return workers.Count < GetAvailableSlots();
+    }
 
     public void Add(ResourceCollector resourceCollector)
     {
-        
+        if(CanAddWorker())
+            workers.Add(resourceCollector);
+        currentWorker = workers.Count;
+    }
+
+    public void Remove(ResourceCollector resourceCollector)
+    {
+        workers.Remove(resourceCollector);
+        currentWorker = workers.Count;
     }
 
     public int currentWorker ;

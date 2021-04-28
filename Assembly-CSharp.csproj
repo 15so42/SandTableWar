@@ -61,6 +61,7 @@
      <Compile Include="Assets\AutomaticBatteryAnimCtrl.cs" />
      <Compile Include="Assets\BattleBuildingMenuDialog.cs" />
      <Compile Include="Assets\BattleCamera.cs" />
+     <Compile Include="Assets\BattleResourceUnit.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseChaseAction - Copy.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseChaseAction.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\BaseEscapeAction.cs" />
@@ -76,6 +77,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\SyncLastDestinationPos.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Action\WeaponUpdate.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\CarveOrUnCarve.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\CollectResource.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\CureWounded.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\MyRetreat.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\MyRtsAction.cs" />
@@ -83,14 +85,12 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\NpcUnitCreatorEvaluator.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\RemoveDestinationMark.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetCurPostToDest.cs" />
-     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetMineMachine.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SetStoppingDistance.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncAutomaticBatteryAnim.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncDestinationPosToCurPos.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\SyncTankAnim.cs" />
-     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\Worker\CancelMinePlan.cs" />
-     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\Worker\FindOtherMineral.cs" />
-     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\Worker\InterruptMineMachineSetUp.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\Worker\FindOtherResource.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Action\Worker\InterruptCollectResource.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Conditional\HasMineTarget.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Conditional\HasWounded.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\BehaviourDesigner\Conditional\SimpleWithInDistance.cs" />
@@ -911,6 +911,7 @@
      <Compile Include="Assets\RangeMark.cs" />
      <Compile Include="Assets\ResourceBuilding.cs" />
      <Compile Include="Assets\ResourceInfo.cs" />
+     <Compile Include="Assets\ResourceTree.cs" />
      <Compile Include="Assets\ResourceTypeInfo.cs" />
      <Compile Include="Assets\Resources\Config\ScriptableObject\BattleFxConfig.cs" />
      <Compile Include="Assets\Resources\Config\ScriptableObject\LevelConfig.cs" />

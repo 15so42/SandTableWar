@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -49,6 +50,10 @@ public class FactionManager
     public List<BattleUnitBase> myUnits=new List<BattleUnitBase>();
     public List<BattleUnitBase> enemyUnits=new List<BattleUnitBase>();
     public List<BattleUnitBase> buildings=new List<BattleUnitBase>();
+    
+    //资源,Npc的资源直接获取全图资源，玩家的资源必须由自己探图将进入视野的资源加入
+    public List<ResourceInfo> allResources=new List<ResourceInfo>();
+    private Dictionary<ResourceType,List<ResourceInfo>> resourceDic=new Dictionary<ResourceType, List<ResourceInfo>>();
 
     private BattleResMgr battleResMgr;
 
@@ -97,6 +102,8 @@ public class FactionManager
                 maxAmount = limit.maxAmount
             });
         }
+        
+        
         
         //EVENT
         EventCenter.AddListener(EnumEventType.AllFactionsInit,OnAllFactionsInited);
@@ -202,5 +209,35 @@ public class FactionManager
         //custom event trigger:
         //CustomEvents.OnCurrentPopulationUpdated(this, value);
     }
-  
+
+    public void AddResource(ResourceInfo resourceInfo)
+    {
+        allResources.Add(resourceInfo);
+        var resourceInfos = new List<ResourceInfo>();
+        ResourceType resourceType = resourceInfo.resourceTypeInfo.resourceType;
+        if (resourceDic.ContainsKey(resourceType))
+        {
+            resourceDic[resourceType].Add(resourceInfo);
+        }
+        else
+        {
+            resourceDic.Add(resourceInfo.resourceTypeInfo.resourceType,new List<ResourceInfo>(){resourceInfo});
+        }
+        
+    }
+
+    public ResourceInfo FindOtherNearestMineral(ResourceType resourceType,Vector3 pos)
+    {
+        List<ResourceInfo> resourceInfos = resourceDic[resourceType];
+        resourceInfos.OrderByDescending(x => Vector3.Distance(x.transform.position, pos));
+        for (int i = 0; i < resourceInfos.Count; i++)
+        {
+            if (resourceInfos[i].CanAddWorker())
+            {
+                return resourceInfos[i];
+            }
+        }
+
+        return null;
+    }
 }

@@ -91,7 +91,26 @@ public class FightingManager
             {
                 Transform tmpMineral = logicMap.minerals[i];
                 tmpMineral.gameObject.SetActive(false);
-                BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Mineral),tmpMineral.position,-1);//生成矿物
+                ResourceInfo resourceInfo = BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Mineral),tmpMineral.position,-1).GetComponent<ResourceInfo>();//生成矿物
+                for (int j = 0; j < factionManagers.Count; j++)
+                {
+                    if(factionManagers[j].FactionSlot.isPlayer)
+                        continue;
+                    factionManagers[j].AddResource(resourceInfo);
+                }
+            }
+            
+            for (int i = 0; i < logicMap.trees.Count; i++)
+            {
+                Transform tmpTree = logicMap.trees[i];
+                tmpTree.gameObject.SetActive(false);
+                ResourceInfo resourceInfo = BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.ResourceTree),tmpTree.position,-1).GetComponent<ResourceInfo>();//生成矿物
+                for (int j = 0; j < factionManagers.Count; j++)
+                {
+                    if(factionManagers[j].FactionSlot.isPlayer)
+                        continue;
+                    factionManagers[j].AddResource(resourceInfo);
+                }
             }
             
             EventCenter.Broadcast(EnumEventType.AllFactionsInit);

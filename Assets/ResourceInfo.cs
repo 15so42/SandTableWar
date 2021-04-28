@@ -41,5 +41,9 @@ public class ResourceInfo : MonoBehaviour
         
     }
 
+    public bool CanAddWorker()
+    {
+        return workerManager.CanAddWorker();
+    }
     
 }

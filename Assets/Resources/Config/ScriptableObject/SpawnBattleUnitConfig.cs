@@ -49,5 +49,6 @@ public enum BattleUnitId//不要改变顺序，否则会全部爆炸
    AutomaticBattery_T,//T型自动炮台
    MilitaryDepot,
    None,
+   ResourceTree,
 
 }

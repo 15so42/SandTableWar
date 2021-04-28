@@ -23,5 +23,7 @@ public enum EnumEventType
     AllFactionsInit,
     
     OnCurrentPopulationUpdated,
+    
+    OnUnitCollectionOrder,
 }
 

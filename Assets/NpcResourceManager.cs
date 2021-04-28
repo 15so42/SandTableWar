@@ -5,7 +5,13 @@ using UnityEngine;
 using System.Linq;
 using RTSEngine;
 
-/// <summary>
+public enum ResourceType
+{
+    Mineral,
+    Wood,
+    Coin
+}
+    /// <summary>
     /// Responsible for managing the NPC faction's resources.
     /// </summary>
     public class NpcResourceManager : NpcComponent
@@ -16,11 +22,10 @@ using RTSEngine;
             EventCenter.AddListener<ResourceInfo>(EnumEventType.ResourceCreated,OnResourceCreated);
         }
 
-        public List<ResourceInfo> allResource;
+       
 
         public void OnResourceCreated(ResourceInfo resource)
         {
-            allResource.Add(resource);
             npcCommander.GetNpcComp<NpcResourceCollector>().AddResourceToCollect(resource);
         }
 
