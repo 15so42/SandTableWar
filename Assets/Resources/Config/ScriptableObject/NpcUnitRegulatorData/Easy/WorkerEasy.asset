@@ -16,8 +16,8 @@ MonoBehaviour:
     min: 2
     max: 4
   maxAmountRange:
-    min: 3
-    max: 6
+    min: 8
+    max: 12
   maxPendingAmount:
     min: 1
     max: 2

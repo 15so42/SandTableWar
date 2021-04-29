@@ -5,7 +5,7 @@ using RTSEngine;
 [CreateAssetMenu(fileName = "NewResourceType", menuName = "RTS Engine/Resource Type", order = 2)]
 public class ResourceTypeInfo : ScriptableObject
 {
-    [SerializeField] public ResourceType resourceType;
+    [SerializeField] public BattleResType resourceType;
 
     [SerializeField]
     private int startingAmount = 10; //the amount that each team will start with.

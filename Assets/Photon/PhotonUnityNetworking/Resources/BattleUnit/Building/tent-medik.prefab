@@ -210,8 +210,9 @@ MonoBehaviour:
     electricalDamageResistance: 30
     soulDamageResistance: 30
     realDamageResistance: 30
-    viewDistance: 20
+    viewDistance: 100
     attackDistance: 10
+  resCollectorComp: {fileID: 0}
   taskLauncherComp: {fileID: 0}
   needShowHpUi: 1
   hpUiOffset: {x: 0, y: 165, z: 0}
@@ -367,6 +368,7 @@ MonoBehaviour:
     type: 11
     allowedType: 0
     reloadTime: 10
+    useMode: 0
     launchEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -390,6 +392,7 @@ MonoBehaviour:
     type: 11
     allowedType: 0
     reloadTime: 10
+    useMode: 0
     launchEvent:
       m_PersistentCalls:
         m_Calls: []

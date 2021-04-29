@@ -89,12 +89,12 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     public bool visibleOnPhoton;
     
     //初始目标点
-    [HideInInspector] public Vector3 spawnTargetPos=UnityTool.cantReachPoint;
+    [HideInInspector] public Vector3 spawnTargetPos;
 
     protected FogOfWarUnit fogOfWarUnit;
     protected FogOfWar fogOfWar;
     protected FogOfWarEvents fogOfWarEvents;
-    private Animator animator;
+    protected Animator animator;
     private Rigidbody rigidbody;
     private NavMeshVehicleMovement navMeshVehicleMovement;
     
@@ -120,6 +120,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     #region 逻辑控制
     protected virtual void Awake()
     {
+        spawnTargetPos= UnityTool.cantReachPoint;
         InitFactionEntityType();
         fightingManager=FightingManager.Instance;
         
@@ -132,7 +133,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         taskLauncherComp = GetComponent<TaskLauncher>();
 
         resCollectorComp = GetComponent<ResourceCollector>();
-        animator = GetComponent<Animator>();
+        
         
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
@@ -429,6 +430,10 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         // {
         //     navMeshAgent.SetDestination(pos);//if not,just setDest on usual
         // }
+        if (pos == Vector3.zero)
+        {
+            Debug.LogError("有单位要前往Vector3.zero");
+        }
     
 
     //this is my code in my project,it's special in specific project

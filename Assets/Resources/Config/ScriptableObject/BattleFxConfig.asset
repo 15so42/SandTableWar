@@ -27,3 +27,5 @@ MonoBehaviour:
     fxPfb: {fileID: 1248045319662409115, guid: 739f14fcb9041564889418e6fb3cb126, type: 3}
   - battleFxType: 7
     fxPfb: {fileID: 3072468448101454961, guid: fd8c6e453fe55a149855b0ff939c334d, type: 3}
+  - battleFxType: 8
+    fxPfb: {fileID: 2659233398527925305, guid: 54971b92fda847340816fd43a2b2b069, type: 3}

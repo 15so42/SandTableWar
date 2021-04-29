@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 173eac40217c42f45a94b2fee7083ec9, type: 3}
   m_Name: Mineral
   m_EditorClassIdentifier: 
-  _name: Mineral
+  resourceType: 1
   startingAmount: 10
   icon: {fileID: 21300000, guid: bcb61f52ca83afb4b82a191f0b64d92c, type: 3}

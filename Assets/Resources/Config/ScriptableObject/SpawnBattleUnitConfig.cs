@@ -22,6 +22,8 @@ public class SpawnBattleUnitConfigInfo
    public int needCoin = 1;
    public int needMineral = 1;
    public int needFood = 1;
+   
+   public BattleResMgr.ResourceInput[] requiredResource=new BattleResMgr.ResourceInput[0];
 }
 
 public enum BattleUnitType

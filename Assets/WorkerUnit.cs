@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using RTSEngine;
 using UnityEngine;
 using UnityTimer;
 
@@ -34,7 +35,7 @@ public class WorkerUnit : BattleUnitBase
        if (target == null)
        {
            resourceTarget = null;
-           UpdateIdleStatus(true);
+           resourceCollector.target = null;
            return;
        }
       
@@ -50,27 +51,31 @@ public class WorkerUnit : BattleUnitBase
            preResourceInfo.workerManager.Remove(this.resourceCollector);
            preResourceUnit.OnUnSelect();
        }
-       if (target.IsEmpty)
-       {
-           TipsDialog.ShowDialog("目标资源已空或处于锁定状态");
-           UpdateIdleStatus(true);
-           return;
-       }
+       //不允许出现这种情况
+       // if (target.IsEmpty)
+       // {
+       //     TipsDialog.ShowDialog("目标资源已空或处于锁定状态");
+       //     SetTargetResource(null);//无效资源
+       //     UpdateIdleStatus(true);
+       //     return;
+       // }
        if (target.workerManager.CanAddWorker())
        {
            target.workerManager.Add(resourceCollector);
            this.resourceTarget = target;
        }
        else
-       {
-           this.resourceTarget = GetFactionManager().FindOtherNearestMineral(target.resourceTypeInfo.resourceType,target.transform.position);
-           resourceCollector.target = resourceTarget;
+       {   
+           //只有玩家阵营会出现这种情况
+           this.resourceTarget = GetFactionManager().FindOtherNearestResource(target.resourceTypeInfo.resourceType,target.transform.position);
+         
            if (this.resourceTarget == null)
            {
-               UpdateIdleStatus(true);
+               TipsDialog.ShowDialog("工人数量已达上限");
+               SetTargetResource(null);
                return;
            }
-           
+           resourceCollector.target = resourceTarget;
            target.workerManager.Add(resourceCollector);
        }
 
@@ -107,13 +112,12 @@ public class WorkerUnit : BattleUnitBase
        resourceTarget.workerManager.Remove(resourceCollector);
        curMineral.HasMineMachine = true;
        curMineral.MineMachine = mineMachine.GetComponent<MineMachine>();
-       curMineral.GetComponent<ResourceInfo>().isEmpty = true;
-       SetTargetResource(null);
+       curMineral.GetComponent<ResourceInfo>().IsEmpty = true;
+       //SetTargetResource(null);
        GetComponent<Animator>().SetBool("SetMineMachine",false);
        Timer.Register(2, () =>
        {
            iMineMachine.GetComponent<MineMachine>().StartMine();
-           UpdateIdleStatus(true);
        });//播放起立动画后才算完成
 
    }
@@ -136,12 +140,12 @@ public class WorkerUnit : BattleUnitBase
            SetTargetResource(null);
        }
       
-       GetComponent<Animator>().SetBool("SetMineMachine",false);
+       animator.SetBool("SetMineMachine",false);
    }
 
    public void InterruptCollectWood()
    {
-       
+       animator.SetBool("CollectWood",false);
    }
    
    public override void SetTargetPos(Vector3 pos,bool showMark=true)
@@ -150,15 +154,15 @@ public class WorkerUnit : BattleUnitBase
        if (resourceTarget!=null && resourceTarget.transform.position!=pos)
        {
            resourceTarget.workerManager.Remove(resourceCollector);
-           resourceTarget.GetComponent<MineralUnit>().OnUnSelect();
-           SetTargetResource(null);    
+           resourceTarget.GetComponent<BattleUnitBase>().OnUnSelect();
+           SetTargetResource(null);
        }
        base.SetTargetPos(pos);
    }
 
-   private ResourceInfo FindOtherClosetMineral(ResourceType resourceType,Vector3 pos)
+   private ResourceInfo FindOtherClosetMineral(BattleResType resourceType,Vector3 pos)
    {
-       return GetFactionManager().FindOtherNearestMineral(resourceTarget.resourceTypeInfo.resourceType,pos);
+       return GetFactionManager().FindOtherNearestResource(resourceTarget.resourceTypeInfo.resourceType,pos);
        
    }
 
@@ -170,6 +174,18 @@ public class WorkerUnit : BattleUnitBase
        }
    }
 
+   #region 动画帧事件
+
+   public void OnHitTree()
+   {
+       if(resourceTarget==null)
+           return;
+       Transform treeTrans = resourceTarget.transform;
+       resourceTarget.gameObject.transform.DOLocalJump(treeTrans.position + Vector3.up * 1, 1, 5, 0.2f).SetLoops(2,LoopType.Yoyo);
+   }
+   
+
+   #endregion
   
   
 }

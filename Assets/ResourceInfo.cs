@@ -15,7 +15,7 @@ public class ResourceInfo : MonoBehaviour
         set => factionId = value;
     }
 
-    public bool isEmpty;
+    private bool isEmpty;
     
     public bool IsEmpty
     {

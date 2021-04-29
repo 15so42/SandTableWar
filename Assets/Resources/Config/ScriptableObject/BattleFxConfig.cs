@@ -35,7 +35,7 @@ public enum BattleFxType
     
     ConcreteHitSmall,
     ConcreteHitLarge,
-    
+    Debug,
     
 }
 

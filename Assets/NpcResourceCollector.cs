@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using BattleScene.Scripts;
 using BattleScene.Scripts.AI;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -118,6 +119,7 @@ namespace RTSEngine
             
             EventCenter.AddListener<BattleUnitBase>(EnumEventType.UnitCreated,OnUnitCreated);
             EventCenter.AddListener<BattleUnitBase,ResourceInfo>(EnumEventType.OnUnitCollectionOrder,OnUnitCollectionOrder);
+            EventCenter.AddListener<BattleUnitBase,ResourceInfo>(EnumEventType.OnUnitStopCollecting,OnUnitStopCollecting);
         }
 
         /// <summary>
@@ -132,6 +134,7 @@ namespace RTSEngine
             //CustomEvents.UnitCreated -= OnUnitCreated;
             EventCenter.RemoveListener<BattleUnitBase>(EnumEventType.UnitCreated,OnUnitCreated);
             EventCenter.RemoveListener<BattleUnitBase,ResourceInfo>(EnumEventType.OnUnitCollectionOrder,OnUnitCollectionOrder);
+            EventCenter.RemoveListener<BattleUnitBase,ResourceInfo>(EnumEventType.OnUnitStopCollecting,OnUnitStopCollecting);
             
             foreach(ResourceTypeCollection rtc in collectionInfo.Values)
                 rtc.collectorMonitor.Disable();
@@ -200,10 +203,15 @@ namespace RTSEngine
         /// <param name="resourceInfo">The Resource instance whose collection will be regulated.</param>
         public void AddResourceToCollect (ResourceInfo resourceInfo)
         {
+            
             //look for the resource type collection instance that regulates the resource's type
             if(collectionInfo.TryGetValue(resourceInfo.GetResourceType(), out ResourceTypeCollection rtc))
                 if (!rtc.instances.Contains(resourceInfo)) //only if the resource hasn't been already added.
+                {
                     rtc.instances.Add(resourceInfo);
+                    //按距离进行排序,暂时不考虑顺序问题
+                    rtc.instances=rtc.instances.OrderBy(x => Vector3.Distance(x.transform.position, factionMgr.basePos)).ToList();
+                }
         }
 
         /// <summary>
@@ -348,6 +356,7 @@ namespace RTSEngine
             List<BattleUnitBase> currentCollectors = npcCommander.GetNpcComp<NpcUnitCreator>().GetActiveUnitRegulator(
                 collectionInfo[resourceInfo.GetResourceType()].collectorMonitor.GetRandomCode()).GetIdleUnitsFirst(); //get the list of the current faction collectors.
 
+            
             //while we still need collectors for the building and we haven't gone through all collectors.
             while (i < currentCollectors.Count && requiredCollectors > 0)
             {
@@ -357,6 +366,7 @@ namespace RTSEngine
                     && (currentCollectors[i].IsIdle() || force == true) 
                     && currentCollectors[i].resCollectorComp.GetTarget() != resourceInfo)
                 {
+                    BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.Debug,currentCollectors[i].transform.position,Vector3.up);
                     //send to collect the resource:
                     currentCollectors[i].resCollectorComp.SetTarget(resourceInfo);
                     //decrement amount of required builders:

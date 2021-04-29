@@ -9,7 +9,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks.Worker
         public SharedBattleUnit selfUnit;
         public override TaskStatus OnUpdate()
         {
-            ResourceInfo otherResource = FindOtherNearestMineral();
+            ResourceInfo otherResource = FindOtherNearestResource();
             if (otherResource == null)
             {
                 return TaskStatus.Failure;
@@ -20,11 +20,12 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks.Worker
         }
 
         
-        private ResourceInfo FindOtherNearestMineral()
+        private ResourceInfo FindOtherNearestResource()
         {
-            return FightingManager.Instance.GetFaction(selfUnit.Value.factionId).FindOtherNearestMineral(
-                (selfUnit.Value as WorkerUnit).resourceTarget.resourceTypeInfo.resourceType,
-                selfUnit.Value.transform.position);
+            FactionManager factionManager = FightingManager.Instance.GetFaction(selfUnit.Value.factionId);
+            return FightingManager.Instance.GetFaction(selfUnit.Value.factionId).FindOtherNearestResource(
+                GetRandomResourceType()
+                , selfUnit.Value.transform.position);
             
             
             // Collider[] colliders = Physics.OverlapSphere(transform.position, findRadius);
@@ -39,6 +40,13 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks.Worker
             // }
             //
             // return null;
+        }
+
+        private BattleResType GetRandomResourceType()
+        {
+            ResourceCollector resourceCollector = selfUnit.Value.resCollectorComp;
+            return resourceCollector.collectionObjects[Random.Range(0, resourceCollector.collectionObjects.Length)]
+                .resourceType.resourceType;
         }
     }
     

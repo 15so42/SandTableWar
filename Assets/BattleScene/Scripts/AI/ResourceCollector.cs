@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityTimer;
 
@@ -11,12 +12,14 @@ using UnityTimer;
         
     }
 
+[System.Serializable]
 public struct CollectCapacityConfig
 {
     public ResourceTypeInfo resourceTypeInfo;
     [Header("每次动作采集量")]
     public int collectSpeed;
 
+    [HideInInspector]
     public int collectedAmount;
     public int weight;//重量
 
@@ -37,12 +40,16 @@ public struct CollectCapacityConfig
         private int totalWeight;
 
         public int maxTotalWeight;
+
+        private BattleUnitBase battleUnitBase;
         private void Start()
         {
             foreach (var config in collectCapacityConfigs)
             {
                 collectProgress.Add(config.resourceTypeInfo, config);
             }
+
+            battleUnitBase = GetComponent<BattleUnitBase>();
         }
 
         public bool CanCollectResourceType (ResourceTypeInfo resourceType, bool useDic = true)
@@ -72,24 +79,17 @@ public struct CollectCapacityConfig
         }
 
         private float timer;
-        public void Update()
+        public void CollectResource()
         {
-            if (OverWeight())
+            timer += Time.deltaTime;
+            if (timer > 1)
             {
-                StopCollect();
-                return;
+                CollectCapacityConfig config = collectProgress[target.resourceTypeInfo];
+                config.collectedAmount += config.collectSpeed;
+                totalWeight += config.collectedAmount*config.weight;
+                timer = 0;
             }
-            if(collecting)
-            {
-                timer += Time.deltaTime;
-                if (timer > 1)
-                {
-                    CollectCapacityConfig config = collectProgress[target.resourceTypeInfo];
-                    config.collectedAmount += config.collectSpeed;
-                    totalWeight += config.collectedAmount*config.weight;
-                    timer = 0;
-                }
-            }
+            
         }
 
         public bool OverWeight()
@@ -97,15 +97,28 @@ public struct CollectCapacityConfig
             return totalWeight >= maxTotalWeight;
         }
 
-        public void StartCollect()
+        public void DeliveryResource()
         {
-            collecting = true;
-        }
+            BattleResMgr battleResMgr = FightingManager.Instance.GetFaction(battleUnitBase.factionId).BattleResMgr;
+            foreach (var item in collectProgress)
+            {
+                foreach (var collectPrg in collectProgress)
+                {
+                    battleResMgr.UpdateResource(collectPrg.Key.resourceType,collectPrg.Value.collectedAmount,true);
+                }
+            }
 
-        public void StopCollect()
-        {
-            collecting = false;
+            for (int i = 0; i < collectProgress.Values.Count; i++)
+            {
+                var collectCapacityConfig = collectProgress.Values.ElementAt(i);
+                collectCapacityConfig.collectedAmount = 0;
+            }
+
+            totalWeight = 0;
+            
+            battleUnitBase.UpdateIdleStatus(true);
         }
+      
 
         public void RegisterSetTargetAction(Action<ResourceInfo> action)
         {

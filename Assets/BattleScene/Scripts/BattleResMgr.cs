@@ -1,13 +1,14 @@
 ﻿
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum BattleResType
 {
-    population, //人口
-    coin, //金币
-    mineral, //矿物
-    food //食物
+    Coin, //金币
+    Mineral, //矿物
+    Food, //食物
+    Wood,//木材
 }
 
     /// <summary>
@@ -31,20 +32,20 @@ public enum BattleResType
         private int lastTime;
         public Dictionary<BattleResType,float> battleResHolder=new Dictionary<BattleResType, float>()
         {
-            {BattleResType.population,10},
-            {BattleResType.coin,10},
-            {BattleResType.mineral,10},
-            {BattleResType.food,10},
+            {BattleResType.Coin,10},
+            {BattleResType.Mineral,10},
+            {BattleResType.Food,10},
+            {BattleResType.Wood,10},
         };
         /// <summary>
         /// 增长速率
         /// </summary>
         public Dictionary<BattleResType,float> battleResIncreaseRate=new Dictionary<BattleResType, float>()
         {
-            {BattleResType.population,1},
-            {BattleResType.coin,1},
-            {BattleResType.mineral,1},
-            {BattleResType.food,1},
+            {BattleResType.Coin,0},
+            {BattleResType.Mineral,0},
+            {BattleResType.Food,0},
+            {BattleResType.Wood,0},
         };
         /// <summary>
         /// 消耗资源，返回false表示资源不足，否则表示消耗成功
@@ -111,30 +112,22 @@ public enum BattleResType
 
         public bool ConsumeResByUnitInfo(SpawnBattleUnitConfigInfo spawnInfo)
         {
-            if (HasEnoughRes(BattleResType.population, spawnInfo.needPopulation) &&
-                HasEnoughRes(BattleResType.coin, spawnInfo.needCoin) &&
-                HasEnoughRes(BattleResType.mineral, spawnInfo.needMineral) &&
-                HasEnoughRes(BattleResType.food, spawnInfo.needFood))
+           ResourceInput[] resourceInputs = spawnInfo.requiredResource;
+
+            if (!HasRequiredResources(resourceInputs))
             {
-                ConsumeRes(BattleResType.population, spawnInfo.needPopulation);
-                ConsumeRes(BattleResType.coin, spawnInfo.needCoin);
-                ConsumeRes(BattleResType.mineral, spawnInfo.needMineral);
-                ConsumeRes(BattleResType.food, spawnInfo.needFood);
-                return true;
+                return false;
             }
-            return false;
+
+            foreach (var resourceInput in resourceInputs)
+            {
+                ConsumeRes(resourceInput.resType, resourceInput.Amount);
+            }
+
+            return true;
         }
 
-        /// <summary>
-        /// 单词得到资源
-        /// </summary>
-        /// <param name="type"></param>
-        /// <param name="num"></param>
-        public void EarnRes(BattleResType type, int num)
-        {
-            battleResHolder[type] += num;
-        }
-
+       
         /// <summary>
         ///     增加增长率
         /// </summary>
@@ -160,10 +153,13 @@ public enum BattleResType
             if (Time.time >= lastTime + 1)
             {
                 //自动增加
-                battleResHolder[BattleResType.population]+=battleResIncreaseRate[BattleResType.population];
-                battleResHolder[BattleResType.coin]+=battleResIncreaseRate[BattleResType.coin];
-                battleResHolder[BattleResType.mineral]+=battleResIncreaseRate[BattleResType.mineral];
-                battleResHolder[BattleResType.food]+=battleResIncreaseRate[BattleResType.food];
+                // battleResHolder[BattleResType.Coin]+=battleResIncreaseRate[BattleResType.Coin];
+                // battleResHolder[BattleResType.Mineral]+=battleResIncreaseRate[BattleResType.Mineral];
+                // battleResHolder[BattleResType.Food]+=battleResIncreaseRate[BattleResType.Food];
+                foreach (var increaseRate in battleResIncreaseRate)
+                {
+                    UpdateResource(increaseRate.Key,increaseRate.Value,true);
+                }
                 lastTime = (int)Time.time;
             }
         }

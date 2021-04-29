@@ -25,5 +25,6 @@ public enum EnumEventType
     OnCurrentPopulationUpdated,
     
     OnUnitCollectionOrder,
+    OnUnitStopCollecting,
 }
 

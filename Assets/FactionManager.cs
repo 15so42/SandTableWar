@@ -53,7 +53,7 @@ public class FactionManager
     
     //资源,Npc的资源直接获取全图资源，玩家的资源必须由自己探图将进入视野的资源加入
     public List<ResourceInfo> allResources=new List<ResourceInfo>();
-    private Dictionary<ResourceType,List<ResourceInfo>> resourceDic=new Dictionary<ResourceType, List<ResourceInfo>>();
+    private Dictionary<BattleResType,List<ResourceInfo>> resourceDic=new Dictionary<BattleResType, List<ResourceInfo>>();
 
     private BattleResMgr battleResMgr;
 
@@ -214,7 +214,7 @@ public class FactionManager
     {
         allResources.Add(resourceInfo);
         var resourceInfos = new List<ResourceInfo>();
-        ResourceType resourceType = resourceInfo.resourceTypeInfo.resourceType;
+        BattleResType resourceType = resourceInfo.resourceTypeInfo.resourceType;
         if (resourceDic.ContainsKey(resourceType))
         {
             resourceDic[resourceType].Add(resourceInfo);
@@ -226,10 +226,10 @@ public class FactionManager
         
     }
 
-    public ResourceInfo FindOtherNearestMineral(ResourceType resourceType,Vector3 pos)
+    public ResourceInfo FindOtherNearestResource(BattleResType resourceType,Vector3 pos)
     {
         List<ResourceInfo> resourceInfos = resourceDic[resourceType];
-        resourceInfos.OrderByDescending(x => Vector3.Distance(x.transform.position, pos));
+        resourceInfos=resourceInfos.OrderBy(x => Vector3.Distance(x.transform.position, pos)).ToList();
         for (int i = 0; i < resourceInfos.Count; i++)
         {
             if (resourceInfos[i].CanAddWorker())
@@ -239,5 +239,28 @@ public class FactionManager
         }
 
         return null;
+    }
+
+    public BattleUnitBase FindNearest(List<BattleUnitBase> units,Vector3 pos)
+    {
+        var temp=units.OrderBy(x => Vector3.Distance(x.transform.position, pos));
+        return temp.ElementAtOrDefault(0);
+    }
+
+    public List<BattleUnitBase> FindUnitsByUnitId(BattleUnitId value)
+    { 
+        var units=myUnits.FindAll(x => x.configId == value);
+        return units;
+    }
+    
+    public BattleUnitBase FindNearest(BattleUnitId value,Vector3 pos)
+    {
+        var units=myUnits.FindAll(x => x.configId == value);
+        return FindNearest(units, pos);
+    }
+    
+    public bool IsPlayer()
+    {
+        return factionSlot.isPlayer;
     }
 }

@@ -145,6 +145,7 @@ public class FightingManager
         return factionManagers.Find(x => x.FactionId==value);
     }
 
+    
 
     public float GetSpeedModifier()
     {
@@ -485,15 +486,8 @@ public class FightingManager
     {
         //todo 完善该方法
         SpawnBattleUnitConfigInfo curSpawnInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(spawnId);
-        int needPopulation = curSpawnInfo.needPopulation;
-        int needCoin = curSpawnInfo.needCoin;
-        int needMineral = curSpawnInfo.needMineral;
-        int needFood = curSpawnInfo.needFood;
         //先判断是否所有都满足再消耗
-        if (myBattleResMgr.HasEnoughRes(BattleResType.population, needPopulation) &&
-            myBattleResMgr.HasEnoughRes(BattleResType.coin, needCoin) &&
-            myBattleResMgr.HasEnoughRes(BattleResType.mineral, needMineral) &&
-            myBattleResMgr.HasEnoughRes(BattleResType.food, needFood))
+        if (myBattleResMgr.HasRequiredResources(curSpawnInfo.requiredResource))
         {
             return true;
         }

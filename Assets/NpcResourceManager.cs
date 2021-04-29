@@ -5,12 +5,7 @@ using UnityEngine;
 using System.Linq;
 using RTSEngine;
 
-public enum ResourceType
-{
-    Mineral,
-    Wood,
-    Coin
-}
+
     /// <summary>
     /// Responsible for managing the NPC faction's resources.
     /// </summary>
