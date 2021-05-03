@@ -86,8 +86,10 @@
                 }
             }else if (diplomaticRelation == DiplomaticRelation.Enemy)//本机上的敌人
             {
-                if (GridSearchHandler.Instance.Search(transform.position, prop.viewDistance, isTargetValid,
-                    out var target)==ErrorMessage.none)
+                ErrorMessage errorMessage = GridSearchHandler.Instance.Search(transform.position, prop.viewDistance,
+                    isTargetValid,
+                    out var target);
+                if (errorMessage==ErrorMessage.none)
                 {
                     return target;
                 }

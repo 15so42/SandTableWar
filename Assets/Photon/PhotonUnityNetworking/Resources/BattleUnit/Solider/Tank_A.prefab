@@ -456,6 +456,7 @@ GameObject:
   - component: {fileID: 5918974301740712173}
   - component: {fileID: 5096094497817110075}
   - component: {fileID: -4078612767611638886}
+  - component: {fileID: -943929361366582653}
   m_Layer: 0
   m_Name: Tank_A
   m_TagString: Untagged
@@ -682,7 +683,8 @@ MonoBehaviour:
   behaviorDesigner: {fileID: 0}
   navMeshAgent: {fileID: 0}
   photonView: {fileID: 0}
-  campId: 0
+  battleUnitType: 0
+  factionId: 0
   weapon: {fileID: 0}
   prop:
     weaponProficiency: 1
@@ -695,6 +697,9 @@ MonoBehaviour:
     realDamageResistance: 30
     viewDistance: 20
     attackDistance: 10
+  resCollectorComp: {fileID: 0}
+  unitMovement: {fileID: 0}
+  taskLauncherComp: {fileID: 0}
   needShowHpUi: 1
   hpUiOffset: {x: 0, y: 95, z: 0}
   selectMarkSize: 4
@@ -916,6 +921,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-943929361366582653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592192127302537471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e5f35bf2553f24993821efd078f091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4994610381590305531
 GameObject:
   m_ObjectHideFlags: 0

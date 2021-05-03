@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using RTSEngine;
 using UnityEngine;
 
@@ -13,6 +15,7 @@ public class GridSearchHandler : MonoBehaviour
     
     [SerializeField, Tooltip("每个网格的大小"), Min(1)]
     private int cellSize = 10;
+    public int CellSize { get { return cellSize; } }
     
     //通过坐标维护SearchCell字典
     private Dictionary<SearchCellPosition, SearchCell> gridDict = new Dictionary<SearchCellPosition, SearchCell>();
@@ -25,6 +28,16 @@ public class GridSearchHandler : MonoBehaviour
     {
         Instance = this;
         GenerateCells(); //生成寻敌网格
+        
+        //事件绑定
+        EventCenter.AddListener<BattleUnitBase>(EnumEventType.UnitCreated,OnEntityCreated);
+        EventCenter.AddListener<BattleUnitBase>(EnumEventType.UnitDied,OnEntityRemoved);
+    }
+
+    private void OnDestroy()
+    {
+        EventCenter.RemoveListener<BattleUnitBase>(EnumEventType.UnitCreated,OnEntityCreated);
+        EventCenter.RemoveListener<BattleUnitBase>(EnumEventType.UnitDied,OnEntityRemoved);
     }
 
     private void GenerateCells()
@@ -46,28 +59,21 @@ public class GridSearchHandler : MonoBehaviour
         foreach (SearchCellPosition position in gridDict.Keys) //初始化每个寻敌格子，格子中存放在各自内的单位。
             gridDict[position].Init(position, this);
 
-        StartCoroutine(UnitPositionCheck(0.1f));
+        // StartCoroutine(UnitPositionCheck(0.1f));
     }
     
-    private IEnumerator UnitPositionCheck(float waitTime)//每0.1秒更新一次全图网格信息，有多少格单位执行多少次
+    private void OnEntityCreated (BattleUnitBase entity)
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(waitTime);
-
-            for (int i = 0; i < fightingManager.allUnits.Count; i++)
-            {
-                BattleUnitBase unit = fightingManager.allUnits[i];
-                Vector3 pos = unit.transform.position;
-                if (TryGetSearchCell(pos, out SearchCell newCell)==ErrorMessage.none)
-                {
-                    newCell.Add(unit);//将单位添加到对应网格的单位list中方便寻敌时使用
-                }
-            }
-        }
-        
+        if (TryGetSearchCell(entity.transform.position, out SearchCell cell) == ErrorMessage.none) //if there's a cell that can accept this entity
+            cell.Add(entity); //add it
     }
-
+    
+    private void OnEntityRemoved (BattleUnitBase entity)
+    {
+        if (TryGetSearchCell(entity.transform.position, out SearchCell cell) == ErrorMessage.none) //if there's a cell that can accept this entity
+            cell.Remove(entity); //remove it
+    }
+   
     public ErrorMessage TryGetSearchCell(Vector3 position, out SearchCell cell)
     {
         cell = null;
@@ -132,8 +138,8 @@ public class GridSearchHandler : MonoBehaviour
     /// <returns></returns>
     private List<T> GetUnitsByRadius<T>(Vector3 sourcePosition, float radius,System.Func<T, ErrorMessage> filter) where T : BattleUnitBase
     {
-        Vector3 lowerLeftCorner=new Vector3(sourcePosition.x-radius,sourcePosition.y,sourcePosition.z-radius);
-        Vector3 upperRightCorner=new Vector3(sourcePosition.x+radius,sourcePosition.y,sourcePosition.z+radius);
+        Vector2 lowerLeftCorner=new Vector2(sourcePosition.x-radius,sourcePosition.z-radius);
+        Vector2 upperRightCorner=new Vector2(sourcePosition.x+radius,sourcePosition.z+radius);
         if(SearchRect(lowerLeftCorner, upperRightCorner, filter, out var resultList)==ErrorMessage.none);
             return resultList;
     }
@@ -187,6 +193,18 @@ public class GridSearchHandler : MonoBehaviour
         for (int y = lowerLeftCorner.y; y < upperRightCorner.y; y += cellSize)
         {
             Gizmos.DrawWireCube(new Vector3(x + cellSize/2.0f, 0.0f, y + cellSize/2.0f), size);
+        }
+
+        for (int i = 0; i < gridDict.Values.Count; i++)
+        {
+            SearchCell searchCell = gridDict.Values.ElementAt(i);
+            List<BattleUnitBase> cellUnits = searchCell.GetUnits();
+            Gizmos.color = Color.blue;
+            for (int j = 0; j < cellUnits.Count; j++)
+            {
+                Gizmos.DrawLine(new Vector3(searchCell.searchCellPosition.x,0,searchCell.searchCellPosition.y),cellUnits[j].transform.position);
+            }
+            
         }
     }
 #endif

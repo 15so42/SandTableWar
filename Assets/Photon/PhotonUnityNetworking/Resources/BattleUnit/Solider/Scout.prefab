@@ -700,6 +700,7 @@ GameObject:
   - component: {fileID: -5370908042560980306}
   - component: {fileID: 4394770332623937470}
   - component: {fileID: 1318645975}
+  - component: {fileID: -2549745720459534053}
   m_Layer: 0
   m_Name: Scout
   m_TagString: Untagged
@@ -1456,7 +1457,8 @@ MonoBehaviour:
   behaviorDesigner: {fileID: 0}
   navMeshAgent: {fileID: 0}
   photonView: {fileID: 0}
-  campId: 0
+  battleUnitType: 0
+  factionId: 0
   weapon: {fileID: 0}
   prop:
     weaponProficiency: 1
@@ -1469,6 +1471,9 @@ MonoBehaviour:
     realDamageResistance: 30
     viewDistance: 40
     attackDistance: 10
+  resCollectorComp: {fileID: 0}
+  unitMovement: {fileID: 0}
+  taskLauncherComp: {fileID: 0}
   needShowHpUi: 1
   hpUiOffset: {x: 0, y: 65, z: 0}
   selectMarkSize: 2.2
@@ -1697,6 +1702,18 @@ MonoBehaviour:
     LayerIndex: 0
   - SynchronizeType: 0
     LayerIndex: 1
+--- !u!114 &-2549745720459534053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592192127302537471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e5f35bf2553f24993821efd078f091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5161056531410845774
 GameObject:
   m_ObjectHideFlags: 0

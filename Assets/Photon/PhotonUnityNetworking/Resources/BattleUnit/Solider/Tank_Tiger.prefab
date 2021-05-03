@@ -20542,6 +20542,7 @@ GameObject:
   - component: {fileID: 6536760540851462888}
   - component: {fileID: 6212610074683414474}
   - component: {fileID: 1680783049143311671}
+  - component: {fileID: 7253340945514755274}
   m_Layer: 0
   m_Name: Tank_Tiger
   m_TagString: Untagged
@@ -20770,7 +20771,8 @@ MonoBehaviour:
   behaviorDesigner: {fileID: 0}
   navMeshAgent: {fileID: 0}
   photonView: {fileID: 0}
-  campId: 0
+  battleUnitType: 0
+  factionId: 0
   weapon: {fileID: 0}
   prop:
     weaponProficiency: 1
@@ -20783,6 +20785,8 @@ MonoBehaviour:
     realDamageResistance: 30
     viewDistance: 25
     attackDistance: 20
+  resCollectorComp: {fileID: 0}
+  taskLauncherComp: {fileID: 0}
   needShowHpUi: 1
   hpUiOffset: {x: 0, y: 95, z: 0}
   selectMarkSize: 6
@@ -21030,6 +21034,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.87, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &7253340945514755274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6714188707150718372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e5f35bf2553f24993821efd078f091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7523182303798726451
 GameObject:
   m_ObjectHideFlags: 0

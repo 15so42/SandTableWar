@@ -37,7 +37,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     public BattleUnitBaseProp prop;//单位基础属性
 
     public ResourceCollector resCollectorComp;
-
+    public UnitMovement unitMovement;
     public TaskLauncher taskLauncherComp;
     
     //血条UI，通过动态加载到对应画布
@@ -132,7 +132,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         }
 
         taskLauncherComp = GetComponent<TaskLauncher>();
-
+        unitMovement = GetComponent<UnitMovement>();
         resCollectorComp = GetComponent<ResourceCollector>();
         
         
@@ -469,20 +469,22 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     {
         return;
     }
+
     if (behaviorDesigner)
+    {
+        behaviorDesigner.SendEvent("SetDestinationPos", pos);
+        RemoveDestinationMark();
+
+
+        if (showMark)
         {
-            behaviorDesigner.SendEvent("SetDestinationPos",pos);
-            RemoveDestinationMark();
-        
-            
-            if (showMark)
-            {
-                string fxName = ConfigHelper.Instance.GetFxPfbByBattleFxType(BattleFxType.DestionMark).name;
-                destinationMark= BattleFxManager.Instance.SpawnFxAtPos(fxName,pos,Vector3.forward);
-                destinationMark.GetComponent<FxDestinationMark>().SetAgentRadius(navMeshAgent.radius*2);
-            }
-            
+            string fxName = ConfigHelper.Instance.GetFxPfbByBattleFxType(BattleFxType.DestionMark).name;
+            destinationMark = BattleFxManager.Instance.SpawnFxAtPos(fxName, pos, Vector3.forward);
+            destinationMark.GetComponent<FxDestinationMark>().SetAgentRadius(navMeshAgent.radius * 2);
         }
+    }
+    
+    unitMovement.StartMove();
        
     }
     

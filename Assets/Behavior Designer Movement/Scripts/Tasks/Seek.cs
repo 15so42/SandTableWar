@@ -65,6 +65,12 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             targetPosition = Vector3.zero;
         }
 
+        protected override void Stop()
+        {
+            base.Stop();
+            selfUnit.unitMovement.StopMove();
+        }
+
         public override void OnEnd()
         {
             target.Value = null;

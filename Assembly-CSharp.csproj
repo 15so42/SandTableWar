@@ -934,6 +934,7 @@
      <Compile Include="Assets\TankAUnit.cs" />
      <Compile Include="Assets\TankAnimCtrl.cs" />
      <Compile Include="Assets\TankWeapon.cs" />
+     <Compile Include="Assets\UnitMovement.cs" />
      <Compile Include="Assets\WorkerAnimCtrl.cs" />
      <Compile Include="Assets\WorkerManager.cs" />
      <Compile Include="Assets\WorkerUnit.cs" />
