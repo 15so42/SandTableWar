@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using FoW;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(WorkerManager))]
 public class ResourceInfo : MonoBehaviour
@@ -8,6 +11,8 @@ public class ResourceInfo : MonoBehaviour
     public ResourceTypeInfo resourceTypeInfo;
     public  WorkerManager workerManager;
     private int factionId;
+
+    private BattleUnitBase battleUnitBase;
 
     public int FactionId
     {
@@ -23,12 +28,21 @@ public class ResourceInfo : MonoBehaviour
         set => isEmpty = value;
     }
 
+    private UnityAction enterFogAction;
+    
     // Start is called before the first frame update
     void Start()
     {
         workerManager = GetComponent<WorkerManager>();
         EventCenter.Broadcast(EnumEventType.ResourceCreated,this);
+        battleUnitBase = GetComponent<BattleUnitBase>();
+        enterFogAction = () =>
+        {
+            FightingManager.Instance.GetMyFaction().AddResource(this);
+        };
+        battleUnitBase.AddEnterFogListener(enterFogAction);
     }
+    
 
     public ResourceTypeInfo GetResourceType()
     {
@@ -45,5 +59,9 @@ public class ResourceInfo : MonoBehaviour
     {
         return workerManager.CanAddWorker();
     }
-    
+
+    private void OnDisable()
+    {
+        battleUnitBase.RemoveEnterFogListener(enterFogAction);
+    }
 }

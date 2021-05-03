@@ -13,6 +13,6 @@ public class BattleResourceUnit : BattleUnitBase
 
     protected override void InitFactionEntityType()
     {
-        factionType = BattleUnitType.Resource;
+        battleUnitType = BattleUnitType.Resource;
     }
 }

@@ -33,7 +33,7 @@ public class DefenceBuilding : BaseBattleBuilding
         }
         
         //判断是否与允许进入
-        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
         
         
         if (battleUnitBase.isGoingBuilding)
@@ -73,7 +73,7 @@ public class DefenceBuilding : BaseBattleBuilding
         base.OnRightMouseUp();
         fightingManager.MoveToSpecificPos(GetEntrance());
         int count = 0;
-        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
         if (relation == DiplomaticRelation.Enemy)
         {
             return;

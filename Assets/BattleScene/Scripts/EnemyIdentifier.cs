@@ -1,4 +1,6 @@
 ﻿
+using System.Linq;
+
 public enum DiplomaticRelation{//外交关系
     Self,//自己
     Enemy,//敌人
@@ -7,20 +9,36 @@ public enum DiplomaticRelation{//外交关系
 }
 public class EnemyIdentifier : Singleton<EnemyIdentifier>
 {
+
+    public FightingManager fightingManager;
+
+    public FightingManager GetFightingManager()
+    {
+        if (fightingManager==null)
+        {
+            fightingManager=FightingManager.Instance;
+        }
+
+        return fightingManager;
+    }
+    public FactionManager GetFactionManager(int targetFactionId)
+    {
+        return fightingManager.GetFaction(targetFactionId);
+    }
     /// <summary>
-    /// 获取外交关系
+    /// 针对本客户端,获取外交关系
     /// </summary>
     /// <param name="targetId"></param>
-    public DiplomaticRelation GetDiplomaticRelation(int targetId)
+    public DiplomaticRelation GetMyDiplomaticRelation(int targetId)
     {
         if (targetId == -1) //-1表示中立
             return DiplomaticRelation.Neutral;
-        FightingManager fightingManager = GameManager.Instance.GetFightingManager();
-        if (fightingManager.myFactionId == targetId)
+        
+        if (GetFightingManager().myFactionId == targetId)
         {
             return DiplomaticRelation.Self;
         }
-        if (fightingManager.myFactionId % 2 == targetId % 2)//奇偶性相同为队友，否则为敌人
+        if (GetFightingManager().GetMyFaction().ally.Contains(GetFactionManager(targetId)))//奇偶性相同为队友，否则为敌人
         {
             return DiplomaticRelation.Ally;
         }
@@ -41,7 +59,7 @@ public class EnemyIdentifier : Singleton<EnemyIdentifier>
             return DiplomaticRelation.Neutral;
         if (a == b)
             return DiplomaticRelation.Self;
-        if (a % 2 == b % 2)//奇偶性相同为队友，否则为敌人
+        if (GetFactionManager(a).ally.Contains(GetFactionManager(b)))
         {
             return DiplomaticRelation.Ally;
         }

@@ -198,7 +198,7 @@ MonoBehaviour:
   behaviorDesigner: {fileID: 0}
   navMeshAgent: {fileID: 0}
   photonView: {fileID: 0}
-  factionType: 0
+  battleUnitType: 0
   factionId: 0
   weapon: {fileID: 0}
   prop:
@@ -210,7 +210,7 @@ MonoBehaviour:
     electricalDamageResistance: 30
     soulDamageResistance: 30
     realDamageResistance: 30
-    viewDistance: 100
+    viewDistance: 20
     attackDistance: 10
   resCollectorComp: {fileID: 0}
   taskLauncherComp: {fileID: 0}

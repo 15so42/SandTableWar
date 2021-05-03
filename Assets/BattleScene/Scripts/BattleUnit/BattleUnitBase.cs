@@ -11,6 +11,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner;
 using BehaviorDesigner.Runtime.Tactical;
 using DefaultNamespace;
+using RTSEngine;
 using UnityEngine.Events;
 using Object = System.Object;
 
@@ -24,10 +25,10 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     protected FightingManager fightingManager;
     public PhotonView photonView;
 
-    public BattleUnitType factionType;
+    public BattleUnitType battleUnitType;
     public virtual BattleUnitType GetEntityType()
     {
-        return factionType;
+        return battleUnitType;
     }
     
     public int factionId;//陣營Id,用於區分敵我
@@ -187,9 +188,17 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
 
     protected virtual void InitFactionEntityType()
     {
-        factionType = BattleUnitType.Unit;
+        battleUnitType = BattleUnitType.Unit;
     }
-    
+
+    public void AddEnterFogListener(UnityAction action)
+    {
+        fogOfWarEvents.onFogEnter.AddListener(action);
+    }
+    public void RemoveEnterFogListener(UnityAction action)
+    {
+        fogOfWarEvents.onFogEnter.RemoveListener(action);
+    }
     public void OnFogEnter()
     {
        
@@ -197,17 +206,25 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         if(photonAnimatorView)
             photonAnimatorView.enabled = false;
         isInFog = true;
-        if (hpUi && hpUi.gameObject)
+        if (hpUi)
         {
-            hpUi.gameObject.SetActive(false);
+            hpUi.Show(false);
         }
-        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
+        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
         if (diplomaticRelation == DiplomaticRelation.Enemy)
         {
             enemyUnitsInMyView.Remove(this);
         }
     }
 
+    public void AddExitFogListener(UnityAction action)
+    {
+        fogOfWarEvents.onFogExit.AddListener(action);
+    }
+    public void RemoveExitFogListener(UnityAction action)
+    {
+        fogOfWarEvents.onFogExit.RemoveListener(action);
+    }
     public virtual void OnFogExit()
     {
         
@@ -216,8 +233,8 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
             photonAnimatorView.enabled = true;
         isInFog = false;
         if (needShowHpUi)
-            hpUi.gameObject.SetActive(true);
-        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
+            hpUi.Show(true);
+        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
         if (diplomaticRelation == DiplomaticRelation.Enemy)
         {
             enemyUnitsInMyView.Add(this);
@@ -251,10 +268,18 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
             mainCam = Camera.main;
             hpInfoParent = UITool.FindUIGameObject("HpInfo").transform;
             var position = transform.position;
-            hpUi = Instantiate(Resources.Load<BaseHpUi>("Prefab/UI/BaseHpUi"), mainCam.WorldToScreenPoint(position),
-                Quaternion.identity,hpInfoParent);
-            hpUi.owner = this;
-            hpUi.Init();
+            //hpUi = Instantiate(Resources.Load<BaseHpUi>("Prefab/UI/BaseHpUi"), mainCam.WorldToScreenPoint(position),
+            //    Quaternion.identity,hpInfoParent);
+            RecycleAbleObject hpGo = UnityObjectPoolManager.Allocate("BaseHpUi");
+            if(hpGo==null)
+                hpUi = Instantiate(Resources.Load<BaseHpUi>("Prefab/UI/BaseHpUi"), mainCam.WorldToScreenPoint(position),
+                    Quaternion.identity,hpInfoParent);
+            else
+            {
+                hpUi = hpGo.GetComponent<BaseHpUi>();
+            }
+          
+            hpUi.Init(this,GetFactionManager().factionColor,hpUiOffset);
         }
        
        
@@ -276,9 +301,14 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         {
             if (GameManager.Instance.gameMode == GameMode.Campaign)
             {
-                if (EnemyIdentifier.Instance.GetDiplomaticRelation(factionId) == DiplomaticRelation.Self)
+                DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
+                if (diplomaticRelation == DiplomaticRelation.Self)
                 {
                     selfUnits.Add(this);
+                }
+                else if (diplomaticRelation == DiplomaticRelation.Ally)
+                {
+                    
                 }
                 else
                 {
@@ -309,7 +339,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         {
             if (GameManager.Instance.gameMode == GameMode.Campaign)
             {
-                if (EnemyIdentifier.Instance.GetDiplomaticRelation(factionId) == DiplomaticRelation.Self)
+                if (EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId) == DiplomaticRelation.Self)
                 {
                     if (Time.time - lastAddTime >= 1)
                     {
@@ -325,10 +355,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
             }
         }
 
-        if (hpUi&&hpUi.gameObject&&hpUi.isActiveAndEnabled)
-        {
-            hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;
-        }
+      
         
 
     }
@@ -370,7 +397,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         {
             if (GameManager.Instance.gameMode == GameMode.Campaign)
             {
-                if(EnemyIdentifier.Instance.GetDiplomaticRelation(factionId)==DiplomaticRelation.Self)
+                if(EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId)==DiplomaticRelation.Self)
                     selfUnits.Remove(this);
                 else
                 {
@@ -390,8 +417,9 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
 
         if (hpUi)
         {
-            Destroy(hpUi.gameObject);
+           hpUi.Destroy();
         }
+        EventCenter.Broadcast(EnumEventType.UnitDied,this);
         
     }
     #endregion
@@ -591,7 +619,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     //鼠标进入时，用于更改鼠标形状及标识单位，提示可执行操作等
     private void OnMouseEnter()
     {
-        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
         if (relation == DiplomaticRelation.Enemy)
         {
             MouseShapeManager.Instance.SetMouseState(MouseState.OnEnemyUnit);
@@ -624,7 +652,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
 
     protected virtual void OnRightMouseUp()
     {
-        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
         if (relation == DiplomaticRelation.Neutral)
         {
             ShowNeutralSelectMark();
@@ -658,7 +686,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
             return;//防止UI穿透
         }
 
-        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
         if (relation == DiplomaticRelation.Self)
         {
             if (fightingManager.isHoldShift) //加选
@@ -715,9 +743,9 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     
     public virtual void Die()
     {
-        if (hpUi && hpUi.gameObject)
+        if (hpUi )
         {
-            Destroy(hpUi.gameObject);
+            hpUi.Destroy();
         }
         fogOfWarUnit.enabled = false;
         if (behaviorDesigner)
@@ -796,12 +824,6 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         {
             Die();
         }
-
-        if (hpUi && hpUi.gameObject)
-        {
-            hpUi.UpdateHpUi();
-        }
-       
         
     }
 
@@ -898,6 +920,21 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         var targetGroup = behaviorDesigner.GetVariable(BD_TargetGroup);
         if(!(targetGroup as SharedGameObjectList).Value.Contains(o))
             (targetGroup as SharedGameObjectList).Value.Add(o);
+    }
+    
+    //寻敌
+    public virtual ErrorMessage IsTargetValid (BattleUnitBase target)
+    {
+        if (target == null)
+            return ErrorMessage.invalid;
+        else if (!target.gameObject.activeInHierarchy)
+            return ErrorMessage.inactive;
+        else if (EnemyIdentifier.Instance.GetDiplomaticRelation(factionId,target.factionId)==DiplomaticRelation.Self)//自己队伍
+            return ErrorMessage.targetSameFaction;
+        else if (target.IsAlive() == false)
+            return ErrorMessage.targetDead;
+
+        return ErrorMessage.none;
     }
     #endregion 
 }

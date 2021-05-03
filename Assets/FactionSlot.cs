@@ -23,6 +23,6 @@ public class FactionSlot
     private FactionTypeInfo factionTypeInfo = null; //Type of this faction (the type determines which extra buildings/units can this faction use).
     public FactionTypeInfo GetTFactionTypeInfo() { return factionTypeInfo; }
 
-    public List<FactionLimit> factionLimits;
+    public List<FactionLimit> factionLimits=new List<FactionLimit>();
     public int maxPopulation;
 }

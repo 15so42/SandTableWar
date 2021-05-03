@@ -66,7 +66,7 @@
         
         public bool CanManageTask ()
         {
-            if (battleUnitBase.factionType == BattleUnitType.Building) //if the task holder is a building
+            if (battleUnitBase.battleUnitType == BattleUnitType.Building) //if the task holder is a building
                 if (((BaseBattleBuilding)battleUnitBase).isInBuilding ) //and the building hasn't been constructed yet 
                     return false; //can't manage tasks.
             

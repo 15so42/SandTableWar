@@ -168,9 +168,11 @@ public class WorkerUnit : BattleUnitBase
 
    public override void SetChaseTarget(BattleUnitBase battleUnitBase)
    {
-       if (battleUnitBase.configId == BattleUnitId.Mineral)
+       ResourceInfo resourceInfo = battleUnitBase.GetComponent<ResourceInfo>();
+       if (resourceInfo)
        {
-           SetTargetResource(battleUnitBase.GetComponent<ResourceInfo>());
+           resourceCollector.SetTarget(resourceInfo);
+           //SetTargetResource(battleUnitBase.GetComponent<ResourceInfo>());
        }
    }
 

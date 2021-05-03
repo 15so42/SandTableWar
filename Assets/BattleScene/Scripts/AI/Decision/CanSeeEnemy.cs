@@ -1,7 +1,9 @@
 ﻿
+    using System;
     using System.Collections.Generic;
     using BehaviorDesigner.Runtime;
     using BehaviorDesigner.Runtime.Tasks;
+    using RTSEngine;
     using UnityEngine;
 
     public class CanSeeEnemy :Conditional
@@ -17,6 +19,8 @@
         private BattleUnitBaseProp prop;
         private List<BattleUnitBase> selfUnits;
         private List<BattleUnitBase> enemyUnitsInMyView;
+
+        private Func<BattleUnitBase, ErrorMessage> isTargetValid;
         //public bool ignoreHeight=true;
         //todo 添加防空检测
         public override void OnStart()
@@ -24,7 +28,8 @@
             base.OnStart();
             prop = selfBattleUnit.Value.prop;
             enemyUnitsInMyView = BattleUnitBase.enemyUnitsInMyView;
-            selfUnits = BattleUnitBase.selfUnits;
+            selfUnits = BattleUnitBase.selfUnits; 
+            isTargetValid = selfBattleUnit.Value.IsTargetValid;
         }
 
         public override TaskStatus OnUpdate()
@@ -62,49 +67,32 @@
 
         public BattleUnitBase FindEnemy()
         {
-            //找到迷雾外的距离内的单位
             DiplomaticRelation diplomaticRelation =
-                EnemyIdentifier.Instance.GetDiplomaticRelation(selfBattleUnit.Value.factionId);
-            if (diplomaticRelation == DiplomaticRelation.Self)
+                EnemyIdentifier.Instance.GetMyDiplomaticRelation(selfBattleUnit.Value.factionId);
+            if (diplomaticRelation == DiplomaticRelation.Self)//本机自己
             {
-                for (int i = 0; i < enemyUnitsInMyView.Count; i++)
+                // for (int i = 0; i < enemyUnitsInMyView.Count; i++)
+                // {
+                //     if (Vector3.Distance(enemyUnitsInMyView[i].transform.position, transform.position) <
+                //         prop.viewDistance && enemyUnitsInMyView[i].IsAlive())
+                //     {
+                //         return enemyUnitsInMyView[i];
+                //     }
+                // }
+                if (GridSearchHandler.Instance.Search(transform.position, prop.viewDistance, isTargetValid,
+                    out var target)==ErrorMessage.none)
                 {
-                    if (Vector3.Distance(enemyUnitsInMyView[i].transform.position, transform.position) <
-                        prop.viewDistance && enemyUnitsInMyView[i].IsAlive())
-                    {
-                        return enemyUnitsInMyView[i];
-                    }
+                    return target;
                 }
-            }else if (diplomaticRelation == DiplomaticRelation.Enemy)
+            }else if (diplomaticRelation == DiplomaticRelation.Enemy)//本机上的敌人
             {
-                for (int i = 0; i < selfUnits.Count; i++)
+                if (GridSearchHandler.Instance.Search(transform.position, prop.viewDistance, isTargetValid,
+                    out var target)==ErrorMessage.none)
                 {
-                    if (Vector3.Distance(selfUnits[i].transform.position, transform.position) <
-                        prop.viewDistance)
-                    {
-                        return selfUnits[i];
-                    }
+                    return target;
                 }
             }
-            
-            
-            
-            // //todo 檢測範圍需要修改
-            // Collider[] colliders = Physics.OverlapSphere(transform.position, prop.viewDistance);
-            // foreach (var collider in colliders)
-            // {
-            //     BattleUnitBase unitBase = collider.GetComponent<BattleUnitBase>();
-            //     if (unitBase==null)
-            //     {
-            //         continue;
-            //     }
-            //     //todo 區分敵我的方式在不同模式中還需完善,如2v2模式不能使用這種方式區分
-            //     if (unitBase.campId != selfBattleUnit.Value.campId && unitBase.campId!=-1)
-            //     {
-            //         return unitBase;
-            //     }
-            // }
-           
+
             return null;
         }
 

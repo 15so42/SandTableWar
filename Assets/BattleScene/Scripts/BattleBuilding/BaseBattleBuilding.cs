@@ -93,9 +93,10 @@ public class BaseBattleBuilding : BattleUnitBase
         fogOfWarUnit.enabled = true;
         if (IsInFog() == false && hpUi != null && needShowHpUi)
         {
-            hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;//防止血条ui瞬移
+            //hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;//防止血条ui瞬移
             spawnMark.transform.position = spawnPos.transform.position;    
-            hpUi.gameObject.SetActive(true);
+            //hpUi.gameObject.SetActive(true);
+            hpUi.Show(true);
         }
 
         if (navMeshObstacle)
@@ -124,7 +125,7 @@ public class BaseBattleBuilding : BattleUnitBase
 
     protected override void InitFactionEntityType()
     {
-        factionType = BattleUnitType.Building;
+        battleUnitType = BattleUnitType.Building;
     }
 
     public override  void OnFogExit()
@@ -135,9 +136,10 @@ public class BaseBattleBuilding : BattleUnitBase
         isInFog = false;
         if (isBuilding == false && needShowHpUi)
         {
-            hpUi.gameObject.SetActive(true);
+            //hpUi.gameObject.SetActive(true);
+            hpUi.Show(true);
         }
-        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
+        DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
         if (diplomaticRelation == DiplomaticRelation.Enemy)
         {
             enemyUnitsInMyView.Add(this);
@@ -149,7 +151,8 @@ public class BaseBattleBuilding : BattleUnitBase
     {
         base.Start();
         if(IsInFog() || isBuilding)
-            hpUi.gameObject.SetActive(false);
+            //hpUi.gameObject.SetActive(false);
+            hpUi.Show(false);
        
         
         if (spawnMarkPfb != null)
@@ -310,7 +313,7 @@ public class BaseBattleBuilding : BattleUnitBase
             return;//防止UI穿透
         }
 
-        DiplomaticRelation relation = EnemyIdentifier.Instance.GetDiplomaticRelation(factionId);
+        DiplomaticRelation relation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
         if ( relation== DiplomaticRelation.Neutral|| relation==DiplomaticRelation.Enemy || relation == DiplomaticRelation.Ally )
         {
             return;
@@ -318,10 +321,11 @@ public class BaseBattleBuilding : BattleUnitBase
         base.MouseClickHandle();
 
         //打开菜单时关闭建筑血条，关闭菜单时血条回复为打开前的状态
-        bool beforeOpenDialog = hpUi.gameObject.activeSelf;
+        bool beforeOpenDialog = hpUi.GetShowingStatus();
         void OnDialogClose()
         {
-            hpUi.gameObject.SetActive(beforeOpenDialog);
+            //hpUi.gameObject.SetActive(beforeOpenDialog);
+            hpUi.Show(beforeOpenDialog);
             isOpenMenu = false;
             if (GameManager.Instance.GetFightingManager().isDragFromBuilding==false)
             {
@@ -329,7 +333,8 @@ public class BaseBattleBuilding : BattleUnitBase
             }
            
         }
-        hpUi.gameObject.SetActive(false);
+        //hpUi.gameObject.SetActive(false);
+        hpUi.Show(false);
         spawnMarkFadeTimer?.Cancel();
         if (spawnMark)
         {

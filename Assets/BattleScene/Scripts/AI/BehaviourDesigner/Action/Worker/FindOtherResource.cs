@@ -15,7 +15,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks.Worker
                 return TaskStatus.Failure;
             }
             
-            (selfUnit.Value as WorkerUnit).SetTargetResource(otherResource);
+            (selfUnit.Value as WorkerUnit).GetComponent<ResourceCollector>().SetTarget(otherResource);
             return TaskStatus.Success;
         }
 

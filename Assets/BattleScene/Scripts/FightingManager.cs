@@ -43,9 +43,25 @@ public class FightingManager
     private GameManager gameManager;
     
     private List<FactionManager> factionManagers=new List<FactionManager>();
+
+    public List<BattleUnitBase> allUnits=new List<BattleUnitBase>();
+    
+    private List<Color> factionColors=new List<Color>();
+    
+    
+    //Managers
+    private GridSearchHandler gridSearchHandler;
     public void Init()
     {
         Instance = this;
+        factionColors=new List<Color>()
+        {
+            new Color((float)49/255,(float)200/255,(float)255/255),
+            new Color((float)227/255,(float)64/255,(float)29/255),
+            new Color((float)224/255,(float)29/255,(float)226/255),
+            new Color((float)29/255,(float)77/255,(float)226/255),
+            
+        };
         mainCamera = Camera.main;
         logicMap = Object.FindObjectOfType<LogicMap>();
         gameManager=GameManager.Instance;
@@ -61,6 +77,14 @@ public class FightingManager
             };
         }
         selectMarkInCache = Resources.Load<GameObject>(SelectMarkPath);
+        
+        //事件绑定
+        EventCenter.AddListener<BattleUnitBase>(EnumEventType.UnitCreated,OnUnitCreated);
+        EventCenter.AddListener<BattleUnitBase>(EnumEventType.UnitDied,OnUnitDied);
+
+        gridSearchHandler = GameObject.FindObjectOfType<GridSearchHandler>();
+        
+        gridSearchHandler.Init();
     }
 
     private BattleUnitBase enemyBase;
@@ -75,7 +99,7 @@ public class FightingManager
             for (int i = 0; i < levelConfig.factionSlots.Count; i++)
             {
                 FactionSlot factionSlot = levelConfig.factionSlots[i];
-                FactionManager factionManager=new FactionManager(i,logicMap.GetBasePosByPlayerId(i),levelConfig.factionSlots[i]);
+                FactionManager factionManager=new FactionManager(i,logicMap.GetBasePosByPlayerId(i),levelConfig.factionSlots[i],factionColors[i]);
                 factionManager.UpdateMaxPopulation(factionSlot.maxPopulation);
                 factionManager.Init();
                 factionManagers.Add(factionManager);
@@ -85,7 +109,11 @@ public class FightingManager
             myBattleResMgr = GetMyFaction().BattleResMgr;
             //BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Bunker_M),Vector3.zero,-1);//生成碉堡
            
-            
+            //地图中立阵营
+            FactionSlot neutralFactionSlot=new FactionSlot();
+            FactionManager neutralFactionManager=new FactionManager(-1,Vector3.zero,neutralFactionSlot,Color.yellow);
+            neutralFactionManager.Init();
+            factionManagers.Add(neutralFactionManager);
             //矿物
             for (int i = 0; i < logicMap.minerals.Count; i++)
             {
@@ -98,6 +126,7 @@ public class FightingManager
                         continue;
                     factionManagers[j].AddResource(resourceInfo);
                 }
+                neutralFactionManager.AddResource(resourceInfo);
             }
             
             for (int i = 0; i < logicMap.trees.Count; i++)
@@ -111,6 +140,7 @@ public class FightingManager
                         continue;
                     factionManagers[j].AddResource(resourceInfo);
                 }
+                neutralFactionManager.AddResource(resourceInfo);
             }
             
             EventCenter.Broadcast(EnumEventType.AllFactionsInit);
@@ -499,7 +529,22 @@ public class FightingManager
     {
         return myBattleResMgr.ConsumeResByUnitInfo(spawnInfo);
     }
-    
+
+    private void OnUnitCreated(BattleUnitBase battleUnitBase)
+    {
+        if (!allUnits.Contains(battleUnitBase))
+        {
+            allUnits.Add(battleUnitBase);
+        }
+    }
+
+    private void OnUnitDied(BattleUnitBase battleUnitBase)
+    {
+        if (!allUnits.Contains(battleUnitBase))
+        {
+            allUnits.Remove(battleUnitBase);
+        }
+    }
 }
 
 /////////////////////////////////用于多单位设置终点////////////////////////////////

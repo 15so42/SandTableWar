@@ -30,17 +30,20 @@ public class FactionManager
         get => factionId;
         set => factionId = value;
     }
+
+    public Color factionColor;
     
     //Task Launchers:
     private List<TaskLauncher> taskLaunchers = new List<TaskLauncher>();
     public IEnumerable<TaskLauncher> GetTaskLaunchers () { return taskLaunchers; }
     
     private List<FactionLimit> limits=new List<FactionLimit>();
-    public FactionManager(int factionId,Vector3 basePos,FactionSlot factionSlot)
+    public FactionManager(int factionId,Vector3 basePos,FactionSlot factionSlot,Color factionColor)
     {
         FactionId = factionId;
         this.basePos = basePos;
         FactionSlot=factionSlot;
+        this.factionColor = factionColor;
     }
     
     //盟友
@@ -87,6 +90,8 @@ public class FactionManager
     public void Init()
     {
         
+           
+        
         if (factionSlot.isPlayer == false)
         {
             GameObject npcCommanderGo = GameObject.Instantiate(Resources.Load<GameObject>("NpcCommander"));
@@ -102,7 +107,10 @@ public class FactionManager
                 maxAmount = limit.maxAmount
             });
         }
-        
+        if (factionId == -1)
+        {
+            return;
+        }
         
         
         //EVENT
@@ -112,6 +120,7 @@ public class FactionManager
         EventCenter.AddListener<BattleUnitBase>(EnumEventType.UnitDied,OnUnitDied);
         EventCenter.AddListener<TaskLauncher>(EnumEventType.OnTaskLauncherAdded,OnTaskLauncherAdded);
         EventCenter.AddListener<TaskLauncher>(EnumEventType.OnTaskLauncherRemoved,OnTaskLauncherRemoved);
+        
         
     }
 
@@ -228,11 +237,13 @@ public class FactionManager
 
     public ResourceInfo FindOtherNearestResource(BattleResType resourceType,Vector3 pos)
     {
+        if (resourceDic.ContainsKey(resourceType) == false)
+            return null;
         List<ResourceInfo> resourceInfos = resourceDic[resourceType];
         resourceInfos=resourceInfos.OrderBy(x => Vector3.Distance(x.transform.position, pos)).ToList();
         for (int i = 0; i < resourceInfos.Count; i++)
         {
-            if (resourceInfos[i].CanAddWorker())
+            if (resourceInfos[i].CanAddWorker()&& resourceInfos[i].IsEmpty==false)
             {
                 return resourceInfos[i];
             }
