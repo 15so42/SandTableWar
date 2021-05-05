@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using RTSEngine;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ public class SearchCell
     private GridSearchHandler gridSearchHandler;
 
     private List<BattleUnitBase> units=new List<BattleUnitBase>();
+    private List<BattleUnitBase> resources=new List<BattleUnitBase>();
     
     //移动中的单位
     private List<BattleUnitBase> movingUnits = new List<BattleUnitBase>();
@@ -30,12 +32,23 @@ public class SearchCell
 
     public void Add(BattleUnitBase unit)
     {
-        if (!units.Contains(unit) && unit.unitMovement)
+        if (!units.Contains(unit))
         {
-            units.Add(unit);
-            unit.unitMovement.unitMoveStart += OnUnitStartMoving;
-            unit.unitMovement.unitMoveStop += OnUnitStopMoving;
+            if (unit.battleUnitType == BattleUnitType.Resource)
+            {
+                resources.Add(unit);
+            }
+            else
+            {
+                units.Add(unit);
+            }
             
+            if (unit.unitMovement)
+            {
+                unit.unitMovement.unitMoveStart += OnUnitStartMoving;
+                unit.unitMovement.unitMoveStop += OnUnitStopMoving;
+            }
+
         }
     }
     
@@ -93,8 +106,11 @@ public class SearchCell
         {
             units.Remove(unit);
             movingUnits.Remove(unit);
-            unit.unitMovement.unitMoveStart -= OnUnitStartMoving;
-            unit.unitMovement.unitMoveStop -= OnUnitStopMoving;
+            if (unit.unitMovement)
+            {
+                unit.unitMovement.unitMoveStart -= OnUnitStartMoving;
+                unit.unitMovement.unitMoveStop -= OnUnitStopMoving;
+            }
         }
         if (unitPositionCheckCoroutine != null && movingUnits.Count == 0) //if there are no more moving units and the check coroutine is runing
         {
@@ -105,20 +121,31 @@ public class SearchCell
     }
 
     
-    public List<BattleUnitBase> GetUnits()
+    public List<BattleUnitBase> GetUnits(bool resource)
     {
         //存储的单位可能已经因为死亡而销毁，因此在判断单位已经变为null或者IsAlive()==false时清除掉对应单位
         int i = 0;
-        while (i < units.Count)//因为涉及到销毁，所以使用while循环，每次销毁units.Count都会跟随而发生变化以避免发生list越界问题
+        List<BattleUnitBase> targetUnits = resource ? resources : units;
+        while (i < targetUnits.Count)//因为涉及到销毁，所以使用while循环，每次销毁units.Count都会跟随而发生变化以避免发生list越界问题
         {
-            if (units[i] == null || units[i].IsAlive() == false)
+            if (targetUnits[i] == null || targetUnits[i].IsAlive() == false)
             {
-                Remove(units[i]);
+                Remove(targetUnits[i]);
             }
 
             i++;
         }
 
-        return units;
+        return targetUnits;
+    }
+    
+    public List<BattleUnitBase> GetAllUnits()
+    {
+
+        var targetUnits = new List<BattleUnitBase>(units);
+
+        
+
+        return targetUnits.Concat(resources).ToList();
     }
 }

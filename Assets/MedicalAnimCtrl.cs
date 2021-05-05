@@ -19,6 +19,8 @@ public class MedicalAnimCtrl : BattleUnitAnimCtrl
     {
         GameObject cureBag = GameObject.Instantiate(aidPacket, aidPacketSpawnPos.position, Quaternion.identity);
         MedicalSolider medicalSolider = (battleUnitBase as MedicalSolider);
+        if(medicalSolider.cureTarget==null)
+            return;
         cureBag.transform.DOJump(medicalSolider.cureTarget.GetVictimPos(), 1, 1, 0.5f).OnComplete(
             () =>
             {

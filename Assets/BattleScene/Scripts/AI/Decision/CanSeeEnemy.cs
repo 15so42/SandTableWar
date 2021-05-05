@@ -79,7 +79,7 @@
                 //         return enemyUnitsInMyView[i];
                 //     }
                 // }
-                if (GridSearchHandler.Instance.Search(transform.position, prop.viewDistance, isTargetValid,
+                if (GridSearchHandler.Instance.Search(transform.position, prop.viewDistance,false, isTargetValid,
                     out var target)==ErrorMessage.none)
                 {
                     return target;
@@ -87,7 +87,7 @@
             }else if (diplomaticRelation == DiplomaticRelation.Enemy)//本机上的敌人
             {
                 ErrorMessage errorMessage = GridSearchHandler.Instance.Search(transform.position, prop.viewDistance,
-                    isTargetValid,
+                    false,isTargetValid,
                     out var target);
                 if (errorMessage==ErrorMessage.none)
                 {

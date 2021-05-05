@@ -12,6 +12,8 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         public SharedFloat targetDistPrediction = 20;
         [Tooltip("Multiplier for predicting the look ahead distance")]
         public SharedFloat targetDistPredictionMult = 20;
+
+        public SharedBattleUnit selfUnit;
         [Tooltip("The GameObject that the agent is pursuing")]
         public SharedGameObject target;
 
@@ -23,6 +25,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             base.OnStart();
             targetPosition = target.Value.transform.position;
             SetDestination(Target());
+            selfUnit.Value.unitMovement.StartMove();
         }
 
         // Pursue the destination. Return success once the agent has reached the destination.
@@ -35,7 +38,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
 
             // Target will return the predicated position
             SetDestination(Target());
-
+            selfUnit.Value.unitMovement.StartMove();
             return TaskStatus.Running;
         }
 
@@ -68,6 +71,16 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             targetDistPrediction = 20;
             targetDistPredictionMult = 20;
             target = null;
+        }
+
+        protected override void Stop()
+        { 
+            if (selfUnit.Value.unitMovement == null)
+            {
+                Debug.Log($"{gameObject.name}的unitMovement为空");
+            }
+            selfUnit.Value.unitMovement.StopMove();
+            base.Stop();
         }
     }
 }

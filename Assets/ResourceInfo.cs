@@ -60,7 +60,7 @@ public class ResourceInfo : MonoBehaviour
         return workerManager.CanAddWorker();
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         battleUnitBase.RemoveEnterFogListener(enterFogAction);
     }

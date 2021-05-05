@@ -13,7 +13,10 @@ public class MineralUnit : BattleResourceUnit
 
    public override void Die()
    {
-      MineMachine.Die();
+      if (MineMachine)
+      {
+         MineMachine.Die();
+      }
       base.Die();
    }
 }

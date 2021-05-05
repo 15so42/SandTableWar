@@ -34,7 +34,7 @@
                     break;
             }
             EventCenter.Broadcast(EnumEventType.OnUnitStopCollecting,selfUnit.Value,resourceInfo);
-            TipsDialog.ShowDialog("采集完成");
+            TipsDialog.ShowDialog("采集完成",false);
 
             return TaskStatus.Success;
             

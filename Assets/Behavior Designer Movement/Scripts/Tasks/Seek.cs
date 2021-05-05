@@ -29,6 +29,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         {
             base.OnStart();
             SetDestination(Target());
+            selfUnit.unitMovement.StartMove();
         }
 
        
@@ -42,7 +43,8 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                 return TaskStatus.Running;
             }
             SetDestination(Target());
-           
+            selfUnit.unitMovement.StartMove();
+            
             if (HasArrived()) {
                 return TaskStatus.Success;
             }
@@ -67,8 +69,12 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
 
         protected override void Stop()
         {
-            base.Stop();
+            if (selfUnit.unitMovement == null)
+            {
+                Debug.Log($"{gameObject.name}的unitMovement为空");
+            }
             selfUnit.unitMovement.StopMove();
+            base.Stop();
         }
 
         public override void OnEnd()

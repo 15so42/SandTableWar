@@ -1,4 +1,5 @@
-﻿using BattleScene.Scripts;
+﻿using System;
+using BattleScene.Scripts;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,14 +19,22 @@ public class BaseHpUi:MonoBehaviour
     private Camera mainCamera;
     
     private bool isShow;
+
+    private void Awake()
+    {
+        
+    }
+
     public void Init(BattleUnitBase battleUnitBase, Color factionColor, Vector3 offset)
     {
         this.factionColor = factionColor;
         hpProgress.color = this.factionColor;
-
+        this.offset = offset;
+        
         owner = battleUnitBase;
         Sprite configType=UnitIconLoader.GetSpriteByUnitId(owner.configId);
         UpdateHpUi();
+        Show(false,true);
         if (configType == null)
         {
             unitIcon.gameObject.SetActive(false);
@@ -35,6 +44,7 @@ public class BaseHpUi:MonoBehaviour
         recycleAbleObject = GetComponent<RecycleAbleObject>();
         mainCamera = Camera.main;
         owner.OnHpChanged.AddListener(UpdateHpUi);
+        Show(true,false);
     }
     public void UpdateHpUi()
     {

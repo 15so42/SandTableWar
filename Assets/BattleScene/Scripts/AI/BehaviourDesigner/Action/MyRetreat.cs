@@ -10,41 +10,58 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
     [TaskCategory("MyRTS")]
     [TaskDescription("撤退到目标位置")]
     [TaskIcon("Assets/Behavior Designer Tactical/Editor/Icons/{SkinColor}RetreatIcon.png")]
-    public class MyRetreat : NavMeshTacticalGroup
+    public class MyRetreat : MyRtsAction
     {
         [Header("撤退目标位置")]
         public SharedVector3 destinationPos;
 
+        public SharedBattleUnit enemyUnit;
         public bool canRotate=false;
         
-        protected override void AddAgentToGroup(Behavior agent, int index)
-        {
-            base.AddAgentToGroup(agent, index);
-
-            if (tacticalAgent != null) {
-                // Prevent the agent from updating its rotation so the agent can attack while retreating.
-                if(canRotate==false)
-                    tacticalAgent.UpdateRotation(false);
-            }
-        }
+        // protected override void AddAgentToGroup(Behavior agent, int index)
+        // {
+        //     base.AddAgentToGroup(agent, index);
+        //
+        //     if (tacticalAgent != null) {
+        //         // Prevent the agent from updating its rotation so the agent can attack while retreating.
+        //         if(canRotate==false)
+        //             tacticalAgent.UpdateRotation(false);
+        //     }
+        // }
 
         public override void OnStart()
         {
             base.OnStart();
             tacticalAgent.SetDestination(destinationPos.Value);
+            if (tacticalAgent != null) {
+                // Prevent the agent from updating its rotation so the agent can attack while retreating.
+                if(canRotate==false)
+                    tacticalAgent.UpdateRotation(false);
+            }
+
+            if (enemyUnit.Value != null)
+            {
+                tacticalAgent.TargetTransform = enemyUnit.Value.transform;
+                tacticalAgent.TargetDamagable = enemyUnit.Value;
+            }
+            
         }
 
 
         public override TaskStatus OnUpdate()
         {
-            var baseStatus = base.OnUpdate();
-            if (baseStatus != TaskStatus.Running || !started) {
-                return baseStatus;
-            }
+            base.OnUpdate();
+           
             
             var safe = true;
             // Try to attack the enemy while retreating.
-            FindAttackTarget();
+            //FindAttackTarget();
+            if (tacticalAgent.TargetTransform == null || enemyUnit.Value.IsAlive()==false)
+            {
+                tacticalAgent.Stop();
+                return TaskStatus.Success;
+            }
+            
             if (tacticalAgent.CanSeeTargetByDistance()) {
 
                 if (canRotate == false)

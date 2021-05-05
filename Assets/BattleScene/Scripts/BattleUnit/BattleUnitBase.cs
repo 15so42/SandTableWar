@@ -112,7 +112,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     protected PhotonAnimatorView photonAnimatorView;//进入雾中后不同步
     [Header("===战争迷雾===")]
     public Renderer[] renderers;//进入战争迷雾后关闭相关的渲染
-    protected bool isInFog = false;
+    protected bool isInFog = true;
     
     //***************************************事件绑定****************
     public UnityEvent OnHpChanged;
@@ -155,6 +155,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         fogOfWarEvents = GetComponent<FogOfWarEvents>();
         fogOfWarEvents.onFogEnter.AddListener(OnFogEnter);
         fogOfWarEvents.onFogExit.AddListener(OnFogExit);
+        fogOfWarEvents.enabled = false;
         photonAnimatorView = GetComponent<PhotonAnimatorView>();
         //因为设置campId是在awake后执行的，而且因为在网络中传输可能会有延迟，所以建筑一般先关闭迷雾，知道收到设置campId的消息后再根据情况决定是否打开迷雾。
         fogOfWarUnit = GetComponent<FogOfWarUnit>();
@@ -172,6 +173,11 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
                 taskLauncherComp.Init(FightingManager.Instance,this);
             }
         }
+
+        if (factionId == FightingManager.Instance.myFactionId)
+        {
+            isInFog = false;
+        }
     }
 
     //晚于Awake执行
@@ -182,6 +188,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
             fogOfWarUnit.enabled = true;
             fogOfWarUnit.circleRadius = prop.viewDistance;
             fogOfWarUnit.team = factionId;
+            fogOfWarEvents.enabled = true;
         }
 
     }
@@ -208,6 +215,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         isInFog = true;
         if (hpUi)
         {
+            BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.Blood_1,transform.position,Vector3.up);
             hpUi.Show(false);
         }
         DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
@@ -234,6 +242,8 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         isInFog = false;
         if (needShowHpUi)
             hpUi.Show(true);
+        
+        BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.MetalHitLarge,transform.position,Vector3.up);
         DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
         if (diplomaticRelation == DiplomaticRelation.Enemy)
         {

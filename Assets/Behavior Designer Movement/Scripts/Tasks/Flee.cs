@@ -12,6 +12,8 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         public SharedFloat fleedDistance = 20;
         [Tooltip("The distance to look ahead when fleeing")]
         public SharedFloat lookAheadDistance = 5;
+
+        public SharedBattleUnit selfUnit;
         [Tooltip("The GameObject that the agent is fleeing from")]
         public SharedGameObject target;
 
@@ -66,6 +68,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             if (!SamplePosition(destination)) {
                 return false;
             }
+            selfUnit.Value.unitMovement.StartMove();
             return base.SetDestination(destination);
         }
 
@@ -77,6 +80,12 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             fleedDistance = 20;
             lookAheadDistance = 5;
             target = null;
+        }
+
+        protected override void Stop()
+        {
+            selfUnit.Value.unitMovement.StopMove();
+            base.Stop();
         }
     }
 }

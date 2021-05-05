@@ -150,6 +150,7 @@ public class FactionManager
                 enemyUnits.Remove(battleUnitBase);
                 return;
             }
+            //todo 添加矿物死亡事件
             myUnits.Remove (battleUnitBase);
             CheckFactionDefeat(); //check if the faction doesn't have any buildings/units anymore and trigger the faction defeat in that case
         
@@ -233,6 +234,12 @@ public class FactionManager
             resourceDic.Add(resourceInfo.resourceTypeInfo.resourceType,new List<ResourceInfo>(){resourceInfo});
         }
         
+    }
+
+    public void RemoveResource(ResourceInfo resourceInfo)
+    {
+        allResources.Remove(resourceInfo);
+        resourceDic[resourceInfo.GetResourceType().resourceType].Remove(resourceInfo);
     }
 
     public ResourceInfo FindOtherNearestResource(BattleResType resourceType,Vector3 pos)

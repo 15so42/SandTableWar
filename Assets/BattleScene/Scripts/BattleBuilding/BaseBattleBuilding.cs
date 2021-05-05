@@ -85,12 +85,14 @@ public class BaseBattleBuilding : BattleUnitBase
             buildSequence.OnComplete(OnBuildSuccess);
         }
 
+        //fogOfWarUnit.enabled = true;
+
     }
     public virtual void OnBuildSuccess()
     {
         isBuilding = false;
         PlayBuildCompleteFx();
-        fogOfWarUnit.enabled = true;
+        //fogOfWarUnit.enabled = true;
         if (IsInFog() == false && hpUi != null && needShowHpUi)
         {
             //hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;//防止血条ui瞬移
@@ -150,9 +152,9 @@ public class BaseBattleBuilding : BattleUnitBase
     protected override void Start()
     {
         base.Start();
-        if(IsInFog() || isBuilding)
-            //hpUi.gameObject.SetActive(false);
-            hpUi.Show(false);
+        // if(IsInFog() || isBuilding)
+        //     //hpUi.gameObject.SetActive(false);
+        //     hpUi.Show(false);
        
         
         if (spawnMarkPfb != null)

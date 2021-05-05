@@ -104,7 +104,7 @@ public class GridSearchHandler : MonoBehaviour
     //     return ErrorMessage.none;
     // }
     //在不同单位要使用Filter时只需重写对应的IsTargetValid函数即可，比如医疗兵判断是否满血，反坦克步兵判断是否时坦克，这样就不用写多次寻敌函数
-    public ErrorMessage Search<T>(Vector3 sourcePosition, float radius, System.Func<T, ErrorMessage> isTargetValid, out T resultTarget) where T : BattleUnitBase
+    public ErrorMessage Search<T>(Vector3 sourcePosition, float radius,bool resource, System.Func<T, ErrorMessage> isTargetValid, out T resultTarget) where T : BattleUnitBase
         {
             resultTarget = null;
             ErrorMessage errorMessage;
@@ -114,7 +114,8 @@ public class GridSearchHandler : MonoBehaviour
                 return errorMessage;
 
             float distance = radius * radius;//使用sqrMangitude来节约性能
-            List<T> resultsInRadius = GetUnitsByRadius(sourcePosition, radius, isTargetValid);
+            List<T> resultsInRadius = GetUnitsByRadius(sourcePosition, radius, resource,isTargetValid);
+            resultsInRadius = resultsInRadius.OrderByDescending(x => Vector3.SqrMagnitude(x.transform.position - sourcePosition)).ToList();
             //获取到的单位是正方形网格中的所有单位，此函数的radius是寻敌半径，所以要判断半径小于寻敌半径的才是要获取的单位
             for (int i = 0; i < resultsInRadius.Count; i++)
             {
@@ -136,16 +137,16 @@ public class GridSearchHandler : MonoBehaviour
     /// <param name="sourcePosition"></param>
     /// <param name="radius"></param>
     /// <returns></returns>
-    private List<T> GetUnitsByRadius<T>(Vector3 sourcePosition, float radius,System.Func<T, ErrorMessage> filter) where T : BattleUnitBase
+    private List<T> GetUnitsByRadius<T>(Vector3 sourcePosition, float radius,bool resource,System.Func<T, ErrorMessage> filter) where T : BattleUnitBase
     {
         Vector2 lowerLeftCorner=new Vector2(sourcePosition.x-radius,sourcePosition.z-radius);
         Vector2 upperRightCorner=new Vector2(sourcePosition.x+radius,sourcePosition.z+radius);
-        if(SearchRect(lowerLeftCorner, upperRightCorner, filter, out var resultList)==ErrorMessage.none);
+        if(SearchRect(lowerLeftCorner, upperRightCorner,resource, filter, out var resultList)==ErrorMessage.none);
             return resultList;
     }
     
     //在矩形区域根据寻敌网格寻找单位，其中Filter是过滤器，这个函数也可用于鼠标框选单位功能。
-    public ErrorMessage SearchRect<T>(Vector2 lowerLeftCorner, Vector2 upperRightCorner, System.Func<T, ErrorMessage> filter, out List<T> resultList) where T : BattleUnitBase
+    public ErrorMessage SearchRect<T>(Vector2 lowerLeftCorner, Vector2 upperRightCorner, bool resource,System.Func<T, ErrorMessage> filter, out List<T> resultList) where T : BattleUnitBase
     {
         resultList = new List<T>();
         ErrorMessage errorMessage;
@@ -157,7 +158,7 @@ public class GridSearchHandler : MonoBehaviour
                 return errorMessage;
 
             //for each cell, search the stored entities (get either resources or faction entities)
-            foreach (BattleUnitBase unit in  cell.GetUnits())
+            foreach (BattleUnitBase unit in  cell.GetUnits(resource))
             {
                 if (unit == null)
                     continue;
@@ -198,7 +199,7 @@ public class GridSearchHandler : MonoBehaviour
         for (int i = 0; i < gridDict.Values.Count; i++)
         {
             SearchCell searchCell = gridDict.Values.ElementAt(i);
-            List<BattleUnitBase> cellUnits = searchCell.GetUnits();
+            List<BattleUnitBase> cellUnits = searchCell.GetAllUnits();
             Gizmos.color = Color.blue;
             for (int j = 0; j < cellUnits.Count; j++)
             {
