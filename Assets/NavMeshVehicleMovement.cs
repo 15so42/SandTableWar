@@ -68,7 +68,7 @@ namespace DefaultNamespace
                 if (hasSetTurnRoundDes == false) //d1为第一个临时路径点
                 {
                     d1 = FindTurnPoint(realDest);
-                    BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.DestionMark,d1,Vector3.forward);// 显示路径点标志
+                    //BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.DestionMark,d1,Vector3.forward);// 显示路径点标志
                     hasSetTurnRoundDes = true;
                     navMeshAgent.SetDestination(d1);
                 }
@@ -78,7 +78,7 @@ namespace DefaultNamespace
                     if (Vector3.Angle(realDest - transform.position, transform.forward) > turnAngleThreshold)//注意对比角度是和真正路径点对比
                     {
                         d1 = FindTurnPoint(realDest);
-                        BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.DestionMark,d1,Vector3.forward);
+                        //BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.DestionMark,d1,Vector3.forward);
                         navMeshAgent.SetDestination(d1);
                     }
                 }
