@@ -34,17 +34,17 @@ public class BaseHpUi:MonoBehaviour
         owner = battleUnitBase;
         Sprite configType=UnitIconLoader.GetSpriteByUnitId(owner.configId);
         UpdateHpUi();
-        Show(false,true);
+       
         if (configType == null)
         {
             unitIcon.gameObject.SetActive(false);
         }
-
+        Show(false,true);
         unitIcon.sprite = configType;
         recycleAbleObject = GetComponent<RecycleAbleObject>();
         mainCamera = Camera.main;
         owner.OnHpChanged.AddListener(UpdateHpUi);
-        Show(true,false);
+        Show(true);
     }
     public void UpdateHpUi()
     {

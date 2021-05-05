@@ -10,10 +10,10 @@ namespace FoW
 
         [Range(0.0f, 1.0f)]
         public float minFogStrength = 0.2f;
-        public UnityEvent onFogEnter;
         public UnityEvent onFogExit;
+        public UnityEvent onFogEnter;
 
-        bool _isInFog = false;
+        bool _isInFog = true;
         Transform _transform;
 
         void Start()
@@ -31,9 +31,9 @@ namespace FoW
             _isInFog = !_isInFog;
 
             if (_isInFog)
-                onFogEnter.Invoke();
-            else
                 onFogExit.Invoke();
+            else
+                onFogEnter.Invoke();
         }
     }
 }

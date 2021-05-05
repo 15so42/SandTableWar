@@ -153,8 +153,8 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         behaviorDesigner = GetComponent<BehaviorTree>();
         fogOfWar = Camera.main.GetComponent<FogOfWar>();
         fogOfWarEvents = GetComponent<FogOfWarEvents>();
-        fogOfWarEvents.onFogEnter.AddListener(OnFogEnter);
-        fogOfWarEvents.onFogExit.AddListener(OnFogExit);
+        fogOfWarEvents.onFogExit.AddListener(OnFogEnter);
+        fogOfWarEvents.onFogEnter.AddListener(OnFogExit);
         fogOfWarEvents.enabled = false;
         photonAnimatorView = GetComponent<PhotonAnimatorView>();
         //因为设置campId是在awake后执行的，而且因为在网络中传输可能会有延迟，所以建筑一般先关闭迷雾，知道收到设置campId的消息后再根据情况决定是否打开迷雾。
@@ -174,10 +174,10 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
             }
         }
 
-        if (factionId == FightingManager.Instance.myFactionId)
-        {
-            isInFog = false;
-        }
+        // if (factionId == FightingManager.Instance.myFactionId)
+        // {
+        //     isInFog = false;
+        // }
     }
 
     //晚于Awake执行
@@ -200,22 +200,22 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
 
     public void AddEnterFogListener(UnityAction action)
     {
-        fogOfWarEvents.onFogEnter.AddListener(action);
+        fogOfWarEvents.onFogExit.AddListener(action);
     }
     public void RemoveEnterFogListener(UnityAction action)
     {
-        fogOfWarEvents.onFogEnter.RemoveListener(action);
+        fogOfWarEvents.onFogExit.RemoveListener(action);
     }
     public void OnFogEnter()
     {
-       
+        BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.Blood_1,transform.position,Vector3.up);
         ShowRenderers(false);
         if(photonAnimatorView)
             photonAnimatorView.enabled = false;
         isInFog = true;
         if (hpUi)
         {
-            BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.Blood_1,transform.position,Vector3.up);
+           
             hpUi.Show(false);
         }
         DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
@@ -227,15 +227,15 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
 
     public void AddExitFogListener(UnityAction action)
     {
-        fogOfWarEvents.onFogExit.AddListener(action);
+        fogOfWarEvents.onFogEnter.AddListener(action);
     }
     public void RemoveExitFogListener(UnityAction action)
     {
-        fogOfWarEvents.onFogExit.RemoveListener(action);
+        fogOfWarEvents.onFogEnter.RemoveListener(action);
     }
     public virtual void OnFogExit()
     {
-        
+        BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.MetalHitLarge,transform.position,Vector3.up);
         ShowRenderers(true);
         if(photonAnimatorView)
             photonAnimatorView.enabled = true;
@@ -243,7 +243,6 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         if (needShowHpUi)
             hpUi.Show(true);
         
-        BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.MetalHitLarge,transform.position,Vector3.up);
         DiplomaticRelation diplomaticRelation = EnemyIdentifier.Instance.GetMyDiplomaticRelation(factionId);
         if (diplomaticRelation == DiplomaticRelation.Enemy)
         {

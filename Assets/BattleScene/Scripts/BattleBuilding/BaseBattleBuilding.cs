@@ -306,7 +306,7 @@ public class BaseBattleBuilding : BattleUnitBase
 
     protected override void MouseClickHandle()
     {  
-        if (isBuilding)
+        if (isBuilding || menuCommands.Length == 0)
         {
             return;
         }
@@ -344,6 +344,8 @@ public class BaseBattleBuilding : BattleUnitBase
         }
         isOpenMenu = true;
         buildingMenuDialog = BattleBuildingMenuDialog.ShowDialog(this,menuCommands,OnDialogClose) as BattleBuildingMenuDialog;
+        
+        
     }
 
     public float GetSpawnRatio()
