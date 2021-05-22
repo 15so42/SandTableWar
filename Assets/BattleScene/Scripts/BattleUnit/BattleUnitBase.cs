@@ -208,7 +208,8 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     }
     public void OnFogEnter()
     {
-        BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.Blood_1,transform.position,Vector3.up);
+        //BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.Blood_1,transform.position,Vector3.up);
+        BattleFlyGraphicHandler.Instance.FlyText(transform.position, "EnterFog",0);
         ShowRenderers(false);
         if(photonAnimatorView)
             photonAnimatorView.enabled = false;
@@ -235,7 +236,8 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     }
     public virtual void OnFogExit()
     {
-        BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.MetalHitLarge,transform.position,Vector3.up);
+        //BattleFxManager.Instance.SpawnFxAtPosInPhotonByFxType(BattleFxType.MetalHitLarge,transform.position,Vector3.up);
+        BattleFlyGraphicHandler.Instance.FlyText(transform.position,"ExitFog",0);
         ShowRenderers(true);
         if(photonAnimatorView)
             photonAnimatorView.enabled = true;

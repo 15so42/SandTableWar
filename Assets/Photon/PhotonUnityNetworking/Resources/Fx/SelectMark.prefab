@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2173649092773992118}
   - component: {fileID: 5677018162349480221}
   - component: {fileID: 8997100734987042421}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: SelectMark
   m_TagString: Untagged
   m_Icon: {fileID: 0}

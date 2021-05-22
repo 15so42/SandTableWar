@@ -51,6 +51,7 @@ public class FightingManager
     
     //Managers
     private GridSearchHandler gridSearchHandler;
+    private BattleFlyGraphicHandler battleFlyGraphicHandler;
     public void Init()
     {
         Instance = this;
@@ -83,8 +84,10 @@ public class FightingManager
         EventCenter.AddListener<BattleUnitBase>(EnumEventType.UnitDied,OnUnitDied);
 
         gridSearchHandler = GameObject.FindObjectOfType<GridSearchHandler>();
+        battleFlyGraphicHandler = GameObject.FindObjectOfType<BattleFlyGraphicHandler>();
         
         gridSearchHandler.Init();
+        battleFlyGraphicHandler.Init();
     }
 
     private BattleUnitBase enemyBase;
