@@ -143,14 +143,22 @@ public class FactionManager
 
     private void OnUnitDied(BattleUnitBase battleUnitBase)
     {
-       
+            //维护资源列表，保证其中没有已经被销毁的或者空的资源
+            if (battleUnitBase.battleUnitType == BattleUnitType.Resource)
+            {
+                ResourceInfo resourceInfo = ((BattleResourceUnit) battleUnitBase).resourceInfo;
+                if (resourceDic.TryGetValue(resourceInfo.GetResourceType().resourceType, out var list))
+                {
+                    list.Remove(resourceInfo);
+                }
+            }
             //if this is a free unit or does not belong to this faction
             if(battleUnitBase.factionId != factionId)
             {
                 enemyUnits.Remove(battleUnitBase);
                 return;
             }
-            //todo 添加矿物死亡事件
+           
             myUnits.Remove (battleUnitBase);
             CheckFactionDefeat(); //check if the faction doesn't have any buildings/units anymore and trigger the faction defeat in that case
         

@@ -136,7 +136,7 @@ MonoBehaviour:
     overrideState: 1
     value: 16
   tint:
-    overrideState: 1
+    overrideState: 0
     value: 30
   colorFilter:
     overrideState: 0
@@ -146,10 +146,10 @@ MonoBehaviour:
     value: 0
   saturation:
     overrideState: 1
-    value: -22
+    value: -2
   brightness:
     overrideState: 1
-    value: 12
+    value: 8
   postExposure:
     overrideState: 0
     value: 0

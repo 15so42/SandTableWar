@@ -11,6 +11,7 @@ public enum EnumEventType
     UnitDied,
     
     ResourceCreated,
+    ResourceEmpty,
     
     OnTaskLauncherAdded,
     OnTaskLauncherRemoved,

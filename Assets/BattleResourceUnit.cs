@@ -15,4 +15,10 @@ public class BattleResourceUnit : BattleUnitBase
     {
         battleUnitType = BattleUnitType.Resource;
     }
+
+    public override void Die()
+    {
+        base.Die();
+        EventCenter.Broadcast(EnumEventType.ResourceEmpty);
+    }
 }

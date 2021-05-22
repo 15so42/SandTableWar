@@ -105,6 +105,7 @@ public struct CollectCapacityConfig
                 foreach (var collectPrg in collectProgress)
                 {
                     battleResMgr.UpdateResource(collectPrg.Key.resourceType,collectPrg.Value.collectedAmount,true);
+                    BattleFlyGraphicHandler.Instance.FlyText(transform.position,$"交付{collectPrg.Key.resourceType}*{collectPrg.Value.collectedAmount}给{battleUnitBase.factionId}",1);
                 }
             }
 

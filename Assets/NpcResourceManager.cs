@@ -15,6 +15,7 @@ using RTSEngine;
         {
             base.Init(fightingManager, npcCommander, factionMgr);
             EventCenter.AddListener<ResourceInfo>(EnumEventType.ResourceCreated,OnResourceCreated);
+            EventCenter.AddListener<ResourceInfo>(EnumEventType.ResourceEmpty,OnResourceCreated);
         }
 
        
@@ -23,9 +24,15 @@ using RTSEngine;
         {
             npcCommander.GetNpcComp<NpcResourceCollector>().AddResourceToCollect(resource);
         }
+        
+        public void OnResourceRemoved(ResourceInfo resource)
+        {
+            npcCommander.GetNpcComp<NpcResourceCollector>().AddResourceToCollect(resource);
+        }
 
         private void OnDisable()
         {
             EventCenter.RemoveListener<ResourceInfo>(EnumEventType.ResourceCreated,OnResourceCreated);
+            EventCenter.AddListener<ResourceInfo>(EnumEventType.ResourceEmpty,OnResourceCreated);
         }
     }
