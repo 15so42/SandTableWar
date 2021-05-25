@@ -93,6 +93,7 @@ public class WorkerUnit : BattleUnitBase
            resourceTarget.transform.position,factionId).gameObject;
           // GameObject.Instantiate(MineMachineModel, mineTarget.transform.position, Quaternion.identity);
         iMineMachine.GetComponent<MineMachine>().buildTime = setMineMachineTime;
+        iMineMachine.GetComponent<MineMachine>().factionId = factionId;
        SerMineMachineSequence = DOTween.Sequence();
        //sequence.Join(iMineMachine.transform.DOShakeScale(2f));
        iMineMachine.transform.localScale=Vector3.zero;

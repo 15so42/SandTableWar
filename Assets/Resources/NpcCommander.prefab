@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabdfdf8cdb548947a6429928fd81354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  independentUnits: 0400000002000000
+  independentUnits: 
 --- !u!1 &1721609797906987371
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +153,7 @@ Transform:
   - {fileID: 1721609798167787839}
   - {fileID: 1721609797728828586}
   - {fileID: 1721609797592688882}
+  - {fileID: 5397282244064674996}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -168,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a082919147a08da47a026a68b743879c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowResourcesTime: 30
+  lowResourcesTime: 10
 --- !u!1 &1721609798167787838
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,3 +241,118 @@ MonoBehaviour:
       Version: 1.6.7
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 0
+--- !u!1 &2045216948990887717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5397282244064674996}
+  - component: {fileID: 475964730394494471}
+  - component: {fileID: 4266967452061690545}
+  - component: {fileID: 447898029384484134}
+  m_Layer: 0
+  m_Name: NpcAttackManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5397282244064674996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045216948990887717}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1721609797906987369}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &475964730394494471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045216948990887717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54a284fc5830d849829ee4290fdbaa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canDefend: 1
+  defenseRatioRange:
+    min: 0.2
+    max: 0.3
+  cancelAttackOnDefense: 1
+  cancelDefenseReloadRange:
+    min: 3
+    max: 7
+  unitSupportEnabled: 1
+  unitSupportRange:
+    min: 10
+    max: 30
+--- !u!114 &4266967452061690545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045216948990887717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c007758860da76646a06a19a98cc8800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canAttack: 1
+  attackResources:
+  - {fileID: 11400000, guid: a29559bc6dab35040a42527622ae5011, type: 2}
+  targetFactionType: 0
+  setTargetFactionDelay:
+    min: 10
+    max: 15
+  launchAttackReloadRange:
+    min: 10
+    max: 15
+  launchAttackResources:
+  - resType: 1
+    Amount:
+      min: 100
+      max: 200
+  attackOrderReloadRange:
+    min: 3
+    max: 7
+  sendOnlyIdle: 1
+  targetPicker:
+    targetList: []
+    engageUnits: 1
+    engageFlyingUnits: 1
+    engageBuildings: 1
+  cancelAttackResources:
+  - resType: 3
+    Amount:
+      min: 10
+      max: 20
+--- !u!114 &447898029384484134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045216948990887717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c9b7433cecc2941a99701d26695b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armyUnits: 0000000002000000030000000100000008000000
+  forceArmyCreation: 0
+  forceCreationReloadRange:
+    min: 10
+    max: 15

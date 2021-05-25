@@ -76,6 +76,9 @@ namespace BattleScene.Scripts.AI
         
         protected abstract void OnSuccessfulRemove(T factionEntity);
         
+        /// </summary>
+        public void IncMinAmount() { MinAmount++; }
+        
         public bool HasReachedMinAmount()
         {
             return Count >= MinAmount;

@@ -43,6 +43,7 @@ public class BattleFlyGraphicHandler : MonoBehaviour
         iTextGo.transform.position = Vector3.zero;
         TextMeshPro iTextTextComp=iTextGo.GetComponent<TextMeshPro>();
         iTextTextComp.text = str;
+        iTextTextComp.text.Replace("\\n", "\n");
         iTextTextComp.DOFade(1, 0);
         
         

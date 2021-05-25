@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MineMachine : BaseBattleBuilding
 {
-    public Transform[] mineLeave;
     public LineRenderer[] lineRenderers;
     public Transform[] shootPoints;
     private Vector3[] lastMinePoint;
@@ -19,7 +18,7 @@ public class MineMachine : BaseBattleBuilding
             transform.position + Random.insideUnitSphere, transform.position + Random.insideUnitSphere,
             transform.position + Random.insideUnitSphere, transform.position + Random.insideUnitSphere
         };
-        GameManager.Instance.GetFightingManager().myBattleResMgr.UpdateIncreaseRate(BattleResType.Mineral,1,true);
+        GameManager.Instance.GetFightingManager().GetFaction(factionId).BattleResMgr.UpdateIncreaseRate(BattleResType.Mineral,1,true);
     }
 
     //private float timer;
@@ -59,7 +58,7 @@ public class MineMachine : BaseBattleBuilding
             lineRenderers[i].transform.gameObject.AddComponent<MeshCollider>().convex=true;
             lineRenderers[i].gameObject.AddComponent<Rigidbody>();
         }
-        GameManager.Instance.GetFightingManager().myBattleResMgr.UpdateIncreaseRate(BattleResType.Mineral,1,false);
+        GameManager.Instance.GetFightingManager().GetFaction(factionId).BattleResMgr.UpdateIncreaseRate(BattleResType.Mineral,1,false);
         base.Die();
     }
 }

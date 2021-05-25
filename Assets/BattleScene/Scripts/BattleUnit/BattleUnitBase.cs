@@ -73,6 +73,8 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     [Header("兵种")]
     public BattleUnitId configId;
 
+    public bool attackAble;
+
     private Outlinable victimOutline;
     private Timer victimFxTimer;//受击特效计时器
     //静态全局单位列表
@@ -92,6 +94,8 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     //初始目标点
     [HideInInspector] public Vector3 spawnTargetPos;
 
+    public BattleUnitBase creatorBuilding;
+    
     protected FogOfWarUnit fogOfWarUnit;
     protected FogOfWar fogOfWar;
     protected FogOfWarEvents fogOfWarEvents;

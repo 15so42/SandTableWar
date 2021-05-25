@@ -34,7 +34,8 @@
                     break;
             }
             EventCenter.Broadcast(EnumEventType.OnUnitStopCollecting,selfUnit.Value,resourceInfo);
-            TipsDialog.ShowDialog("采集完成",false);
+            // TipsDialog.ShowDialog("采集完成",false);
+            BattleFlyGraphicHandler.Instance.FlyText(transform.position, "采集完成",1);
 
             return TaskStatus.Success;
             

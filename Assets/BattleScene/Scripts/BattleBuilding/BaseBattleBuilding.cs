@@ -273,6 +273,7 @@ public class BaseBattleBuilding : BattleUnitBase
         {
             BattleUnitBase spawnedUnit=BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(curSpawnInfo,spawnPos.position,factionId);
             spawnedUnit.spawnTargetPos = spawnMark.transform.position;
+            spawnedUnit.creatorBuilding = this;
         }
         toSpawn.Pop();
         //下一个单位

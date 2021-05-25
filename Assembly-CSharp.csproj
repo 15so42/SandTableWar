@@ -58,6 +58,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AttackManager.cs" />
+     <Compile Include="Assets\AttackTargetPicker.cs" />
      <Compile Include="Assets\AutomaticBatteryAnimCtrl.cs" />
      <Compile Include="Assets\BattleBuildingMenuDialog.cs" />
      <Compile Include="Assets\BattleCamera.cs" />
@@ -162,6 +164,7 @@
      <Compile Include="Assets\BattleScene\Scripts\FactionEntityTask.cs" />
      <Compile Include="Assets\BattleScene\Scripts\FactionTypeInfo.cs" />
      <Compile Include="Assets\BattleScene\Scripts\FightingManager.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\MoveManager.cs" />
      <Compile Include="Assets\BattleScene\Scripts\Range.cs" />
      <Compile Include="Assets\BattleScene\Scripts\RecycleAbleObject.cs" />
      <Compile Include="Assets\BattleScene\Scripts\SharedNpcCommander.cs" />
@@ -895,8 +898,11 @@
      <Compile Include="Assets\MouseShapeManager.cs" />
      <Compile Include="Assets\NavMeshVehicleMovement.cs" />
      <Compile Include="Assets\NpcActiveRegulatorMonitor.cs" />
+     <Compile Include="Assets\NpcArmyCreator.cs" />
+     <Compile Include="Assets\NpcAttackManager.cs" />
      <Compile Include="Assets\NpcCommander.cs" />
      <Compile Include="Assets\NpcComponent.cs" />
+     <Compile Include="Assets\NpcDefenseManager.cs" />
      <Compile Include="Assets\NpcResourceCollector.cs" />
      <Compile Include="Assets\NpcResourceManager.cs" />
      <Compile Include="Assets\NpcUnitCreator.cs" />
@@ -935,6 +941,7 @@
      <Compile Include="Assets\TankAUnit.cs" />
      <Compile Include="Assets\TankAnimCtrl.cs" />
      <Compile Include="Assets\TankWeapon.cs" />
+     <Compile Include="Assets\TargetPicker.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

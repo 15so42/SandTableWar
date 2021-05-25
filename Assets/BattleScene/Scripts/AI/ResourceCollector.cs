@@ -13,7 +13,7 @@ using UnityTimer;
     }
 
 [System.Serializable]
-public struct CollectCapacityConfig
+public class CollectCapacityConfig
 {
     public ResourceTypeInfo resourceTypeInfo;
     [Header("每次动作采集量")]
@@ -100,14 +100,19 @@ public struct CollectCapacityConfig
         public void DeliveryResource()
         {
             BattleResMgr battleResMgr = FightingManager.Instance.GetFaction(battleUnitBase.factionId).BattleResMgr;
-            foreach (var item in collectProgress)
+            string s = "";
+            
+            foreach (var collectPrg in collectProgress)
             {
-                foreach (var collectPrg in collectProgress)
+                battleResMgr.UpdateResource(collectPrg.Key.resourceType,collectPrg.Value.collectedAmount,true);
+                if (collectPrg.Value.collectedAmount != 0)
                 {
-                    battleResMgr.UpdateResource(collectPrg.Key.resourceType,collectPrg.Value.collectedAmount,true);
-                    BattleFlyGraphicHandler.Instance.FlyText(transform.position,$"交付{collectPrg.Key.resourceType}*{collectPrg.Value.collectedAmount}给{battleUnitBase.factionId}",1);
+                    s += $"{collectPrg.Key.resourceType}*{collectPrg.Value.collectedAmount}\n";
                 }
+
             }
+            
+            BattleFlyGraphicHandler.Instance.FlyText(transform.position,s,1);
 
             for (int i = 0; i < collectProgress.Values.Count; i++)
             {

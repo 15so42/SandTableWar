@@ -25,6 +25,8 @@ public class FactionManager
     //阵营id
     private  int factionId;
 
+    public bool isLost;//是否战败
+
     public int FactionId
     {
         get => factionId;
@@ -51,7 +53,8 @@ public class FactionManager
 
     //阵营内得所有单位
     public List<BattleUnitBase> myUnits=new List<BattleUnitBase>();
-    public List<BattleUnitBase> enemyUnits=new List<BattleUnitBase>();
+    //public List<BattleUnitBase> enemyUnits=new List<BattleUnitBase>();
+    public List<BattleUnitBase> attackUnits=new List<BattleUnitBase>();
     public List<BattleUnitBase> buildings=new List<BattleUnitBase>();
     
     //资源,Npc的资源直接获取全图资源，玩家的资源必须由自己探图将进入视野的资源加入
@@ -89,9 +92,6 @@ public class FactionManager
 
     public void Init()
     {
-        
-           
-        
         if (factionSlot.isPlayer == false)
         {
             GameObject npcCommanderGo = GameObject.Instantiate(Resources.Load<GameObject>("NpcCommander"));
@@ -123,6 +123,8 @@ public class FactionManager
         
         
     }
+    
+    
 
     public void OnAllFactionsInited()
     {
@@ -133,11 +135,20 @@ public class FactionManager
     {
         if (battleUnitBase.factionId != factionId)
         {
-            enemyUnits.Add(battleUnitBase);
+            //enemyUnits.Add(battleUnitBase);
         }
         else
         {
             myUnits.Add(battleUnitBase);
+            if (battleUnitBase.attackAble)
+            {
+                attackUnits.Add(battleUnitBase);
+            }
+
+            if (battleUnitBase.battleUnitType == BattleUnitType.Building)
+            {
+                buildings.Add(battleUnitBase);
+            }
         }
     }
 
@@ -155,11 +166,19 @@ public class FactionManager
             //if this is a free unit or does not belong to this faction
             if(battleUnitBase.factionId != factionId)
             {
-                enemyUnits.Remove(battleUnitBase);
+                //enemyUnits.Remove(battleUnitBase);
                 return;
             }
            
             myUnits.Remove (battleUnitBase);
+            if (battleUnitBase.attackAble)
+            {
+                attackUnits.Remove(battleUnitBase);
+            }
+            if (battleUnitBase.battleUnitType == BattleUnitType.Building)
+            {
+                buildings.Remove(battleUnitBase);
+            }
             CheckFactionDefeat(); //check if the faction doesn't have any buildings/units anymore and trigger the faction defeat in that case
         
     }
@@ -289,4 +308,35 @@ public class FactionManager
     {
         return factionSlot.isPlayer;
     }
+    
+    #region Attack
+
+    public List<BattleUnitBase> GetUnits()
+    {
+        return myUnits;
+    }
+    
+    public List<BattleUnitBase> GetAttackUnits(float ratio=1)
+    {
+        return attackUnits;
+    }
+
+    public List<BattleUnitBase> GetBuildings()
+    {
+        return buildings;
+    }
+
+    public BattleUnitBase GetNearestBuilding(Vector3 pos)
+    {
+        buildings=buildings.OrderBy(x => Vector3.Distance(x.transform.position, pos)).ToList();
+        if (buildings.Count == 0)
+            return null;
+        return buildings[0];
+    }
+
+    public BattleUnitBase GetBaseBuilding()
+    {
+        return buildings.Find(x => x.configId == BattleUnitId.Base);
+    }
+    #endregion
 }

@@ -6,6 +6,12 @@ using UnityEngine;
 public class CollisionDetection : MonoBehaviour
 {
    public List<Collider> colliders=new List<Collider>();
+
+   private void OnDisable()
+   {
+      colliders.Clear();
+   }
+
    private void OnTriggerEnter(Collider other)
    {
       colliders.Add(other);

@@ -1457,7 +1457,7 @@ MonoBehaviour:
     soulDamageResistance: 30
     realDamageResistance: 30
     viewDistance: 10
-    attackDistance: 10
+    attackDistance: 8
   resCollectorComp: {fileID: 0}
   unitMovement: {fileID: 0}
   taskLauncherComp: {fileID: 0}
@@ -1475,12 +1475,14 @@ MonoBehaviour:
   rotateDamp: 10
   overrideRotationCtrl: 1
   configId: 0
+  attackAble: 1
   isGoingBuilding: 0
   isInBuilding: 0
   defenceBuilding: {fileID: 0}
   animCtrl: {fileID: 0}
   visibleOnPhoton: 0
   spawnTargetPos: {x: 0, y: 0, z: 0}
+  creatorBuilding: {fileID: 0}
   renderers: []
   OnHpChanged:
     m_PersistentCalls:
@@ -1645,10 +1647,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   minFogStrength: 0.2
-  onFogEnter:
+  onFogExit:
     m_PersistentCalls:
       m_Calls: []
-  onFogExit:
+  onFogEnter:
     m_PersistentCalls:
       m_Calls: []
 --- !u!208 &7031461786831488545
@@ -1717,6 +1719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e5f35bf2553f24993821efd078f091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  airUnit: 0
 --- !u!1 &5161056531410845774
 GameObject:
   m_ObjectHideFlags: 0

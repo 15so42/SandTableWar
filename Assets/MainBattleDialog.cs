@@ -23,6 +23,8 @@ public class MainBattleDialog : Dialog<MainBattleDialogContext>
     public Text mineralIncreaseRateText;
     public Text foodText;
     public Text foodIncreaseRateText;
+    public Text woodText;
+    public Text woodIncreaseRateText;
 
     [Header("GlobalItemManager")] public GlobalItemManager globalItemManager;
     
@@ -66,6 +68,9 @@ public class MainBattleDialog : Dialog<MainBattleDialogContext>
         foodText.text = battleResMgr.GetRemainingResByResType(BattleResType.Food).ToString("#0");
         float foodIncrease = battleResMgr.battleResIncreaseRate[BattleResType.Food];
         foodIncreaseRateText.text = $"{(foodIncrease > 0 ? "+" : "-")}{foodIncrease:#0.0}/s";
+        woodText.text = battleResMgr.GetRemainingResByResType(BattleResType.Wood).ToString("#0");
+        float woodInCrease = battleResMgr.battleResIncreaseRate[BattleResType.Wood];
+        woodIncreaseRateText.text = $"{(woodInCrease > 0 ? "+" : "-")}{woodInCrease:#0.0}/s";
     }
 
     #region 全局道具

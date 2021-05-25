@@ -6,6 +6,8 @@ using UnityEngine;
 public class UnitMovement : MonoBehaviour
 {
     private BattleUnitBase battleUnitBase;
+
+    public bool airUnit;
     // Start is called before the first frame update
     void Start()
     {

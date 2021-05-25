@@ -10,6 +10,8 @@ public enum EnumEventType
     UnitCreated,
     UnitDied,
     
+    OnFactionUnitDamaged,//用于单位被攻击时呼叫支援
+    
     ResourceCreated,
     ResourceEmpty,
     

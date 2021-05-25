@@ -9,6 +9,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum DefeatConditions
+{
+    eliminateAll,
+}
 public class FightingManager
 {
     public static FightingManager Instance;
@@ -47,11 +51,14 @@ public class FightingManager
     public List<BattleUnitBase> allUnits=new List<BattleUnitBase>();
     
     private List<Color> factionColors=new List<Color>();
-    
+
+    public DefeatConditions defeatCondition;
     
     //Managers
     private GridSearchHandler gridSearchHandler;
     private BattleFlyGraphicHandler battleFlyGraphicHandler;
+    public AttackManager attackManager;
+    public MoveManager moveManager;
     public void Init()
     {
         Instance = this;
@@ -85,9 +92,13 @@ public class FightingManager
 
         gridSearchHandler = GameObject.FindObjectOfType<GridSearchHandler>();
         battleFlyGraphicHandler = GameObject.FindObjectOfType<BattleFlyGraphicHandler>();
+        attackManager=new AttackManager();
+        moveManager=new MoveManager();
         
         gridSearchHandler.Init();
         battleFlyGraphicHandler.Init();
+        attackManager.Init(this);
+        moveManager.Init(this);
     }
 
     private BattleUnitBase enemyBase;
@@ -178,7 +189,20 @@ public class FightingManager
         return factionManagers.Find(x => x.FactionId==value);
     }
 
-    
+    public List<FactionManager> GetFactions()
+    {
+        return factionManagers;
+    }
+
+    public DefeatConditions GetDefeatCondition()
+    {
+        return defeatCondition;
+    }
+
+    public bool InPeaceTime()
+    {
+        return Time.time < 5;
+    }
 
     public float GetSpeedModifier()
     {
@@ -325,12 +349,15 @@ public class FightingManager
     /// <param name="pos"></param>
     public void MoveToSpecificPos(Vector3 pos)
     {
-        //selectedUnits[0].SetFlockLeader(selectedUnits);
-        
+        MoveToSpecificPos(selectedUnits,pos);
+    }
+
+    public void MoveToSpecificPos(List<BattleUnitBase> units, Vector3 pos)
+    {
         List<DestinationSphereData> destinationSphereData=new List<DestinationSphereData>();
         int i = 0;
         float radius=1;//每填充一个单位，随机位置半径增大1
-        foreach (var unit in selectedUnits)
+        foreach (var unit in units)
         {
             if(unit==null || unit.navMeshAgent==false)
                 return;//单位已经被消灭
@@ -357,24 +384,7 @@ public class FightingManager
                 radius++;
               
             }
-
-          
-            
-           
-
-            //radius++;
-           
-            
-            //unit.SetTargetPos(pos);
-            //todo 添加特效
-            // GameObject mark = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            // mark.transform.position = raycastHit.point;
         }
-
-        // for (int j = 0; j < destinationSphereData.Count; j++)
-        // {
-        //     unit
-        // }
     }
     
     //检测预测终点是否已经有其他agent占用
@@ -504,10 +514,11 @@ public class FightingManager
                if (Random.Range(0, percentage)<=percentage)
                {
                    Attack(attcker,building,damageValue);
-                   return;//玩家概率免伤
+                   damageValue = 0; //玩家概率免伤
                }
            }
        }
+       EventCenter.Broadcast(EnumEventType.OnFactionUnitDamaged,victim,damageValue,attcker);
        victim.ReduceHp(damageValue);
     }
     
