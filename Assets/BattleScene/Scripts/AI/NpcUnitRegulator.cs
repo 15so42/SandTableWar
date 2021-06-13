@@ -26,7 +26,7 @@ namespace BattleScene.Scripts.AI
 
         private NpcUnitCreator npcUnitCreator; 
         
-        public NpcUnitRegulator(NpcUnitRegulatorData data, BattleUnitId battleUnitId, FightingManager fightingManager, FactionManager factionManager,NpcUnitCreator npcUnitCreator) : base(data, battleUnitId, fightingManager, factionManager)
+        public NpcUnitRegulator(NpcUnitRegulatorData data, BattleUnitId battleUnitId, FightingManager fightingManager, NpcCommander npcCommander,NpcUnitCreator npcUnitCreator) : base(data, battleUnitId, fightingManager, npcCommander)
         {
             this.Data = data;
             ratio = Data.GetRatio();
@@ -150,11 +150,7 @@ namespace BattleScene.Scripts.AI
             EventCenter.RemoveListener<TaskLauncher>(EnumEventType.OnTaskLauncherRemoved,OnTaskLauncherRemoved);
         }
         
-        public bool HasReachedMaxAmount()
-        {
-            //todo || factionMgr.HasReachedLimit(Code, Category)
-            return Count >= MaxAmount  || pendingAmount >= MaxPendingAmount;
-        }
+       
 
 
         protected override void OnSuccessfulRemove(BattleUnitBase factionEntity)

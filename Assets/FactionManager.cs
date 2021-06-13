@@ -56,6 +56,7 @@ public class FactionManager
     //public List<BattleUnitBase> enemyUnits=new List<BattleUnitBase>();
     public List<BattleUnitBase> attackUnits=new List<BattleUnitBase>();
     public List<BattleUnitBase> buildings=new List<BattleUnitBase>();
+    public List<BaseBattleBuilding> buildingCenters=new List<BaseBattleBuilding>();
     
     //资源,Npc的资源直接获取全图资源，玩家的资源必须由自己探图将进入视野的资源加入
     public List<ResourceInfo> allResources=new List<ResourceInfo>();
@@ -292,11 +293,31 @@ public class FactionManager
         return temp.ElementAtOrDefault(0);
     }
 
-    public List<BattleUnitBase> FindUnitsByUnitId(BattleUnitId value)
+    public List<T> FindUnitsByUnitId<T>(List<T> toFindList,BattleUnitId value) where T:BattleUnitBase 
     { 
-        var units=myUnits.FindAll(x => x.configId == value);
+        var units=toFindList.FindAll(x => x.configId == value);
         return units;
     }
+    public List<T> FindResourcesByUnitId<T>(List<T> toFindList,BattleUnitId value) where T:ResourceInfo 
+    { 
+        var units=toFindList.FindAll(x => x.GetBattleUnitId() == value);
+        return units;
+    }
+
+    public List<BattleUnitBase> FindBuildingsInRange(BaseBattleBuilding buildingCenter,float radius)
+    {
+        var inRange = new List<BattleUnitBase>();
+        foreach (var building in buildings)
+        {
+            if (Vector3.Distance(building.transform.position, buildingCenter.transform.position) < radius)
+            {
+                inRange.Add(building);
+            }
+        }
+
+        return inRange;
+    }
+    
     
     public BattleUnitBase FindNearest(BattleUnitId value,Vector3 pos)
     {
@@ -338,5 +359,29 @@ public class FactionManager
     {
         return buildings.Find(x => x.configId == BattleUnitId.Base);
     }
+
+    public List<BaseBattleBuilding> GetBuildingCenters()
+    {
+        return buildingCenters;
+    }
+    
+    /// <summary>
+    /// Searches for a building center that allows the given building type to be built inside its territory.
+    /// </summary>
+    /// <param name="building">Code of the building type to place/build.</param>
+    /// <returns></returns>
+    public BaseBattleBuilding GetFreeBuildingCenter (BattleUnitId buildingId)
+    {
+        //go through the building centers of the faciton
+        foreach(BaseBattleBuilding center in buildingCenters)
+            //see if the building center can have the input building placed around it:
+            if(center.borderComp.AllowBuildingInBorder(buildingId))
+                //if yes then return this center:
+                return center;
+
+        //no center found? 
+        return null;
+    }
+
     #endregion
 }

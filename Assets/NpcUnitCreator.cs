@@ -102,8 +102,8 @@ public class NpcUnitCreator : NpcComponent
     public NpcUnitRegulator ActivateUnitRegulator(BattleUnitId battleUnitId)
     {
         NpcUnitRegulatorData data =
-            ConfigHelper.Instance.GetNpcUnitRegulatorData(battleUnitId,
-                factionMgr.FactionSlot.npcDifficulty); //get the regulator data
+            ConfigHelper.Instance.GetNpcRegulatorData(battleUnitId,
+                factionMgr.FactionSlot.npcDifficulty) as NpcUnitRegulatorData; //get the regulator data
 
         if (data == null) //invalid regulator data?
             return null; //do not proceed
@@ -116,7 +116,7 @@ public class NpcUnitCreator : NpcComponent
         ActiveUnitRegulator newUnitRegulator = new ActiveUnitRegulator()
         {
             //create new instance
-            instance = new NpcUnitRegulator(data, battleUnitId, fightingManager, factionMgr,this),
+            instance = new NpcUnitRegulator(data, battleUnitId, fightingManager, npcCommander,this),
             //initial spawning timer: regular spawn reload + start creating after value
             spawnTimer = data.GetCreationDelayTime()
         };

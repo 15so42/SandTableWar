@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FoW;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(WorkerManager))]
@@ -13,6 +14,8 @@ public class ResourceInfo : MonoBehaviour
     private int factionId;
 
     private BattleUnitBase battleUnitBase;
+    [Header("Npc围绕资源放置建筑时的半径")]
+    private float aroundRadius = 2;
 
     public int FactionId
     {
@@ -41,6 +44,12 @@ public class ResourceInfo : MonoBehaviour
             FightingManager.Instance.GetMyFaction().AddResource(this);
         };
         battleUnitBase.AddEnterFogListener(enterFogAction);
+        
+    }
+
+    public BattleUnitId GetBattleUnitId()
+    {
+        return battleUnitBase.configId;
     }
     
 
@@ -63,5 +72,10 @@ public class ResourceInfo : MonoBehaviour
     private void OnDestroy()
     {
         battleUnitBase.RemoveEnterFogListener(enterFogAction);
+    }
+
+    public float GetRadius()
+    {
+        return aroundRadius;
     }
 }

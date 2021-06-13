@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3438932178858658777}
   - component: {fileID: 440858038703366493}
   - component: {fileID: 5806272867335961377}
+  - component: {fileID: -1865066443736269310}
   m_Layer: 0
   m_Name: EngineeringBay
   m_TagString: Untagged
@@ -74,10 +75,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   minFogStrength: 0.2
-  onFogEnter:
+  onFogExit:
     m_PersistentCalls:
       m_Calls: []
-  onFogExit:
+  onFogEnter:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &8617076660449610460
@@ -95,7 +96,8 @@ MonoBehaviour:
   behaviorDesigner: {fileID: 0}
   navMeshAgent: {fileID: 0}
   photonView: {fileID: 0}
-  campId: 0
+  battleUnitType: 0
+  factionId: 0
   weapon: {fileID: 0}
   prop:
     weaponProficiency: 1
@@ -108,6 +110,9 @@ MonoBehaviour:
     realDamageResistance: 30
     viewDistance: 20
     attackDistance: 10
+  resCollectorComp: {fileID: 0}
+  unitMovement: {fileID: 0}
+  taskLauncherComp: {fileID: 0}
   needShowHpUi: 1
   hpUiOffset: {x: 0, y: 20, z: 0}
   selectMarkSize: 2
@@ -122,12 +127,14 @@ MonoBehaviour:
   rotateDamp: 10
   overrideRotationCtrl: 1
   configId: 12
+  attackAble: 0
   isGoingBuilding: 0
   isInBuilding: 0
   defenceBuilding: {fileID: 0}
   animCtrl: {fileID: 0}
   visibleOnPhoton: 0
   spawnTargetPos: {x: 0, y: 0, z: 0}
+  creatorBuilding: {fileID: 0}
   renderers:
   - {fileID: 5596948313913584273}
   - {fileID: 5597681721748978572}
@@ -190,6 +197,7 @@ MonoBehaviour:
   height: 5
   buildTime: 35
   buildingModelOffset: 0
+  borderComp: {fileID: 0}
 --- !u!65 &2623218485440058524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -261,6 +269,38 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.92, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &-1865066443736269310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753323473813583426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6997ec846297793458447b0d97b9a80f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  building: {fileID: 0}
+  spawnObj: 1
+  obj: {fileID: 0}
+  height: 20
+  colorTransparency: 0.27
+  size: 10
+  sizeMultiplier: 2
+  buildingsInBorder:
+  - buildingId: 12
+    factionType: {fileID: 0}
+    maxAmount: 2
+  - buildingId: 9
+    factionType: {fileID: 0}
+    maxAmount: 2
+  - buildingId: 13
+    factionType: {fileID: 0}
+    maxAmount: 1
+  - buildingId: 14
+    factionType: {fileID: 0}
+    maxAmount: 1
 --- !u!1001 &2743884112040577152
 PrefabInstance:
   m_ObjectHideFlags: 0

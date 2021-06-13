@@ -29,5 +29,9 @@ public enum EnumEventType
     
     OnUnitCollectionOrder,
     OnUnitStopCollecting,
+    
+    //边界
+    OnBorderActivated,
+    OnBorderDeActivated
 }
 

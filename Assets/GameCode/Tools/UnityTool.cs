@@ -115,4 +115,20 @@ public static class UnityTool
 			gameObject.SetActive(targetStatus);
 		}
 	}
+
+	//a method to update the current rotation target
+	public static Quaternion GetLookRotation(Transform transform, Vector3 targetPosition, bool reversed = false, bool fixYRotation = true)
+	{
+		if (reversed)
+			targetPosition = transform.position - targetPosition;
+		else
+			targetPosition -= transform.position;
+
+		if(fixYRotation == true)
+			targetPosition.y = 0;
+		if (targetPosition != Vector3.zero)
+			return Quaternion.LookRotation(targetPosition);
+		else
+			return transform.rotation;
+	}
 }

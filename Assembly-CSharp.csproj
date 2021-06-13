@@ -121,6 +121,7 @@
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\IsInBuildingDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\Decision\ReachTargetPosDecision.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\MedicalStateController.cs" />
+     <Compile Include="Assets\BattleScene\Scripts\AI\NpcBuildingRegulator.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\NpcRegulator.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\NpcRegulatorData.cs" />
      <Compile Include="Assets\BattleScene\Scripts\AI\NpcUnitRegulator.cs" />
@@ -816,8 +817,10 @@
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedVector3.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedVector3Int.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedVector4.cs" />
+     <Compile Include="Assets\BuildingBorder.cs" />
      <Compile Include="Assets\BuildingCloseMenuItem.cs" />
      <Compile Include="Assets\BuildingCommonMenuItem.cs" />
+     <Compile Include="Assets\BuildingManager.cs" />
      <Compile Include="Assets\BuildingSetSpawnPosMenuItem.cs" />
      <Compile Include="Assets\BuildingSpawnItem.cs" />
      <Compile Include="Assets\BuildingSpawnMenuItem.cs" />
@@ -900,6 +903,9 @@
      <Compile Include="Assets\NpcActiveRegulatorMonitor.cs" />
      <Compile Include="Assets\NpcArmyCreator.cs" />
      <Compile Include="Assets\NpcAttackManager.cs" />
+     <Compile Include="Assets\NpcBuildingCreator.cs" />
+     <Compile Include="Assets\NpcBuildingPlacer.cs" />
+     <Compile Include="Assets\NpcBuildingRegulatorData.cs" />
      <Compile Include="Assets\NpcCommander.cs" />
      <Compile Include="Assets\NpcComponent.cs" />
      <Compile Include="Assets\NpcDefenseManager.cs" />
@@ -930,7 +936,7 @@
      <Compile Include="Assets\Resources\Config\ScriptableObject\LevelConfig.cs" />
      <Compile Include="Assets\Resources\Config\ScriptableObject\LineConfig.cs" />
      <Compile Include="Assets\Resources\Config\ScriptableObject\MouseShapeConfig.cs" />
-     <Compile Include="Assets\Resources\Config\ScriptableObject\NpcUnitRegulatorDataConfig.cs" />
+     <Compile Include="Assets\Resources\Config\ScriptableObject\NpcRegulatorDataConfig.cs" />
      <Compile Include="Assets\Resources\Config\ScriptableObject\SpawnBattleUnitConfig.cs" />
      <Compile Include="Assets\Scout.cs" />
      <Compile Include="Assets\Scripts\GameSettingsConst.cs" />

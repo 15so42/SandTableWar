@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 1110142681483629358}
   - component: {fileID: 2913092065756089507}
   - component: {fileID: -7834803065508815861}
+  - component: {fileID: -818852368454856497}
   m_Layer: 0
   m_Name: tent-medik
   m_TagString: Untagged
@@ -213,6 +214,7 @@ MonoBehaviour:
     viewDistance: 20
     attackDistance: 10
   resCollectorComp: {fileID: 0}
+  unitMovement: {fileID: 0}
   taskLauncherComp: {fileID: 0}
   needShowHpUi: 1
   hpUiOffset: {x: 0, y: 165, z: 0}
@@ -228,12 +230,14 @@ MonoBehaviour:
   rotateDamp: 10
   overrideRotationCtrl: 1
   configId: 0
+  attackAble: 0
   isGoingBuilding: 0
   isInBuilding: 0
   defenceBuilding: {fileID: 0}
   animCtrl: {fileID: 0}
   visibleOnPhoton: 0
   spawnTargetPos: {x: 0, y: 0, z: 0}
+  creatorBuilding: {fileID: 0}
   renderers:
   - {fileID: 4767178920142123126}
   OnHpChanged:
@@ -276,6 +280,7 @@ MonoBehaviour:
   height: 2.75
   buildTime: 6
   buildingModelOffset: 0
+  borderComp: {fileID: 0}
 --- !u!114 &7079932151677895146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,10 +324,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   minFogStrength: 0.2
-  onFogEnter:
+  onFogExit:
     m_PersistentCalls:
       m_Calls: []
-  onFogExit:
+  onFogEnter:
     m_PersistentCalls:
       m_Calls: []
 --- !u!208 &2913092065756089507
@@ -405,3 +410,35 @@ MonoBehaviour:
     cancelEvent:
       m_PersistentCalls:
         m_Calls: []
+--- !u!114 &-818852368454856497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866053531164441353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6997ec846297793458447b0d97b9a80f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  building: {fileID: 0}
+  spawnObj: 1
+  obj: {fileID: 8841139935664101514, guid: 03a580d0dc327f142b7d595e0cd57ee5, type: 3}
+  height: 0
+  colorTransparency: 0.403
+  size: 20
+  sizeMultiplier: 2
+  buildingsInBorder:
+  - buildingId: 12
+    factionType: {fileID: 0}
+    maxAmount: 2
+  - buildingId: 14
+    factionType: {fileID: 0}
+    maxAmount: 1
+  - buildingId: 13
+    factionType: {fileID: 0}
+    maxAmount: 3
+  - buildingId: 9
+    factionType: {fileID: 0}
+    maxAmount: 3

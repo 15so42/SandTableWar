@@ -17,11 +17,11 @@ namespace BattleScene.Scripts.AI
         
         protected List<T> instances = new List<T>();
 
-        public NpcRegulator (NpcRegulatorData data, BattleUnitId battleUnitId,FightingManager fightingManager, FactionManager factionManager)
+        public NpcRegulator (NpcRegulatorData data, BattleUnitId battleUnitId,FightingManager fightingManager, NpcCommander npcCommander)
         {
             this.battleUnitId = battleUnitId;
             
-            this.factionManager = factionManager;
+            this.factionManager = npcCommander.factionManager;
            
             //pick the rest random settings from the given info.
             MaxAmount = data.GetMaxAmount();
@@ -44,6 +44,16 @@ namespace BattleScene.Scripts.AI
             //add it to list:
             instances.Add(factionEntity);
             pendingAmount--; //decrease pending Count
+        }
+        
+        public virtual void AddExisting(T factionEntity)
+        {
+            if (!CanBeRegulated(factionEntity)) //only proceed if the faction entity can be regulated by this component
+                return;
+
+            //add it to list:
+            instances.Add(factionEntity);
+            Count++;
         }
         
         /// <summary>
@@ -79,6 +89,16 @@ namespace BattleScene.Scripts.AI
         /// </summary>
         public void IncMinAmount() { MinAmount++; }
         
+        public bool HasReachedMaxAmount()
+        {
+            //todo || factionMgr.HasReachedLimit(Code, Category)
+            return Count >= MaxAmount  || pendingAmount >= MaxPendingAmount;
+        }
+        
+        /// <summary>
+        /// Determines whether the regulator component has reached the minimum required amount for active instances or not.
+        /// </summary>
+        /// <returns>True if the minimum required amount of instances is reached, otherwise false.</returns>
         public bool HasReachedMinAmount()
         {
             return Count >= MinAmount;

@@ -38,6 +38,7 @@ public class BaseBattleBuilding : BattleUnitBase
     public int buildTime=5;
     public float buildingModelOffset;
     private NavMeshObstacle navMeshObstacle;
+    public BuildingBorder borderComp;
 
     protected Sequence buildSequence;
 
@@ -50,22 +51,10 @@ public class BaseBattleBuilding : BattleUnitBase
         navMeshObstacle = GetComponent<NavMeshObstacle>();
         if(navMeshObstacle)
             navMeshObstacle.enabled = false;
-        // void OnBuildSuccess()
-        // {
-        //     isBuilding = false;
-        //     PlayBuildCompleteFx();
-        //     fogOfWarUnit.enabled = true;
-        //     if (IsInFog() == false && hpUi != null && needShowHpUi)
-        //     {
-        //         hpUi.transform.position = mainCam.WorldToScreenPoint(transform.position) + hpUiOffset;//防止血条ui瞬移
-        //         
-        //         hpUi.gameObject.SetActive(true);
-        //     }
-        //
-        //     navMeshObstacle.enabled = true;
-        //     navMeshObstacle.carving = true;
-        //
-        // }
+        //边界
+        borderComp = GetComponent<BuildingBorder>();
+       
+       
         animModel.transform.localPosition -= Vector3.up * height;
 
         if (buildTime == 0)
@@ -106,8 +95,16 @@ public class BaseBattleBuilding : BattleUnitBase
             navMeshObstacle.enabled = true;
             navMeshObstacle.carving = true;
         }
-       
+        if (borderComp)
+        {
+            borderComp.Init(fightingManager,this);
+        }
 
+    }
+    
+    public float GetRadius()
+    {
+        return borderComp.Size;
     }
 
     protected void PlayBuildCompleteFx()

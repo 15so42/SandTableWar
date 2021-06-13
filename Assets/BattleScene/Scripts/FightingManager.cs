@@ -59,6 +59,7 @@ public class FightingManager
     private BattleFlyGraphicHandler battleFlyGraphicHandler;
     public AttackManager attackManager;
     public MoveManager moveManager;
+    public BuildingManager buildingManager;
     public void Init()
     {
         Instance = this;
@@ -94,11 +95,13 @@ public class FightingManager
         battleFlyGraphicHandler = GameObject.FindObjectOfType<BattleFlyGraphicHandler>();
         attackManager=new AttackManager();
         moveManager=new MoveManager();
+        buildingManager=new BuildingManager();
         
         gridSearchHandler.Init();
         battleFlyGraphicHandler.Init();
         attackManager.Init(this);
         moveManager.Init(this);
+        buildingManager.Init(this);
     }
 
     private BattleUnitBase enemyBase;
@@ -288,7 +291,7 @@ public class FightingManager
 
                 if (isBuildingPreview)
                 {
-                    previewBuilding.OnBuildingPreviewEnd(raycastHit.point);
+                    previewBuilding.OnBuildingPreviewEnd(raycastHit.point,myFactionId);
                     isBuildingPreview = false;
                 }
                 

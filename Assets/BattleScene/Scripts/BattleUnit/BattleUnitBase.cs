@@ -10,6 +10,7 @@ using UnityTimer;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner;
 using BehaviorDesigner.Runtime.Tactical;
+using BehaviorDesigner.Runtime.Tasks.Unity.UnitySphereCollider;
 using DefaultNamespace;
 using RTSEngine;
 using UnityEngine.Events;
@@ -818,6 +819,11 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     public FactionManager GetFactionManager()
     {
         return fightingManager.GetFaction(factionId);
+    }
+
+    public float GetRadius()
+    {
+        return selectMarkSize;
     }
 
     #endregion

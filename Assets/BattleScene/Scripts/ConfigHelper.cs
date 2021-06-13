@@ -9,13 +9,15 @@
         private string battleFxConfigPath = "Config/ScriptableObject/BattleFxConfig";
         private string lineConfigPath = "Config/ScriptableObject/LineConfig";
         private string levelConfigPath = "Config/ScriptableObject/";
-        private string npcUnitRegulatorDataConfigPath = "Config/ScriptableObject/NpcUnitRegulatorData/NpcUnitRegulatorDataConfig";
+        private string npcUnitRegulatorDataConfigPath = "Config/ScriptableObject/NpcUnitRegulatorData/NpcRegulatorDataConfig";
+       
         
         
         private SpawnBattleUnitConfig spawnBattleUnitUnitConfig;
         private BattleFxConfig battleFxConfig;
         private LineConfig lineConfig;
-        private NpcUnitRegulatorDataConfig npcUnitRegulatorDataConfig;
+        private NpcRegulatorDataConfig npcRegulatorDataConfig;
+        
         public ConfigHelper()
         {
             //单例模板通过无参构造函数生成单例，初始化则需要在这里初始化
@@ -27,7 +29,7 @@
             spawnBattleUnitUnitConfig = Resources.Load<SpawnBattleUnitConfig>(spawnSoliderConfigPath);
             battleFxConfig=Resources.Load<BattleFxConfig>(battleFxConfigPath);
             lineConfig = Resources.Load<LineConfig>(lineConfigPath);
-            npcUnitRegulatorDataConfig = Resources.Load<NpcUnitRegulatorDataConfig>(npcUnitRegulatorDataConfigPath);
+            npcRegulatorDataConfig = Resources.Load<NpcRegulatorDataConfig>(npcUnitRegulatorDataConfigPath);
 
         }
 
@@ -58,9 +60,9 @@
             return levelConfig;
         }
 
-        public NpcUnitRegulatorData GetNpcUnitRegulatorData(BattleUnitId battleUnitId, NpcDifficulty npcDifficulty)
+        public NpcRegulatorData GetNpcRegulatorData(BattleUnitId battleUnitId, NpcDifficulty npcDifficulty,bool building=false)
         {
-            return npcUnitRegulatorDataConfig.Filter(battleUnitId, npcDifficulty);
+            return npcRegulatorDataConfig.Filter(battleUnitId, npcDifficulty,building);
         }
        
     }
