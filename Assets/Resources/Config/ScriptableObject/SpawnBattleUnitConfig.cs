@@ -18,12 +18,9 @@ public class SpawnBattleUnitConfigInfo
    public string battleUnitName;
    public bool hasExtraIcon;
    public float spawnTime;
-   public int needPopulation=1;
-   public int needCoin = 1;
-   public int needMineral = 1;
-   public int needFood = 1;
+   [Header("Building")] public bool placeOutBorder;
    
-   public BattleResMgr.ResourceInput[] requiredResource=new BattleResMgr.ResourceInput[0];
+   public BattleResMgr.ResourceInput[] requiredResource= new BattleResMgr.ResourceInput[0];
 }
 
 public enum BattleUnitType

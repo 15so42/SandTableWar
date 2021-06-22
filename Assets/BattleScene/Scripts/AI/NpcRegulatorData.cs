@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace BattleScene.Scripts.AI
 {
-    public class NpcRegulatorData : ScriptableObject
+    public class NpcRegulatorData : ScriptableObject,ICloneable
     {
         [SerializeField, Tooltip("Minimum amount of instances to create.")]
         private IntRange minAmountRange = new IntRange(1, 2);
@@ -32,5 +33,11 @@ namespace BattleScene.Scripts.AI
         private bool autoCreate = true; //Automatically create this unit type to meet the ratio requirements.
         //whether Auto Create is true or false, the minimum amount chosen above must be met.
         public bool CanAutoCreate () { return autoCreate; }
+
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

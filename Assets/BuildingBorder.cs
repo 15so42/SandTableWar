@@ -76,7 +76,7 @@ public class BuildingBorder : MonoBehaviour
             obj.GetComponent<MeshRenderer>().sortingOrder = Order; //set the border object's sorting order according to the previosuly placed borders
         }
 
-       
+        EventCenter.Broadcast(EnumEventType.OnBorderActivated,this);
 
         //subscribe to following events:
         //CustomEvents.ResourceAdded += OnResourceAdded;
@@ -84,13 +84,13 @@ public class BuildingBorder : MonoBehaviour
 
         //BorderResourceRemoved += OnBorderResourceRemoved;
 
-        EventCenter.Broadcast<BuildingBorder>(EnumEventType.OnBorderActivated,this);
+       
         
     }
 
     private void OnDestroy()
     { 
-        EventCenter.Broadcast<BuildingBorder>(EnumEventType.OnBorderDeActivated,this);
+        EventCenter.Broadcast(EnumEventType.OnBorderDeActivated,this);
         
 
         //Destroy the border object if it has been created

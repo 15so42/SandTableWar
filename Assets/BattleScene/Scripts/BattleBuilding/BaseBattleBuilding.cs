@@ -39,6 +39,7 @@ public class BaseBattleBuilding : BattleUnitBase
     public float buildingModelOffset;
     private NavMeshObstacle navMeshObstacle;
     public BuildingBorder borderComp;
+    public BuildingBorder buildingCenter;
 
     protected Sequence buildSequence;
 
@@ -125,6 +126,19 @@ public class BaseBattleBuilding : BattleUnitBase
     protected override void InitFactionEntityType()
     {
         battleUnitType = BattleUnitType.Building;
+    }
+
+    public override void Die()
+    {
+        EventCenter.Broadcast(EnumEventType.BuildingDestroyed,this);
+        
+        //Check if it's the capital building, it's not getting upgraded and the faction defeated condition is set to capital destructionss
+        if (configId==BattleUnitId.Base && fightingManager.GetDefeatCondition() == DefeatConditions.destoryBase)
+            fightingManager.OnFactionDefeated(factionId);
+        
+        if (buildingCenter != null) //If the building is not a center then we'll check if it occupies a place in the defined buildings for its center:
+            buildingCenter.UnRegisterBuilding(this);
+        base.Die();
     }
 
     public override  void OnFogExit()

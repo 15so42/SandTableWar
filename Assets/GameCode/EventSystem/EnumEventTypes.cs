@@ -32,6 +32,14 @@ public enum EnumEventType
     
     //边界
     OnBorderActivated,
-    OnBorderDeActivated
+    OnBorderDeActivated,
+    
+    //建筑
+    BuildingStartPlacement,
+    BuildingStopPlacement,
+    BuildingPlaced,
+    BuildingDestroyed,
+    BuildingBuilt,
+    
 }
 

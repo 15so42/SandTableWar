@@ -459,48 +459,36 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
 
     private GameObject destinationMark;
 
-    public virtual void SetTargetPos(Vector3 pos, bool showMark = true)
+    public virtual void SetTargetPos(Vector3 pos,bool showMark = true)
     {
-        //if the vehicle is turning,you cant set new destination because of new destination will create a new
-        //path which cause the vehicle move straight to new destination;just set real destination.
-        //when vehicle completed turning,the vehicle will move to real dest;
-
-        //set dest like this
-        // if (navMeshVehicleMovement && navMeshVehicleMovement.isTurnRound)
-        // {
-        //     navMeshVehicleMovement.SetRealDest(pos);
-        // }
-        // else
-        // {
-        //     navMeshAgent.SetDestination(pos);//if not,just setDest on usual
-        // }
+      
         if (pos == Vector3.zero)
         {
             Debug.LogError("有单位要前往Vector3.zero");
         }
-    
+        
 
-    //this is my code in my project,it's special in specific project
-    if (navMeshAgent == null)
-    {
-        return;
-    }
-
-    if (behaviorDesigner)
-    {
-        behaviorDesigner.SendEvent("SetDestinationPos", pos);
-        RemoveDestinationMark();
-
-
-        if (showMark)
+        //this is my code in my project,it's special in specific project
+        if (navMeshAgent == null)
         {
-            string fxName = ConfigHelper.Instance.GetFxPfbByBattleFxType(BattleFxType.DestionMark).name;
-            destinationMark = BattleFxManager.Instance.SpawnFxAtPos(fxName, pos, Vector3.forward);
-            destinationMark.GetComponent<FxDestinationMark>().SetAgentRadius(navMeshAgent.radius * 2);
+            return;
         }
-    }
-    
-    unitMovement.StartMove();
+
+        if (behaviorDesigner)
+        {
+            behaviorDesigner.SendEvent("SetDestinationPos", pos);
+            RemoveDestinationMark();
+
+
+            if (showMark)
+            {
+                string fxName = ConfigHelper.Instance.GetFxPfbByBattleFxType(BattleFxType.DestionMark).name;
+                destinationMark = BattleFxManager.Instance.SpawnFxAtPos(fxName, pos, Vector3.forward);
+                destinationMark.GetComponent<FxDestinationMark>().SetAgentRadius(navMeshAgent.radius * 2);
+            }
+        }
+        
+        unitMovement.StartMove();
        
     }
     

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime.Tasks.Unity.UnitySphereCollider;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,6 +21,7 @@ namespace RTSEngine
         public float buildAroundDistance; //how close does the building is to its center?
         public BaseBattleBuilding center; //the building center that the building instance will belong to.
         public bool rotate; //can the building rotate to look at the object its rotating around?
+        public SpawnBattleUnitConfigInfo buildingInfo;//配置信息
     }
 
     /// <summary>
@@ -32,28 +34,25 @@ namespace RTSEngine
         private NpcPendingBuilding currPendingBuilding; //the current pending building that's being placed by this component.
 
         //placement settings:
-        [SerializeField, Tooltip("Npc faction will only start placing buildings after this delay.")]
+        [SerializeField, UnityEngine.Tooltip("Npc faction will only start placing buildings after this delay.")]
         private FloatRange placementDelayRange = new FloatRange(7.0f, 20.0f); //actual placement will be only considered after this time.
         private float placementDelayTimer;
 
-        [SerializeField, Tooltip("How fast will the building rotation speed when placing a building?")]
+        [SerializeField, UnityEngine.Tooltip("How fast will the building rotation speed when placing a building?")]
         private float rotationSpeed = 50.0f; //how fast will the building rotate around its build around position
 
-        [SerializeField, Tooltip("Time before the Npc faction decides to try another position to place the building at.")]
+        [SerializeField, UnityEngine.Tooltip("Time before the Npc faction decides to try another position to place the building at.")]
         private FloatRange placementMoveReload = new FloatRange(8.0f, 12.0f); //whenever this timer is through, building will be moved away from build around position but keeps rotating
         private float placementMoveTimer;
 
-        [SerializeField, Tooltip("Each time the Npc faction attempts another position to place a building, this value is added to the 'Placement Mvt Reload' field0")]
+        [SerializeField, UnityEngine.Tooltip("Each time the Npc faction attempts another position to place a building, this value is added to the 'Placement Mvt Reload' field0")]
         private FloatRange placementMoveReloadInc = new FloatRange(1.5f, 2.5f); 
         //this will be added to the move timer each time the building moves.
         int placementMoveReloadIncCount = 0;
 
-        [SerializeField, Tooltip("The distance between the new and previous positions of a pending building."), Min(0.0f)]
+        [SerializeField, UnityEngine.Tooltip("The distance between the new and previous positions of a pending building."), Min(0.0f)]
         private FloatRange moveDistance = new FloatRange(0.5f, 1.5f); //this the distance that the building will move at.
 
-        [SerializeField, Range(0.0f,1.0f), Tooltip("How often is the height of a building sampled from the terrain's height?")]
-        private float heightCheckReload = 0.2f; //how often does this component update the height of the pending building in a second?
-        private IEnumerator heightCheckCoroutine; //this coroutine is running as long as there's a building to be placed and it allows Npc factions to place buildings on different heights
         #endregion
 
         #region Initializing/Terminating
@@ -97,11 +96,10 @@ namespace RTSEngine
             {
                 buildAroundPos = navMeshHit.position;
             }
-           // buildAroundPos.y = gameMgr.TerrainMgr.SampleHeight(buildAround.transform.position, buildAroundRadius, 0) + gameMgr.PlacementMgr.GetBuildingYOffset();
             Vector3 buildingSpawnPos = buildAroundPos;
             buildingSpawnPos.x += buildAroundDistance;
 
-            
+            var buildingConfigInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(buildingId);
             //create new instance of building and add it to the pending buildings list:
             NpcPendingBuilding newPendingBuilding = new NpcPendingBuilding
             {
@@ -112,22 +110,17 @@ namespace RTSEngine
                 buildAroundPos = buildAroundPos,
                 buildAroundDistance = buildAroundDistance,
                 center = buildingCenter,
-                rotate = rotate
+                rotate = rotate,
+                buildingInfo=buildingConfigInfo,
             };
             newPendingBuilding.instance.transform.position = buildingSpawnPos;
             
             
-
             //pick a random starting position for building by randomly rotating it around its build around positio
             newPendingBuilding.instance.transform.RotateAround(newPendingBuilding.buildAroundPos, Vector3.up, Random.Range(0.0f, 360.0f));
             //keep initial rotation (because the RotateAround method will change the building's rotation as well which we do not want)
             //newPendingBuilding.instance.transform.rotation = newPendingBuilding.buildingId.transform.rotation; 
 
-            //initialize the building instance for placement:
-            //newPendingBuilding.instance.InitPlacementInstance(gameMgr, factionMgr.FactionID, buildingCenter.BorderComp);
-
-            //we need to hide the building initially, when its turn comes to be placed, appropriate settings will be applied.
-            
             //初始时关闭碰撞体一面阻止其余建筑的放置
             PreviewBuilding previewBuilding = newPendingBuilding.instance.GetComponent<PreviewBuilding>();
             
@@ -135,16 +128,15 @@ namespace RTSEngine
             newPendingBuilding.instance.gameObject.SetActive(false);
             //Call the start building placement custom event:
             //todo CustomEvents.OnBuildingStartPlacement(newPendingBuilding.instance);
-
+            EventCenter.Broadcast(EnumEventType.BuildingStartPlacement,newPendingBuilding.instance);
+            
             //add the new pending building to the list:
             pendingBuildings.Push(newPendingBuilding);
 
             if(!IsActive) //if building placer was not active (had no building to place)
             {
                 StartPlacingNextBuilding(); //immediately start placing it.
-
-                //heightCheckCoroutine = HeightCheck(heightCheckReload); //Start the height check coroutine to keep the building always on top of the terrain
-                //StartCoroutine(heightCheckCoroutine);
+                
             }
         }
 
@@ -186,10 +178,10 @@ namespace RTSEngine
             if (currPendingBuilding.instance != null) //valid building instance:
             {
                 //Call the stop building placement custom event:
-                //todo CustomEvents.OnBuildingStopPlacement(currPendingBuilding.instance);
+                EventCenter.Broadcast(EnumEventType.BuildingStopPlacement,currPendingBuilding.instance);
 
                 //Give back resources:
-                //todo gameMgr.ResourceMgr.UpdateRequiredResources(currPendingBuilding.instance.GetResources(), true, factionMgr.FactionID);
+                factionMgr.BattleResMgr.UpdateRequiredResources(currPendingBuilding.buildingInfo.requiredResource,true);
 
                 //destroy the building instance that was supposed to be placed:
                 Destroy(currPendingBuilding.instance.gameObject);
@@ -234,8 +226,8 @@ namespace RTSEngine
             //if building center of the current pending building is destroyed while building is getting placed:
             //or if the building is too far away or too close from the center
             //as long as the building can placed outside the border
-            if (/*!currPendingBuilding.instance.PlacerComp.PlaceOutsideBorder
-                &&*/ (currPendingBuilding.center == null 
+            if (!currPendingBuilding.buildingInfo.placeOutBorder
+                && (currPendingBuilding.center == null 
                     || Vector3.Distance(currPendingBuilding.instance.transform.position, currPendingBuilding.center.transform.position) > currPendingBuilding.center.borderComp.Size))
             {
                 StopPlacingBuilding(); //Stop placing building.
@@ -308,7 +300,26 @@ namespace RTSEngine
         /// </summary>
         private void PlaceBuilding()
         {
-            currPendingBuilding.instance.GetComponent<PreviewBuilding>().OnBuildingPreviewEnd(currPendingBuilding.instance.transform.position,factionMgr.FactionId);
+            BaseBattleBuilding building = currPendingBuilding.instance.GetComponent<PreviewBuilding>().OnBuildingPreviewEnd(currPendingBuilding.instance.transform.position,factionMgr.FactionId);
+
+            // if (building == null)
+            // {
+            //     Debug.Log("Building null");
+            // }
+            // if (currPendingBuilding.buildingInfo == null)
+            // {
+            //     Debug.Log("currPendingBuilding.buildingInfo null");
+            // }
+            if (building == null)
+            {
+                return;
+            }
+            if (currPendingBuilding.buildingInfo.placeOutBorder == false) //if the building is to be placed inside the faction's border and this is not a center building
+            {
+                //Debug.Log(currPendingBuilding.center.name);
+                currPendingBuilding.center.borderComp.RegisterBuilding(building);
+                building.buildingCenter = currPendingBuilding.center.borderComp;
+            }
             /*
             //destroy the building instance that was supposed to be placed:
             Destroy(currPendingBuilding.instance.gameObject);

@@ -51,7 +51,7 @@ namespace RTSEngine
         //Attacking
         //whenever the below timer is through, this component will point army units to a target.
         [SerializeField, Tooltip("How often does the NPC faction pick the next target unit/building to attack while engaging an enemy faction?"), Header("Attacking")]
-        private FloatRange attackOrderReloadRange = new FloatRange(3.0f, 7.0f);
+        private FloatRange attackOrderReloadRange = new FloatRange(1.0f, 3.0f);
         private float attackOrderTimer;
 
         [SerializeField, Tooltip("Only send attack units that are idle (and not performing another task at the time of the attack launch) to attack?")]
@@ -285,6 +285,7 @@ namespace RTSEngine
             IsAttacking = true;
 
             RefreshCurrentAttackUnits();
+            attackOrderCount = 0;
 
             //we'll be searching for the next building to attack starting from the last attack pos, initially set it as the capital building
             lastAttackPos = fightingManager.GetFaction(factionMgr.FactionId).basePos;
@@ -384,6 +385,7 @@ namespace RTSEngine
         }
         #endregion
 
+        private int attackOrderCount;//发起攻击后的调度单位的次数，使用此变量来让玩家开始攻击时第一次调动全部单位到目标处
         #region Active Engagement Management
         /// <summary>
         /// Updates the component while it's actively engaging in an attack
@@ -469,8 +471,16 @@ namespace RTSEngine
         public void EngageCurrentTarget ()
         {
             //what units is the NPC faction sending to attack?
-            List<BattleUnitBase> nextAttackUnits = sendOnlyIdle ? currentAttackUnits.Where(unit => unit.IsIdle()).ToList() : currentAttackUnits;
+            //List<BattleUnitBase> nextAttackUnits = sendOnlyIdle ? currentAttackUnits.Where(unit => unit.IsIdle()).ToList() : currentAttackUnits;
+            List<BattleUnitBase> nextAttackUnits = currentAttackUnits;
+            //随机选取部分单位
+            if(attackOrderCount!=0){
+                int startIndex = Random.Range(0,currentAttackUnits.Count-1);
+                nextAttackUnits =
+                    currentAttackUnits.GetRange(startIndex, Random.Range(1, currentAttackUnits.Count - 1 - startIndex));
+            }
 
+            attackOrderCount++;
             if (!IsAttacking //not actively attacking?
                 || currentTarget == null //has a current target?
                 || targetFaction == null //no target faction assigned?

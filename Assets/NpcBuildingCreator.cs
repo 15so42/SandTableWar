@@ -165,8 +165,8 @@ namespace RTSEngine
                     //done:
                     return;
                 }
-                else
-                    i++; //continue looking
+               
+                i++; //continue looking
             }
         }
 

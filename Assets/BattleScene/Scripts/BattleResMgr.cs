@@ -16,6 +16,7 @@ public enum BattleResType
     /// </summary>
     public class BattleResMgr
     {
+        [System.Serializable]
         public struct ResourceInput
         {
             public BattleResType resType;

@@ -1,5 +1,6 @@
 ﻿using Photon.Pun;
 using UnityEngine;
+using UnityTimer;
 
 public class PreviewBuilding : MonoBehaviour
 {
@@ -38,15 +39,21 @@ public class PreviewBuilding : MonoBehaviour
         //previewMat.SetColor("_EmissionColor",canPlace?Color.green:Color.red);
     }
 
-    public void OnBuildingPreviewEnd(Vector3 pos,int factionId)
+    public BaseBattleBuilding OnBuildingPreviewEnd(Vector3 pos,int factionId)
     {
-        
+        BaseBattleBuilding result = null;
         if (collisionDetection.CanPlace()&& isInBuildingArea.CanPlace(playerControl))
         {
-            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(buildingInfo,pos,factionId);
+            result= BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(buildingInfo,pos,factionId) as BaseBattleBuilding;
         }
+
+        // Timer.Register(result.buildTime, () =>
+        // {
+        //     Destroy(gameObject);
+        // });
         
-        Destroy(gameObject);
-        
+        gameObject.transform.rotation = result == null ? Quaternion.identity : result.transform.rotation;
+        Destroy(gameObject,3);
+        return result;
     }
 }

@@ -12,6 +12,7 @@ using UnityEngine.AI;
 public enum DefeatConditions
 {
     eliminateAll,
+    destoryBase,
 }
 public class FightingManager
 {
@@ -211,6 +212,13 @@ public class FightingManager
     {
         return Time.timeScale;
     }
+    
+    public void OnFactionDefeated(int factionId)
+    {
+       
+        //OnFactionDefeatedLocal(factionId); //directly mark the faction as defeated
+       
+    }
 
     public void Update()
     {
@@ -308,6 +316,10 @@ public class FightingManager
         {
             Time.timeScale = 1f;
         }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Time.timeScale = 2f;
+        }
 
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -350,12 +362,12 @@ public class FightingManager
     /// 所有选中的目标移动到指定位置
     /// </summary>
     /// <param name="pos"></param>
-    public void MoveToSpecificPos(Vector3 pos)
+    public void MoveToSpecificPos(Vector3 pos,bool attack=false)
     {
-        MoveToSpecificPos(selectedUnits,pos);
+        MoveToSpecificPos(selectedUnits,pos,attack);
     }
 
-    public void MoveToSpecificPos(List<BattleUnitBase> units, Vector3 pos)
+    public void MoveToSpecificPos(List<BattleUnitBase> units, Vector3 pos,bool attack,bool showMark=true)
     {
         List<DestinationSphereData> destinationSphereData=new List<DestinationSphereData>();
         int i = 0;
@@ -371,7 +383,11 @@ public class FightingManager
             while (randomTime > 0)//次数限制
             {
                 randomTime--;
-
+                
+                if (attack)
+                {
+                    radius = unit.prop.attackDistance * 0.9f;
+                }
                 Vector3 randomPos = pos + Random.insideUnitSphere * radius;
 
                 if (NavMesh.SamplePosition(randomPos, out var hit, radius, -1))
@@ -380,7 +396,7 @@ public class FightingManager
                     if (CanAgentReach(destinationSphereData, sampledPos, unit.navMeshAgent.radius))//能防止
                     {
                         destinationSphereData.Add(new DestinationSphereData(sampledPos,radius));
-                        unit.SetTargetPos(sampledPos);
+                        unit.SetTargetPos(sampledPos,showMark);
                         break;
                     }
                 }

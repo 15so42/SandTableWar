@@ -198,6 +198,7 @@ MonoBehaviour:
   buildTime: 35
   buildingModelOffset: 0
   borderComp: {fileID: 0}
+  buildingCenter: {fileID: 0}
 --- !u!65 &2623218485440058524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -283,8 +284,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   building: {fileID: 0}
   spawnObj: 1
-  obj: {fileID: 0}
-  height: 20
+  obj: {fileID: 8841139935664101514, guid: 03a580d0dc327f142b7d595e0cd57ee5, type: 3}
+  height: 0
   colorTransparency: 0.27
   size: 10
   sizeMultiplier: 2

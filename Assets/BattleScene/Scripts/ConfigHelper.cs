@@ -62,7 +62,7 @@
 
         public NpcRegulatorData GetNpcRegulatorData(BattleUnitId battleUnitId, NpcDifficulty npcDifficulty,bool building=false)
         {
-            return npcRegulatorDataConfig.Filter(battleUnitId, npcDifficulty,building);
+            return npcRegulatorDataConfig.Filter(battleUnitId, npcDifficulty,building).Clone() as NpcRegulatorData;
         }
        
     }

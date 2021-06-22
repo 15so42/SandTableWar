@@ -55,6 +55,7 @@ public class FactionManager
     public List<BattleUnitBase> myUnits=new List<BattleUnitBase>();
     //public List<BattleUnitBase> enemyUnits=new List<BattleUnitBase>();
     public List<BattleUnitBase> attackUnits=new List<BattleUnitBase>();
+    
     public List<BattleUnitBase> buildings=new List<BattleUnitBase>();
     public List<BaseBattleBuilding> buildingCenters=new List<BaseBattleBuilding>();
     
@@ -121,8 +122,12 @@ public class FactionManager
         EventCenter.AddListener<BattleUnitBase>(EnumEventType.UnitDied,OnUnitDied);
         EventCenter.AddListener<TaskLauncher>(EnumEventType.OnTaskLauncherAdded,OnTaskLauncherAdded);
         EventCenter.AddListener<TaskLauncher>(EnumEventType.OnTaskLauncherRemoved,OnTaskLauncherRemoved);
+        //BuildingCenter
+        //EventCenter.AddListener<BaseBattleBuilding>(EnumEventType.OnBorderActivated,AddBuildingCenter);
+        //EventCenter.AddListener<BaseBattleBuilding>(EnumEventType.OnBorderDeActivated,RemoveBuildingCenter);
         
-        
+        EventCenter.AddListener<BaseBattleBuilding>(EnumEventType.BuildingPlaced,AddBuilding);
+        EventCenter.AddListener<BaseBattleBuilding>(EnumEventType.BuildingDestroyed,RemoveBuildingCenter);
     }
     
     
@@ -184,6 +189,8 @@ public class FactionManager
         
     }
 
+    #region  TaskLauncher
+
     private void OnTaskLauncherAdded(TaskLauncher taskLauncher)
     {
         if(taskLauncher.battleUnitBase.factionId == factionId) //make sure the new task launcher belongs to the faction managed by this component
@@ -195,6 +202,8 @@ public class FactionManager
         if(taskLauncher.battleUnitBase.factionId == factionId) //make sure the new task launcher belongs to the faction managed by this component
             taskLaunchers.Remove(taskLauncher); //remove task launcher from list
     }
+    
+    #endregion
     
     public bool HasReachedLimit(BattleUnitId unitId)
     {
@@ -239,6 +248,12 @@ public class FactionManager
         EventCenter.RemoveListener<TaskLauncher>(EnumEventType.OnTaskLauncherAdded,OnTaskLauncherAdded);
         EventCenter.RemoveListener<TaskLauncher>(EnumEventType.OnTaskLauncherRemoved,OnTaskLauncherRemoved);
         
+        //BuildingCenter
+        //EventCenter.AddListener<BaseBattleBuilding>(EnumEventType.OnBorderActivated,AddBuildingCenter);
+        //EventCenter.AddListener<BaseBattleBuilding>(EnumEventType.OnBorderDeActivated,RemoveBuildingCenter);
+        //Building
+        
+        
     }
 
     public void UpdateCurrentPopulation(int value)
@@ -246,6 +261,32 @@ public class FactionManager
         currentPopulation += value;
         //custom event trigger:
         //CustomEvents.OnCurrentPopulationUpdated(this, value);
+    }
+
+    private void AddBuilding(BaseBattleBuilding battleBuilding)
+    {
+        if (!buildings.Contains(battleBuilding))
+        {
+            buildings.Add(battleBuilding);
+        }
+        myUnits.Add(battleBuilding);
+        if (!buildingCenters.Contains(battleBuilding) && battleBuilding.borderComp)
+        {
+            buildingCenters.Add(battleBuilding);
+        }
+    }
+    
+    private void RemoveBuildingCenter(BaseBattleBuilding battleBuilding)
+    {
+        if (buildings.Contains(battleBuilding))
+        {
+            buildings.Remove(battleBuilding);
+        }
+        myUnits.Remove(battleBuilding);
+        if (buildingCenters.Contains(battleBuilding) && battleBuilding.borderComp)
+        {
+            buildingCenters.Remove(battleBuilding);
+        }
     }
 
     public void AddResource(ResourceInfo resourceInfo)
@@ -337,9 +378,10 @@ public class FactionManager
         return myUnits;
     }
     
+    //todo
     public List<BattleUnitBase> GetAttackUnits(float ratio=1)
     {
-        return attackUnits;
+        return attackUnits.GetRange(0, (int)(attackUnits.Count * (ratio >= 0.0f && ratio <= 1.0f ? ratio : 1.0f)));
     }
 
     public List<BattleUnitBase> GetBuildings()

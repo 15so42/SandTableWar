@@ -12,6 +12,6 @@ public class AttackManager
     }
     public void LaunchAttack(List<BattleUnitBase> attackUnits,BattleUnitBase targetUnit)
     {
-        fightingManager.MoveToSpecificPos(attackUnits,targetUnit.transform.position);
+        fightingManager.MoveToSpecificPos(attackUnits,targetUnit.transform.position,true,false);
     }
 }

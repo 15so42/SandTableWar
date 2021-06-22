@@ -60,6 +60,12 @@ namespace RTSEngine
 
             //start listening to the required delegate events:
             //todo
+            
+            EventCenter.AddListener<BaseBattleBuilding>(EnumEventType.BuildingDestroyed,Remove);
+            EventCenter.AddListener<GameObject>(EnumEventType.BuildingStopPlacement,OnBuildingStopPlacement);
+            EventCenter.AddListener<GameObject>(EnumEventType.BuildingStartPlacement,OnBuildingStartPlacement);
+            EventCenter.AddListener<BaseBattleBuilding>(EnumEventType.BuildingPlaced,Add);
+            
             /*
             CustomEvents.BuildingDestroyed += Remove;
             CustomEvents.BuildingStopPlacement += Remove;
@@ -73,6 +79,10 @@ namespace RTSEngine
         public void Disable()
         {
             //stop listening to the delegate events:
+            EventCenter.RemoveListener<BaseBattleBuilding>(EnumEventType.BuildingDestroyed,Remove);
+            EventCenter.RemoveListener<GameObject>(EnumEventType.BuildingStopPlacement,OnBuildingStopPlacement);
+            EventCenter.RemoveListener<GameObject>(EnumEventType.BuildingStartPlacement,OnBuildingStartPlacement);
+            EventCenter.RemoveListener<BaseBattleBuilding>(EnumEventType.BuildingPlaced,Add);
             /*
             CustomEvents.BuildingDestroyed -= Remove;
             CustomEvents.BuildingStopPlacement -= Remove;
@@ -106,6 +116,17 @@ namespace RTSEngine
         }
         #endregion
 
+        public void OnBuildingStartPlacement(GameObject previewBuilding)
+        {
+            if (previewBuilding != null && previewBuilding.GetComponent<PreviewBuilding>().buildingInfo.battleUnitId==battleUnitId) //only proceed if the faction entity can be regulated by this component
+                pendingAmount++;
+        }
+        
+        public void OnBuildingStopPlacement(GameObject previewBuilding)
+        {
+            if (previewBuilding != null && previewBuilding.GetComponent<PreviewBuilding>().buildingInfo.battleUnitId==battleUnitId) //only proceed if the faction entity can be regulated by this component
+                pendingAmount--;
+        }
         
     }
 }
