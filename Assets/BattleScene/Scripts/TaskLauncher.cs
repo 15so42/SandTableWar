@@ -33,6 +33,8 @@
         public int GetTasksCount () { return tasksDic.Count; }
         
         public IEnumerable<FactionEntityTask> GetAll () { return tasksDic.Values; }
+
+        private float needTime;//当前任务所需时间
         
         public void Init(FightingManager fightingManager, BattleUnitBase battleUnitBase)
         {
@@ -49,6 +51,7 @@
             EventCenter.Broadcast(EnumEventType.OnTaskLauncherAdded,this); 
 
             Initiated = true;
+            UIManager.Instance.SetTaskLauncherUI(gameObject,GetComponent<BattleUnitBase>().hpUiOffset);
         }
         
         public FactionEntityTask GetTask (int index) {
@@ -97,15 +100,22 @@
                 return;
 
             taskQueueTimer = tasksList[tasksQueue[0]].GetReloadTime(); //start the timer for the next one.
+            needTime = taskQueueTimer;
             tasksList[tasksQueue[0]].Start();
 
-            //CustomEvents.OnTaskStarted(this, tasksQueue[0], 0); //trigger custon event
+            //CustomEvents.OnTaskStarted(this, tasksQueue[0], 0); //trigger custom event
+        }
+
+        public float GetProgress()
+        {Debug.Log( taskQueueTimer +"," +needTime);
+            return taskQueueTimer / needTime;
+            
         }
 
         
         private void Update()
         {
-            //as long as this componeent is active, the faction entity can manage tasks and there are actual pending tasks in the queue
+            //as long as this component is active, the faction entity can manage tasks and there are actual pending tasks in the queue
             if (isActive && tasksQueue.Count > 0 && CanManageTask())
                 UpdatePendingTask();
         }
@@ -119,6 +129,7 @@
             }
             else //task timer is done
             {
+                needTime = 0;
                 OnTaskCompleted(); //complete the task
             }
         }
@@ -150,7 +161,7 @@
             tasksList[taskID].Cancel(); //cancel the task
 
             //CustomEvents.OnTaskCanceled(this, taskID, queueIndex);
-            EventCenter.Broadcast(EnumEventType.OnTaskCanceled,this,taskID,tasksQueue.Count - 1);
+            EventCenter.Broadcast(EnumEventType.OnTaskCanceled,this,taskID,queueIndex);
             
             if (queueIndex == 0) //if the first task in the queue was the one that got cancelled and we still have more in queue
                 StartNextTask();

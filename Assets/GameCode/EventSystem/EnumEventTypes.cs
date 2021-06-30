@@ -35,11 +35,11 @@ public enum EnumEventType
     OnBorderDeActivated,
     
     //建筑
-    BuildingStartPlacement,
-    BuildingStopPlacement,
-    BuildingPlaced,
-    BuildingDestroyed,
-    BuildingBuilt,
+    BuildingStartPlacement,//NPC阵营开始寻找放置建筑位置
+    BuildingStopPlacement,//NPC阵营取消放置建筑
+    BuildingPlaced,//建筑防止完成（开始实例化）
+    BuildingDestroyed,//建筑倍摧毁(Die）
+    BuildingBuilt,//建筑建造即使完成
     
 }
 

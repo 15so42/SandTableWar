@@ -940,6 +940,7 @@
      <Compile Include="Assets\Resources\Config\ScriptableObject\SpawnBattleUnitConfig.cs" />
      <Compile Include="Assets\Scout.cs" />
      <Compile Include="Assets\Scripts\GameSettingsConst.cs" />
+     <Compile Include="Assets\Scripts\MonoSingleton.cs" />
      <Compile Include="Assets\Scripts\PhotonEventConst.cs" />
      <Compile Include="Assets\Scripts\UnityObjectPoolManager.cs" />
      <Compile Include="Assets\SearchCell.cs" />
@@ -948,6 +949,8 @@
      <Compile Include="Assets\TankAnimCtrl.cs" />
      <Compile Include="Assets\TankWeapon.cs" />
      <Compile Include="Assets\TargetPicker.cs" />
+     <Compile Include="Assets\TaskLauncherItemUI.cs" />
+     <Compile Include="Assets\TaskLauncherUI.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -982,6 +985,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+     <Compile Include="Assets\UIManager.cs" />
      <Compile Include="Assets\UnitMovement.cs" />
      <Compile Include="Assets\WorkerAnimCtrl.cs" />
      <Compile Include="Assets\WorkerManager.cs" />

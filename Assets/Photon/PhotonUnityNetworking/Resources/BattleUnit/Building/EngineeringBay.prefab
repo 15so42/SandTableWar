@@ -287,7 +287,7 @@ MonoBehaviour:
   obj: {fileID: 8841139935664101514, guid: 03a580d0dc327f142b7d595e0cd57ee5, type: 3}
   height: 0
   colorTransparency: 0.27
-  size: 10
+  size: 20
   sizeMultiplier: 2
   buildingsInBorder:
   - buildingId: 12

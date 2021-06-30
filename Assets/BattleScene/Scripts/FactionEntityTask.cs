@@ -56,7 +56,7 @@
         public string GetDescription() { return description; }
 
         [SerializeField]
-        private TaskManager.TaskTypes type = TaskManager.TaskTypes.createUnit; //the actual task type which the task manager will be referring to.
+        public TaskManager.TaskTypes type = TaskManager.TaskTypes.createUnit; //the actual task type which the task manager will be referring to.
         public TaskManager.TaskTypes GetTaskType() { return type; }
 
 #if UNITY_EDITOR

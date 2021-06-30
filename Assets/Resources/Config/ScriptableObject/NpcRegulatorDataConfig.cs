@@ -17,7 +17,13 @@ public class NpcRegulatorDataConfig : ScriptableObject
        NpcRegulatorDataFilter filterPair = (building? buildingPairs : unitPairs).Find(x => x.battleUnitId == battleUnitId);
        if (filterPair == null)
        {
-           filterPair= building ? buildingCommonPair : unitCommonPair;
+           var tmpPair = new NpcRegulatorDataFilter();
+           var toCopyPair=building ?  buildingCommonPair : unitCommonPair;
+           tmpPair.battleUnitId = toCopyPair.battleUnitId;
+           tmpPair.easyData = toCopyPair.easyData;
+           tmpPair.normalData = toCopyPair.normalData;
+           tmpPair.hardData = toCopyPair.hardData;
+           filterPair= tmpPair;
        }
        switch (difficulty)
        {

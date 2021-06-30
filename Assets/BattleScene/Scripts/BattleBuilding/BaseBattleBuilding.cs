@@ -100,6 +100,7 @@ public class BaseBattleBuilding : BattleUnitBase
         {
             borderComp.Init(fightingManager,this);
         }
+        EventCenter.Broadcast(EnumEventType.BuildingBuilt,this);
 
     }
     
@@ -138,6 +139,8 @@ public class BaseBattleBuilding : BattleUnitBase
         
         if (buildingCenter != null) //If the building is not a center then we'll check if it occupies a place in the defined buildings for its center:
             buildingCenter.UnRegisterBuilding(this);
+        
+        EventCenter.Broadcast(EnumEventType.BuildingDestroyed,this);
         base.Die();
     }
 
@@ -177,6 +180,7 @@ public class BaseBattleBuilding : BattleUnitBase
 
         spawnPosLine = LineFactory.Instance.GetLineByLineMode(LineMode.Dotted);
         spawnPosLine.enabled = false;
+        EventCenter.Broadcast(EnumEventType.BuildingPlaced,this);
     }
 
     public GameObject GetSpawnMark()
@@ -213,13 +217,7 @@ public class BaseBattleBuilding : BattleUnitBase
         fightingManager.buildingWhichIsSetSpawnPos = null;
     }
     
-    //更换生成的单位
-    private void ChangeSpawnId(int id)
-    {
-        //spawnId = id;
-        //curSpawnInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoById(id);
-        //interval = curSpawnInfo.spawnTime;
-    }
+   
 
     // Update is called once per frame
     protected override void Update()

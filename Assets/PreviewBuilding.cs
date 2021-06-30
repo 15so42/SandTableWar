@@ -46,14 +46,9 @@ public class PreviewBuilding : MonoBehaviour
         {
             result= BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(buildingInfo,pos,factionId) as BaseBattleBuilding;
         }
-
-        // Timer.Register(result.buildTime, () =>
-        // {
-        //     Destroy(gameObject);
-        // });
         
         gameObject.transform.rotation = result == null ? Quaternion.identity : result.transform.rotation;
-        Destroy(gameObject,3);
+        //Destroy(gameObject,3);
         return result;
     }
 }

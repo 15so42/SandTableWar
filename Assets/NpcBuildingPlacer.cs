@@ -104,7 +104,7 @@ namespace RTSEngine
             NpcPendingBuilding newPendingBuilding = new NpcPendingBuilding
             {
                 buildingId = buildingId,
-                //这里的instance 直接创建预览模型来进行移动和检测是否可防止
+                //这里的instance 直接创建预览模型来进行移动和检测是否可放置
                 //instance = Instantiate(buildingPrefab.gameObject, buildingSpawnPos, buildingPrefab.transform.rotation).GetComponent<Building>(),
                 instance = fightingManager.buildingManager.CreatePreviewingBuilding(buildingId),
                 buildAroundPos = buildAroundPos,
@@ -121,7 +121,7 @@ namespace RTSEngine
             //keep initial rotation (because the RotateAround method will change the building's rotation as well which we do not want)
             //newPendingBuilding.instance.transform.rotation = newPendingBuilding.buildingId.transform.rotation; 
 
-            //初始时关闭碰撞体一面阻止其余建筑的放置
+            //初始时关闭碰撞体以免阻止其余建筑的放置
             PreviewBuilding previewBuilding = newPendingBuilding.instance.GetComponent<PreviewBuilding>();
             
             previewBuilding.ToggleCollider(false); //Hide the building's model:
@@ -175,6 +175,7 @@ namespace RTSEngine
         /// </summary>
         private void StopPlacingBuilding()
         {
+            Debug.Log("stopPlacing");
             if (currPendingBuilding.instance != null) //valid building instance:
             {
                 //Call the stop building placement custom event:
@@ -219,6 +220,7 @@ namespace RTSEngine
 
             if(currPendingBuilding.instance == null) //invalid building instance:
             {
+                
                 StopPlacingBuilding(); //discard this pending building slot
                 return; //do not continue
             }
@@ -230,6 +232,7 @@ namespace RTSEngine
                 && (currPendingBuilding.center == null 
                     || Vector3.Distance(currPendingBuilding.instance.transform.position, currPendingBuilding.center.transform.position) > currPendingBuilding.center.borderComp.Size))
             {
+                Debug.Log("center为null");
                 StopPlacingBuilding(); //Stop placing building.
                 return;
             }
@@ -310,8 +313,11 @@ namespace RTSEngine
             // {
             //     Debug.Log("currPendingBuilding.buildingInfo null");
             // }
+            
             if (building == null)
             {
+                // OnBuildingPlacementRequest(currPendingBuilding.buildingId,currPendingBuilding.);
+                Debug.Log("建筑无法建造");
                 return;
             }
             if (currPendingBuilding.buildingInfo.placeOutBorder == false) //if the building is to be placed inside the faction's border and this is not a center building
