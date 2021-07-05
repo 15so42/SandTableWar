@@ -233,7 +233,7 @@ public class BaseBattleBuilding : BattleUnitBase
         // }
         if(photonView.IsMine==false)
             return;
-        if (toSpawn.Count > 0)
+       /* if (toSpawn.Count > 0)
         {
             //判断资源足够时才计时
             if (fightingManager.HasEnoughResToSpawnSolider(toSpawn.Peek()))
@@ -245,8 +245,9 @@ public class BaseBattleBuilding : BattleUnitBase
                     SpawnUnit();
                 }
             }
-        }
+        }*/
 
+        //显示集结线
         if (spawnMark)
         {
             spawnPosLine.enabled = spawnMark.activeSelf;

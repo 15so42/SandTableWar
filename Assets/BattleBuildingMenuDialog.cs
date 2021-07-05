@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class BuildingMenuDialogContext : DialogContext
 {
    public BaseBattleBuilding targetUnitBase;
-   public BuildingMenuCommand[] menus;
+   public List<FactionEntityTask> menus;
    public int r = 240;
 
    public BuildingMenuDialogContext(BaseBattleBuilding targetUnitBase,BuildingMenuCommand[] menus)
@@ -45,6 +45,7 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
       mainCamera = Camera.main;
       base.Show();
       BuildingMenuCommand[] menus = dialogContext.menus;
+      List<FactionEntityTask> tasks = dialogContext.menus;
       for (int i=0;i<menus.Length;i++)
       {
          //解析命令

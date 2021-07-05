@@ -107,7 +107,8 @@
         }
 
         public float GetProgress()
-        {Debug.Log( taskQueueTimer +"," +needTime);
+        {
+            //Debug.Log( taskQueueTimer +"," +needTime);
             return taskQueueTimer / needTime;
             
         }
