@@ -9,32 +9,33 @@ public class BattleUnitBaseFactory : Singleton<BattleUnitBaseFactory>
     
     public List<BattleUnitBase> cachedBattleUnits=new List<BattleUnitBase>();
     
-    public BattleUnitBase SpawnBattleUnitAtPos(SpawnBattleUnitConfigInfo soliderInfo,Vector3 pos,int factionId)
+    public BattleUnitBase SpawnBattleUnitAtPos(SpawnBattleUnitConfigInfo soliderInfo,Vector3 instaniatePos,Vector3 gatherPos,int factionId)
     {
         string path = (soliderInfo.battleUnitType == BattleUnitType.Unit) ? SoliderPath : BuildingPath;
         GameObject spawnedBase;
         if (GameManager.Instance.gameMode == GameMode.Campaign)
         {
-            spawnedBase = GameObject.Instantiate(GetBattleUnitLocally(soliderInfo).gameObject, pos,
+            spawnedBase = GameObject.Instantiate(GetBattleUnitLocally(soliderInfo).gameObject, instaniatePos,
                 Quaternion.identity);
         }
         else
         {
-            spawnedBase=PhotonNetwork.Instantiate($"{path}{soliderInfo.resourceName}", pos, Quaternion.identity);
+            spawnedBase=PhotonNetwork.Instantiate($"{path}{soliderInfo.resourceName}", instaniatePos, Quaternion.identity);
         }
         
         BattleUnitBase spawnedUnit = spawnedBase.GetComponent<BattleUnitBase>();
        
         spawnedUnit.configId = soliderInfo.battleUnitId;
         spawnedUnit.SetCampInPhoton(factionId);
+        spawnedUnit.spawnTargetPos = gatherPos;
         spawnedUnit.Init();
         return spawnedUnit;
     }
 
-    public BattleUnitBase SpawnBattleUnitAtPosById(BattleUnitId battleUnitId,Vector3 pos,int factionId)
+    public BattleUnitBase SpawnBattleUnitAtPosById(BattleUnitId battleUnitId,Vector3 instaniatePos,Vector3 gatherPos,int factionId)
     {
         SpawnBattleUnitConfigInfo soliderInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(battleUnitId);
-        return SpawnBattleUnitAtPos(soliderInfo, pos, factionId);
+        return SpawnBattleUnitAtPos(soliderInfo, instaniatePos, gatherPos, factionId);
     }
 
     private BattleUnitBase GetBattleUnitLocally(SpawnBattleUnitConfigInfo soliderInfo)

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class BuildingMenuDialogContext : DialogContext
 {
    public BaseBattleBuilding targetUnitBase;
-   public List<FactionEntityTask> menus;
+   public BuildingMenuCommand[] menus;
    public int r = 240;
 
    public BuildingMenuDialogContext(BaseBattleBuilding targetUnitBase,BuildingMenuCommand[] menus)
@@ -45,7 +45,8 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
       mainCamera = Camera.main;
       base.Show();
       BuildingMenuCommand[] menus = dialogContext.menus;
-      List<FactionEntityTask> tasks = dialogContext.menus;
+
+      TaskLauncher taskLauncher = dialogContext.targetUnitBase.GetComponent<TaskLauncher>();
       for (int i=0;i<menus.Length;i++)
       {
          //解析命令
@@ -55,7 +56,7 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
          switch (command)
          {
             case BuildingOperateType.Spawn : //生成单位
-               InstantiateSpawnBtn(i,buildingMenuCommand.battleUnitId,buildingMenuCommand.priceOff);
+               InstantiateSpawnBtn(i,taskLauncher,buildingMenuCommand.taskIndex,buildingMenuCommand.priceOff);
                break;
             case BuildingOperateType.SetSpawnPos : //进入修改出生点位置模式
                BuildingSetSpawnPosMenuItem buildingSetSpawnPosMenuItem = InstantiateCommonBtn(i, "SetSpawnPosButton",
@@ -77,22 +78,22 @@ public class BattleBuildingMenuDialog : Dialog<BuildingMenuDialogContext>
       }
    }
 
-   private void InstantiateSpawnBtn(int index,BattleUnitId spawnId,float priceOff)//折扣，受各种buff、科技、政策影响
+   private void InstantiateSpawnBtn(int index,TaskLauncher taskLauncher,int taskIndex,float priceOff)//折扣，受各种buff、科技、政策影响
    {
       GameObject spawnPfb =
          Resources.Load<GameObject>(pathPrefix + "SpawnButton");
       GameObject iBtn = Instantiate(spawnPfb,GetBtnPosByIndex(index),Quaternion.identity,btnParent);
-     PlayScaleAnim(iBtn);
+      PlayScaleAnim(iBtn);
       
       
       iBtn.GetComponent<Button>().onClick.AddListener(()=>
       {
-         dialogContext.targetUnitBase.AddUnitToSpawnStack(spawnId);
+         dialogContext.targetUnitBase.taskLauncherComp.Add(taskIndex);
       });
       BuildingMenuItem item = iBtn.GetComponent<BuildingMenuItem>();
       if (item)
       {
-         (item as BuildingSpawnMenuItem)?.SetParams(spawnId,dialogContext.targetUnitBase);
+         (item as BuildingSpawnMenuItem)?.SetParams(taskLauncher.GetTask(taskIndex),dialogContext.targetUnitBase);
          item.Init();
          buildingMenuItems.Add(item);
       }
@@ -207,7 +208,7 @@ public enum BuildingOperateType
 public class BuildingMenuCommand
 {
    public BuildingOperateType buildingOperateType;
-   public BattleUnitId battleUnitId;
+   public int taskIndex;
    public float priceOff = 1;//折扣
 }
 

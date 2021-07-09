@@ -31,7 +31,7 @@ public class ResourceInfo : MonoBehaviour
         set => isEmpty = value;
     }
 
-    private UnityAction enterFogAction;
+    private UnityAction exitFogAction;
     
     // Start is called before the first frame update
     void Start()
@@ -39,11 +39,11 @@ public class ResourceInfo : MonoBehaviour
         workerManager = GetComponent<WorkerManager>();
         EventCenter.Broadcast(EnumEventType.ResourceCreated,this);
         battleUnitBase = GetComponent<BattleUnitBase>();
-        enterFogAction = () =>
+        exitFogAction = () =>
         {
             FightingManager.Instance.GetMyFaction().AddResource(this);
         };
-        battleUnitBase.AddEnterFogListener(enterFogAction);
+        battleUnitBase.AddExitFogListener(exitFogAction);
         
     }
 
@@ -71,7 +71,7 @@ public class ResourceInfo : MonoBehaviour
 
     private void OnDestroy()
     {
-        battleUnitBase.RemoveEnterFogListener(enterFogAction);
+        battleUnitBase.RemoveEnterFogListener(exitFogAction);
     }
 
     public float GetRadius()

@@ -35,6 +35,8 @@
         public IEnumerable<FactionEntityTask> GetAll () { return tasksDic.Values; }
 
         private float needTime;//当前任务所需时间
+
+        public TaskLauncherUI taskLauncherUi;
         
         public void Init(FightingManager fightingManager, BattleUnitBase battleUnitBase)
         {
@@ -51,7 +53,7 @@
             EventCenter.Broadcast(EnumEventType.OnTaskLauncherAdded,this); 
 
             Initiated = true;
-            UIManager.Instance.SetTaskLauncherUI(gameObject,GetComponent<BattleUnitBase>().hpUiOffset);
+            taskLauncherUi=UIManager.Instance.SetTaskLauncherUI(gameObject,GetComponent<BattleUnitBase>().hpUiOffset);
         }
         
         public FactionEntityTask GetTask (int index) {

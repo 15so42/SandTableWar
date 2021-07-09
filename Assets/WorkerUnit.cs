@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using DG.Tweening;
 using RTSEngine;
 using UnityEngine;
@@ -18,6 +19,13 @@ public class WorkerUnit : BattleUnitBase
 
     private ResourceCollector resourceCollector;
 
+    public List<ToolConfig> toolConfigs;
+    [Serializable]
+    public struct ToolConfig
+    {
+        public BattleResType resType;
+        public GameObject obj;
+    }
     //临时变量
     private GameObject iMineMachine;
    protected void Awake()
@@ -29,6 +37,10 @@ public class WorkerUnit : BattleUnitBase
       
    }
 
+   public void ShowTool(BattleResType battleResType,bool active)
+   {
+       toolConfigs.Find(x=>x.resType==battleResType).obj.gameObject.SetActive(active);
+   }
    
    public void SetTargetResource(ResourceInfo target)
    {
@@ -44,21 +56,14 @@ public class WorkerUnit : BattleUnitBase
        //当前有挖矿目标时，取消当前挖矿目标
        if (resourceTarget != null)
        {
-           //当前挖矿目标
+           //当前资源目标
            BattleUnitBase preResourceUnit= this.resourceTarget.GetComponent<BattleUnitBase>();
            ResourceInfo preResourceInfo = preResourceUnit.GetComponent<ResourceInfo>();
            
            preResourceInfo.workerManager.Remove(this.resourceCollector);
            preResourceUnit.OnUnSelect();
        }
-       //不允许出现这种情况
-       // if (target.IsEmpty)
-       // {
-       //     TipsDialog.ShowDialog("目标资源已空或处于锁定状态");
-       //     SetTargetResource(null);//无效资源
-       //     UpdateIdleStatus(true);
-       //     return;
-       // }
+       
        if (target.workerManager.CanAddWorker())
        {
            target.workerManager.Add(resourceCollector);
@@ -83,6 +88,13 @@ public class WorkerUnit : BattleUnitBase
        {
            SetTargetPos(this.resourceTarget.transform.position);
            UpdateIdleStatus(false);
+           switch(resourceTarget.resourceTypeInfo.resourceType)
+           {
+               case BattleResType.Wood:
+                   behaviorDesigner.SetVariableValue("ArriveDistance",1.5f);
+                   navMeshAgent.stoppingDistance = 1.5f;
+                   break;
+           }
        }
    }
    
@@ -90,7 +102,7 @@ public class WorkerUnit : BattleUnitBase
    public void SetMineMachine()
    {
        iMineMachine = BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.MineMachine),
-           resourceTarget.transform.position,factionId).gameObject;
+           resourceTarget.transform.position,resourceTarget.transform.position,factionId).gameObject;
           // GameObject.Instantiate(MineMachineModel, mineTarget.transform.position, Quaternion.identity);
         iMineMachine.GetComponent<MineMachine>().buildTime = setMineMachineTime;
         iMineMachine.GetComponent<MineMachine>().factionId = factionId;
@@ -184,7 +196,7 @@ public class WorkerUnit : BattleUnitBase
        if(resourceTarget==null)
            return;
        Transform treeTrans = resourceTarget.transform;
-       resourceTarget.gameObject.transform.DOLocalJump(treeTrans.position + Vector3.up * 1, 1, 5, 0.2f).SetLoops(2,LoopType.Yoyo);
+       resourceTarget.gameObject.transform.DOShakePosition(0.3f, 0.3f, 10, 0.2f)/*.SetLoops(2,LoopType.Yoyo)*/;
    }
    
 

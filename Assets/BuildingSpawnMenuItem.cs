@@ -8,7 +8,9 @@ public class BuildingSpawnMenuItem : BuildingMenuItem
 {
     [HideInInspector]public BaseBattleBuilding targetBuilding;
     [HideInInspector]public BattleUnitId spawnId;
+   
     private SpawnBattleUnitConfigInfo curUnitInfo;
+    private FactionEntityTask factionEntityTask;
     
     public Image spawnUnitImage;
     public Image extraImage;
@@ -16,13 +18,16 @@ public class BuildingSpawnMenuItem : BuildingMenuItem
     public Text amountText;
     public Text nameText;
 
-    public void SetParams(BattleUnitId spawnId,BaseBattleBuilding targetBuilding)
+    public void SetParams(FactionEntityTask factionEntityTask,BaseBattleBuilding targetBuilding)
     {
-        this.spawnId = spawnId;
+        this.factionEntityTask = factionEntityTask;
+        this.spawnId = factionEntityTask.battleUnitId;
+        
         this.targetBuilding = targetBuilding;
     }
     public override void Init()
     {
+        
         curUnitInfo = ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(spawnId);
         spawnUnitImage.sprite = UnitIconLoader.GetSpriteByUnitId(curUnitInfo.battleUnitId);
         if (curUnitInfo.hasExtraIcon)

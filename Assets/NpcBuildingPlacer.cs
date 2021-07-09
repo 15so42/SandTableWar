@@ -317,7 +317,7 @@ namespace RTSEngine
             if (building == null)
             {
                 // OnBuildingPlacementRequest(currPendingBuilding.buildingId,currPendingBuilding.);
-                Debug.Log("建筑无法建造");
+                //Debug.Log("建筑无法建造");
                 return;
             }
             if (currPendingBuilding.buildingInfo.placeOutBorder == false) //if the building is to be placed inside the faction's border and this is not a center building

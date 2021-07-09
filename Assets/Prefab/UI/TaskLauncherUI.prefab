@@ -94,7 +94,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 321, y: 65}
+  m_SizeDelta: {x: 224.7, y: 45.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3094810468520453453
 MonoBehaviour:
@@ -111,6 +111,9 @@ MonoBehaviour:
   taskLauncherItemPfb: {fileID: 5994653075663954693, guid: 3e592b05532cfb848b16e3197de5b4c0,
     type: 3}
   horizontalGridParent: {fileID: 7897820002856358083}
+  showTransforms:
+  - {fileID: 1268104246204383588}
+  - {fileID: 5470676702661150635}
 --- !u!1 &5233596666259058580
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,10 +146,10 @@ RectTransform:
   m_Father: {fileID: 5470676702661150635}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 320, y: 64}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8762840544776956708
 MonoBehaviour:
@@ -166,7 +169,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 15
+  m_Spacing: 12
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -244,14 +247,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0.7019608}
-  m_RaycastTarget: 1
+  m_Color: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0.23921569}
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 24b554d3a43524e4ca18997bb0b26643, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

@@ -94,7 +94,7 @@ public class BuildingBorder : MonoBehaviour
         
 
         //Destroy the border object if it has been created
-        if (spawnObj == true)
+        if (spawnObj )
             Destroy(obj);
     }
     

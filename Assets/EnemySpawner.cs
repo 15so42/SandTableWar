@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(
                         spawnBattleUnitConfigInfos[Random.Range(0, battleUnitIds.Length)],
-                        navMeshHit.position, selfCampId + 1);
+                        navMeshHit.position, navMeshHit.position,selfCampId + 1);
                 }
                
                 spawnCount--;

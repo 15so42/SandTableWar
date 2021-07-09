@@ -30,6 +30,7 @@ public class FightingManager
     //按键控制
     public bool isHoldShift;
     public bool isHoldCtrl;
+    public bool isHoldTab;
     
     //资源
     public BattleResMgr myBattleResMgr;
@@ -137,7 +138,7 @@ public class FightingManager
             {
                 Transform tmpMineral = logicMap.minerals[i];
                 tmpMineral.gameObject.SetActive(false);
-                ResourceInfo resourceInfo = BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Mineral),tmpMineral.position,-1).GetComponent<ResourceInfo>();//生成矿物
+                ResourceInfo resourceInfo = BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Mineral),tmpMineral.position,tmpMineral.position,-1).GetComponent<ResourceInfo>();//生成矿物
                 for (int j = 0; j < factionManagers.Count; j++)
                 {
                     if(factionManagers[j].FactionSlot.isPlayer)
@@ -151,7 +152,7 @@ public class FightingManager
             {
                 Transform tmpTree = logicMap.trees[i];
                 tmpTree.gameObject.SetActive(false);
-                ResourceInfo resourceInfo = BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.ResourceTree),tmpTree.position,-1).GetComponent<ResourceInfo>();//生成矿物
+                ResourceInfo resourceInfo = BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.ResourceTree),tmpTree.position,tmpTree.position,-1).GetComponent<ResourceInfo>();//生成矿物
                 for (int j = 0; j < factionManagers.Count; j++)
                 {
                     if(factionManagers[j].FactionSlot.isPlayer)
@@ -167,17 +168,17 @@ public class FightingManager
         
         //联网
         //基地
-        BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Base),logicMap.GetBasePosByPlayerId(myFactionId),myFactionId);
+        BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Base),logicMap.GetBasePosByPlayerId(myFactionId),logicMap.GetBasePosByPlayerId(myFactionId),myFactionId);
         BattleCamera.Instance.SetLookPos(logicMap.GetBasePosByPlayerId(myFactionId));
         if (PhotonNetwork.IsMasterClient)
         {
-            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Bunker_M),Vector3.zero,-1);//生成碉堡
+            BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Bunker_M),Vector3.zero,Vector3.zero,-1);//生成碉堡
             
             for (int i = 0; i < logicMap.minerals.Count; i++)
             {
                 Transform tmpMineral = logicMap.minerals[i];
                 tmpMineral.gameObject.SetActive(false);
-                BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Mineral),tmpMineral.position,-1);//生成矿物
+                BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(BattleUnitId.Mineral),tmpMineral.position,Vector3.zero,-1);//生成矿物
             }
         }
         
@@ -240,6 +241,15 @@ public class FightingManager
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             isHoldShift = false;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            isHoldTab = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            isHoldTab = false;
         }
         
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -367,6 +377,13 @@ public class FightingManager
         MoveToSpecificPos(selectedUnits,pos,attack);
     }
 
+    /// <summary>
+    /// 指定的复数单位移动
+    /// </summary>
+    /// <param name="units"></param>
+    /// <param name="pos"></param>
+    /// <param name="attack"></param>
+    /// <param name="showMark"></param>
     public void MoveToSpecificPos(List<BattleUnitBase> units, Vector3 pos,bool attack,bool showMark=true)
     {
         List<DestinationSphereData> destinationSphereData=new List<DestinationSphereData>();

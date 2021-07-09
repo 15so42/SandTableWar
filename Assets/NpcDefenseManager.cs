@@ -89,7 +89,7 @@ using UnityEngine.EventSystems;
         private void OnFactionEntityHealthUpdated (BattleUnitBase factionEntity, int value, BattleUnitBase source)
         {
             if (factionEntity.factionId != factionMgr.FactionId //the faction entity must belong to the NPC faction
-                || value >= 0.0f //the health update must be a decrease one (we're looking to see if NPC entities got damaged)
+                || value <= 0.0f //the health update must be a decrease one (we're looking to see if NPC entities got damaged)
                 || source == null //there's a valid source that caused this health drop
                 || source.factionId == factionMgr.FactionId) //the source that caused this health update must not belong to this NPC faction
                 return;

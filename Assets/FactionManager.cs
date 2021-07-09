@@ -99,6 +99,11 @@ public class FactionManager
             GameObject npcCommanderGo = GameObject.Instantiate(Resources.Load<GameObject>("NpcCommander"));
             npcCommanderGo.GetComponent<NpcCommander>().Init(this);
         }
+        else
+        {
+            GameObject playerNpcCommanderGo = GameObject.Instantiate(Resources.Load<GameObject>("PlayerNpcCommander"));
+            playerNpcCommanderGo.GetComponent<PlayerNpcCommander>().Init(this);
+        }
         battleResMgr=new BattleResMgr();
 
         foreach (var limit in factionSlot.factionLimits)
@@ -134,7 +139,7 @@ public class FactionManager
 
     public void OnAllFactionsInited()
     {
-        BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPosById(BattleUnitId.Base,basePos,factionId);
+        BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPosById(BattleUnitId.Base,basePos,basePos,factionId);
     }
 
     private void OnUnitCreated(BattleUnitBase battleUnitBase)

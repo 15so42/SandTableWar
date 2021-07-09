@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atkValue: 1
-  atkRate: 0.3
+  atkRate: 1.4
   owner: {fileID: 0}
   shootPos: {fileID: 8264968204976261782}
   flashFx: {fileID: 8695086352503598387, guid: 9e19a6faebba8044597e630fe40e81de, type: 3}

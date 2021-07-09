@@ -15,7 +15,7 @@
         public override void OnStart()
         {
             base.OnStart();
-            WorkerUnit workerUnit=selfUnit.Value as WorkerUnit;
+            workerUnit=selfUnit.Value as WorkerUnit;
             resourceInfo = workerUnit.GetComponent<ResourceCollector>().GetTarget();
             resourceType = resourceInfo.resourceTypeInfo.resourceType;
             anim = selfUnit.Value.GetComponent<Animator>();
@@ -30,6 +30,7 @@
                     break;
                 case BattleResType.Wood:
                     anim.SetBool("CollectWood",false);
+                    workerUnit.ShowTool(BattleResType.Wood,false);
                     //使用帧事件来看书
                     break;
             }

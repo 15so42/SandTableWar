@@ -297,8 +297,8 @@ MonoBehaviour:
     max: 7
   unitSupportEnabled: 1
   unitSupportRange:
-    min: 10
-    max: 30
+    min: 100
+    max: 300
 --- !u!114 &4266967452061690545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,4 +427,3 @@ MonoBehaviour:
   moveDistance:
     min: 0.5
     max: 1.5
-  heightCheckReload: 0.2

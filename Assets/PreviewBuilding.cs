@@ -44,11 +44,11 @@ public class PreviewBuilding : MonoBehaviour
         BaseBattleBuilding result = null;
         if (collisionDetection.CanPlace()&& isInBuildingArea.CanPlace(playerControl))
         {
-            result= BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(buildingInfo,pos,factionId) as BaseBattleBuilding;
+            result= BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPos(buildingInfo,pos,pos,factionId) as BaseBattleBuilding;
         }
         
         gameObject.transform.rotation = result == null ? Quaternion.identity : result.transform.rotation;
-        //Destroy(gameObject,3);
+        Destroy(gameObject,3);
         return result;
     }
 }

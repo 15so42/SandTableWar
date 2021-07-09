@@ -246,28 +246,28 @@ MonoBehaviour:
   spawnPos: {fileID: 9065425138531134907}
   menuCommands:
   - buildingOperateType: 0
-    battleUnitId: 0
+    taskIndex: 0
     priceOff: 1
   - buildingOperateType: 0
-    battleUnitId: 1
+    taskIndex: 1
     priceOff: 1
   - buildingOperateType: 0
-    battleUnitId: 2
+    taskIndex: 2
     priceOff: 1
   - buildingOperateType: 0
-    battleUnitId: 3
+    taskIndex: 3
     priceOff: 1
   - buildingOperateType: 0
-    battleUnitId: 4
+    taskIndex: 4
     priceOff: 1
   - buildingOperateType: 0
-    battleUnitId: 8
+    taskIndex: 5
     priceOff: 1
   - buildingOperateType: 3
-    battleUnitId: 0
+    taskIndex: 0
     priceOff: 1
   - buildingOperateType: 1
-    battleUnitId: 0
+    taskIndex: 0
     priceOff: 1
   spawnMarkPfb: {fileID: 900307187978911580, guid: b44f100bacae5e8498188a0d84469a4e,
     type: 3}
@@ -281,6 +281,7 @@ MonoBehaviour:
   buildTime: 6
   buildingModelOffset: 0
   borderComp: {fileID: 0}
+  buildingCenter: {fileID: 0}
 --- !u!114 &7079932151677895146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +374,8 @@ MonoBehaviour:
     type: 11
     allowedType: 0
     reloadTime: 10
+    requiredResources: []
+    completeResources: []
     useMode: 0
     launchEvent:
       m_PersistentCalls:
@@ -397,6 +400,112 @@ MonoBehaviour:
     type: 11
     allowedType: 0
     reloadTime: 10
+    requiredResources: []
+    completeResources: []
+    useMode: 0
+    launchEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    startEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    completeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    cancelEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - code: create_ranger
+    battleUnitId: 0
+    unitCreationAttributes:
+      units: 00000000
+    updateTasksOnComplete: []
+    factionTypes:
+    - {fileID: 11400000, guid: 1e5c5ad984df2c64990a2d3d814a3929, type: 2}
+    description: "\u521B\u5EFA\u7A81\u51FB\u5175"
+    type: 11
+    allowedType: 0
+    reloadTime: 10
+    requiredResources: []
+    completeResources: []
+    useMode: 0
+    launchEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    startEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    completeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    cancelEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - code: create_medical
+    battleUnitId: 3
+    unitCreationAttributes:
+      units: 03000000
+    updateTasksOnComplete: []
+    factionTypes:
+    - {fileID: 11400000, guid: 1e5c5ad984df2c64990a2d3d814a3929, type: 2}
+    description: "\u521B\u5EFA\u533B\u7597\u5175"
+    type: 11
+    allowedType: 0
+    reloadTime: 10
+    requiredResources: []
+    completeResources: []
+    useMode: 0
+    launchEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    startEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    completeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    cancelEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - code: create_tank_tiger
+    battleUnitId: 8
+    unitCreationAttributes:
+      units: 08000000
+    updateTasksOnComplete: []
+    factionTypes:
+    - {fileID: 11400000, guid: 1e5c5ad984df2c64990a2d3d814a3929, type: 2}
+    description: "\u521B\u5EFA\u5766\u514B"
+    type: 11
+    allowedType: 0
+    reloadTime: 30
+    requiredResources: []
+    completeResources: []
+    useMode: 0
+    launchEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    startEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    completeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    cancelEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - code: create_tank_A
+    battleUnitId: 1
+    unitCreationAttributes:
+      units: 01000000
+    updateTasksOnComplete: []
+    factionTypes:
+    - {fileID: 11400000, guid: 1e5c5ad984df2c64990a2d3d814a3929, type: 2}
+    description: "\u521B\u5EFA\u5766\u514B"
+    type: 11
+    allowedType: 0
+    reloadTime: 20
+    requiredResources: []
+    completeResources: []
     useMode: 0
     launchEvent:
       m_PersistentCalls:

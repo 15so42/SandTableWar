@@ -35,6 +35,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
                     break;
                 case BattleResType.Wood:
                     anim.SetBool("CollectWood",true);
+                    workerUnit.ShowTool(BattleResType.Wood,true);
                     //使用帧事件来看书
                     break;
             }

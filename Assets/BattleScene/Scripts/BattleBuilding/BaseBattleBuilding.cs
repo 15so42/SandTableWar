@@ -188,6 +188,15 @@ public class BaseBattleBuilding : BattleUnitBase
         return spawnMark;
     }
 
+    public Vector3 GetGatherPos()
+    {
+        NavMeshHit navMeshHit;
+        if(NavMesh.SamplePosition(spawnMark.transform.position, out navMeshHit,20,-1))
+        {
+            return navMeshHit.position;
+        }
+        return spawnPos.position;
+    }
     public Vector3 GetSpawnPos()
     {
         NavMeshHit navMeshHit;
@@ -197,6 +206,8 @@ public class BaseBattleBuilding : BattleUnitBase
         }
         return spawnPos.position;
     }
+
+    
 
     public void OnDragMarkEnd()
     {
@@ -276,7 +287,7 @@ public class BaseBattleBuilding : BattleUnitBase
         }
     }
 
-    public void SpawnUnit()
+    /*public void SpawnUnit()
     {
         SpawnBattleUnitConfigInfo curSpawnInfo=ConfigHelper.Instance.GetSpawnBattleUnitConfigInfoByUnitId(toSpawn.Peek());
         if (fightingManager.ConsumeResByUnitInfo(curSpawnInfo));
@@ -294,7 +305,7 @@ public class BaseBattleBuilding : BattleUnitBase
 
         timer = 0;
 
-    }
+    }*/
 
     public void AddUnitToSpawnStack(BattleUnitId id)
     {
@@ -339,6 +350,7 @@ public class BaseBattleBuilding : BattleUnitBase
         {
             //hpUi.gameObject.SetActive(beforeOpenDialog);
             hpUi.Show(beforeOpenDialog);
+            taskLauncherComp.taskLauncherUi.DelayHide();
             isOpenMenu = false;
             if (GameManager.Instance.GetFightingManager().isDragFromBuilding==false)
             {
@@ -348,6 +360,7 @@ public class BaseBattleBuilding : BattleUnitBase
         }
         //hpUi.gameObject.SetActive(false);
         hpUi.Show(false);
+        taskLauncherComp.taskLauncherUi.ShowWithMenu();
         spawnMarkFadeTimer?.Cancel();
         if (spawnMark)
         {

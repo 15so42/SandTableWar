@@ -107,7 +107,7 @@
 
             foreach (FactionTypeInfo factionType in factionTypes)
             {
-                Debug.Log(fightingManager);
+               
                 int id = battleUnitBase.factionId;
                 FactionManager factionManager = fightingManager.GetFaction(id);
                 FactionSlot factionSlot = fightingManager.GetFaction(battleUnitBase.factionId).FactionSlot;
@@ -202,7 +202,7 @@
                     }
 
                     //gameMgr.UnitMgr.CreateUnit(unitPrefab, spawnPosition, unitPrefab.transform.rotation, spawnPosition, battleUnitBase.factionId, createdBy, false, false); //finally create the unit
-                    BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPosById(unitId, spawnPosition,
+                    BattleUnitBaseFactory.Instance.SpawnBattleUnitAtPosById(unitId, spawnPosition,createdBy.GetGatherPos(),
                         battleUnitBase.factionId);
                     break;
                 

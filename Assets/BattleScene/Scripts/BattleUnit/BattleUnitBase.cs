@@ -171,13 +171,13 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     //用于某些需要在设置相关信息后再执行的操作
     public void Init()
     {
-        if (configId == BattleUnitId.Base)
-        {
-            if (factionId!=fightingManager.myFactionId && taskLauncherComp)
+        // if (configId == BattleUnitId.Base)
+        // {
+            if (taskLauncherComp)
             {
                 taskLauncherComp.Init(FightingManager.Instance,this);
             }
-        }
+        //}
 
         // if (factionId == FightingManager.Instance.myFactionId)
         // {

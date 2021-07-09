@@ -25,7 +25,7 @@ public class UIManager : MonoSingleton<UIManager>
       
    }
 
-   public void SetTaskLauncherUI(GameObject targetObj,Vector3 offset)
+   public TaskLauncherUI SetTaskLauncherUI(GameObject targetObj,Vector3 offset)
    {
       GameObject uiGO = Instantiate(taskLauncherUIPfb, taskLauncherUIParent);
       uiGO.transform.localPosition=mainCam.WorldToScreenPoint(targetObj.transform.position);
@@ -34,9 +34,11 @@ public class UIManager : MonoSingleton<UIManager>
       TaskLauncher taskLauncher = targetObj.GetComponent<TaskLauncher>();
       if (taskLauncher)
       {
-         taskLauncherUi.Init(taskLauncher,offset);
+         taskLauncherUi.Init(taskLauncher,offset,GameManager.Instance.GetFightingManager());
       }
-      
+
+      return taskLauncherUi;
+
    }
    
   
