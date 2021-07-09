@@ -6,10 +6,16 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
     {
         protected NavMeshTacticalGroup.NavMeshTacticalAgent tacticalAgent;
 
+        public override void OnAwake()
+        {
+            base.OnAwake();
+            tacticalAgent = new NavMeshTacticalGroup.NavMeshTacticalAgent(transform);
+        }
+
         public override void OnStart()
         {
             base.OnStart();
-            tacticalAgent = new NavMeshTacticalGroup.NavMeshTacticalAgent(transform);
+            
         }
     }
 }

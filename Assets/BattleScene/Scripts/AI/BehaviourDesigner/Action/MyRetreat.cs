@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
+using DefaultNamespace;
 using UnityEngine.AI;
 using Tooltip = BehaviorDesigner.Runtime.Tasks.TooltipAttribute;
 using HelpURL = BehaviorDesigner.Runtime.Tasks.HelpURLAttribute;
@@ -17,6 +18,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
 
         public SharedBattleUnit enemyUnit;
         public bool canRotate=false;
+        private NavMeshVehicleMovement navMeshVehicleMovement;
         
         // protected override void AddAgentToGroup(Behavior agent, int index)
         // {
@@ -29,9 +31,16 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
         //     }
         // }
 
+        public override void OnAwake()
+        {
+            base.OnAwake();
+            navMeshVehicleMovement = tacticalAgent.battleUnitBase.GetComponent<NavMeshVehicleMovement>();
+        }
+
         public override void OnStart()
         {
             base.OnStart();
+           
             tacticalAgent.SetDestination(destinationPos.Value);
             if (tacticalAgent != null) {
                 // Prevent the agent from updating its rotation so the agent can attack while retreating.
@@ -85,6 +94,11 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
                 safe = false;
                 var targetPosition = destinationPos.Value;
                 tacticalAgent.SetDestination(targetPosition);
+                if (navMeshVehicleMovement && navMeshVehicleMovement.isTurnRound)
+                {
+                    navMeshVehicleMovement.SetRealDest(targetPosition);
+                }
+               
             } else {
                 tacticalAgent.Stop();
             }

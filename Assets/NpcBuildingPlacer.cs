@@ -125,6 +125,7 @@ namespace RTSEngine
             PreviewBuilding previewBuilding = newPendingBuilding.instance.GetComponent<PreviewBuilding>();
             
             previewBuilding.ToggleCollider(false); //Hide the building's model:
+            previewBuilding.SetVisibility(false);
             newPendingBuilding.instance.gameObject.SetActive(false);
             //Call the start building placement custom event:
             //todo CustomEvents.OnBuildingStartPlacement(newPendingBuilding.instance);
@@ -159,7 +160,7 @@ namespace RTSEngine
             PreviewBuilding previewBuilding = currPendingBuilding.instance.GetComponent<PreviewBuilding>();
             
             previewBuilding.ToggleCollider(true); //Hide the building's model:
-
+            
 
             //reset building rotation/movement timer:
             placementMoveTimer = -1; //this will move the building from its initial position in the beginning of the placement process.

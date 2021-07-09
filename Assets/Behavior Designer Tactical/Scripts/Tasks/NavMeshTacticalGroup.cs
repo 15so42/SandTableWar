@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DefaultNamespace;
+using UnityEngine;
 using UnityEngine.AI;
 using HelpURL = BehaviorDesigner.Runtime.Tasks.HelpURLAttribute;
 
@@ -16,14 +17,16 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
         {
             private NavMeshAgent navMeshAgent;
             private bool destinationSet;
-            private BattleUnitBase battleUnitBase;
-
+            public BattleUnitBase battleUnitBase;
+            private NavMeshVehicleMovement vehicleMovement;
+            
             /// <summary>
             /// Caches the component references and initialize default values.
             /// </summary>
             public NavMeshTacticalAgent(Transform agent) : base(agent)
             {
                 battleUnitBase = agent.GetComponent<BattleUnitBase>();
+                vehicleMovement = agent.GetComponent<NavMeshVehicleMovement>();
                 navMeshAgent = agent.GetComponent<NavMeshAgent>();
 
                 if (navMeshAgent.hasPath) {
@@ -54,7 +57,13 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
                 destinationSet = true;
                 destination.y = navMeshAgent.destination.y;
                 if (navMeshAgent.destination != destination) {
-                    navMeshAgent.SetDestination(destination);
+                    // if(vehicleMovement)
+                    //     vehicleMovement.SetRealDest(destination);
+                    // else
+                    // {
+                        navMeshAgent.SetDestination(destination);
+                    //}
+                   
                     navMeshAgent.isStopped = false;
                 }
             }
