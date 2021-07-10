@@ -15,7 +15,10 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
         public override void OnStart()
         {
             base.OnStart();
-            
+            if (tacticalAgent == null)
+            {
+                tacticalAgent = new NavMeshTacticalGroup.NavMeshTacticalAgent(transform);
+            }
         }
     }
 }

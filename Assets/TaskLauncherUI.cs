@@ -27,7 +27,7 @@ public class TaskLauncherUI : MonoBehaviour
     private FightingManager fightingManager;
 
 
-    private Timer showTimer;
+    private Timer fadeTimer;
     private bool showingMenu;
     
     // Start is called before the first frame update
@@ -107,7 +107,7 @@ public class TaskLauncherUI : MonoBehaviour
 
     public void StopFadeTimer()
     {
-        showTimer?.Cancel();
+        fadeTimer?.Cancel();
     }
 
     void OnTaskLaunched(TaskLauncher taskLauncher1, int taskId, int queueId)
@@ -130,16 +130,16 @@ public class TaskLauncherUI : MonoBehaviour
         //tasksList.Add(factionEntityTask);
         taskLauncherItems.Enqueue(InstaniateItemUI(factionEntityTask,queueId));
         //刚开始显示三秒
-        if (showTimer != null && showTimer.isCompleted == false)
+        if (fadeTimer != null && fadeTimer.isCompleted == false)
         {
-            showTimer.Cancel();
+            fadeTimer.Cancel();
         }
         Show(true);
-        showingMenu = true;
+        //showingMenu = true;
        
-        showTimer = Timer.Register(3, () =>
+        fadeTimer = Timer.Register(3, () =>
         {
-            showingMenu = false;
+            //showingMenu = false;
             Show(false);
         });
     }

@@ -305,7 +305,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
             behaviorDesigner.EnableBehavior();
             if (spawnTargetPos != UnityTool.cantReachPoint)
             {
-                SetTargetPos(spawnTargetPos);
+                SetTargetPos(spawnTargetPos,false);
             }
         }
        

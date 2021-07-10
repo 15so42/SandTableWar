@@ -65,7 +65,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
             var safe = true;
             // Try to attack the enemy while retreating.
             //FindAttackTarget();
-            if (tacticalAgent.TargetTransform == null || enemyUnit.Value.IsAlive()==false)
+            if (tacticalAgent.TargetTransform == null || enemyUnit.Value==null || enemyUnit.Value.IsAlive()==false)
             {
                 tacticalAgent.Stop();
                 return TaskStatus.Success;

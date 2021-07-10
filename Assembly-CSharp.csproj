@@ -992,6 +992,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
      <Compile Include="Assets\UIManager.cs" />
      <Compile Include="Assets\UnitMovement.cs" />
+     <Compile Include="Assets\UpdateIdleStatus.cs" />
      <Compile Include="Assets\WorkerAnimCtrl.cs" />
      <Compile Include="Assets\WorkerManager.cs" />
      <Compile Include="Assets\WorkerUnit.cs" />

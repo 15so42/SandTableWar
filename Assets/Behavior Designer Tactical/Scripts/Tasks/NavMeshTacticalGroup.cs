@@ -18,7 +18,7 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
             private NavMeshAgent navMeshAgent;
             private bool destinationSet;
             public BattleUnitBase battleUnitBase;
-            private NavMeshVehicleMovement vehicleMovement;
+            
             
             /// <summary>
             /// Caches the component references and initialize default values.
@@ -26,7 +26,6 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
             public NavMeshTacticalAgent(Transform agent) : base(agent)
             {
                 battleUnitBase = agent.GetComponent<BattleUnitBase>();
-                vehicleMovement = agent.GetComponent<NavMeshVehicleMovement>();
                 navMeshAgent = agent.GetComponent<NavMeshAgent>();
 
                 if (navMeshAgent.hasPath) {
