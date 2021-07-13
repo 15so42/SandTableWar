@@ -15,6 +15,7 @@
             {
                 return TaskStatus.Failure;
             }
+          
 
             if (needRotate)
             {

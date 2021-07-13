@@ -12,8 +12,8 @@ namespace BehaviorDesigner.Runtime.Tactical.Tasks
 
         public override TaskStatus OnUpdate()
         {
-            DestinationPos.Value = transform.position;
-            LastDestinationPos.Value = DestinationPos.Value;
+            DestinationPos.SetValue(transform.position);
+            LastDestinationPos.SetValue(DestinationPos.Value);
             return TaskStatus.Success;
         }
     }
