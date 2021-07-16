@@ -11,6 +11,11 @@ public class HasNewMoveEvent : Conditional
 
     private BattleUnitBase selfUnit;
     private FightingManager fightingManager;
+    private bool inputAble=true;
+    private float syncFrame;
+    private bool syncingFrame = false;
+    private Coroutine setPosCoroutine;
+    
     public override void OnAwake()
     {
         Owner.RegisterEvent<Vector3>("SetDestinationPos", SetNewDestination);
@@ -18,38 +23,71 @@ public class HasNewMoveEvent : Conditional
         fightingManager = GameManager.Instance.GetFightingManager();
     }
 
-    private bool setFalsed;
+    
     private TaskStatus lastTaskStatus;
 
+    public void DisableInput()
+    {
+        inputAble = false;
+    }
+    
+    public void EnableInput()
+    {
+        inputAble = true;
+    }
     public override void OnStart()
     {
         base.OnStart();
-        setFalsed = false;
+        
         
     }
 
     public override TaskStatus OnUpdate()
     {
+        if (syncingFrame)
+            syncFrame++;
         if (destinationPos != null && lastDestinationPos.Value != destinationPos.Value)
         {
-            lastTaskStatus = TaskStatus.Success;
             return TaskStatus.Success;
         }
 
-        if(lastTaskStatus==TaskStatus.Success)
-            setFalsed = true;
-        lastTaskStatus = TaskStatus.Failure;
+        syncingFrame = false;
         return TaskStatus.Failure;
     }
-    
+
+    public void StartSyncTime()
+    {
+        syncFrame = 0;
+        syncingFrame = true;
+    }
 
     public void SetNewDestination(Vector3 pos)
     {
-        if (setFalsed && selfUnit.factionId==fightingManager.myFactionId && selfUnit.configId==BattleUnitId.Ranger)
+        if (inputAble == false)
         {
-            Debug.Log("出现啦！！！！！！！！！！！！！！！！！！！！！");
+            return;
         }
-        destinationPos.SetValue(pos);
+
+        StartCoroutine(SetPos(pos));
+
+
+    }
+
+    IEnumerator SetPos(Vector3 pos)
+    {
        
+        if (selfUnit.factionId==fightingManager.myFactionId && selfUnit.configId==BattleUnitId.Ranger)
+        {
+            //Debug.Log("设置destionPos:"+pos+",lastDestPos:"+lastDestinationPos.Value);
+            //Debug.Log("时间差为:"+(Time.time-syncFrame));
+            if (syncFrame < 1)
+            {
+                
+                Debug.Log("在sync得同一帧内设置了新地址");
+                yield return null;//等待一帧
+            }
+        }
+        
+        destinationPos.SetValue(pos);
     }
 }
