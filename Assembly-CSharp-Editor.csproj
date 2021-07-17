@@ -65,7 +65,6 @@
      <Compile Include="Assets\FogOfWar\Scripts\Editor\FogOfWarChunkManagerEditor.cs" />
      <Compile Include="Assets\FogOfWar\Scripts\Editor\FogOfWarEditor.cs" />
      <Compile Include="Assets\FogOfWar\Scripts\Editor\Vector2iPropertyDrawer.cs" />
-     <Compile Include="Assets\IconCreator\Editor\IconCreatorEditor.cs" />
      <Compile Include="Assets\nTools\PrefabPainter\Scripts\Editor\PrafabPainterGUI.cs" />
      <Compile Include="Assets\nTools\PrefabPainter\Scripts\Editor\PrefabPainter.cs" />
      <None Include="Assets\Behavior Designer\Editor\GridShader.shader" />

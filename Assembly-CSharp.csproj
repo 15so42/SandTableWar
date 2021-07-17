@@ -58,6 +58,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Aevien\aIconMaker\Scripts\AIconMakerController.cs" />
+     <Compile Include="Assets\Aevien\aIconMaker\Scripts\AIconMakerItemContainer.cs" />
      <Compile Include="Assets\AttackManager.cs" />
      <Compile Include="Assets\AttackTargetPicker.cs" />
      <Compile Include="Assets\AutomaticBatteryAnimCtrl.cs" />
@@ -890,8 +892,6 @@
      <Compile Include="Assets\GlobalItemManager.cs" />
      <Compile Include="Assets\GlobalItemRangeDisplayer.cs" />
      <Compile Include="Assets\GridSearchHandler.cs" />
-     <Compile Include="Assets\IconCreator\Scripts\Blur.cs" />
-     <Compile Include="Assets\IconCreator\Scripts\IconCreator.cs" />
      <Compile Include="Assets\IsConditionTrue.cs" />
      <Compile Include="Assets\IsInBuildingArea.cs" />
      <Compile Include="Assets\LineFactory.cs" />
