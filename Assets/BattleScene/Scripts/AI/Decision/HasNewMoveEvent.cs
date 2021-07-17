@@ -12,7 +12,7 @@ public class HasNewMoveEvent : Conditional
     private BattleUnitBase selfUnit;
     private FightingManager fightingManager;
     private bool inputAble=true;
-    private float syncFrame;
+    private float syncFrame=1;
     private bool syncingFrame = false;
     private Coroutine setPosCoroutine;
     
@@ -68,7 +68,11 @@ public class HasNewMoveEvent : Conditional
             return;
         }
 
-        StartCoroutine(SetPos(pos));
+        if (setPosCoroutine != null)
+        {
+            StopCoroutine("SetPos");
+        }
+        setPosCoroutine = StartCoroutine("SetPos",pos);
 
 
     }
