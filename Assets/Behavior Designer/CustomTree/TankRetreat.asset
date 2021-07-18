@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
+  m_Name: TankRetreat
+  m_EditorClassIdentifier: 
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(459.672852,-33.75891)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(19.0218811,209.693222)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-320.978119,189.6932)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsBoolTrue","NodeData":{"Offset":"(-120.978119,99.69324)","Comment":"\u5982\u679c\u6b63\u5728\u6218\u6597\u6216\u8005\u6b63\u5728\u8ffd\u8d76\n\uff0c\u5728\u6709\u4e86\u65b0\u7684\u79fb\u52a8\u547d\u4ee4\u540e\u5f00\u59cb\u64a4\u9000"},"ID":3,"Name":"Is
+        Bool True","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsPursuing","IsShared":true,"BooleanmValue":false}},{"Type":"IsBoolTrue","NodeData":{"Offset":"(79.02188,109.693237)"},"ID":4,"Name":"Is
+        Bool True","Instant":true,"SharedBoolboolVariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false}}]},{"Type":"CarveOrUnCarve","NodeData":{"Offset":"(-110.978058,299.693237)"},"ID":5,"Name":"Carve
+        Or Un Carve","Instant":true,"BooleantargetStatus":false},{"Type":"BehaviorDesigner.Runtime.Tactical.Tasks.MyRetreat","NodeData":{"Offset":"(28.4336376,299.693237)"},"ID":6,"Name":"My
+        Retreat","Instant":true,"SharedVector3destinationPos":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedBattleUnitenemyUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},"BooleancanRotate":true},{"Type":"RemoveDestinationMark","NodeData":{"Offset":"(168.4336,309.693237)"},"ID":7,"Name":"Remove
+        Destination Mark","Instant":true,"SharedBattleUnitselfUnit":{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true}},{"Type":"CarveOrUnCarve","NodeData":{"Offset":"(339.021851,294.987366)"},"ID":8,"Name":"Carve
+        Or Un Carve","Instant":true,"BooleantargetStatus":true}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsPursuing","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsFighting","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"DestinationPos","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"EnemyBattleUnit","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedBattleUnit","Name":"SelfBattleUnitBase","IsShared":true}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.6.7
