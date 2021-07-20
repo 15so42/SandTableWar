@@ -947,6 +947,10 @@
      <Compile Include="Assets\Resources\Config\ScriptableObject\NpcRegulatorDataConfig.cs" />
      <Compile Include="Assets\Resources\Config\ScriptableObject\SpawnBattleUnitConfig.cs" />
      <Compile Include="Assets\Scout.cs" />
+     <Compile Include="Assets\Scripts\BuffSystem\BuffManager.cs" />
+     <Compile Include="Assets\Scripts\BuffSystem\Buffs\BuffBase.cs" />
+     <Compile Include="Assets\Scripts\BuffSystem\Buffs\RegenerationBuff.cs" />
+     <Compile Include="Assets\Scripts\BuffSystem\BuffsController.cs" />
      <Compile Include="Assets\Scripts\FSMClearSignals.cs" />
      <Compile Include="Assets\Scripts\GameSettingsConst.cs" />
      <Compile Include="Assets\Scripts\MonoSingleton.cs" />
@@ -1066,6 +1070,9 @@
  <Reference Include="Unity.Rider.Editor">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.2D.Sprite.Editor">
+ <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.Postprocessing.Runtime">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
  </Reference>
@@ -1074,9 +1081,6 @@
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Sprite.Editor">
- <HintPath>F:/sa_unity/UnityProjects/PunTest/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

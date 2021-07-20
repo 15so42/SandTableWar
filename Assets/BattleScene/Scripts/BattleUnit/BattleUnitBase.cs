@@ -103,6 +103,7 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
     protected Animator animator;
     private Rigidbody rigidbody;
     private NavMeshVehicleMovement navMeshVehicleMovement;
+    public BuffsController buffsController;
     
     //*********************行为树常量区*********************
     private const string BD_estinationPos="DestinationPos";
@@ -135,6 +136,8 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
         {
             navMeshAgent.updateRotation = !overrideRotationCtrl;
         }
+
+        buffsController = GetComponent<BuffsController>();
 
         taskLauncherComp = GetComponent<TaskLauncher>();
         unitMovement = GetComponent<UnitMovement>();
@@ -947,5 +950,5 @@ public class BattleUnitBase : Entity,IDamageable,IAttackAgent
 
         return ErrorMessage.none;
     }
-    #endregion 
+    #endregion
 }
