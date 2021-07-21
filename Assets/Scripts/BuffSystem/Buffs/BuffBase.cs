@@ -4,13 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityTimer;
 
+public enum BuffType
+{
+   Regeneration,//生命恢复
+   
+}
+
 public abstract class BuffBase : ScriptableObject
 {
    public bool instant;//立即执行，表示无持续时间
+   public BuffType buffType;
+   public int level = 1;//Buff等级
    
    [Header("设置为-1即为永久")]
    public float duration;//持续时间
-   public int plies=1;
+   public int plies=1;//层数
 
    public bool isDurationStackAble;//持续时间可叠加,当获得同类型buff是否刷新持续时间
    public bool isPliesStackAble;//层数可叠加，当获得同类型buff是否叠加层数

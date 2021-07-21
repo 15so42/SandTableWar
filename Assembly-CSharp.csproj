@@ -894,6 +894,7 @@
      <Compile Include="Assets\GridSearchHandler.cs" />
      <Compile Include="Assets\IsConditionTrue.cs" />
      <Compile Include="Assets\IsInBuildingArea.cs" />
+     <Compile Include="Assets\ItemUI.cs" />
      <Compile Include="Assets\LineFactory.cs" />
      <Compile Include="Assets\LogicMap.cs" />
      <Compile Include="Assets\MainBattleDialog.cs" />
@@ -953,6 +954,8 @@
      <Compile Include="Assets\Scripts\BuffSystem\BuffsController.cs" />
      <Compile Include="Assets\Scripts\FSMClearSignals.cs" />
      <Compile Include="Assets\Scripts\GameSettingsConst.cs" />
+     <Compile Include="Assets\Scripts\InventorySystem\Inventory.cs" />
+     <Compile Include="Assets\Scripts\InventorySystem\Item.cs" />
      <Compile Include="Assets\Scripts\MonoSingleton.cs" />
      <Compile Include="Assets\Scripts\PhotonEventConst.cs" />
      <Compile Include="Assets\Scripts\UnityObjectPoolManager.cs" />

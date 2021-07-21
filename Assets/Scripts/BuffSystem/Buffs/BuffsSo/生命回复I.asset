@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: "\u751F\u547D\u56DE\u590DI"
   m_EditorClassIdentifier: 
   instant: 0
-  duration: 0
+  duration: 5
   plies: 1
   isDurationStackAble: 0
   isPliesStackAble: 0
   period: 1
+  isFinished: 0
