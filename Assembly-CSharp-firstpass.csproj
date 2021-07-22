@@ -727,6 +727,34 @@
       <Project>{F9D8C5BD-0879-1F25-D141-F3F793CA1B20}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="DevionGames.InventorySystem.csproj">
+      <Project>{E7960028-6B52-E480-8A7A-5F6231691C9A}</Project>
+      <Name>DevionGames.InventorySystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="DevionGames.StatSystem.csproj">
+      <Project>{750AB1CF-B816-B356-AC62-55B0033C355B}</Project>
+      <Name>DevionGames.StatSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="DevionGames.Triggers.csproj">
+      <Project>{3E6BE439-F267-FDCE-9823-FC6B32ACBCC1}</Project>
+      <Name>DevionGames.Triggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="DevionGames.Utilities.csproj">
+      <Project>{87C02EB1-E0CD-5192-A7E4-A2532335B8CA}</Project>
+      <Name>DevionGames.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="DevionGames.UIWidgets.csproj">
+      <Project>{02176628-0AF0-FAD2-E633-99691A2ACFCB}</Project>
+      <Name>DevionGames.UIWidgets</Name>
+    </ProjectReference>
+    <ProjectReference Include="DevionGames.ThirdPersonController.csproj">
+      <Project>{66CDCE2A-3A79-2FC9-147B-C6CB26631445}</Project>
+      <Name>DevionGames.ThirdPersonController</Name>
+    </ProjectReference>
+    <ProjectReference Include="DevionGames.Graphs.csproj">
+      <Project>{92579549-5286-14E8-DF73-32B74CFCE28A}</Project>
+      <Name>DevionGames.Graphs</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -954,10 +954,26 @@
      <Compile Include="Assets\Scripts\BuffSystem\BuffsController.cs" />
      <Compile Include="Assets\Scripts\FSMClearSignals.cs" />
      <Compile Include="Assets\Scripts\GameSettingsConst.cs" />
-     <Compile Include="Assets\Scripts\InventorySystem\Inventory.cs" />
-     <Compile Include="Assets\Scripts\InventorySystem\Item.cs" />
+     <Compile Include="Assets\Scripts\Inventory System\Examples\Particle Effects\ShurikenMagic\Scripts\SM_AnimSpeedRandomizer.cs" />
+     <Compile Include="Assets\Scripts\Inventory System\Examples\Particle Effects\ShurikenMagic\Scripts\SM_DestroyTimed.cs" />
+     <Compile Include="Assets\Scripts\Inventory System\Examples\Particle Effects\ShurikenMagic\Scripts\SM_PrefabGenerator.cs" />
+     <Compile Include="Assets\Scripts\Inventory System\Examples\Particle Effects\ShurikenMagic\Scripts\SM_RandomScale.cs" />
+     <Compile Include="Assets\Scripts\Inventory System\Examples\Particle Effects\ShurikenMagic\Scripts\SM_Rotate.cs" />
+     <Compile Include="Assets\Scripts\Inventory System\Examples\Particle Effects\ShurikenMagic\Scripts\SM_TrailFade.cs" />
      <Compile Include="Assets\Scripts\MonoSingleton.cs" />
      <Compile Include="Assets\Scripts\PhotonEventConst.cs" />
+     <Compile Include="Assets\Scripts\SAInventorySystem\Inventory.cs" />
+     <Compile Include="Assets\Scripts\SAInventorySystem\Item.cs" />
+     <Compile Include="Assets\Scripts\Standard Assets\Water (Pro Only)\Sources\Scripts\Water.cs" />
+     <Compile Include="Assets\Scripts\Standard Assets\Water (Pro Only)\Water4\Sources\Scripts\Displace.cs" />
+     <Compile Include="Assets\Scripts\Standard Assets\Water (Pro Only)\Water4\Sources\Scripts\GerstnerDisplace.cs" />
+     <Compile Include="Assets\Scripts\Standard Assets\Water (Pro Only)\Water4\Sources\Scripts\MeshContainer.cs" />
+     <Compile Include="Assets\Scripts\Standard Assets\Water (Pro Only)\Water4\Sources\Scripts\PlanarReflection.cs" />
+     <Compile Include="Assets\Scripts\Standard Assets\Water (Pro Only)\Water4\Sources\Scripts\SpecularLighting.cs" />
+     <Compile Include="Assets\Scripts\Standard Assets\Water (Pro Only)\Water4\Sources\Scripts\WaterBase.cs" />
+     <Compile Include="Assets\Scripts\Standard Assets\Water (Pro Only)\Water4\Sources\Scripts\WaterTile.cs" />
+     <Compile Include="Assets\Scripts\Third Person Controller\Example\Particles\Impact\Scripts\AutoDestruct.cs" />
+     <Compile Include="Assets\Scripts\Triggers\Integrations\UI Widgets\Scripts\Runtime\YesNoDialog.cs" />
      <Compile Include="Assets\Scripts\UnityObjectPoolManager.cs" />
      <Compile Include="Assets\SearchCell.cs" />
      <Compile Include="Assets\SpawnBuildingDialog.cs" />
@@ -1010,8 +1026,10 @@
      <Compile Include="Assets\nTools\PrefabPainter\Scripts\PrefabPainterSceneSettings.cs" />
      <Compile Include="Assets\nTools\PrefabPainter\Scripts\PrefabPainterSettings.cs" />
      <None Include="Assets\nTools\PrefabPainter\Shaders\GUITextureClipLevels.shader" />
+     <None Include="Assets\Scripts\Standard Assets\Prototyping\Shaders\WorldCoordDiffuse.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
+     <None Include="Assets\Scripts\Inventory System\Changes.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\FogOfWar\Resources\FogOfWarShader.shader" />
      <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
@@ -1023,7 +1041,12 @@
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+     <None Include="Assets\Scripts\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\WaterInclude.cginc" />
+     <None Include="Assets\Scripts\Triggers\Rename Action Info.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\Scripts\Triggers\Changes.txt" />
+     <None Include="Assets\Scripts\Third Person Controller\Example\Particles\Impact\Shaders\Additive Alpha8.shader" />
+     <None Include="Assets\Scripts\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-Water4.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -1035,9 +1058,13 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <None Include="Assets\Photon\PhotonUnityNetworking\readme.txt" />
+     <None Include="Assets\Scripts\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-SimpleWater4.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\nTools\PrefabPainter\Docs\changelog.txt" />
+     <None Include="Assets\Scripts\Standard Assets\Water (Pro Only)\Sources\Shaders\FX-Water.shader" />
+     <None Include="Assets\Scripts\Third Person Controller\Changes.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+     <None Include="Assets\Scripts\Stat System\Changes.txt" />
      <None Include="Assets\GameCode\DOTween\readme.txt" />
      <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.xml" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
@@ -1677,6 +1704,34 @@
     <ProjectReference Include="PhotonUnityNetworking.Editor.csproj">
       <Project>{F9D8C5BD-0879-1F25-D141-F3F793CA1B20}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="DevionGames.InventorySystem.csproj">
+      <Project>{E7960028-6B52-E480-8A7A-5F6231691C9A}</Project>
+      <Name>DevionGames.InventorySystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="DevionGames.StatSystem.csproj">
+      <Project>{750AB1CF-B816-B356-AC62-55B0033C355B}</Project>
+      <Name>DevionGames.StatSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="DevionGames.Triggers.csproj">
+      <Project>{3E6BE439-F267-FDCE-9823-FC6B32ACBCC1}</Project>
+      <Name>DevionGames.Triggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="DevionGames.Utilities.csproj">
+      <Project>{87C02EB1-E0CD-5192-A7E4-A2532335B8CA}</Project>
+      <Name>DevionGames.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="DevionGames.UIWidgets.csproj">
+      <Project>{02176628-0AF0-FAD2-E633-99691A2ACFCB}</Project>
+      <Name>DevionGames.UIWidgets</Name>
+    </ProjectReference>
+    <ProjectReference Include="DevionGames.ThirdPersonController.csproj">
+      <Project>{66CDCE2A-3A79-2FC9-147B-C6CB26631445}</Project>
+      <Name>DevionGames.ThirdPersonController</Name>
+    </ProjectReference>
+    <ProjectReference Include="DevionGames.Graphs.csproj">
+      <Project>{92579549-5286-14E8-DF73-32B74CFCE28A}</Project>
+      <Name>DevionGames.Graphs</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class BuffManager : MonoSingleton<BuffManager>
 {
-    public void AddBuff(BuffBase buff, BuffsController target)
+    public void AddBuff<T>(T buff, BuffsController target) where T: BuffBase
     {
         
-        target.AddBuff(ScriptableObject.CreateInstance<>() );
+        target.AddBuff(ScriptableObject.CreateInstance<T>());
     }
 }
